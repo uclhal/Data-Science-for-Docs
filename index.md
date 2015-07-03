@@ -1,6 +1,6 @@
 ---
-
 layout: lesson
+root: .
 lastupdated: April 16, 2015
 contributors: ["First Last", "First Last", "Pls Add Others"]
 maintainers: ["First Last", "First Last"]
@@ -9,8 +9,6 @@ topic: Topic
 software:
 dataurl:
 status: Under Development
-
-
 ---
 
 <!-- USING THIS LESSON TEMPLATE -->
@@ -18,7 +16,12 @@ status: Under Development
 
 <!-- THE LESSON INFORMATION -->
 
+
 #Data Carpentry {{ page.topic }} for {{ page.domain }}
+=======
+<!-- Get the information from _data/info.yml -->
+
+# Data Carpentry {{ page.topic }} for {{ page.domain }}
 
 Data Carpentry's aim is to teach researchers basic concepts, skills,
 and tools for working with data so that they can get more done in less
@@ -33,6 +36,7 @@ in working with {{page.domain %}} data in {{page.topic %}}.
 
 
 **Lesson status: {{ page.status }}**
+
 <!--
   [Information on Lesson Status Categories]()
 -->
