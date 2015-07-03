@@ -6,7 +6,7 @@ contributors: ["First Last", "First Last", "Pls Add Others"]
 maintainers: ["First Last", "First Last"]
 domain: Domain Name
 topic: Topic
-software: 
+software:
 dataurl:
 status: Under Development
 
@@ -18,14 +18,12 @@ status: Under Development
 
 <!-- THE LESSON INFORMATION -->
 
-<!-- Get the information from _data/info.yml -->
-
 #Data Carpentry {{ page.topic }} for {{ page.domain }}
 
 Data Carpentry's aim is to teach researchers basic concepts, skills,
 and tools for working with data so that they can get more done in less
-time, and with less pain. The lessons below were designed for those interested 
-in working with {{page.domain %}} data in {{page.topic %}}. 
+time, and with less pain. The lessons below were designed for those interested
+in working with {{page.domain %}} data in {{page.topic %}}.
 
 
 **Content Contributors: {{page.contributors | join: ', ' %}}**
@@ -33,10 +31,8 @@ in working with {{page.domain %}} data in {{page.topic %}}.
 
 **Lesson Maintainers: {{page.maintainers | join: ', ' %}}**
 
-<br> 
 
-
-####Lesson status: {{ page.status }} 
+**Lesson status: {{ page.status }}**
 <!--
   [Information on Lesson Status Categories]()
 -->
@@ -52,21 +48,18 @@ in working with {{page.domain %}} data in {{page.topic %}}.
 
 ## Data
 
-Data files for the workshop are available here: ({{page.dataurl %}})[{{page.dataurl %}}]
+Data files for the lesson are available here: ({{page.dataurl %}})[{{page.dataurl %}}]
 
 
-<br>
+### Requirements
 
-<h2>Requirements</h2>
-
-<p>
 Data Carpentry's teaching is hands-on, so participants are encouraged to use
 their own computers to insure the proper setup of tools for an efficient workflow.
-<em>These lessons assume no prior knowledge of the skills or tools</em>, but working 
+*These lessons assume no prior knowledge of the skills or tools*, but working
 through this lesson requires working copies of the software described below.
-To most effectively use these materials, please make sure to install everything 
-<em>before</em> working through this lesson.
-</p>
+To most effectively use these materials, please make sure to install everything
+*before* working through this lesson.
+
 
 
 
@@ -81,8 +74,3 @@ To most effectively use these materials, please make sure to install everything
 {% endif %}
 
 <p><strong>Twitter</strong>: @datacarpentry
-
-
-
-
-
