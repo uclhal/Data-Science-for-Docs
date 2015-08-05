@@ -4,8 +4,8 @@ Data Carpentry is an open source project, and we welcome contributions of all
 kinds: new and improved lessons, bug reports, and small fixes to existing
 material are all useful.
 
-By contributing, you are agreeing that Data Carpentry may redistribute your work
-under [these licenses](LICENSE.md).
+By contributing, you are agreeing that Data Carpentry may redistribute your 
+work under [these licenses](LICENSE.md).
 
 
 **Table of Contents**
@@ -17,19 +17,22 @@ under [these licenses](LICENSE.md).
 
 ## Working With GitHub
 
-1.  Fork the `datacarpentry/lesson-name` repository on GitHub.
+1.  Fork the `datacarpentry/lesson-name` repository on GitHub.  
 
-2.  Clone that repository to your own machine.
-
-3.  Create a branch from `master` for your changes.
+2.  The default branch in our lessons is `gh-pages`. Create a 
+    new branch for your changes.  
     Give your branch a meaningful name,
-    such as `fixing-typos-in-novice-shell-lesson`
+    such as `fixing-typos-in-shell-lesson`
     or `adding-tutorial-on-visualization`.
+
+3.  Clone this repository and branch to work with it on your computer.  
+    git clone the repository with -b 'branch name'
 
 4.  Make your changes, commit them, and push them to your repository on GitHub.
 
-5.  Send a pull request to the `master` branch of the main datacarpentry
-    repository at http://github.com/datacarpentry/lesson-name.
+5.  Send a pull request to the `gh-pages` branch of the main datacarpentry
+    repository at http://github.com/datacarpentry/lesson-name. This can
+    be done through the github web interface. 
 
 If it is easier for you to send them to us some other way,
 please mail us at

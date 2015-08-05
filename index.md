@@ -1,7 +1,7 @@
 ---
 layout: lesson
 root: .
-lastupdated: April 16, 2015
+lastupdated: Month Day, Year
 contributors: ["First Last", "First Last", "Pls Add Others"]
 maintainers: ["First Last", "First Last"]
 domain: Domain Name
@@ -19,13 +19,12 @@ status: Under Development
 
 #Data Carpentry {{ page.topic }} for {{ page.domain }}
 =======
-<!-- Get the information from _data/info.yml -->
 
 # Data Carpentry {{ page.topic }} for {{ page.domain }}
 
 Data Carpentry's aim is to teach researchers basic concepts, skills,
-and tools for working with data so that they can get more done in less
-time, and with less pain. The lessons below were designed for those interested
+and tools for working more effectively with data.
+The lessons below were designed for those interested
 in working with {{page.domain %}} data in {{page.topic %}}.
 
 
