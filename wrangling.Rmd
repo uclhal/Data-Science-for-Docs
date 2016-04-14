@@ -53,19 +53,22 @@ text_cols <- c(
 )
 fac_cols <- c(
   "sex",
-  "group",
-  "satisfaction"
+  "group"
 )
 df <- df %>%
   mutate_each_(funs(tolower), text_cols) %>%
   mutate_each_(funs(factor), fac_cols)
 
 # define satisfaction factor levels
-levels(df$satisfaction) = c(
-  'poor',
-  'satisfactory',
-  'good',
-  'excellent'
+df$satisfaction <- factor(
+  df$satisfaction,
+  levels = c(
+    'poor',
+    'satisfactory',
+    'good',
+    'excellent'
+  ),
+  ordered=TRUE
 )
 
 # get rid of units in the drug columns and
