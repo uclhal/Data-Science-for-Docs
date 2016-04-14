@@ -9,8 +9,8 @@ TODO: make wrangling less hacky
 TODO: complete wrangling
 
 ```{r}
-# not using readr here as I think we want auto-factors?
-df <- read.csv(
+library(readr)
+df <- read_csv(
   '../code/dsbc_lectures/analysis/course_exemplar1.csv',
   skip=1  # column names are on second line of table
 )
@@ -36,11 +36,20 @@ names(df)[15] <- "mor"
 names(df)[16] <- "other"
 names(df)[17] <- "days"
 names(df)[18] <- "rat"
-names(df)[19] <- "sat"
+names(df)[19] <- "satisfaction"
 
 # all text to lower case
 library(dplyr)
 df <- mutate_each(df, funs(tolower))
+
+# define satisfaction factors
+df$satisfaction <- as.factor(df$satisfaction)
+levels(df$satisfaction) = c(
+  'poor',
+  'satisfactory',
+  'good',
+  'excellent'
+)
 
 # get rid of units in the drug columns and
 # convert data type to numeric
