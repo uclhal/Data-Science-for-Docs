@@ -7,10 +7,49 @@ output: ioslides_presentation
 
 ## Aims
 
-Getting Data into R can be accomplished in many ways. I'll be demonstrating two that are practical
+Getting Data into R can be accomplished in many ways.
 
 1. Using in-built functions to import CSV files
-2. Using GoogleSheets
+2. Workshop to get this working
+3. Using GoogleSheets
+4. Workshop to demonstrated
+
+## Everything is a "data-frame"
+
+Once you have imported any sheet into R, the result is a data-frame. This is another word for a sheet - like Excel's sheet; it has columns, each identified by a name, and rows for observations.
+
+To access a dataframe's particular column, we use the $ notation. E.g:
+
+```{r, eval=FALSE}
+df$some_column
+```
+
+Here, `df` is our dataframe and the column name is "some_column".
+
+## Introducing the CSV
+
+CSV, a Comma Seperated Values, is a file that will contain your data. This is easily exportable from Microsoft Excel, Apple Numbers, Open Office, Google Sheets...etc.
+
+It's a simple format. The top line are the column names, each seperated by a comma. The following lines are the observations in those columns, again, seperated by a comma.
+
+It's strength is in it's simplicity. It only has data, no formuals, no tricks and is very well recognised amongst software packages as it is very easily supported. R has excellent support for CSV.
+
+## Find your File
+
+You will need to know the absolute location of your file on your harddrive.
+
+```{r, out.width = 380, fig.retina = NULL, echo=FALSE}
+knitr::include_graphics("figures/mac_path.png")
+```
+
+## File your File
+This will result in the following path:
+
+```{r, eval=FALSE}
+/Users/ahmedalhindawi/Documents/Development/Man_graph.xls
+```
+
+On Windows: Shift+Right click on file. Choose Copy As Path. A similar path will appear.
 
 ## Using in-built function
 
@@ -20,15 +59,19 @@ Once a sheet has been exported, it can be imported into R:
 
 
 ```{r, eval=FALSE}
-df <- read.csv(LOCATION_OF_FILE, header=TRUE)
+LOCATION_OF_FILE <- "/Users/ahmedalhindawi/Documents/Development/Man_graph.xls"
+df <- read.csv(LOCATION_OF_FILE, header=TRUE, stringsAsFactor=FALSE)
 ```
 
-
-This will create a variable called data in the global namespace with your sheet. Columns can then be referenced by:
+This will read your file, then a dataframe object will be available to run queries on. To display the entire column, type:
 
 ```{r, eval=FALSE}
 df$column_name
 ```
+
+## Workshop
+
+Now is a 20 minute workshop on getting this working...
 
 ## Using Google Sheets
 
@@ -91,4 +134,3 @@ df <- gs_read_csv(ss=gap, ws = "Form responses 1")
 The sheet needs to be "public" through File -> Publish To The Web
 
 ## Questions?
-
