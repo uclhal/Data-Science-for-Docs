@@ -34,6 +34,12 @@ It's a simple format. The top line are the column names, each seperated by a com
 
 It's strength is in it's simplicity. It only has data, no formuals, no tricks and is very well recognised amongst software packages as it is very easily supported. R has excellent support for CSV.
 
+## Export CSV From Excel
+
+```{r, out.width = 750, fig.retina = NULL, echo=FALSE}
+knitr::include_graphics("figures/export_csv.png")
+```
+
 ## Find your File
 
 You will need to know the absolute location of your file on your harddrive.
@@ -59,8 +65,8 @@ Once a sheet has been exported, it can be imported into R:
 
 
 ```{r, eval=FALSE}
-LOCATION_OF_FILE <- "/Users/ahmedalhindawi/Documents/Development/Man_graph.xls"
-df <- read.csv(LOCATION_OF_FILE, header=TRUE, stringsAsFactor=FALSE)
+FILE <- "/Users/ahmedalhindawi/Documents/Development/Man_graph.xls"
+df <- read.csv(FILE, header=TRUE, stringsAsFactor=FALSE)
 ```
 
 This will read your file, then a dataframe object will be available to run queries on. To display the entire column, type:
