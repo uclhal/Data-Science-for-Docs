@@ -1,0 +1,82 @@
+---
+title: "data_wrangling"
+author: "Finn Catling"
+date: "13 April 2016"
+output: html_document
+---
+
+TODO: make wrangling less hacky
+TODO: complete wrangling
+
+```{r}
+library(readr)
+df <- read_csv(
+  '../code/dsbc_lectures/analysis/course_exemplar1.csv',
+  skip=1  # column names are on second line of table
+)
+
+# rename the columns using the clunky base R syntax.
+# sadly can't rename all columns by name
+# with plyr as there are duplicate column names
+names(df)[1] <- "num"
+names(df)[2] <- "age"
+names(df)[3] <- "sex"
+names(df)[4] <- "group"
+names(df)[5] <- "pain_pre"
+names(df)[6] <- "pain_3"
+names(df)[7] <- "pain_12"
+names(df)[8] <- "pain_24"
+names(df)[9] <- "pain_2wk"
+names(df)[10] <- "mov_12"
+names(df)[11] <- "mov_24"
+names(df)[12] <- "mov_2wk"
+names(df)[13] <- "par"
+names(df)[14] <- "cod"
+names(df)[15] <- "mor"
+names(df)[16] <- "other"
+names(df)[17] <- "days"
+names(df)[18] <- "rat"
+names(df)[19] <- "satisfaction"
+
+# all text to lower case
+# then factor columns where appropriate
+library(dplyr)
+text_cols <- c(
+  "sex",
+  "group",
+  "par",
+  "cod",
+  "mor",
+  "other",
+  "rat",
+  "satisfaction"
+)
+fac_cols <- c(
+  "sex",
+  "group"
+)
+df <- df %>%
+  mutate_each_(funs(tolower), text_cols) %>%
+  mutate_each_(funs(factor), fac_cols)
+
+# define satisfaction factor levels
+df$satisfaction <- factor(
+  df$satisfaction,
+  levels = c(
+    'poor',
+    'satisfactory',
+    'good',
+    'excellent'
+  ),
+  ordered=TRUE
+)
+
+# get rid of units in the drug columns and
+# convert data type to numeric
+df <- df %>%
+  mutate(par = as.numeric(strsplit(as.character(par), "g"))) %>%
+  mutate(cod = as.numeric(strsplit(as.character(cod), "mg"))) %>%
+  mutate(mor = as.numeric(strsplit(as.character(mor), "mg")))
+```
+
+I can't be bothered to tackle the 'other' column at the moment but using **strsplit()** within **mutate()**, then chaining to **unnest()** is probably the way to start? See [here](http://bioinfoblog.it/2015/02/the-most-useful-r-command-unnest-from-tidyr/) and [here](http://stackoverflow.com/a/28938537/1684046).
