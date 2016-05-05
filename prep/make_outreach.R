@@ -26,6 +26,10 @@ library(assertthat)
 # Load and check data OK
 load("/Users/steve/aor/academic/paper-spotearly/src/data/paper-spotearly.RData")
 assert_that(nrow(wdt)==15158)
+names(wdt)
+lookfor()
+library(lubridate)
+
 
 wdt <- wdt[,
     .(
@@ -38,7 +42,7 @@ wdt <- wdt[,
     early4,             # admitted within 4 hours, 1==true
     age,                # age in years
     male,               # male sex
-    weekend,            # assessed saturday or sunday
+    wday = (wday(wdt$v_timestamp, label=TRUE)), # day of the week
     news_score,         # physiological severity of illness (ward vital signs)
     news_risk,
     sofa_score,         # physiological severity of illness (with allowance for organ support)
