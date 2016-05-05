@@ -1,11 +1,10 @@
-[![Stories in Ready](https://badge.waffle.io/datascibc/course.png?label=ready&title=Ready)](https://waffle.io/datascibc/course)
-This repository has been created mainly to use the wiki functionality.
-
-There aren't meant to be any files in the repo itself for now so just click [here](https://github.com/datascibc/datasci4docs/wiki) or in the _wiki_ link in the link list above.
-
-The logical next step will to convert this repository into the course website (via Jekyll), and probably duplicate some of the wiki pages there.
+# Data science for Docs (and Nurses!)
 
 
-## Log
+## Notes
 
-Quick theme download and pasted into directory from http://karloespiritu.com/blackdoc/
+- justify the command line and text files
+    + reproducible research
+    + speed (eventually)
+- justify the lack of output from R
+    + you need to _decide_ what is important and ask for it; if you don't know then you shouldn't look
