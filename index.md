@@ -4,10 +4,10 @@ root: .
 lastupdated: May 5, 2016
 contributors: ["Steve Harris", "Ahmed Al-Hindawi", "Finn Catling", "Ed Palmer", "Danny Wong"]
 maintainers: ["Steve Harris"]
-domain: Clinical medicine
-topic: Introduction
-software: R, Spreadsheets
-dataurl: https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526
+domain: Clinical 
+topic: Critical Care
+software: R
+dataurl_1: https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526
 status: Under Development
 ---
 
@@ -42,13 +42,14 @@ in working with {{page.domain %}} data in {{page.topic %}}.
 ## Lessons:
 
 
-1. [Lesson 00 Name](00-lesson-00-name.html)
-2. [Lesson 01 Name](01-lesson-01-name.html)
+1. [R for newbies](01-lesson-01-r-for-newbies.html)
 
 
 ## Data
 
-Data files for the lesson are available here: ({{page.dataurl %}})[{{page.dataurl %}}]
+Data files for the lesson are available here: 
+
+- [SPOTlight study data]({{page.dataurl_1 %}}): an observatinal study of deteriorating ward patients referred to critical care
 
 
 ### Requirements
