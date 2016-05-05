@@ -1,13 +1,13 @@
 ---
 layout: lesson
 root: .
-lastupdated: Month Day, Year
-contributors: ["First Last", "First Last", "Pls Add Others"]
-maintainers: ["First Last", "First Last"]
-domain: Domain Name
-topic: Topic
-software:
-dataurl:
+lastupdated: May 5, 2016
+contributors: ["Steve Harris", "Ahmed Al-Hindawi", "Finn Catling", "Ed Palmer", "Danny Wong"]
+maintainers: ["Steve Harris"]
+domain: Clinical medicine
+topic: Introduction
+software: R, Spreadsheets
+dataurl: https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526
 status: Under Development
 ---
 
