@@ -17,15 +17,15 @@ status: Under Development
 <!-- THE LESSON INFORMATION -->
 
 
-# Data Carpentry {{ page.topic }} for {{ page.domain }}
+# Data Science {{ page.topic }} for {{ page.domain }}
 
-Data Carpentry's aim is to teach researchers basic concepts, skills,
-and tools for working more effectively with data.
-The lessons below were designed for those interested
+Data Science for Doc's aim is to teach doctors, nurses, and other health care professionals basic concepts, skills, and tools for working more effectively with data. The lessons below were designed for those interested
 in working with {{page.domain %}} data in {{page.topic %}}.
 
 
 **Content Contributors: {{page.contributors | join: ', ' %}}**
+
+We have borrrowed heavily from the excellent [Data Carpentry programme](http://datacarpentry.org) in producing this course. However, this is _not_ a data carpentry course. We do not meet their specications (yet), although this is something we are working toward.
 
 
 **Lesson Maintainers: {{page.maintainers | join: ', ' %}}**
@@ -43,6 +43,7 @@ in working with {{page.domain %}} data in {{page.topic %}}.
 
 
 1. [R for newbies](01-lesson-01-r-for-newbies.html)
+2. [Excel Hell](02-lesson-02-excel-hell.html)
 
 
 ## Data
