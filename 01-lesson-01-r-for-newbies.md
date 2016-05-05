@@ -15,12 +15,14 @@ minutes: 25
 
 We're going to get you up and running in **R** which is a highly respected, free statistics package used by academics around the world. We will also install a _friendly_ interface to R called _RStudio_.
 
+<a name="download-and-install-r-and-rstudio"></a>
 ## Download and install R and RStudio
 
 1. Download and install R from [here](https://cran.rstudio.com)
 
 2. Download and install RStudio. This is a nice shiny interface for R, and the easiest way to use it. Download it [here](https://www.rstudio.com/products/rstudio/download/). There should be an 'installer' for your operating system.
 
+<a name="start-rstudio-and-have-a-look-around"></a>
 ## Start RStudio and have a look around
 
 ![](img/r-studio-windows-vanilla.jpeg)
@@ -47,6 +49,7 @@ The number in square brackets is actually R 'numbering' your answer for you. The
 
 Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a little more. Typing directly into R is a start, but we want to teach you _reproducible_ research. The scientific method requires that we document our work, but we can't reproduce your typing unless we record it somewhere. 
 
+<a name="keep-a-lab-book-of-your-work"></a>
 ### Keep a lab book of your work
 
 The solution is to create a file, write your commmands in that file, and then tell R to work through the commands in that file. Switch to the pane labelled source, and this time type `2-2`. When you get to the end of the line, hit <command-enter> (on Windows <control-enter>). This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract.
