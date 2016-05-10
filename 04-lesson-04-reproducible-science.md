@@ -9,7 +9,27 @@ minutes: 25
 
 ## Learning Objectives 
 
-    This is a block of objectives
+<!-- 
+    * Reproducible science - (v1) Danny (v2) Finn 
+        - [ ] back story - requirements for publications
+        - [ ] teach the google sheets pipeline
+        - [ ] using git in R studio??
+
+ -->
+
+These may be just a quick slide or two and not much for live coding
+
+- [Comment your code]
+- [GUI vs text files as your labbook]
+Live coding how to update your sheet
+
+- [Googlesheets pipeline]
+
+If we can, introduce using Git in R??
+This will need road testing.
+
+- [R studio and git as a save procedure] 
+
 
 
 ## Lesson 

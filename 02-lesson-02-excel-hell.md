@@ -9,6 +9,10 @@ minutes: 25
 
 <!-- Enumerate specific learning objectives in terms of what the learner will be able to completed by the end of the lesson -->
 
+<!--     * Excel Hell - (v1) Ed (v2) 
+        - [ ] live coding / practical session tidying a dirty sheet: use the RCT stuff
+ -->
+
 1. Summarise pros and cons for Excel versus Google sheets for storing your data
 2. Learning best practices for recording and formatting data in spreadsheets
 3. Understanding the correspondence between columns and rows in spreadsheets and data structure

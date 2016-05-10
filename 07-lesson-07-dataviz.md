@@ -9,7 +9,14 @@ minutes: 25
 
 ## Learning Objectives 
 
-    This is a block of objectives
+<!--     
+* principles of data viz
+* aesthetics in ggplot
+* Revisit ggplot with all the nicer options for facetting, colour size
+        - [ ] maybe get them to plot hrate and mortality with sample size etc
+        - [ ] 
+
+ -->
 
 
 ## Lesson 

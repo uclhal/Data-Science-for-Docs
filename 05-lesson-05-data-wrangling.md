@@ -6,9 +6,14 @@ minutes: 25
 ---
 
 <!-- rename file with the lesson name replacing template -->
+<!-- - [ ] TODO(2016-05-10): remove detail from the subsetting in Base R; just show the ugly line, maybe mention matrix address  -->
 
 ## Learning Objectives 
 
+<!--     * Tidying data in R - (v1) Ahmed (v2) Steve
+        - [ ] dplyr
+        - [ ] tidyr
+ -->
 - recognise the standard R methods for selecting data
 - use the dplyr package to manipulate your data
 - use the tidyr package to tidy your data

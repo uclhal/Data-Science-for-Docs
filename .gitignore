@@ -5,3 +5,4 @@ course.Rproj
 .Rproj.user
 _site/
 .gitignore
+.RData

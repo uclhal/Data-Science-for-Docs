@@ -10,6 +10,7 @@ minutes: 25
 - [Install R and RStudio](#download-and-install-r-and-rstudio)  
 - [Find your way around RStudio](#start-rstudio-and-have-a-look-around)  
 - [Keep a lab book of your work](#keep-a-lab-book-of-your-work)
+- [Follow me](#follow-me)
 
 ## Lesson 
 
@@ -60,6 +61,13 @@ The solution is to create a file, write your commmands in that file, and then te
     [1] 0
 
 Now save the file you have written as `labbook_YYMMDD.R` (replace YYMMDD with today's date e.g. `labbook_160103.R`). You must use the `.R` extension to indicate that this is an R script, but you can, of course, choose any name you wish.[^2] 
+
+<a name="follow-me"></a>
+### Follow me
+
+- [ ] TODO(2016-05-08): show off a little bit; perhaps download the gap minder data and make some nice plots; get people enthused; run a quick statistical test 
+
+
 
 ## Exercises
 

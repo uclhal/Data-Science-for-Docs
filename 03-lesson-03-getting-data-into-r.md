@@ -16,6 +16,17 @@ Getting Data into R can be accomplished in many ways.
 3. Scripting your import (and file paths)
 4. Using GoogleSheets
 
+<!-- * Getting data into R - (v1) Ahmed (v2) Ed
+    - live coding importing the data
+    - [ ] let's add googlesheets to this but not the reproducible angle yet
+    - simple summary functoions in R for looking at your data
+        + ls()
+        + summary()
+        + mean()
+        + nrows()
+        + ncols()
+        + names()
+ -->
 ## Lesson 
 
 ## Everything is a "data-frame"
