@@ -5,6 +5,13 @@ title: R for newbies
 minutes: 25
 ---
 
+<!-- - [ ] TODO(2016-05-12): 
+- more detail on the different panes in R studio
+    - explain tabs and panes
+    - explain ...
+
+  -->
+
 ## Learning Objectives 
 
 - [Install R and RStudio](#download-and-install-r-and-rstudio)  
@@ -76,6 +83,9 @@ Now save the file you have written as `labbook_YYMMDD.R` (replace YYMMDD with to
 1. Can you explain the difference between the console and the source panes in R studio?
 2. Have a look in the _workspace_ tab of the pane on the top right? What do you think is show here?
 3. Try using the help function to find out what `ls()` does. Hint: try typing this in the search box of the _Help_ pane. Don't worry if the 'help' doesn't make much sense! 
+
+- [ ] TODO(2016-05-12): change working directory (point and click, console)
+4. Change working directory
 
 ## Answers
 

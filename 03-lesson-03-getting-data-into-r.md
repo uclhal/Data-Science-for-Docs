@@ -27,6 +27,7 @@ Getting Data into R can be accomplished in many ways.
         + ncols()
         + names()
  -->
+ 
 ## Lesson 
 
 ## Everything is a "data-frame"

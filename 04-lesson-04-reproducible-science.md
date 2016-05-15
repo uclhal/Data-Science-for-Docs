@@ -21,6 +21,7 @@ These may be just a quick slide or two and not much for live coding
 
 - [Comment your code]
 - [GUI vs text files as your labbook]
+    - teach how to source a file
 Live coding how to update your sheet
 
 - [Googlesheets pipeline]
