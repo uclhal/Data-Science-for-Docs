@@ -80,4 +80,4 @@ To most effectively use these materials, please make sure to install everything
 {% include anySetup.html %}
 {% endif %}
 
-<p><strong>Twitter</strong>: @datacarpentry
+<p><strong>Twitter</strong>: @datascibc

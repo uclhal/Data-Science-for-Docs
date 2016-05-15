@@ -26,6 +26,18 @@ minutes: 25
 
 ## Lesson 
 
+Data Carpentry's teaching is hands-on, so participants need to bring their own laptops to insure the proper setup of tools for an efficient workflow. In exchange, you will leave with a working version of R, and the skills to use it.
+
+*These lessons assume no prior knowledge of the skills or tools*, but working
+through this lesson requires working copies of the software described below.
+To most effectively use these materials, please make sure to install everything
+*before* working through this lesson.
+
+{% include rSetup.html %}
+
+{% include spreadsheetSetup.html %}
+
+
 
 ## Exercises
 
