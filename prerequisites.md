@@ -52,6 +52,7 @@ _Only, if you don't already have Excel or similar already installed._
 
 {% include spreadsheetSetup.html %}
 
+
 ### 5. Join our group on Slack
 
 Slack is a geeky version of WhatsApp, but much better for coding and collaborating. We will use it to share files. You can use it chat, to ask questions, and later to become part of the [Datascience Breakfast Club](http://datascibc.org/about/).
