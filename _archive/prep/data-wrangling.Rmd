@@ -1,0 +1,27 @@
+---
+title: "data-wrangling"
+output: md_document
+---
+
+```{r setup}
+# install.packages("dplyr") 
+library(dplyr)
+```
+
+```{r import_data}
+# ddata <- read.csv("https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526")
+ddata <- read.csv("/Users/steve/Sites/datascibc/course/data/outreach.csv")
+nrow(ddata)
+names(ddata)
+```
+
+```{r}
+summary(ddata$hrate)
+```
+
+
+```{r hrate_by_news}
+table(ddata$news_risk)
+summary(ddata[ddata$news_risk==3,]$hrate)
+```
+
