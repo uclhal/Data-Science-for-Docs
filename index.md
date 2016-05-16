@@ -8,6 +8,7 @@ domain: Clinical
 topic: Critical Care
 software: R
 dataurl_1: https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526
+dataurl_2: https://figshare.com/s/165cad3ce6eadbf6b19a
 status: Under Development (Guinea Pigs only)
 twitter_url: https://twitter.com/datascibc
 ---
@@ -54,6 +55,9 @@ Full details of the pre-course preparation are available [here](prerequisites.ht
 
 ## Lessons:
 
+We'll cover the following 8 lessons in 4 evenings.
+
+1. [Preliminaries](00-lesson-00-intro.html)
 1. [R for newbies](01-lesson-01-r-for-newbies.html)
 2. [Excel Hell](02-lesson-02-excel-hell.html)
 3. [Getting data into R](03-lesson-03-getting-data-into-r.html)
@@ -68,7 +72,7 @@ Full details of the pre-course preparation are available [here](prerequisites.ht
 
 Data files for the lesson are available here: 
 
-- An RCT of local anaesthetic infusions post breast surgery
+- An [RCT]({{page.dataurl_2%}}) comparing post-operative pain control after axillary node dissection with local anaesthetic infiltration via the drain versus injection to the skin flaps (Thanks to Muska Khpal)
 - [SPOTlight study data]({{page.dataurl_1 %}}): an observational study of deteriorating ward patients referred to critical care
 
 You are also encourage to bring along your own data. We can't promise to spend time on this, but there are exercises to do along the way, and you might want to try these exercises out on your own work.
