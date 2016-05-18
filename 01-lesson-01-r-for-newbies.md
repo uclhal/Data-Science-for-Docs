@@ -12,32 +12,55 @@ minutes: 25
 
   -->
 
+
+- [ ] TODO(2016-05-18): finding you way around R studio (hand out)
+- [ ] TODO(2016-05-18): functions and data as building blocks
+- [ ] TODO(2016-05-17): add swirl/r prog/workspaces to exercises
+
 ## Learning Objectives 
 
-- [Install R and RStudio](#download-and-install-r-and-rstudio)  
+- [Why R](#why-r)
 - [Find your way around RStudio](#start-rstudio-and-have-a-look-around)  
-- [Keep a lab book of your work](#keep-a-lab-book-of-your-work)
+- [R building blocks](#r-building-blocks)
 - [Follow me](#follow-me)
 
 ## Lesson 
 
-We're going to get you up and running in **R** which is a highly respected, free statistics package used by academics around the world. We will also install a _friendly_ interface to R called _RStudio_.
+<a name="why-r"></a>
 
-<a name="download-and-install-r-and-rstudio"></a>
-## Download and install R and RStudio
+### Why R?
 
-1. Download and install R from [here](https://cran.rstudio.com)
+This is the long-story short version, but see [here](why-r.html) for more detail.
 
-2. Download and install RStudio. This is a nice shiny interface for R, and the easiest way to use it. Download it [here](https://www.rstudio.com/products/rstudio/download/). There should be an 'installer' for your operating system.
+Why do people think R is hard? Because it's not a GUI (pronounced gooey!). No more point and click. You have to write stuff down. Sounds like a disadvantage? We want to convince you otherwise. 
+
+Two good reasons:
+
+- **Science should be reproducible**. You can't record point and clicks. But you can re-run your 'code'.
+- **Long term gain from upfront investment**. If you have ever done a bunch of work preparing a table or a graph, and then discovered that either you have a new data point to add, or the next month's results are available then the GUI approach means starting all the pointing-and-clicking from scratch. But write it down once, re-run as often as you wish.
+
+The underlying principle of what we want to show you is how to build a data pipeline. You start with your data in a spreadsheet. You write a bunch of instructions (a script) using the R language. Your script produces an output (a table or a figure). Run your script. Generate your output. Change your data. Run the _same_ script. Instantly re-generate your updated output. 
 
 <a name="start-rstudio-and-have-a-look-around"></a>
-## Start RStudio and have a look around
 
-![](img/r-studio-windows-vanilla.jpeg)
+### Start RStudio and have a look around
 
-The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). 
+R (does the work) vs RStudio (helps you use R)
 
-### Console
+- R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
+- RStudio is a set of integrated tools designed to help you be more productive with R. It includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.
+
+![](img/r-studio-ide.png)
+
+<!-- ![](img/r-studio-windows-vanilla.jpeg) -->
+
+The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see 4 panes then try clicking the 'minimise'/'maximise' icons in the top right corners.
+
+There's a handy cheat sheet for R studio available [here](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf). 
+
+> **TRY THIS:** Find the files tab, navigate to the 'code' folder in your project, then click on the 'More' button and select 'Set as working directory'.
+
+#### Console (bottom left)
 
 The console _is_ R! Type anything here, and it will be interpreted by R.
 
@@ -58,9 +81,14 @@ The number in square brackets is actually R 'numbering' your answer for you. The
 Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a little more. Typing directly into R is a start, but we want to teach you _reproducible_ research. The scientific method requires that we document our work, but we can't reproduce your typing unless we record it somewhere. 
 
 <a name="keep-a-lab-book-of-your-work"></a>
-### Keep a lab book of your work
 
-The solution is to create a file, write your commmands in that file, and then tell R to work through the commands in that file. Switch to the pane labelled source, and this time type `2-2`. When you get to the end of the line, hit <command-enter> (on Windows <control-enter>). This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract.
+#### Source (top left)
+
+The console is also called an _interactive_ R session. What you type here is gone when you close down R. The source pane is simply a view into a text file (with the `.R` extension) that allows you to document, edit, correct and _most importantly_ save your work. The next time you come back to R, you re-open the file, and replay your commands. Got it? Then you're now starting to follow the principles of reproducible research.
+
+The solution is to create a file, write your commmands in that file, and then tell R to work through the commands in that file. Switch to the pane labelled source, and this time type `2-2`. 
+
+Now typing <enter> brings you to a new line. But go back to the line with `2-2` and hit <command-enter> (on Windows <control-enter>) instead. This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract!
 
     > 2+2
     [1] 4
@@ -69,7 +97,72 @@ The solution is to create a file, write your commmands in that file, and then te
 
 Now save the file you have written as `labbook_YYMMDD.R` (replace YYMMDD with today's date e.g. `labbook_160103.R`). You must use the `.R` extension to indicate that this is an R script, but you can, of course, choose any name you wish.[^2] 
 
+### R building blocks
+
+I want to argue that there are only two building blocks within R.
+
+- data
+- functions
+
+#### Data
+
+We are about to use a bunch of very 'math-y' words. Please do not be put off!
+
+We use R to handle data. Around 500 years ago, Gauss (of the famous Gaussian (aka Normal) distribution) and colleagues figured out it was easier to work with bunches of equations by writing them down as matrices.
+
+For example, let's try and predict your probability of dying in Intensive Care (`dead1`) using your age (`age`) and your heart rate (`hrate`).
+
+Here's my data:
+
+    +-----+-------+-------+
+    | age | hrate | dead1 |
+    +-----+-------+-------+
+    | 41  |  80   | 0     |
+    | 80  | 100   | 1     |
+    | 21  | 180   | 0     |
+    | 60  |  70   | 1     |
+    +-----+-------+-------+
+
+Now if you model these data (using logistic regression), then R will try to 'guess' what numbers (coefficients) would best be used to multiply each of age and heart rate to get you as close to dead (`1`) or alive (`0`) as possible. 
+
+We can guess and get close. Let's convert our predictions to percentages (`dead100`) to make life easier.
+
+    +-----+-------+---------+
+    | age | hrate | dead100 |
+    +-----+-------+---------+
+    | 41  |  80   |   0     |
+    | 80  | 100   | 100     |
+    | 21  | 180   |   0     |
+    | 60  |  70   | 100     |
+    +-----+-------+---------+
+
+If we add age to heart rate divided by 5 then we'll get a prediction.
+
+    (1 x age) + (1/5 x hrate) 
+
+
+
+names 
+rows and columns
+vectors and matrices
+
+
+
+#### Functions
+
+Think of functions as litte machines. They perform tasks. To perform a task, they need an input, and the result of their work is the output. 
+
+![](img/function-anatomy.png)
+
+    R> say_hello("Steve")
+    [1] "Hello Steve"
+
+R comes with a bunch of functions pre-installed called. These are called 'base R'. However, there are thousands of additional functions packaged together into libraries that you will want to use too. You load these by calling (surprise, surprise) a base R function called `library`.
+
+    library(ggplot2)
+
 <a name="follow-me"></a>
+
 ### Follow me
 
 - [ ] TODO(2016-05-08): show off a little bit; perhaps download the gap minder data and make some nice plots; get people enthused; run a quick statistical test 
@@ -89,4 +182,4 @@ Now save the file you have written as `labbook_YYMMDD.R` (replace YYMMDD with to
 
 ## Answers
 
-1. The console is also called an _interactive_ R session. What you type here is gone when you close down R. The source pane is simply a view into a text file (with the `.R` extension) that allows you to document, edit, correct and _most importantly_ save your work. The next time you come back to R, you re-open the file, and replay your commands. Got it? Then you're now starting to follow the principles of reproducible research.
+1. 
