@@ -5,24 +5,13 @@ title: R for newbies
 minutes: 25
 ---
 
-<!-- - [ ] TODO(2016-05-12): 
-- more detail on the different panes in R studio
-    - explain tabs and panes
-    - explain ...
-
-  -->
-
-
-- [ ] TODO(2016-05-18): finding you way around R studio (hand out)
-- [ ] TODO(2016-05-18): functions and data as building blocks
-- [ ] TODO(2016-05-17): add swirl/r prog/workspaces to exercises
 
 ## Learning Objectives 
 
 - [Why R](#why-r)
 - [Find your way around RStudio](#start-rstudio-and-have-a-look-around)  
 - [R building blocks](#r-building-blocks)
-- [Follow me](#follow-me)
+- [Get your hands dirty](#follow-me)
 
 ## Lesson 
 
@@ -40,6 +29,8 @@ Two good reasons:
 - **Long term gain from upfront investment**. If you have ever done a bunch of work preparing a table or a graph, and then discovered that either you have a new data point to add, or the next month's results are available then the GUI approach means starting all the pointing-and-clicking from scratch. But write it down once, re-run as often as you wish.
 
 The underlying principle of what we want to show you is how to build a data pipeline. You start with your data in a spreadsheet. You write a bunch of instructions (a script) using the R language. Your script produces an output (a table or a figure). Run your script. Generate your output. Change your data. Run the _same_ script. Instantly re-generate your updated output. 
+
+---
 
 <a name="start-rstudio-and-have-a-look-around"></a>
 
@@ -76,9 +67,9 @@ There are 4 things to explain in the little code snippet above.
 3. We'll come back to the `[1]` at the beginning of the next line in a moment.
 4. R prints the answer `4`
 
-The number in square brackets is actually R 'numbering' your answer for you. There's only one answer so it is 'numbered' `1`.[^3]
-
 Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a little more. Typing directly into R is a start, but we want to teach you _reproducible_ research. The scientific method requires that we document our work, but we can't reproduce your typing unless we record it somewhere. 
+
+> **TIP:** Use the up and down arrow keys to go backwards and forwards in your 'command' history to quickly fix typos.
 
 <a name="keep-a-lab-book-of-your-work"></a>
 
@@ -97,56 +88,114 @@ Now typing <enter> brings you to a new line. But go back to the line with `2-2` 
 
 Now save the file you have written as `labbook_YYMMDD.R` (replace YYMMDD with today's date e.g. `labbook_160103.R`). You must use the `.R` extension to indicate that this is an R script, but you can, of course, choose any name you wish.[^2] 
 
+---
+
 ### R building blocks
 
-I want to argue that there are only two building blocks within R.
+I want to argue that there are only three building blocks within R.
 
+- names
 - data
 - functions
+
+#### Names
+
+It's easier to give names to things, and then use the names rather than the thing itself most of the time. We use the `<- ` assignment operator to assign a name. (**TIP:** Use _option_ (Mac OS X) or _alternate_ (Windows) and the `-` (minus) key as a short cut to type this in RStudio.)
+
+Let `pi` equal `3.14`
+
+    pi <- 3.14
+
+Let `msg` equal `Hello World!`
+
+    msg <- `Hello World!`
 
 #### Data
 
 We are about to use a bunch of very 'math-y' words. Please do not be put off!
 
-We use R to handle data. Around 500 years ago, Gauss (of the famous Gaussian (aka Normal) distribution) and colleagues figured out it was easier to work with bunches of equations by writing them down as matrices.
+R is a _statistical computing_ language, and statistics uses vectors and matrices. These are _not_(!) complicated things!
 
-For example, let's try and predict your probability of dying in Intensive Care (`dead1`) using your age (`age`) and your heart rate (`hrate`).
+##### Vectors
 
-Here's my data:
+In R, a vector is a list of things of the same type.
 
-    +-----+-------+-------+
-    | age | hrate | dead1 |
-    +-----+-------+-------+
-    | 41  |  80   | 0     |
-    | 80  | 100   | 1     |
-    | 21  | 180   | 0     |
-    | 60  |  70   | 1     |
-    +-----+-------+-------+
+A list of numbers (a number vector):
 
-Now if you model these data (using logistic regression), then R will try to 'guess' what numbers (coefficients) would best be used to multiply each of age and heart rate to get you as close to dead (`1`) or alive (`0`) as possible. 
+    1, 4, 9, 16, 25
 
-We can guess and get close. Let's convert our predictions to percentages (`dead100`) to make life easier.
+A list of characters (a character vector):
 
-    +-----+-------+---------+
-    | age | hrate | dead100 |
-    +-----+-------+---------+
-    | 41  |  80   |   0     |
-    | 80  | 100   | 100     |
-    | 21  | 180   |   0     |
-    | 60  |  70   | 100     |
-    +-----+-------+---------+
+    "Q", "W", "E", "R", "T", "Y"
 
-If we add age to heart rate divided by 5 then we'll get a prediction.
+We _index_ the list by counting from left to right starting with `1` (not `0`). 
 
-    (1 x age) + (1/5 x hrate) 
+To make these vectors in R, we _combine_ the listed elements using `c()`.
+
+    x <-  c("Q", "W", "E", "R", "T", "Y")
+    
+
+Now if I want the 3rd element I simply type x[3].
+
+    x <-  c("Q", "W", "E", "R", "T", "Y")
+    x[3]
+    [1] "E"
+
+Because R _always_ 'thinks' in vectors, even the answer is 'indexed' hence the leading  `[1]`.
+
+> **TRY THIS:** Try typing `1:100`. This is a shorthand way of writing all the numbers between 1 and 100. Look below, and see that the number in square brackes is just R keeping count of the numbers it shows you.
+
+    R> 1:100
+      [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23
+     [24]  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46
+     [47]  47  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69
+     [70]  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92
+     [93]  93  94  95  96  97  98  99 100
 
 
+##### Matrices
 
-names 
-rows and columns
-vectors and matrices
+Matrices are just 'strict' versions of your typical spreadsheet tables. Just like a vector, every item is indexed, and by convention the address is _row_ then `column` (think _'arsey'_,_rc_, _row then column_).
 
+Let's make a matrix.
 
+    x <- matrix(1:12, nrow=3, ncol=4)
+
+Note how we used `1:12` to make a vector of the numbers from `1` to `12` before asking for a 3 row and 4 column matrix.
+
+         [,1] [,2] [,3] [,4]
+    [1,]    1    4    7   10
+    [2,]    2    5    8   11
+    [3,]    3    6    9   12
+
+The address of the `8` is `[2,3]` (row 2, column 3).
+
+##### Data frames
+
+More useful to us are data frames which are just 'mixed' matrices. So if I have age, sex, and weight data in 3 vectors:
+
+    age <- c(5,7,41,41)
+    sex <- c("M", "M", "F", "M")
+    weight <- c(16,30,55,78)
+
+Then I can combine them into a _data frame_.
+
+    demographics <- data.frame(age,sex,weight)
+
+Have a look at `demographics`.
+
+    R> demographics
+      age sex weight
+    1   5   M     16
+    2   7   M     30
+    3  41   F     55
+    4  41   M     78
+
+What's nice is that data.frame numbers the rows, names the columns, and allows you to mix data types (characters, and numbers).
+
+Moreover, rather than having to use numerical addresses to look at data, you can via the `$` operator use the names of the columns.
+
+> **TRY THIS:** Try typing `demographics$age`
 
 #### Functions
 
@@ -161,17 +210,77 @@ R comes with a bunch of functions pre-installed called. These are called 'base R
 
     library(ggplot2)
 
+---
+
 <a name="follow-me"></a>
 
-### Follow me
+### Get your hands dirty
 
-- [ ] TODO(2016-05-08): show off a little bit; perhaps download the gap minder data and make some nice plots; get people enthused; run a quick statistical test 
+Congratulations. That was the most 'conceptual' part of the course. Now time to get your hands dirty!
 
+See if you can follow along.
+
+1. Load a plotting library called `ggplot2` (The `gg` refers to a famous book by William Cleveland called the 'Grammar of Graphics').
+
+```
+library(ggplot2)
+```
+
+2. This library brings with it a data frame called diamonds. Have a look at the data.
+
+```
+R> diamonds
+Source: local data frame [53,940 x 10]
+
+   carat       cut  color clarity depth table price     x     y     z
+   (dbl)    (fctr) (fctr)  (fctr) (dbl) (dbl) (int) (dbl) (dbl) (dbl)
+1   0.23     Ideal      E     SI2  61.5    55   326  3.95  3.98  2.43
+2   0.21   Premium      E     SI1  59.8    61   326  3.89  3.84  2.31
+3   0.23      Good      E     VS1  56.9    65   327  4.05  4.07  2.31
+4   0.29   Premium      I     VS2  62.4    58   334  4.20  4.23  2.63
+5   0.31      Good      J     SI2  63.3    58   335  4.34  4.35  2.75
+6   0.24 Very Good      J    VVS2  62.8    57   336  3.94  3.96  2.48
+7   0.24 Very Good      I    VVS1  62.3    57   336  3.95  3.98  2.47
+8   0.26 Very Good      H     SI1  61.9    55   337  4.07  4.11  2.53
+9   0.22      Fair      E     VS2  65.1    61   337  3.87  3.78  2.49
+10  0.23 Very Good      H     VS1  59.4    61   338  4.00  4.05  2.39
+..   ...       ...    ...     ...   ...   ...   ...   ...   ...   ...
+```
+
+Notice the `[row x column]` note ('arsey'!). This tells us we have data on 53,940 diamonds (rows), and information on 10 different properties of each diamond.  
+
+3. Let's plot `price` against `carat`(s). We use the `ggplot` function for this which needs to be told what data to use, which variable to put on the x-axis, and which on the y-axis. Things like the x-postion, the y-postion, the size and the colour of points are called 'aesthetics' in the grammar of graphics.
+
+```
+ggplot(data=diamonds, aes(x=carat, y=price))
+```
+
+Notice how we are passing the data and the aesthetics as 'arguments' to the function.
+
+4. OK? No! Nothing happened. Aren't functions supposed to do something? In this case, `ggplot` prepares the data for the graph. Now you need to 'tell' ggplot what sort of graph you want. 
+
+5. Let's do a scatter plot.
+
+```
+ggplot(data=diamonds, aes(x=carat, y=price)) + geom_point()
+```
+
+![](img/gg-diamond-point.png)
+
+5. Perhaps you'd like to see how price varies with `carat` and `depth`. Let's mae a heat map.
+
+```
+ggplot(data=diamonds, aes(x=carat, y=depth, z=price)) + stat_summary_hex()
+```
+
+![](img/gg-diamond-hexbin.png)
 
 
 ## Exercises
 
 ## Questions
+
+- [ ] TODO(2016-05-17): add swirl/r prog/workspaces to exercises
 
 1. Can you explain the difference between the console and the source panes in R studio?
 2. Have a look in the _workspace_ tab of the pane on the top right? What do you think is show here?

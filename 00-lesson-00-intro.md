@@ -44,9 +44,9 @@ This is an opportunity to check that you were able to complete all the pre-requi
 
 ### Introducing the data
 
-Finally, we'd like to introduce three data sources that will be using during the course.
+We'd like to introduce three data sources that will be using during the course.
 
-- a Google drive folder
+- a Google drive folder containing assorted files
 
     We'll use this as a place to store temporary spreadsheets that we generate during the course. The link to the folder is [here](https://drive.google.com/folderview?id=0B3BVcJzDgmuEbHlWU09kUVB6NjQ&usp=sharing). You might need to click the pop-out icon to view and edit this properly.
 
@@ -88,6 +88,9 @@ Very briefly.
 
     which reads as 'go up one level' (the `..`), then go down into a folder called `desktop`, and then to the file called `readme.docx`
 - Finally, the `.` (single not double dot) is just the short cut for the _current_ directory. So `./readme.docx` simply means the file called `readme.docx` in _this_ directory. Seems pedantic but that's computers for you!
+
+You can see the path to any file or directory by right clicking and looking for properties (Windows), or using the 'Get Info' menu item (Mac OS X).
+
 
 ## Exercises
 
