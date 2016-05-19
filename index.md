@@ -19,7 +19,7 @@ twitter_url: https://twitter.com/datascibc
 <!-- THE LESSON INFORMATION -->
 
 
-# Data Science {{ page.topic }} for {{ page.domain }}
+# {{ page.domain }} Data Science  for {{ page.topic }}
 
 Data Science for Doc's aim is to teach doctors, nurses, and other health care professionals basic concepts, skills, and tools for working more effectively with data. The lessons below were designed for those interested
 in working with {{page.domain %}} data in {{page.topic %}}.
