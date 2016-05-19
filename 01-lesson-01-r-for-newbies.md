@@ -104,9 +104,9 @@ It's easier to give names to things, and then use the names rather than the thin
 
 > **TIP:** Use _option_ (Mac OS X) or _alternate_ (Windows) and the `-` (minus) key as a short cut to type this in RStudio.
 
-Let `pi` equal `3.14`
+Let `answer` equal `42`
 
-    pi <- 3.14
+    answer <- 42
 
 Let `msg` equal `Hello World!`
 
