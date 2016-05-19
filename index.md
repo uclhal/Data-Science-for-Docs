@@ -53,6 +53,8 @@ Here is a quick checklist but you'll do best to follow the [instructions here](p
 
 Full details of the pre-course preparation are available [here](prerequisites.html). If you're interested in why we're recommending in [R](http://www.r-project.org), then you might enjoy reading [this](why-r.html).
 
+Finally, please complete the [pre-course survey](http://goo.gl/forms/odmaxWP2KBHyzKti2).
+
 ## Lessons:
 
 We'll cover the following 8 lessons in 4 evenings.

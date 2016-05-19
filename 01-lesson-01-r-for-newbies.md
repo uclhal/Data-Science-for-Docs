@@ -4,7 +4,7 @@ root: .
 title: R for newbies
 minutes: 25
 ---
-
+<!-- - [ ] TODO(2016-05-19): factors and lists -->
 
 ## Learning Objectives 
 
@@ -130,6 +130,10 @@ A list of characters (a character vector):
 
     "Q", "W", "E", "R", "T", "Y"
 
+A `TRUE` or `FALSE` list  (a logical vector):
+
+    TRUE, FALSE, TRUE, TRUE, FALSE
+
 We _index_ the list by counting from left to right starting with `1` (not `0`). 
 
 To make these vectors in R, we _combine_ the listed elements using `c()`.
@@ -220,7 +224,41 @@ R comes with a bunch of functions pre-installed called. These are called 'base R
 
 Congratulations. That was the most 'conceptual' part of the course. Now time to get your hands dirty!
 
-See if you can follow along.
+See if you can follow along. We'll type in the code together.
+
+Load some data from [GapMinder](http://www.gapminder.org).
+
+```
+ddata <- read.csv(file="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
+```
+
+Tricky to type? First, grab the link from Slack.
+
+- then click on the 'Environment' tab, and find and click the 'Import Dataset button'. Then select the 'From Web URL...' option
+- or save the file to you machine, follow the same steps, but select the 'From Local File...' option
+
+Then change the 'name' you are giving to these data to `ddata` (see top left box).
+
+![](img/RStudio-import-data.png)
+
+To see the first few rows, type `head`
+
+```
+head(ddata)
+```
+
+We have data for 142 countries from 5 continents over 60 years.
+
+```
+      country year      pop continent lifeExp gdpPercap
+1 Afghanistan 1952  8425333      Asia   28.80     779.4
+2 Afghanistan 1957  9240934      Asia   30.33     820.9
+3 Afghanistan 1962 10267083      Asia   32.00     853.1
+4 Afghanistan 1967 11537966      Asia   34.02     836.2
+5 Afghanistan 1972 13079460      Asia   36.09     740.0
+6 Afghanistan 1977 14880372      Asia   38.44     786.1
+```
+
 
 Load a plotting library called `ggplot2` (The `gg` refers to a famous book by William Cleveland called the 'Grammar of Graphics').
 
@@ -228,54 +266,66 @@ Load a plotting library called `ggplot2` (The `gg` refers to a famous book by Wi
 library(ggplot2)
 ```
 
-This library brings with it a data frame called diamonds. Have a look at the data.
+We will use the `ggplot()` function from the ggplot2 library for plotting. This function needs to be told what data to use, which variable to put on the x-axis, and which on the y-axis. Things like the x-postion, the y-postion, the size and the colour of points are called `aesthetics` in the grammar of graphics.
+
+Let's plot life expectancy against wealth (GDP).
 
 ```
-R> diamonds
-Source: local data frame [53,940 x 10]
-
-   carat       cut  color clarity depth table price     x     y     z
-   (dbl)    (fctr) (fctr)  (fctr) (dbl) (dbl) (int) (dbl) (dbl) (dbl)
-1   0.23     Ideal      E     SI2  61.5    55   326  3.95  3.98  2.43
-2   0.21   Premium      E     SI1  59.8    61   326  3.89  3.84  2.31
-3   0.23      Good      E     VS1  56.9    65   327  4.05  4.07  2.31
-4   0.29   Premium      I     VS2  62.4    58   334  4.20  4.23  2.63
-5   0.31      Good      J     SI2  63.3    58   335  4.34  4.35  2.75
-6   0.24 Very Good      J    VVS2  62.8    57   336  3.94  3.96  2.48
-7   0.24 Very Good      I    VVS1  62.3    57   336  3.95  3.98  2.47
-8   0.26 Very Good      H     SI1  61.9    55   337  4.07  4.11  2.53
-9   0.22      Fair      E     VS2  65.1    61   337  3.87  3.78  2.49
-10  0.23 Very Good      H     VS1  59.4    61   338  4.00  4.05  2.39
-..   ...       ...    ...     ...   ...   ...   ...   ...   ...   ...
+ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp))
 ```
 
-Notice the `[row x column]` ('arsey'!) comment. This tells us we have data on 53,940 diamonds (rows), and information on 10 different properties of each diamond.  
+Notice how we are passing the data and the aesthetics as `arguments` to the function. But so far, this just makes an 'empty' plot. 
 
-Let's plot `price` against `carat`(s). We use the `ggplot` function for this which needs to be told what data to use, which variable to put on the x-axis, and which on the y-axis. Things like the x-postion, the y-postion, the size and the colour of points are called 'aesthetics' in the grammar of graphics.
-
-```
-ggplot(data=diamonds, aes(x=carat, y=price))
-```
-
-Notice how we are passing the data and the aesthetics as 'arguments' to the function.
-
-OK? No! Nothing happened. Aren't functions supposed to do something? In this case, `ggplot` prepares the data for the graph. Now you need to 'tell' ggplot what sort of graph you want. 
-
-`Let's make a scatter plot.
+Next you tell ggplot what sort of plot (called a 'geometry') you want.
 
 ```
-ggplot(data=diamonds, aes(x=carat, y=price)) + geom_point()
+ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp)) + geom_point()
 ```
 
-![](img/gg-diamond-point.png)
-
-What about a heat map. Perhaps you'd like to see how price varies with `carat` and `depth`.
+Want to see how this varies by continent? Try 'facetting' which means drawing mini-plots for each group.
 
 ```
-ggplot(data=diamonds, aes(x=carat, y=depth, z=price)) + stat_summary_hex()
+ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp)) + geom_point() + facet_wrap(~continent)
 ```
 
-![](img/gg-diamond-hexbin.png)
+What about how things change over time? Add a new aesthetic (colour) for the `year` variable.
+
+```
+ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp, colour=year)) + geom_point() + facet_wrap(~continent)
+```
+
+Would you like to make the plots easier to read by hiding the outliers?
+
+```
+ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp, colour=year)) + geom_point() + facet_wrap(~continent) + coord_cartesian(x=c(0,50000))
+```
+
+
+And drop Oceania (there's not much data). We'll use another library called 'dplyr' that allows us to 'filter' the data easily.
+
+> **TIP:** the `!=` operator means 'not equal to' so the statement below could be read as assign the name `data.4c` to the data made by filtering out all rows where the continent is _not equal_ to 'Oceania'.
+
+```
+library(dplyr)
+data.4c <- filter(ddata, continent!="Oceania") 
+```
+
+Now plot with the _updated_ data.
+
+```
+ggplot(data=data.4c, aes(x=gdpPercap, y=lifeExp, colour=year)) + geom_point() + facet_wrap(~continent) + coord_cartesian(x=c(0,50000))
+```
+
+![](img/gapminder-lesson-1.png)
+
+Cause for optimism? Or just home time? You have finished. See you next week.
+
+
+OK? No! Nothing happened. Aren't functions supposed to do something? In this case, ggplot prepares the data for the graph. Now you need to `tell` ggplot what sort of graph you want.
+
+Let's make a scatter plot.
+
+
 
 ---
 
@@ -283,15 +333,40 @@ ggplot(data=diamonds, aes(x=carat, y=depth, z=price)) + stat_summary_hex()
 
 ## Questions
 
-- [ ] TODO(2016-05-17): add swirl/r prog/workspaces to exercises
-
 1. Can you explain the difference between the console and the source panes in R studio?
-2. Have a look in the _workspace_ tab of the pane on the top right? What do you think is show here?
-3. Try using the help function to find out what `ls()` does. Hint: try typing this in the search box of the _Help_ pane. Don't worry if the 'help' doesn't make much sense! 
+2. In RStudio, have a look in the _Environment_ tab of the pane on the top right? What do you think is shown here?
+3. Try using the help function to find out what `ls()` does. Hint: try typing this in the search box of the _Help_ pane. Don't worry if the 'help' doesn't make much sense! Or just type `?ls` in the console.
 
-- [ ] TODO(2016-05-12): change working directory (point and click, console)
-4. Change working directory
 
-## Answers
+## Home work (!)
 
-1. 
+Type the following (you'll need a working internet connection).
+
+```
+install.packages("swirl")
+library(swirl)
+swirl()
+```
+
+This brings up an interactive R lesson. Choose either R Programming then either option 1 or 2.
+
+```
+| Please choose a course, or type 0 to exit swirl.
+
+1: R Programming
+2: Take me to the swirl course repository!
+
+Selection: 1
+
+| Please choose a lesson, or type 0 to return to course menu.
+
+ 1: Basic Building Blocks      2: Workspace and Files        3: Sequences of Numbers    
+ 4: Vectors                    5: Missing Values             6: Subsetting Vectors      
+ 7: Matrices and Data Frames   8: Logic                      9: Functions               
+10: lapply and sapply         11: vapply and tapply         12: Looking at Data         
+13: Simulation                14: Dates and Times           15: Base Graphics   
+```
+
+
+<!-- - [ ] TODO(2016-05-12): change working directory (point and click, console) -->
+
