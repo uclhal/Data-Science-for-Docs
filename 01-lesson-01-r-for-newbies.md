@@ -75,8 +75,6 @@ Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a l
 
 #### Source (top left)
 
-The console is also called an _interactive_ R session. What you type here is gone when you close down R. The source pane is simply a view into a text file (with the `.R` extension) that allows you to document, edit, correct and _most importantly_ save your work. The next time you come back to R, you re-open the file, and replay your commands. Got it? Then you're now starting to follow the principles of reproducible research.
-
 The solution is to create a file, write your commmands in that file, and then tell R to work through the commands in that file. Switch to the pane labelled source, and this time type `2-2`. 
 
 Now typing <enter> brings you to a new line. But go back to the line with `2-2` and hit <command-enter> (on Windows <control-enter>) instead. This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract!
@@ -86,7 +84,9 @@ Now typing <enter> brings you to a new line. But go back to the line with `2-2` 
     > 2-2
     [1] 0
 
-Now save the file you have written as `labbook_YYMMDD.R` (replace YYMMDD with today's date e.g. `labbook_160103.R`). You must use the `.R` extension to indicate that this is an R script, but you can, of course, choose any name you wish.[^2] 
+Now save the file you have written as `labbook_YYMMDD.R` (replace YYMMDD with today's date e.g. `labbook_160103.R`). You must use the `.R` extension to indicate that this is an R script, but you can, of course, choose any name you wish.
+
+The console is also called an _interactive_ R session. What you type here is gone when you close down R. The source pane is simply a view into a text file (with the `.R` extension) that allows you to document, edit, correct and _most importantly_ save your work. The next time you come back to R, you re-open the file, and replay your commands. Got it? Then you're now starting to follow the principles of reproducible research.
 
 ---
 
@@ -100,7 +100,9 @@ I want to argue that there are only three building blocks within R.
 
 #### Names
 
-It's easier to give names to things, and then use the names rather than the thing itself most of the time. We use the `<- ` assignment operator to assign a name. (**TIP:** Use _option_ (Mac OS X) or _alternate_ (Windows) and the `-` (minus) key as a short cut to type this in RStudio.)
+It's easier to give names to things, and then use the names rather than the thing itself most of the time. We use the `<- ` assignment operator to assign a name. 
+
+> **TIP:** Use _option_ (Mac OS X) or _alternate_ (Windows) and the `-` (minus) key as a short cut to type this in RStudio.
 
 Let `pi` equal `3.14`
 
@@ -114,7 +116,7 @@ Let `msg` equal `Hello World!`
 
 We are about to use a bunch of very 'math-y' words. Please do not be put off!
 
-R is a _statistical computing_ language, and statistics uses vectors and matrices. These are _not_(!) complicated things!
+R is a _statistical computing_ language, and statistics uses vectors and matrices. These are _not_(!) complicated things.
 
 ##### Vectors
 
@@ -135,7 +137,7 @@ To make these vectors in R, we _combine_ the listed elements using `c()`.
     x <-  c("Q", "W", "E", "R", "T", "Y")
     
 
-Now if I want the 3rd element I simply type x[3].
+Now if you want the 3rd element, simply type `x[3]`.
 
     x <-  c("Q", "W", "E", "R", "T", "Y")
     x[3]
@@ -155,13 +157,13 @@ Because R _always_ 'thinks' in vectors, even the answer is 'indexed' hence the l
 
 ##### Matrices
 
-Matrices are just 'strict' versions of your typical spreadsheet tables. Just like a vector, every item is indexed, and by convention the address is _row_ then `column` (think _'arsey'_,_rc_, _row then column_).
+Matrices are just 'strict' versions of your typical spreadsheet tables. Just like a vector, every item is indexed, and by convention the address is _row_ then _column_ (think _'arsey'_, _rc_, _row then column_).
 
 Let's make a matrix.
 
     x <- matrix(1:12, nrow=3, ncol=4)
 
-Note how we used `1:12` to make a vector of the numbers from `1` to `12` before asking for a 3 row and 4 column matrix.
+Note how we used `1:12` to make a vector of the numbers from `1` to `12` before asking for a 3 row and 4 column matrix. R fills in the matrix by filling each column before moving to the next row.
 
          [,1] [,2] [,3] [,4]
     [1,]    1    4    7   10
@@ -191,9 +193,9 @@ Have a look at `demographics`.
     3  41   F     55
     4  41   M     78
 
-What's nice is that data.frame numbers the rows, names the columns, and allows you to mix data types (characters, and numbers).
+What's nice is that the `data.frame` _numbers_ the rows, and _names_ the columns.
 
-Moreover, rather than having to use numerical addresses to look at data, you can via the `$` operator use the names of the columns.
+Moreover, rather than having to use numerical addresses to look at data, you can use the `$` operator to access the columns by name.
 
 > **TRY THIS:** Try typing `demographics$age`
 
@@ -220,13 +222,13 @@ Congratulations. That was the most 'conceptual' part of the course. Now time to 
 
 See if you can follow along.
 
-1. Load a plotting library called `ggplot2` (The `gg` refers to a famous book by William Cleveland called the 'Grammar of Graphics').
+Load a plotting library called `ggplot2` (The `gg` refers to a famous book by William Cleveland called the 'Grammar of Graphics').
 
 ```
 library(ggplot2)
 ```
 
-2. This library brings with it a data frame called diamonds. Have a look at the data.
+This library brings with it a data frame called diamonds. Have a look at the data.
 
 ```
 R> diamonds
@@ -247,9 +249,9 @@ Source: local data frame [53,940 x 10]
 ..   ...       ...    ...     ...   ...   ...   ...   ...   ...   ...
 ```
 
-Notice the `[row x column]` note ('arsey'!). This tells us we have data on 53,940 diamonds (rows), and information on 10 different properties of each diamond.  
+Notice the `[row x column]` ('arsey'!) comment. This tells us we have data on 53,940 diamonds (rows), and information on 10 different properties of each diamond.  
 
-3. Let's plot `price` against `carat`(s). We use the `ggplot` function for this which needs to be told what data to use, which variable to put on the x-axis, and which on the y-axis. Things like the x-postion, the y-postion, the size and the colour of points are called 'aesthetics' in the grammar of graphics.
+Let's plot `price` against `carat`(s). We use the `ggplot` function for this which needs to be told what data to use, which variable to put on the x-axis, and which on the y-axis. Things like the x-postion, the y-postion, the size and the colour of points are called 'aesthetics' in the grammar of graphics.
 
 ```
 ggplot(data=diamonds, aes(x=carat, y=price))
@@ -257,9 +259,9 @@ ggplot(data=diamonds, aes(x=carat, y=price))
 
 Notice how we are passing the data and the aesthetics as 'arguments' to the function.
 
-4. OK? No! Nothing happened. Aren't functions supposed to do something? In this case, `ggplot` prepares the data for the graph. Now you need to 'tell' ggplot what sort of graph you want. 
+OK? No! Nothing happened. Aren't functions supposed to do something? In this case, `ggplot` prepares the data for the graph. Now you need to 'tell' ggplot what sort of graph you want. 
 
-5. Let's do a scatter plot.
+`Let's make a scatter plot.
 
 ```
 ggplot(data=diamonds, aes(x=carat, y=price)) + geom_point()
@@ -267,7 +269,7 @@ ggplot(data=diamonds, aes(x=carat, y=price)) + geom_point()
 
 ![](img/gg-diamond-point.png)
 
-5. Perhaps you'd like to see how price varies with `carat` and `depth`. Let's mae a heat map.
+What about a heat map. Perhaps you'd like to see how price varies with `carat` and `depth`.
 
 ```
 ggplot(data=diamonds, aes(x=carat, y=depth, z=price)) + stat_summary_hex()
@@ -275,6 +277,7 @@ ggplot(data=diamonds, aes(x=carat, y=depth, z=price)) + stat_summary_hex()
 
 ![](img/gg-diamond-hexbin.png)
 
+---
 
 ## Exercises
 
