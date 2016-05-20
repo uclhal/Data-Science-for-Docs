@@ -30,6 +30,31 @@ df$some_column
 
 Here, `df` is our dataframe and the column name is "some_column".
 
+Let's try some coding exercises
+
+```{r}
+#Let's look at some data that comes with R
+data()
+
+#Let's pick one to play with
+x <- iris
+
+#Have a look at the data
+View(x)
+```
+
+### Exercise: Taking a quick look at the data
+
+a) What are the names of the columns? Hint: try `names()`
+
+b) Display in the console the items in the column `Sepal.Lengths`
+
+c) What is the mean of and standard deviation of `Sepal.Lengths`?
+
+d) What is the median, interquartile range, min and max of `Sepal.Lengths?`
+
+e) Can you do the same for all the other columns in `x`?
+
 ## Introducing the CSV
 
 CSV, a Comma Seperated Values, is a file that will contain your data. This is easily exportable from Microsoft Excel, Apple Numbers, Open Office, Google Sheets...etc.
