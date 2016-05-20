@@ -80,6 +80,10 @@ It's strength is in it's simplicity. It only has data, no formuals, no tricks an
 
 ![](img/export_csv.png)
 
+### Exercise: Export an .xlsx file to .csv
+
+a) Find the cleaned .xlsx file that was produced in the Excel Hell lecture and export it as a .csv file.
+
 ## Find your File
 
 You will need to know the absolute location of your file on your harddrive.
