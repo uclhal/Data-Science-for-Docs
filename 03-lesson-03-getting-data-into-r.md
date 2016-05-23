@@ -105,9 +105,14 @@ We can import Comma Separated Values (CSV) files into R very easily. These files
 
 Once a sheet has been exported, it can be imported into R:
 
+There're 2 main ways to do this:
+
+- Point-and-click within RStudio, which we covered in Lesson 1 (R for Newbies).
+- Make a connection to a database or an online Google Sheets spreadsheet (beyond the scope of this course).
+- Use the `read.csv` function.
 
 ```{r}
-FILE <- "/Users/ahmedalhindawi/Documents/Development/Man_graph.xls"
+FILE <- "/Users/ahmedalhindawi/Documents/Development/Man_graph.csv"
 df <- read.csv(FILE, header=TRUE, stringsAsFactor=FALSE)
 ```
 
@@ -117,13 +122,25 @@ This will read your file, then a dataframe object will be available to run queri
 df$column_name
 ```
 
+### Exercise: Taking a quick look at the data
 
-## Exercises
+a) What are the names of the columns?
+
+b) What is the mean and standard deviation of the subject ages?
+
+c) Can you find out how many males and females there are? Hint: you can use the function `table()`
+
+d) Can you find out how many subjects were randomised into each arm?
+
+e) What is the mean, median, IQR of the Length of Stay?
+
+## Homework
+
+Hopefully you have learned enough about today to load data into R and then get an overview.
+
+Go home and look at the `outreach.csv` dataset that we downloaded from Figshare in Lesson 0 (Introduction) and try to answer the following questions, which we will go through at the start of the next lesson:
 
 ### Questions
-
-### Answers
-
 
 
 ---
