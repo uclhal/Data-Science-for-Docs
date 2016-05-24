@@ -124,6 +124,8 @@ df$column_name
 
 ## Google Sheets
 
+We can also load data through a connection with Google Sheets.
+
 ```{r}
 #Load the required library
 library(googlesheets)
@@ -135,6 +137,8 @@ gs_ls()
 sheet <- gs_title("dsbc-pipeline-love")
 
 goog <- gs_read(sheet)
+
+xtab(~gender, data = goog)
 
 hist(goog$height)
 ```
