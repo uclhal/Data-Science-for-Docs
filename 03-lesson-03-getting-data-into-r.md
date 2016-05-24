@@ -9,12 +9,11 @@ minutes: 25
 
 ## Learning Objectives 
 
-Getting Data into R can be accomplished in many ways.
-
 1. Get data out of your spreadsheet
-2. Click and import using R studio
-3. Scripting your import (and file paths)
-4. Using GoogleSheets
+2. Doing a quick nose around dataframes in R
+3. Click and import using R studio
+4. Scripting your import (and file paths)
+5. Using Google Sheets
 
 <!-- * Getting data into R - (v1) Ahmed (v2) Ed
     - live coding importing the data
