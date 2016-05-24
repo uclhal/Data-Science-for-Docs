@@ -146,13 +146,11 @@ hist(goog$height)
 
 a) What are the names of the columns?
 
-b) What is the mean and standard deviation of the subject ages?
+b) What is the mean and standard deviation of the subject heights?
 
-c) Can you find out how many males and females there are? Hint: you can use the function `table()`
+c) Can you find out how many males and females there are? Hint: you can use the function `table()` or `xtab()`
 
-d) Can you find out how many subjects were randomised into each arm?
-
-e) What is the mean, median, IQR of the Length of Stay?
+d) Can you find out how many subjects there are?
 
 ## Homework
 
