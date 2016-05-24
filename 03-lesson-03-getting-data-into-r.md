@@ -122,6 +122,23 @@ This will read your file, then a dataframe object will be available to run queri
 df$column_name
 ```
 
+## Google Sheets
+
+```{r}
+#Load the required library
+library(googlesheets)
+
+#Get a list of spreadsheets in your Google account
+#The first time you run this you will be asked to authenticate via the browser
+gs_ls()
+
+sheet <- gs_title("dsbc-pipeline-love")
+
+goog <- gs_read(sheet)
+
+hist(goog$height)
+```
+
 ### Exercise: Taking a quick look at the data
 
 a) What are the names of the columns?
