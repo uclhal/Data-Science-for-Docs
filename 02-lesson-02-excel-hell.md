@@ -268,4 +268,8 @@ Here we have our final clean data sheet. Download it, or use your own cleaned ve
 
 <!-- List and ideally hyperlink follow-up lessons here -->
 
+---
+
+[Previous topic](01-lesson-01-r-for-newbies.html) --- [Next topic](03-lesson-03-getting-data-into-r.html)
+
 Please also see http://www.datacarpentry.org/spreadsheet-ecology-lesson/ for the [Data Carpentry](http://datacarpentry.org/) version of the lesson.
