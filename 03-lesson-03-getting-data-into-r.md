@@ -172,13 +172,13 @@ hist(goog$height)
 
 ### Exercise: Taking a quick look at the data
 
-a. What are the names of the columns?
+1. What are the names of the columns?
 
-b. What is the mean and standard deviation of the subject heights?
+2. What is the mean and standard deviation of the subject heights?
 
-c. Can you find out how many males and females there are? Hint: you can use the function `table()` or `xtab()`
+3. Can you find out how many males and females there are? Hint: you can use the function `table()` or `xtab()`
 
-d. Can you find out how many subjects there are?
+4. Can you find out how many subjects there are?
 
 ### Questions
 
