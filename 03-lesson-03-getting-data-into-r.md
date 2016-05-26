@@ -194,9 +194,13 @@ Let's have a look at the first 6 rows (remember the `head()` function?)
 
 ``` {r}
 head(goog)
-t.test(height ~ gender, data = goog)
 ```
 
+Fancy trying a t-test?
+
+``` {r}
+t.test(height ~ gender, data = goog)
+```
 
 
 ### Exercise: Taking a quick look at the data
@@ -225,12 +229,14 @@ c. Can you find out how many males and females there are?
 
 d. Can you find out how many subjects there are?
 
-`nrow(goog$`
+`nrow(goog)`
 
 
 ## Homework
 
-1. Can you import and look at the `outreach.csv` dataset? What is the average heart rate? How many patients were accepted to ICU (the column is called `icu_accept`), and what was the mortality?
+1. Go through the steps under the [Google sheets](#google-sheets) section, and write them down in a file. Save the file with the `.R` extension. Click the 'source' button to run the whole file in one go. Look at the results. Now update your google sheet with a new row of data. Run the file again. What happens?
+
+2. Can you import and look at the `outreach.csv` dataset? What is the average heart rate? How many patients were accepted to ICU (the column is called `icu_accept`), and what was the mortality?
 
 
 
