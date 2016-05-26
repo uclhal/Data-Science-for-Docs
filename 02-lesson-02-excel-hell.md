@@ -12,7 +12,9 @@ minutes: 25
 <!--     * Excel Hell - (v1) Ed (v2) 
         - [ ] live coding / practical session tidying a dirty sheet: use the RCT stuff
  -->
+
 By the end of the session, delegates should be able to:
+
 1. Describe some of the basic differences between data types
 2. Summarise the pros and cons for different spreadsheet applications for storing your data
 3. Demonstrate best practices for recording and formatting data in spreadsheets
@@ -38,13 +40,13 @@ You need to have installed either:
 
 ## Introduction
 
-Spread sheets offer a simple and effective method to collect data. However, their ease of use often leads to a sloppy approach to data entry. Good data discipline is an essential foundation to data analysis and a small investment at this stage can prevent you running into trouble when trying to analyse and publish your study. This tutorial will take you through the essential dos and don’ts of managing your data in a spreadsheet.
+Spread sheets offer a simple and effective method to collect data. However, their ease of use often leads to a sloppy approach to data entry. Good data discipline is an essential foundation to data analysis and a small investment at this stage can prevent you running into trouble when trying to analyse and publish your study. This tutorial will take you through the essential dos and don'ts of managing your data in a spreadsheet.
 
-As a word of caution, don’t forget, that any data collection should be inline with the Data Protection Act. Please ensure you manage your data appropriately.
+As a word of caution, don't forget, that any data collection should be inline with the Data Protection Act. Please ensure you manage your data appropriately.
 
 ### Which application to use?
 
-There are many different spreadsheets to use. Almost everyone will be familiar with excel, although it’s worth considering if this is actually the right choice for you. If you are planning a major collaboration, where many people need to enter data simultaneously, then an excel spreadsheet is probably not for you. Have a look at google sheets as an alternative. As your requirements grow, you may want to explore a relational database. But for now, we’ll assume you are using excel.
+There are many different spreadsheets to use. Almost everyone will be familiar with excel, although it's worth considering if this is actually the right choice for you. If you are planning a major collaboration, where many people need to enter data simultaneously, then an excel spreadsheet is probably not for you. Have a look at google sheets as an alternative. As your requirements grow, you may want to explore a relational database. But for now, we'll assume you are using excel.
 
 ## Data types
 
@@ -58,7 +60,7 @@ Integers are any whole number. Decimals include any number with a decimal point.
 
 ### Strings
 
-A string is any sequence of characters. Literally anything you can type can be represented as a string. This is the default data type in excel, and is what data typically defaults to if there is any confusion about what the data is. Take the example of recording the dose of analgesia given for postoperative pain relief. If we write `180 mg`, excel will store this value as a string. It has no choice, since the “mg” adds data that cannot possibly be interpreted numerically. When dealing with data that is numerical in nature, it’s best practice to keep all units elsewhere and keep the data as an integer or decimal.
+A string is any sequence of characters. Literally anything you can type can be represented as a string. This is the default data type in excel, and is what data typically defaults to if there is any confusion about what the data is. Take the example of recording the dose of analgesia given for postoperative pain relief. If we write `180 mg`, excel will store this value as a string. It has no choice, since the “mg” adds data that cannot possibly be interpreted numerically. When dealing with data that is numerical in nature, it's best practice to keep all units elsewhere and keep the data as an integer or decimal.
 
 ### Date/Time objects
 
@@ -72,22 +74,41 @@ These are `TRUE` or `FALSE` statements. Mathematically, these are represented by
 
 ### Factors
 
-These are a special way of letting R know that the data is nominal or ordinal. Think about a likert scale. You want R to be able to categorise "satisfactory", "good", "excellent" etc. These are a special case of the string data type, but categorised appropriately so as to be able to perform meaningful analysis.
+These are a special way of letting R know that the data is nominal or ordinal. Think about a likert scale. You want R to be able to categorise "satisfactory", "good", "excellent" etc. These are a special case of integers (counting numbers) data type, but stored with a label.  Additionally, when the data is ordered (like the likert scale) then an additional 'note' (called an attribute) is made so that R knows the order matters.
+
+An **un**ordered (nominal) factor
+
+- apples
+- oranges 
+- pears
+
+R stores this as `1,2,3` for convenience but not because `1<2<3`.
+
+An ordered (ordinal) factor such as a Likert scale
+
+- Strongly disagree
+- Disagree
+- Neither agree/disagree
+- Agree
+- Strongly agree
+
+R stores this as `1,2,3,4,5` for convenience and understands that `1<2<3<4<5`.
+
+
 
 ### Cardinal rules
 
 The cardinal rules of using spreadsheet programs for data:
+
 1. Put all your **variables in columns** - the thing you're measuring, like 'weight', 'temperature' or 'SBP'. Break things down into thier most basic constituents, and keep units in your headers only.
 2. Put each **observation in its own row**. Think very carefully about what constitutes your basic observation. Often it's your patient, but it may not be as intuitive as you think.
 3. **Don't combine multiple pieces of information in one cell**.
 4. **Leave the raw data raw** - don't mess with it! That means no formulas anywhere in your spreadsheet!
 5. Export the cleaned data to a **text based format** like CSV. This ensures that anyone can use the data, and is the format required by most data repositories.
 
-##Unravelling Data
+## Unravelling Data
 
-Let's take the example some data that has already been collected and very kindly donated by one of our course delegates. The data is excellent, but doesn't conform to the necessary rules for working with R. Download this file at the link below to begin working with it.
-
-https://github.com/datascibc/datastore/blob/master/course_exemplar1.xlsx?raw=true
+Let's take the example some data that has already been collected and very kindly donated by one of our course delegates. The data is excellent, but doesn't conform to the necessary rules for working with R. Download this file from [Figshare](https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526).
 
 We can use this data as an example of how to tidy your data in a spreadsheet application to make it ready for import to R. Using the cardinal rules, work in your pairs to tansform this data an appropriate format for exporting to R.
 
@@ -120,7 +141,7 @@ Other, more subtle changes include searching for any discrepancies in spelling a
 
 ### Multiple tables
 
-A common strategy is creating multiple data tables within one spreadsheet. **This confuses the computer, so don't do this!**. When you create multiple tables within one spreadsheet, you’re drawing false associations between things for the computer, which sees each row as an observation. You’re also potentially using the same field name in multiple places, which will make it harder to clean your data up into a usable form.
+A common strategy is creating multiple data tables within one spreadsheet. **This confuses the computer, so don't do this!**. When you create multiple tables within one spreadsheet, you're drawing false associations between things for the computer, which sees each row as an observation. You're also potentially using the same field name in multiple places, which will make it harder to clean your data up into a usable form.
 
 ### Multiple tabs
 
@@ -130,9 +151,9 @@ This is bad practice for two reasons:
 1. you are more likely to accidentally add inconsistencies to your data if each time you take a measurement, you start recording data in a new tab, and
 2. even if you manage to prevent all inconsistencies from creeping in, you will add an extra step for yourself before you analyze the data because you will have to combine these data into a single datatable. You will have to explicitly tell the computer how to combine tabs - and if the tabs are inconsistently formatted, you might even have to do it by hand!
 
-The next time you’re entering data, and you go to create another tab or table, I want you to ask yourself “Self, could I avoid adding this tab by adding another column to my original spreadsheet?”
+The next time you're entering data, and you go to create another tab or table, I want you to ask yourself “Self, could I avoid adding this tab by adding another column to my original spreadsheet?”
 
-Your data sheet might get very long over the course of experiment. This makes it harder to enter data if you can’t see your headers at the top of the spreadsheet. But do NOT repeat headers. These can easily get mixed into the data, leading to problems down the road. Instead you can Freeze the column headers.
+Your data sheet might get very long over the course of experiment. This makes it harder to enter data if you can't see your headers at the top of the spreadsheet. But do NOT repeat headers. These can easily get mixed into the data, leading to problems down the road. Instead you can Freeze the column headers.
 
 [Documentation on how to freeze column headers](https://support.office.com/en-ca/article/Freeze-column-headings-for-easy-scrolling-57ccce0c-cf85-4725-9579-c5d13106ca6a)
 
@@ -157,12 +178,12 @@ Spreadsheets or statistical programs will likely mis-interpret blank cells that 
 ### Using formatting to make the data sheet look pretty
 
 **Example**: merging cells.
-**Solution**: If you’re not careful, formatting a worksheet to be more aesthetically pleasing can compromise your computer’s ability to see associations in the data. Merged cells are an absolute formatting NO-NO if you want to make your data readable by statistics software. Consider restructuring your data in such a way that you will not need to merge cells to organize your data. If you have a number of column headings under the same umbrella term, consider just adding a prefix to each header instead.
+**Solution**: If you're not careful, formatting a worksheet to be more aesthetically pleasing can compromise your computer's ability to see associations in the data. Merged cells are an absolute formatting NO-NO if you want to make your data readable by statistics software. Consider restructuring your data in such a way that you will not need to merge cells to organize your data. If you have a number of column headings under the same umbrella term, consider just adding a prefix to each header instead.
 
 ### Placing comments or units in cells
 
 **Example**: You want to leave yourself a comment to identify bad data, or explain away an outlier.
-**Solution**: Most statistical programs can’t see Excel’s comments, and would be confused by comments placed within your data cells. As described above for formatting, create another field if you need to add notes to cells. Similarly, don’t include units in cells: ideally, all the measurements you place in one column should be in the same unit, but if for some reason they aren’t, create another field and specify the units the cell is in.
+**Solution**: Most statistical programs can't see Excel's comments, and would be confused by comments placed within your data cells. As described above for formatting, create another field if you need to add notes to cells. Similarly, don't include units in cells: ideally, all the measurements you place in one column should be in the same unit, but if for some reason they aren't, create another field and specify the units the cell is in.
 
 ### More than one piece of information in a cell
 
@@ -170,7 +191,7 @@ Spreadsheets or statistical programs will likely mis-interpret blank cells that 
 **Solution**: Never include more than one piece of information in a cell. If you need all these measurements, design your data sheet to include this information in separate columns. In fact, in the above example, it would even be beneficial to separate out each systolic and diastolic value. You final column heading might look like this: sbp_1, dbp1, sbp_2, dbp_2, sbp_3, dbp_3.
 
 ### Field name problems
-Choose descriptive field names, but be careful not to include: spaces, numbers, or special characters of any kind. Spaces can be misinterpreted by parsers that use whitespace as delimiters and some programs don’t like field names that are text strings that start with numbers.
+Choose descriptive field names, but be careful not to include: spaces, numbers, or special characters of any kind. Spaces can be misinterpreted by parsers that use whitespace as delimiters and some programs don't like field names that are text strings that start with numbers.
 Underscores (`_`) are a good alternative to spaces and consider writing names in camel-case to improve readability. Remember that abbreviations that make sense at the moment may not be so obvious in 6 months but don't overdo it with names that are eccessivly long.
 
 **Examples**  
@@ -207,7 +228,7 @@ A good test to see if your data will be interpretable by R is whether or not you
 
 Here we have our final clean data sheet. Download it, or use your own cleaned version, ready for import into R.
 
-https://raw.githubusercontent.com/datascibc/datastore/master/Breast%20research%20data-%20final1a.csv?token=AQUWuW6_o12ytSPlMiiRPo1Q8RuFXD5Qks5XT8uQwA%3D%3D
+[And here's one we prepared earlier ...](https://raw.githubusercontent.com/datascibc/datastore/master/Breast%20research%20data-%20final1a.csv?token=AQUWuW6_o12ytSPlMiiRPo1Q8RuFXD5Qks5XT8uQwA%3D%3D)
 
 <!-- List and ideally hyperlink preceding lessons here -->
 
