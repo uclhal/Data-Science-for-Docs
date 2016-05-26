@@ -50,7 +50,7 @@ There are many different spreadsheets to use. Almost everyone will be familiar w
 
 In computing terms, not all data is equal. It's worth getting to grips with this now, as any deviation from a set pattern will cause problems later on.
 
-> If in doubt, aim for consistency in every column. Never try to record more than 1 "type" of thing.
+> If in doubt, aim for **consistency in every column**. Never try to record more than 1 "type" of thing in a column.
 
 ### Integers & Decimals
 
@@ -58,17 +58,17 @@ Integers are any whole number. Decimals include any number with a decimal point.
 
 ### Strings
 
-A string is any sequence of characters. Literally anything you can type can be represented as a string. This is the default data type in excel, and is what data typically defaults to if there is any confusion about what the data is. Take the example of recording the dose of analgesia given for postoperative pain relief. If we write “180 mg”, excel will store this value as a string. It has no choice, since the “mg” adds data that cannot possibly be interpreted numerically. When dealing with data that is numerical in nature, it’s best practice to keep all units elsewhere and keep the data as an integer or decimal.
+A string is any sequence of characters. Literally anything you can type can be represented as a string. This is the default data type in excel, and is what data typically defaults to if there is any confusion about what the data is. Take the example of recording the dose of analgesia given for postoperative pain relief. If we write `180 mg`, excel will store this value as a string. It has no choice, since the “mg” adds data that cannot possibly be interpreted numerically. When dealing with data that is numerical in nature, it’s best practice to keep all units elsewhere and keep the data as an integer or decimal.
 
 ### Date/Time objects
 
-This is essentially a special case of the decimal. Dates are simply integers counted up from a point in time (typically Jan 1st 1970 as convention). Time is given as a fraction of a single day. Obviously it's going to be very difficult for us to record today as 10467.56743, as it's not remotely intuitive. We can still write the date and time in excel in a conventional way, but it's important to understand how this information is stored. When recording date and time information, it is often easier to separate out the two e.g. store date in a single column (in the format YYYY-MM-DD) and time in another (in the format HH:MM).
+This is essentially a special case of the decimal. Dates are simply integers counted up from a point in time (typically Jan 1st 1970 as convention). Time is given as a fraction of a single day. Obviously it's going to be very difficult for us to record today as `10467.56743`, as it's not remotely intuitive. We can still write the date and time in excel in a conventional way, but it's important to understand how this information is stored. When recording date and time information, it is often easier to separate out the two e.g. store date in a single column (in the format YYYY-MM-DD) and time in another (in the format HH:MM).
 
 > **Top Tip:** If you really want to make life easy in the future, separate out each day, month, year, hour and minute into separate columns. It's a greater investment, but can make handling dates easier in the future.
 
 ### Booleans
 
-These are 'TRUE' or 'FALSE' statements. Mathematically, these are represented by the values '1' or '0' respectively. Strictly speaking, 'TRUE' can also take any non '0' value i.e. '1', '-45', '750.45' they're all not '0' and hence interpreted as 'TRUE'. 'FALSE' is ALWAYS '0'. When storing any 'TRUE' or 'FALSE' data, we recommend using '1' and '0' as a convention.
+These are `TRUE` or `FALSE` statements. Mathematically, these are represented by the values `1` or `0` respectively. Strictly speaking, `TRUE` can also take any non `0` value i.e. `1`, `-45`, `750.45` they're all not `0` and hence interpreted as `TRUE`. `FALSE` is ALWAYS `0`. When storing any `TRUE` or `FALSE` data, we recommend using `1` and `0` as a convention.
 
 ### Factors
 
@@ -77,24 +77,27 @@ These are a special way of letting R know that the data is nominal or ordinal. T
 ### Cardinal rules
 
 The cardinal rules of using spreadsheet programs for data:
-1. Put all your **variables in columns** - the thing you're measuring, like 'weight' or 'temperature'. Try to be as granular as possible.
-2. Put each **observation in its own row**. Think very carefully about what constitutes your basic observation. It may not be as intuitive as you think.
-3. **Don't combine multiple pieces of information in one cell**. Sometimes it just seems like one thing, but think if that's the only way you'll want to be able to use or sort that data.
+1. Put all your **variables in columns** - the thing you're measuring, like 'weight', 'temperature' or 'SBP'. Break things down into thier most basic constituents, and keep units in your headers only.
+2. Put each **observation in its own row**. Think very carefully about what constitutes your basic observation. Often it's your patient, but it may not be as intuitive as you think.
+3. **Don't combine multiple pieces of information in one cell**.
 4. **Leave the raw data raw** - don't mess with it! That means no formulas anywhere in your spreadsheet!
 5. Export the cleaned data to a **text based format** like CSV. This ensures that anyone can use the data, and is the format required by most data repositories.
 
 ##Unravelling Data
 
-Let's take the example some data that has already been collected, but without using the rules necessary for working with R (very kindly donated by one of our course delegates).
-We can use this data as an example of how to tidy your data in a spreadsheet application to make it ready for import to R. Using the cardinal rules, have a go at getting the data into an appropriate format for exporting to R.
+Let's take the example some data that has already been collected and very kindly donated by one of our course delegates. The data is excellent, but doesn't conform to the necessary rules for working with R. Download this file at the link below to begin working with it.
+
+https://github.com/datascibc/datastore/blob/master/course_exemplar1.xlsx?raw=true
+
+We can use this data as an example of how to tidy your data in a spreadsheet application to make it ready for import to R. Using the cardinal rules, work in your pairs to tansform this data an appropriate format for exporting to R.
 
 ![](img/excel1.png)
 
-The foundations of this data are good. But there are a few mistakes in how the data is formatted that we need to address. Before moving on with this example, think about how you would address these issues? Work along with this example or use some of your own data.
+The foundations of this data are good. But there are a few mistakes in how the data is formatted that we need to address.
 
 ![](img/excel4.png)
 
-First, we need to make sure that our headings are all on 1 line, with unique identifiers for head column name.
+First, we need to make sure that our headings are all on 1 line, with unique identifiers for head column name, with no spaces or special characters.
 
 ![](img/excel7.png)
 
@@ -201,6 +204,10 @@ Comma separated values, or .CSV files are a very basic type of file that stores 
 
 ## Testing out your spreadsheet
 A good test to see if your data will be interpretable by R is whether or not you can save it to github as a CSV file. If at this stage your data still makes sense, you have probably kept to some good data discipline.
+
+Here we have our final clean data sheet. Download it, or use your own cleaned version, ready for import into R.
+
+https://raw.githubusercontent.com/datascibc/datastore/master/Breast%20research%20data-%20final1a.csv?token=AQUWuW6_o12ytSPlMiiRPo1Q8RuFXD5Qks5XT8uQwA%3D%3D
 
 <!-- List and ideally hyperlink preceding lessons here -->
 
