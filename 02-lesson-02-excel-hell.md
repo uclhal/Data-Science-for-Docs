@@ -98,6 +98,19 @@ An ordered (ordinal) factor such as a Likert scale
 
 R stores this as `1,2,3,4,5` for convenience and understands that `1<2<3<4<5`.
 
+### Exploring Datatypes in R Studio
+
+You can explore the following example vectors, each containing a different type of data, in R studio's environment window:
+
+```
+integers <- as.integer(c(1, 3, 15, 16))
+decimals <- c(1.4, 3.5, 15.55, 16.4)
+bools <- c(T, T, F, T)
+dates <- as.Date(c("22/04/2016", "01/01/2005", "13/05/1997"), format = "%d/%m/%Y")
+strings <- c("These are", "Strings")
+factors <- as.factor(c("Apples", "Pears", "Lemons"))
+```
+
 <a name="cardinal-rules"></a>
 
 ### Cardinal rules
