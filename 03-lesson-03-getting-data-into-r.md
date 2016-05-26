@@ -59,13 +59,9 @@ View(x)
 ### Exercise: Taking a quick look at the data
 
 1. What are the names of the columns? Hint: try `names()`
-
 2. Display in the console the items in the column `Sepal.Lengths`
-
 3. What is the mean of and standard deviation of `Sepal.Lengths`?
-
 4. What is the median, interquartile range, min and max of `Sepal.Lengths?`
-
 5. Can you do the same for all the other columns in `x`?
 
 <a name="csv"></a>
@@ -173,11 +169,8 @@ hist(goog$height)
 ### Exercise: Taking a quick look at the data
 
 1. What are the names of the columns?
-
 2. What is the mean and standard deviation of the subject heights?
-
 3. Can you find out how many males and females there are? Hint: you can use the function `table()` or `xtab()`
-
 4. Can you find out how many subjects there are?
 
 ### Questions
@@ -193,5 +186,3 @@ hist(goog$height)
 ---
 
 [Previous topic](02-lesson-02-excel-hell.html) --- [Next topic](04-lesson-04-04-reproducible-science.html)
-
-
