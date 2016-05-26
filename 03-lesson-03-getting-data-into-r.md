@@ -164,6 +164,8 @@ goog <- gs_read(sheet)
 xtabs(~gender, data = goog)
 
 hist(goog$height)
+
+t.test(height ~ gender, data = goog)
 ```
 
 ### Exercise: Taking a quick look at the data
