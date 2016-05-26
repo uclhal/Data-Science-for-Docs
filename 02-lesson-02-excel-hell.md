@@ -38,6 +38,8 @@ You need to have installed either:
 - [Exporting to CSV](#worked-example)
 - [Testing your spreadsheet](#testing)
 
+<a name="introduction"></a>
+
 ## Introduction
 
 Spread sheets offer a simple and effective method to collect data. However, their ease of use often leads to a sloppy approach to data entry. Good data discipline is an essential foundation to data analysis and a small investment at this stage can prevent you running into trouble when trying to analyse and publish your study. This tutorial will take you through the essential dos and don'ts of managing your data in a spreadsheet.
@@ -47,6 +49,8 @@ As a word of caution, don't forget, that any data collection should be inline wi
 ### Which application to use?
 
 There are many different spreadsheets to use. Almost everyone will be familiar with excel, although it's worth considering if this is actually the right choice for you. If you are planning a major collaboration, where many people need to enter data simultaneously, then an excel spreadsheet is probably not for you. Have a look at google sheets as an alternative. As your requirements grow, you may want to explore a relational database. But for now, we'll assume you are using excel.
+
+<a name="data-types"></a>
 
 ## Data types
 
@@ -94,7 +98,7 @@ An ordered (ordinal) factor such as a Likert scale
 
 R stores this as `1,2,3,4,5` for convenience and understands that `1<2<3<4<5`.
 
-
+<a name="cardinal-rules"></a>
 
 ### Cardinal rules
 
@@ -124,6 +128,8 @@ First, we need to make sure that our headings are all on 1 line, with unique ide
 
 Other, more subtle changes include searching for any discrepancies in spelling and case. As a rule, we advovate having everything in lower case. It might not be perfect grammer, but keeping everything consistent throughout will prevent headaches down the line.
 
+<a name="common-mistakes"></a>
+
 ## Common mistakes
 
 - [Multiple tables](#tables)
@@ -139,9 +145,14 @@ Other, more subtle changes include searching for any discrepancies in spelling a
 - [Inclusion of metadata in data table](#metadata)
 - Date formatting
 
+
+<a name="tables"></a>
+
 ### Multiple tables
 
 A common strategy is creating multiple data tables within one spreadsheet. **This confuses the computer, so don't do this!**. When you create multiple tables within one spreadsheet, you're drawing false associations between things for the computer, which sees each row as an observation. You're also potentially using the same field name in multiple places, which will make it harder to clean your data up into a usable form.
+
+<a name="tabs"></a>
 
 ### Multiple tabs
 
@@ -157,6 +168,8 @@ Your data sheet might get very long over the course of experiment. This makes it
 
 [Documentation on how to freeze column headers](https://support.office.com/en-ca/article/Freeze-column-headings-for-easy-scrolling-57ccce0c-cf85-4725-9579-c5d13106ca6a)
 
+<a name="zeroes"></a>
+
 ### Not filling in zeroes
 
 It might be that when you're measuring something, it's usually a zero, say the number of times an elephant is observed in the object or the survey. Why bother writing in the number zero in that column, when it's mostly zeros?
@@ -165,32 +178,45 @@ However, there's a difference between a zero and a blank cell in a spreadsheet. 
 
 Spreadsheets or statistical programs will likely mis-interpret blank cells that are meant to be zero. This is equivalent to leaving out data. Zero observations are real data! Leaving zero data blank is not good in a written lab notebook, but NEVER okay when you move your data into a digital format.
 
+<a name="null"></a>
+
 ### Using bad null values
 
 **Example**: using -999 or other numerical values (or zero).
 **Solution**: Many statistical programs will not recognize that numeric values of null are indeed null. It will depend on the final application of your data and how you intend to analyse it, but it is essential to use a clearly defined and CONSISTENT null indicator. Blanks (most applications) and NA (for R) are good choices.
+
+<a name="formatting"></a>
 
 ### Using formatting to convey information 
 
 **Example**: highlighting cells, rows or columns that should be excluded from an analysis, leaving blank rows to indicate separations in data.
 **Solution**: Computers are colour blind. Colour coding if fine if it helps you understand your data, as long as you recognise that it won't have any value in R. Adding in extra rows or columns to help format your data is going to damage your data as it will be interpreted as new observations. Create a new field to encode which data should be excluded.
 
+<a name="formatting_pretty"></a>
+
 ### Using formatting to make the data sheet look pretty
 
 **Example**: merging cells.
 **Solution**: If you're not careful, formatting a worksheet to be more aesthetically pleasing can compromise your computer's ability to see associations in the data. Merged cells are an absolute formatting NO-NO if you want to make your data readable by statistics software. Consider restructuring your data in such a way that you will not need to merge cells to organize your data. If you have a number of column headings under the same umbrella term, consider just adding a prefix to each header instead.
+
+<a name="formatting"></a>
 
 ### Placing comments or units in cells
 
 **Example**: You want to leave yourself a comment to identify bad data, or explain away an outlier.
 **Solution**: Most statistical programs can't see Excel's comments, and would be confused by comments placed within your data cells. As described above for formatting, create another field if you need to add notes to cells. Similarly, don't include units in cells: ideally, all the measurements you place in one column should be in the same unit, but if for some reason they aren't, create another field and specify the units the cell is in.
 
+<a name="units"></a>
+
 ### More than one piece of information in a cell
 
 **Example**: You are taking serial BP measurements. You record this as 180/80, 175/76, 168/82
 **Solution**: Never include more than one piece of information in a cell. If you need all these measurements, design your data sheet to include this information in separate columns. In fact, in the above example, it would even be beneficial to separate out each systolic and diastolic value. You final column heading might look like this: sbp_1, dbp1, sbp_2, dbp_2, sbp_3, dbp_3.
 
+<a name="field_name"></a>
+
 ### Field name problems
+
 Choose descriptive field names, but be careful not to include: spaces, numbers, or special characters of any kind. Spaces can be misinterpreted by parsers that use whitespace as delimiters and some programs don't like field names that are text strings that start with numbers.
 Underscores (`_`) are a good alternative to spaces and consider writing names in camel-case to improve readability. Remember that abbreviations that make sense at the moment may not be so obvious in 6 months but don't overdo it with names that are eccessivly long.
 
@@ -206,6 +232,8 @@ weight | weight | w.
 cell_type | CellType | Cell type
 first_observation | Observation_01 | 1st Obs.
 
+<a name="special"></a>
+
 ### Special characters in data
 
 **Example**: You treat Excel as a word processor when writing notes, even copying data directly from Word or other applications.
@@ -214,11 +242,15 @@ first_observation | Observation_01 | 1st Obs.
 
 General best practice is to avoid adding characters such as newlines, tabs, and vertical tabs. In other words, treat a text cell as if it were a simple web form that can only contain text and spaces.
 
+<a name="metadata"></a>
+
 ### Inclusion of metadata in data table
 
 **Example**: You add a legend at the top or bottom of your data table explaining column meaning, units, exceptions, etc.
 
 **Solution**: While recording data about your data ("metadata") is essential, this information should not be contained in the data file itself. Unlike a table in a paper or a supplemental file, metadata (in the form of legends) should not be included in a data file since this information is not data, and including it can disrupt how computer programs interpret your data file. Rather, metadata should be stored as a separate file in the same directory as your data file, preferably in plain text format with a name that clearly associates it with your data file. Because metadata files are free text format, they also allow you to encode comments, units, information about how null values are encoded, etc. that are important to document but can disrupt the formatting of your data file.
+
+<a name="worked-example"></a>
 
 ## Exporting to CSV
 Comma separated values, or .CSV files are a very basic type of file that stores information in a universally accessible way. .xls files are proprietary to microsoft and can only be opened correctly by a particular version of excel. Being able to convert this file into a .CSV file is a vital part of working with your data in a different application.
