@@ -131,12 +131,19 @@ Then accept the defaults in the dialog box that appears.
 
 ### Scripting
 
+Point and click is lovely and easy but _sadly_ not reproducible. Much better is to write down where your data comes from. We are going to do this in 2 steps here.
+
+1. We will take the _file path_ you have generated and name it `FILE`.
+2. We will use a _function_ called `read.csv` to import the data into a data frame (which we in turn name `df` for convenience).
+
 ```{r}
 FILE <- "/Users/ahmedalhindawi/Documents/Development/Man_graph.csv"
 df <- read.csv(FILE, header=TRUE, stringsAsFactor=FALSE)
 ```
 
-This will read your file, then a dataframe object will be available to run queries on. To display the entire column, type:
+You could have done this in one step, but it would have made things harder to read. Hard to read, means difficult to remember, and we are doing our best to avoid that!
+
+Now you can access the data you imported. For example, to display the entire column named 'column_name`. Replace with with the name of the column you're interested in.
 
 ```{r}
 df$column_name
@@ -146,24 +153,49 @@ df$column_name
 
 ## Google Sheets
 
-We can also load data through a connection with Google Sheets.
+We can also load data through a connection with Google Sheets. What's good about this? **Collaboration** and **live-updating** (more next time). 
+
+We're going to use data in a shared sheet we've called `dsbc-pipeline-love`.
+
+![](img/dsbc-pipeline-love.png)
+
+You'll need to add the Google sheet to your account via the [sharing link here](https://drive.google.com/open?id=1UWkIPNNzMuqo9mehIOHWLt18T6iThQPOTRLa6Ar1Uds).
+
+### The `googlesheets` library
+
+First we need the functions someone else has kindly written that allow R to talk to R studio. You might need to install the library first (` install.packages("googlesheets")`).
 
 ```{r}
-#Load the required library
 library(googlesheets)
-
-#Get a list of spreadsheets in your Google account
-#The first time you run this you will be asked to authenticate via the browser
-gs_ls()
-
-sheet <- gs_title("dsbc-pipeline-love")
-
-goog <- gs_read(sheet)
-
-xtabs(~gender, data = goog)
-
-hist(goog$height)
 ```
+
+Now let's have a look at the sheets in your account. We'll use the `gs_ls()` function. 
+
+``` {r}
+gs_ls()
+```
+
+The first time you run this you will be asked to authenticate. Behind the scenes R now saves a hidden file into your working directory. The next time you ever run your script, as long as you haven't moved your code to a new directory, it won't need to ask.
+
+Let's import the shared sheet `dsbc-pipeline-love`, and name it `sheet`.
+
+``` {r}
+sheet <- gs_title("dsbc-pipeline-love")
+```
+
+So far so good, but `sheet` isn't a data frame. There's one more step.
+
+``` {r}
+goog <- gs_read(sheet)
+```
+
+Let's have a look at the first 6 rows (remember the `head()` function?)
+
+``` {r}
+head(goog)
+```
+
+
 
 ### Exercise: Taking a quick look at the data
 
@@ -175,11 +207,28 @@ c. Can you find out how many males and females there are? Hint: you can use the 
 
 d. Can you find out how many subjects there are?
 
-### Questions
+### Answers
+
+a. What are the names of the columns?
+
+`names(goog)`
+
+b. What is the mean and standard deviation of the subject heights?
+
+`summary(goog$height)`
+
+c. Can you find out how many males and females there are? 
+
+`table(goog$gender)`
+
+d. Can you find out how many subjects there are?
+
+`nrow(goog$`
+
 
 ## Homework
 
-1. Can you import a look the `outreach.csv` dataset? 
+1. Can you import and look at the `outreach.csv` dataset? What is the average heart rate? How many patients were accepted to ICU (the column is called `icu_accept`), and what was the mortality?
 
 
 
