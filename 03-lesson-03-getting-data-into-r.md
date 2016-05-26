@@ -9,11 +9,11 @@ minutes: 25
 
 ## Learning Objectives 
 
-1. Get data out of your spreadsheet
-2. Doing a quick nose around dataframes in R
-3. Click and import using R studio
-4. Scripting your import (and file paths)
-5. Using Google Sheets
+1. [Doing a quick nose around dataframes in R](#dataframes)
+2. [Get data out of your spreadsheet](#csv)
+3. [Click and import using R studio](#clicking)
+4. [Scripting your import (and file paths)](#scripting)
+5. [Using Google Sheets](#google-sheets)
 
 <!-- * Getting data into R - (v1) Ahmed (v2) Ed
     - live coding importing the data
@@ -29,11 +29,13 @@ minutes: 25
  
 ## Lesson 
 
+<a name="dataframes"></a>
+
 ## Everything is a "data-frame"
 
 Once you have imported any sheet into R, the result is a data-frame. This is another word for a sheet - like Excel's sheet; it has columns, each identified by a name, and rows for observations.
 
-To access a dataframe's particular column, we use the $ notation. E.g:
+To access a dataframe's particular column, we use the $ notation e.g:
 
 ```{r}
 df$some_column
@@ -56,16 +58,17 @@ View(x)
 
 ### Exercise: Taking a quick look at the data
 
-a) What are the names of the columns? Hint: try `names()`
+a. What are the names of the columns? Hint: try `names()`
 
-b) Display in the console the items in the column `Sepal.Lengths`
+b. Display in the console the items in the column `Sepal.Lengths`
 
-c) What is the mean of and standard deviation of `Sepal.Lengths`?
+c. What is the mean of and standard deviation of `Sepal.Lengths`?
 
-d) What is the median, interquartile range, min and max of `Sepal.Lengths?`
+d. What is the median, interquartile range, min and max of `Sepal.Lengths?`
 
-e) Can you do the same for all the other columns in `x`?
+e. Can you do the same for all the other columns in `x`?
 
+<a name="csv"></a>
 
 ## Introducing the CSV
 
@@ -75,21 +78,23 @@ It's a simple format. The top line are the column names, each seperated by a com
 
 It's strength is in it's simplicity. It only has data, no formuals, no tricks and is very well recognised amongst software packages as it is very easily supported. R has excellent support for CSV.
 
+
 ## Export CSV From Excel
 
 ![](img/export_csv.png)
 
 ### Exercise: Export an .xlsx file to .csv
 
-a) Find the cleaned .xlsx file that was produced in the Excel Hell lecture and export it as a .csv file.
+a. Find the cleaned .xlsx file that was produced in the Excel Hell lecture and export it as a .csv file.
 
 ## Find your File
 
 You will need to know the absolute location of your file on your harddrive.
 
-![](img/mac_path.png)
+![](img/mac_path_small.png)
 
-## File your File
+## Find your File
+
 This will result in the following path:
 
 ```{r}
@@ -104,11 +109,27 @@ We can import Comma Separated Values (CSV) files into R very easily. These files
 
 Once a sheet has been exported, it can be imported into R:
 
-There're 2 main ways to do this:
+There're 3 main ways to do this:
 
 - Point-and-click within RStudio, which we covered in Lesson 1 (R for Newbies).
-- Make a connection to a database or an online Google Sheets spreadsheet (beyond the scope of this course).
+- Make a connection to a database or an online Google Sheets spreadsheet
 - Use the `read.csv` function.
+
+<a name="clicking"></a>
+
+### Point-and-click
+
+As a quick reminder from Lesson 1. Click the *Import Dataset* button, and select the *From local file ...* option.
+
+![](img/RStudio-import-data-button.png)
+
+Then accept the defaults in the dialog box that appears.
+
+![](img/RStudio-import-data.png)
+
+<a name="scripting"></a>
+
+### Scripting
 
 ```{r}
 FILE <- "/Users/ahmedalhindawi/Documents/Development/Man_graph.csv"
@@ -120,6 +141,8 @@ This will read your file, then a dataframe object will be available to run queri
 ```{r}
 df$column_name
 ```
+
+<a name="google-sheets"></a>
 
 ## Google Sheets
 
@@ -144,25 +167,24 @@ hist(goog$height)
 
 ### Exercise: Taking a quick look at the data
 
-a) What are the names of the columns?
+a. What are the names of the columns?
 
-b) What is the mean and standard deviation of the subject heights?
+b. What is the mean and standard deviation of the subject heights?
 
-c) Can you find out how many males and females there are? Hint: you can use the function `table()` or `xtab()`
+c. Can you find out how many males and females there are? Hint: you can use the function `table()` or `xtab()`
 
-d) Can you find out how many subjects there are?
+d. Can you find out how many subjects there are?
+
+### Questions
 
 ## Homework
 
-Hopefully you have learned enough about today to load data into R and then get an overview.
+1. Can you import a look the `outreach.csv` dataset? 
 
-Go home and look at the `outreach.csv` dataset that we downloaded from Figshare in Lesson 0 (Introduction) and try to answer the following questions, which we will go through at the start of the next lesson:
-
-### Questions
 
 
 ---
 
-[Previous topic]() --- [Next topic]()
+[Previous topic](02-lesson-02-excel-hell.html) --- [Next topic](04-lesson-04-04-reproducible-science.html)
 
 
