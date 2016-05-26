@@ -137,7 +137,7 @@ sheet <- gs_title("dsbc-pipeline-love")
 
 goog <- gs_read(sheet)
 
-xtab(~gender, data = goog)
+xtabs(~gender, data = goog)
 
 hist(goog$height)
 ```
@@ -148,7 +148,7 @@ a) What are the names of the columns?
 
 b) What is the mean and standard deviation of the subject heights?
 
-c) Can you find out how many males and females there are? Hint: you can use the function `table()` or `xtab()`
+c) Can you find out how many males and females there are? Hint: you can use the function `table()` or `xtabs()`
 
 d) Can you find out how many subjects there are?
 
