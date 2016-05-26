@@ -160,7 +160,7 @@ sheet <- gs_title("dsbc-pipeline-love")
 
 goog <- gs_read(sheet)
 
-xtab(~gender, data = goog)
+xtabs(~gender, data = goog)
 
 hist(goog$height)
 ```

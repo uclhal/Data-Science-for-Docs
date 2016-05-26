@@ -252,6 +252,9 @@ General best practice is to avoid adding characters such as newlines, tabs, and 
 
 <a name="worked-example"></a>
 
+## Data Validation
+Once you're happy with your new spreadsheet, have a go at setting data validation. This restricts the values that you can enter in each column, to help maintain your new consistency.
+
 ## Exporting to CSV
 Comma separated values, or .CSV files are a very basic type of file that stores information in a universally accessible way. .xls files are proprietary to microsoft and can only be opened correctly by a particular version of excel. Being able to convert this file into a .CSV file is a vital part of working with your data in a different application.
 
@@ -263,10 +266,6 @@ Here we have our final clean data sheet. Download it, or use your own cleaned ve
 [And here's one we prepared earlier ...](https://raw.githubusercontent.com/datascibc/datastore/master/Breast%20research%20data-%20final1a.csv?token=AQUWuW6_o12ytSPlMiiRPo1Q8RuFXD5Qks5XT8uQwA%3D%3D)
 
 <!-- List and ideally hyperlink preceding lessons here -->
-
-## Follow-up
-
-<!-- List and ideally hyperlink follow-up lessons here -->
 
 ---
 
