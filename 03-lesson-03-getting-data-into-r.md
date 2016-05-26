@@ -58,15 +58,11 @@ View(x)
 
 ### Exercise: Taking a quick look at the data
 
-a. What are the names of the columns? Hint: try `names()`
-
-b. Display in the console the items in the column `Sepal.Lengths`
-
-c. What is the mean of and standard deviation of `Sepal.Lengths`?
-
-d. What is the median, interquartile range, min and max of `Sepal.Lengths?`
-
-e. Can you do the same for all the other columns in `x`?
+1. What are the names of the columns? Hint: try `names()`
+2. Display in the console the items in the column `Sepal.Lengths`
+3. What is the mean of and standard deviation of `Sepal.Lengths`?
+4. What is the median, interquartile range, min and max of `Sepal.Lengths?`
+5. Can you do the same for all the other columns in `x`?
 
 <a name="csv"></a>
 
@@ -85,7 +81,7 @@ It's strength is in it's simplicity. It only has data, no formuals, no tricks an
 
 ### Exercise: Export an .xlsx file to .csv
 
-a. Find the cleaned .xlsx file that was produced in the Excel Hell lecture and export it as a .csv file.
+1. Find the cleaned .xlsx file that was produced in the Excel Hell lecture and export it as a .csv file.
 
 ## Find your File
 
@@ -148,6 +144,11 @@ Now you can access the data you imported. For example, to display the entire col
 ```{r}
 df$column_name
 ```
+
+### Exercise: Import the .csv into R
+
+1. Import the .csv file from the Excel Hell lesson as a dataframe and call it `RCT`
+2. Name all the columns in the dataframe.
 
 <a name="google-sheets"></a>
 
@@ -235,5 +236,3 @@ d. Can you find out how many subjects there are?
 ---
 
 [Previous topic](02-lesson-02-excel-hell.html) --- [Next topic](04-lesson-04-04-reproducible-science.html)
-
-
