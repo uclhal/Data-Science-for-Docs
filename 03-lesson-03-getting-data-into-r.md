@@ -194,6 +194,7 @@ Let's have a look at the first 6 rows (remember the `head()` function?)
 
 ``` {r}
 head(goog)
+t.test(height ~ gender, data = goog)
 ```
 
 
