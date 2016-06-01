@@ -51,22 +51,8 @@ Have a look at the contents of this file
 All being well you should see something like this:
 
 ~~~ R
-# install.packages("dplyr") 
-library(dplyr)
+ddata <- read.csv("https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526")
 
-## 
-## Attaching package: 'dplyr'
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-
-# ddata <- read.csv("https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526")
-ddata <- read.csv("/Users/steve/Sites/datascibc/course/data/outreach.csv")
 nrow(ddata)
 
 ## [1] 1000
@@ -108,9 +94,9 @@ summary(ddata[ddata$news_risk==3,]$hrate)
 ##      14      95     110     109     125     223      26
 ~~~
 
-So this is starting to look ugly!
+So this is starting to look ugly! You 'll remember parts of this from the [first lesson](00-lesson-00-intro.html) where we introduced the ideas of vectors and matrices. And that to 'R' everything is a vector. To work with 'bits' of data, we therefore need to specify the 'address' of the data.
 
-First, `table(ddata$news_risk)` inspects the news_risk variable. We have 4 levels from 0 to 3 corresponding to 'lowest', 'low', 'medium', and 'high' risk.
+In this example, the first code snippet `table(ddata$news_risk)` inspects the news_risk variable. We have 4 levels from 0 to 3 corresponding to 'lowest', 'low', 'medium', and 'high' risk.
 
 Next, we want to summarise heart rate for just patients in the highest risk class, and we type `summary(ddata[ddata$news_risk==3,]$hrate)`. Let's break this down. I'll focus on one bit at a time, and use `...` to indicate the missing pieces.
 
@@ -126,6 +112,8 @@ But we don't. So instead we want to pick just those patients whose NEWS score is
 
 Can you see this in the middle of the line of code? We are writing a comparison test that says does `news_risk` equal `3`. We use `==` not `=` when comparing otherwise R thinks you are _telling_ it that news_risk _is_ 3.
 
+> **TIP:** Comparisons in R: Most of these are obvious `>` (greater than), `>=` (greater than or equal to), and similarly for `<` and `<=`. We have also mentioned previously the `!=` operator means 'not equal to'. But when we want to check if something _is_ equal to something else we _must_ use `==`. Why? Because although R prefers you to use `<-` when you name things, most programming languages use `=`, and even R expects you to use `=` when you pass values to functions. So, for a function such as `mean(x)` we are normally lazy when we write `mean(hrate)`. We should write `mean(x=hrate)`, because _inside_ the function all the work is done with the variable `x`. When we write `mean(x=hrate)` we explicitly telling R that we want it to use `hrate` in place of `x`. This is a very long winded way of saying that when you want to _test_ if one thing is equal to another then you need a different way of writing this, hence `==`.
+ 
 So we want to run this comparison on the data frame `ddata`.
 
 - `... ddata[ddata$news_risk==3,] ...`
@@ -162,6 +150,29 @@ So `... ddata[ddata$news_risk==3,] ...` is simply wrapping the test inside the r
 #### Data wrangling with dplyr
 
 This makes sense, but it isn't easy to read, and it is very easy to forget. The `dplyr` package makes this a lot simpler.
+
+First, load the library.
+
+~~~ R
+## Install the package if you haven't already
+# install.packages("dplyr") 
+
+## Load the package
+library(dplyr)
+
+## 
+## Attaching package: 'dplyr'
+## 
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+
+
+~~~
 
 ~~~ R
 filter(ddata, news_risk==3)
@@ -220,6 +231,7 @@ ddata %>% group_by(news_risk) %>% summarise(hrate.avg = mean(hrate, na.rm=TRUE))
 # The dplyr fix
 ddata %>% filter(is.na(hrate)==FALSE) %>%  group_by(news_risk) %>% summarise(hrate.avg = mean(hrate))
 ~~~
+
 
 
 
