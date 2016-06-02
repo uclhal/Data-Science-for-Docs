@@ -7,6 +7,7 @@ minutes: 25
 
 <!-- rename file with the lesson name replacing template -->
 <!-- - [ ] TODO(2016-05-10): remove detail from the subsetting in Base R; just show the ugly line, maybe mention matrix address  -->
+<!-- - [ ] TODO(2016-06-02): cheat sheets -->
 
 ## Learning Objectives 
 
@@ -22,6 +23,16 @@ minutes: 25
     + [Columns to rows and back again](#tidyr)
 
 ## Lesson 
+
+This lesson builds on the [Excel Hell](02-lesson-02-excel-hell.html) lesson in that to describe, plot, and test your data you need it to be 'tidy'.
+
+To [quote](https://blog.rstudio.org/2014/07/22/introducing-tidyr/) one of R's current chief architects (Hadley Wickham):
+
+> Each column is a variable.
+> Each row is an observation.
+
+This requires some data tidying (see the [favourite things recipes](#things)) below, and the some data manipulation. We're going to start with data manipulation.
+
 
 <a name="base-r"></a>
 
@@ -142,16 +153,7 @@ So `... ddata[ddata$news_risk==3,] ...` is simply wrapping the test inside the r
 
 ### Data wrangling with dplyr
 
-This makes sense, but it isn't easy to read, and it is very easy to forget. The `dplyr` package makes this a lot simpler.
-
-First install (if you haven't already) then load the [dplyr package](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
-
-~~~ R
-install.packages("dplyr") 
-library(dplyr)
-~~~
-
-> **TIP:** Note that when you ask R to install a package you need to quote the name `"dplyr"`, but once installed the name now means something to R (it is a symbol for the package) and no longer needs quoting.
+This makes sense, but it isn't easy to read, and it is very easy to forget. Again, the `dplyr` package makes this a lot simpler.
 
 Now let's _filter_ by row.
 
@@ -218,10 +220,114 @@ ddata %>% filter(is.na(hrate)==FALSE) %>%  group_by(news_risk) %>% summarise(hra
 
 Both fixes work, but I would argue that one is easier to read.
 
+- [ ] TODO(2016-06-02): add in exercises
+
+<a name="things"></a>
+
+### Some of our favourite things: Data tidying recipes
+
+#### Load dplyr
+
+First install (if you haven't already) then load the [dplyr package](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
+
+~~~ R
+install.packages("dplyr") 
+library(dplyr)
+~~~
+
+> **TIP:** Note that when you ask R to install a package you need to quote the name `"dplyr"`, but once installed the name now means something to R (it is a symbol for the package) and no longer needs quoting.
+
+##### Load the example data
+
+Now load a 'semi-clean' version of the breast RCT data. All we have done in Excel, is clean up the column names, made a single 'header' row, and removed the merge cells. We'll do the rest of the work together.
+
+Let's read the data. Note that we pass an _option `stringsAsFactors=FALSE` to the `read.csv()` function. We _highly_ recommend that you always do this when bringing in data.
+
+~~~ R
+bb.raw <- read.csv("https://ndownloader.figshare.com/files/5325343?private_link=28e6b022c0d3fe63909e", stringsAsFactors=FALSE)
+str(bb.raw)
+~~~
+
+#### Recipe 1: Re-name a variable
+
+~~~ R
+names(bb.raw)
+bb.raw <- rename(bb.raw, para = tylenol)
+names(bb.raw)
+~~~
+
+We're using the rename function from the dplyr package, and then 'overwriting' our existing data with the renamed data. It might be better practice to create a new 'clean' data set.
+
+Can you do this?
+
+
+#### Recipe 2: Extract numbers
+
+If we look at the paracetamol data, we see that it is stored with the 'units'. We want just the number. We are going to use a function from the [tidyr](https://blog.rstudio.org/2014/07/22/introducing-tidyr/) package called `extract_numeric()`.
+
+~~~ R
+# install.packages("tidyr")  # if you haven't already
+library(tidyr)
+# Look at the raw data
+bb.raw$para 
+# Try the function
+extract_numeric(bb.raw$para)
+# Now make a clean data set
+bb.clean <- bb.raw %>% mutate(para = extract_numeric(para))
+bb.clean$para 
+~~~
+
+#### Recipe 3: Extract a 'string'
+
+This time you want to identify patients who take diclofenac. So another package! Please load [stringr](https://github.com/hadley/stringr). 
+
+
+~~~ R
+# install.packages("stringr")  # if you haven't already
+library(stringr)
+# Look at the raw data
+bb.raw$other
+# Try the function
+str_detect(bb.raw$other, "diclofenac")
+str_detect(bb.raw$other, "Diclofenac")
+~~~
+
+Can you see how R is case sensitive? Compare the following.
+
+~~~ R
+bb.raw %>% select(other) 
+bb.raw %>% select(other) %>% mutate(other = str_to_lower(other))
+~~~
+
+Can you put this together to produce the data you want?
+
+~~~ R
+bb.raw %>% mutate(diclofenac = str_detect(str_to_lower(other), "diclofenac"))
+# And to save your data
+bb.clean <- bb.raw %>% mutate(diclofenac = str_detect(str_to_lower(other), "diclofenac")) 
+bb.clean
+~~~
+
+Now you try to pick out patients getting ibuprofen.
 
 
 
-### tidyr
+
+
+
+
+
+<a name="stringr"></a>
+
+#### Wrangling strings
+
+<a name="lubridate"></a>
+
+#### Wrangling dates
+
+<a name="tidyr"></a>
+
+#### Columns to rows and back again
 
 > tidyr is new package that makes it easy to "tidy" your data. Tidy data is data that's easy to work with: it's easy to munge (with dplyr), visualise (with ggplot2 or ggvis) and model (with R's hundreds of modelling packages). The two most important properties of tidy data are:
 > 
