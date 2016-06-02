@@ -70,6 +70,9 @@ A string is any sequence of characters. Literally anything you can type can be r
 
 This is essentially a special case of the decimal. Dates are simply integers counted up from a point in time (typically Jan 1st 1970 as convention). Time is given as a fraction of a single day. Obviously it's going to be very difficult for us to record today as `10467.56743`, as it's not remotely intuitive. We can still write the date and time in excel in a conventional way, but it's important to understand how this information is stored. When recording date and time information, it is often easier to separate out the two e.g. store date in a single column (in the format YYYY-MM-DD) and time in another (in the format HH:MM).
 
+- [ ] TODO(2016-05-26): recommend CCYY-MM-DD
+- [ ] TODO(2016-05-26): add in example screenshots of excel mess
+
 > **Top Tip:** If you really want to make life easy in the future, separate out each day, month, year, hour and minute into separate columns. It's a greater investment, but can make handling dates easier in the future.
 
 ### Booleans
@@ -102,6 +105,8 @@ R stores this as `1,2,3,4,5` for convenience and understands that `1<2<3<4<5`.
 
 ### Cardinal rules
 
+<!-- - [ ] TODO(2016-05-26): need to explain the 'header row' concept -->
+
 The cardinal rules of using spreadsheet programs for data:
 
 1. Put all your **variables in columns** - the thing you're measuring, like 'weight', 'temperature' or 'SBP'. Break things down into thier most basic constituents, and keep units in your headers only.
@@ -131,6 +136,8 @@ Other, more subtle changes include searching for any discrepancies in spelling a
 <a name="common-mistakes"></a>
 
 ## Common mistakes
+
+<!-- - [ ] TODO(2016-05-26): this would work nicely as a round robin teaching exercise; get each pair to read one section and teach the rest of the glass; repeat twice if needed to get through the whole list -->
 
 - [Multiple tables](#tables)
 - [Multiple tabs](#tabs)
@@ -253,22 +260,35 @@ General best practice is to avoid adding characters such as newlines, tabs, and 
 <a name="worked-example"></a>
 
 ## Data Validation
+
 Once you're happy with your new spreadsheet, have a go at setting data validation. This restricts the values that you can enter in each column, to help maintain your new consistency.
 
 ## Exporting to CSV
+
 Comma separated values, or .CSV files are a very basic type of file that stores information in a universally accessible way. .xls files are proprietary to microsoft and can only be opened correctly by a particular version of excel. Being able to convert this file into a .CSV file is a vital part of working with your data in a different application.
 
 ## Testing out your spreadsheet
+
 A good test to see if your data will be interpretable by R is whether or not you can save it to github as a CSV file. If at this stage your data still makes sense, you have probably kept to some good data discipline.
 
 Here we have our final clean data sheet. Download it, or use your own cleaned version, ready for import into R.
 
+## Tips
+
+- 3 sheets: readme, dictionary, data
+
+
+## Exercises
+
+- [ ] TODO(2016-05-26): work with the excel sheet live
+    - give people a column each to work on
+
 [And here's one we prepared earlier ...](https://raw.githubusercontent.com/datascibc/datastore/master/Breast%20research%20data-%20final1a.csv?token=AQUWuW6_o12ytSPlMiiRPo1Q8RuFXD5Qks5XT8uQwA%3D%3D)
 
-<!-- List and ideally hyperlink preceding lessons here -->
 
 ---
+<!-- List and ideally hyperlink preceding lessons here -->
+
+Please also see [Ecology Excel lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/) for the [Data Carpentry](http://datacarpentry.org/) version of the lesson.
 
 [Previous topic](01-lesson-01-r-for-newbies.html) --- [Next topic](03-lesson-03-getting-data-into-r.html)
-
-Please also see http://www.datacarpentry.org/spreadsheet-ecology-lesson/ for the [Data Carpentry](http://datacarpentry.org/) version of the lesson.
