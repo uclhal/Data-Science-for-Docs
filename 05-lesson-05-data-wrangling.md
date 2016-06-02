@@ -14,26 +14,19 @@ minutes: 25
         - [ ] dplyr
         - [ ] tidyr
  -->
-- recognise the standard R methods for selecting data
-- use the dplyr package to manipulate your data
-- use the tidyr package to tidy your data
+- [Recognise the standard R methods for selecting data](#base-r)
+- [Use the dplyr package to manipulate your data](#dplyr)
+- [Some of our favourite (data wrangling) things](#things)
+    + [Wrangling strings](#stringr)
+    + [Wrangling dates](#lubridate)
+    + [Columns to rows and back again](#tidyr)
 
 ## Lesson 
 
-### Subsetting in R
+<a name="base-r"></a>
 
-### dplyr
+### Wrangling the 'base' R way
 
-Let's start R
-
-Now install and load the [dplyr package](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
-
-~~~ R
-install.packages("dplyr") 
-library(dplyr)
-~~~
-
-Note that when you ask R to install a package you need to quote the name `"dplyr"`, but once installed the name now means something to R (it is a symbol for the package) and no longer needs quoting.
 
 Now load your data. We're going to use the data set from the deteriorating patient study. We'll use the `read.csv` function, pass it the URL of our data, and label it with the name `ddata`.
 
@@ -76,8 +69,6 @@ summary(ddata$hrate)
 ##      10      83     100     100     116     223     246
 ~~~
 
-
-#### Data wrangling with base R
 
 What if now you wanted to look at heart rate by NEWS Risk class (a ward based classification of severity of illness based on vital signs).
 
@@ -147,32 +138,22 @@ We get a list of True/False responses based on our test.
 
 So `... ddata[ddata$news_risk==3,] ...` is simply wrapping the test inside the row selector. Notice the `,` after the test. That is telling R we want the test applied row-wise when selecting- which makes sense since the test is applied once per row for the column.
 
-#### Data wrangling with dplyr
+<a name="dplyr"></a>
+
+### Data wrangling with dplyr
 
 This makes sense, but it isn't easy to read, and it is very easy to forget. The `dplyr` package makes this a lot simpler.
 
-First, load the library.
+First install (if you haven't already) then load the [dplyr package](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
 
 ~~~ R
-## Install the package if you haven't already
-# install.packages("dplyr") 
-
-## Load the package
+install.packages("dplyr") 
 library(dplyr)
-
-## 
-## Attaching package: 'dplyr'
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-
-
 ~~~
+
+> **TIP:** Note that when you ask R to install a package you need to quote the name `"dplyr"`, but once installed the name now means something to R (it is a symbol for the package) and no longer needs quoting.
+
+Now let's _filter_ by row.
 
 ~~~ R
 filter(ddata, news_risk==3)
@@ -194,7 +175,7 @@ Now here comes the _proper_ magic. What if you want to both filter and select?
 filter(ddata, news_risk==3) %>% select(hrate)
 ~~~
 
-The `%>%` operator is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the NEWS risk class is 3, then selects the heart rate from that filtered data.
+The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the NEWS risk class is 3, then selects the heart rate from that filtered data.
 
 An even better way to write this is ...
 
@@ -202,8 +183,11 @@ An even better way to write this is ...
 ddata %>% filter(news_risk==3) %>% select(hrate)
 ~~~
 
+This says start with the data, then filter then select.
 
-This says start with the data, then filter then select. Finally, you can pass the data you wrangle to almost any other function in R.
+> **TIP:** The order matters in a pipe! So while `ddata %>% filter(news_risk==3) %>% select(hrate)` works fine, `ddata %>% select(hrate) %>% filter(ddata, news_risk==3)` will fail. This is because you selected _just_  `hrate` and then asked for a filter on `news_risk` which no longer exists (since you _only_ selected `hrate`). 
+
+Next, you can pass the data you wrangle to almost any other function in R.
 
 ~~~ R
 # Summarise
@@ -223,23 +207,57 @@ Combining these two is super useful.
 
 ~~~ R
 # But no means reported? This is because mean() doesn't report if there is missing data.
-ddata %>% group_by(news_risk) %>% summarise(hrate.avg = mean(hrate)
+ddata %>% group_by(news_risk) %>% summarise(hrate.avg = mean(hrate))
 
-# The base R way of fixing this
+# A base R way of fixing this
 ddata %>% group_by(news_risk) %>% summarise(hrate.avg = mean(hrate, na.rm=TRUE))
 
-# The dplyr fix
+# A dplyr fix
 ddata %>% filter(is.na(hrate)==FALSE) %>%  group_by(news_risk) %>% summarise(hrate.avg = mean(hrate))
 ~~~
 
-
-
-
+Both fixes work, but I would argue that one is easier to read.
 
 
 
 
 ### tidyr
+
+> tidyr is new package that makes it easy to "tidy" your data. Tidy data is data that's easy to work with: it's easy to munge (with dplyr), visualise (with ggplot2 or ggvis) and model (with R's hundreds of modelling packages). The two most important properties of tidy data are:
+> 
+> Each column is a variable.
+> Each row is an observation.
+
+
+- gather (wide to long)
+- separate (regular expression for position)
+    - extract_numeric
+    - extract (regular expression groups)
+- spread (complement of separate)
+- fill
+
+?? ### stringr
+
+- str_to_lower
+- str_to_title
+- str_split
+- str_detect
+
+?? ### lubridate
+
+instants vs time spans
+parsing (reading) dates
+    ymd
+    dmy
+    mdy_hm
+    etc
+extracting components
+    second
+    minute
+    day
+
+rounding dates
+
 
 ## Exercises
 
