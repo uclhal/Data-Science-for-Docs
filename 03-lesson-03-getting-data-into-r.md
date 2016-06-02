@@ -164,6 +164,8 @@ You'll need to add the Google sheet to your account via the [sharing link here](
 
 ### The `googlesheets` library
 
+For this part of the lesson, open a new R script file, save it as `googlesheets_lesson.R`.
+
 First we need the functions someone else has kindly written that allow R to talk to R studio. You might need to install the library first (` install.packages("googlesheets")`).
 
 ```{r}
@@ -231,12 +233,15 @@ d. Can you find out how many subjects there are?
 
 `nrow(goog)`
 
+### Final Exercise
+
+1. Goto this [link](https://docs.google.com/forms/d/1otYmmRTDiIcr-Hq_71iW2L71xIsodLxcKgpvCMgLigg/viewform#start=invite).
+2. Enter your own details on the form.
+3. Now rerun all the commands we've run before in `googlesheets_lesson.R`.
 
 ## Homework
 
-1. Go through the steps under the [Google sheets](#google-sheets) section, and write them down in a file. Save the file with the `.R` extension. Click the 'source' button to run the whole file in one go. Look at the results. Now update your google sheet with a new row of data. Run the file again. What happens?
-
-2. Can you import and look at the `outreach.csv` dataset? What is the average heart rate? How many patients were accepted to ICU (the column is called `icu_accept`), and what was the mortality?
+1. Can you import and look at the `outreach.csv` dataset? What is the average heart rate? How many patients were accepted to ICU (the column is called `icu_accept`), and what was the mortality?
 
 
 
