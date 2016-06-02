@@ -220,7 +220,13 @@ ddata %>% filter(is.na(hrate)==FALSE) %>%  group_by(news_risk) %>% summarise(hra
 
 Both fixes work, but I would argue that one is easier to read.
 
-- [ ] TODO(2016-06-02): add in exercises
+<!--
+~~~ R
+library(ggplot2)
+ddata %>% group_by(news_risk) %>% select(hrate) %>%  plot(ddata$hrate)
+~~~
+ -->
+<!-- - [ ] TODO(2016-06-02): add in exercises -->
 
 <a name="things"></a>
 
@@ -260,6 +266,9 @@ We're using the rename function from the dplyr package, and then 'overwriting' o
 
 Can you do this?
 
+<a name="stringr"></a>
+
+#### Wrangling strings
 
 #### Recipe 2: Extract numbers
 
@@ -310,32 +319,73 @@ bb.clean
 
 Now you try to pick out patients getting ibuprofen.
 
-
-
-
-
-
-
-
-<a name="stringr"></a>
-
-#### Wrangling strings
-
 <a name="lubridate"></a>
 
 #### Wrangling dates
+
+#### Recipe 4: Parsing dates
+
+We mentioned before how tricky dates can be. This time, a package to make that a little easier called [lubridate](). First, have a look at 
+
+~~~ R
+# Look at the raw data
+bb.raw$recruit
+str(bb.raw$recruit)
+~~~
+
+Looks like a bunch of dates stored as text? It would be nice to work with this. We need to convert these.
+
+~~~ R
+# install.packages("lubridate")  # if you haven't already
+library(lubridate)
+dmy(bb.raw$recruit)
+~~~
+
+So `dmy()` stands for _day_, _month_, _year_. There are similar convenience functions for all sorts of other orderings.
+
+~~~ R
+mdy("Jan 30 1974")
+ymd("1974-1-30")
+ymd_hm("1974-1-30 15:56")
+ymd_hm("1974-1-30 3:56pm")
+~~~
+
+<!-- - [ ] TODO(2016-06-02): show how numerical dates allow you to plot, do differences etc -->
 
 <a name="tidyr"></a>
 
 #### Columns to rows and back again
 
-> tidyr is new package that makes it easy to "tidy" your data. Tidy data is data that's easy to work with: it's easy to munge (with dplyr), visualise (with ggplot2 or ggvis) and model (with R's hundreds of modelling packages). The two most important properties of tidy data are:
-> 
-> Each column is a variable.
-> Each row is an observation.
+A common problem with data is that it is arranged in a 'wide' form rather than in separate rows. Here for example, we might want to consider the pain scores over time, but these data are stored in separate columns. If you like, we are changing our unit of analysis from the _patient_ to the _pain assessment_.
 
+~~~ R
+library(tidyr)
+str(bb.raw)
+bb.long <- bb.raw %>% gather("time_string", "pain", ps0h:ps168h) 
+names(bb.long)
+View(bb.long)
+~~~
 
-- gather (wide to long)
+Now let's extract those 'times' from the column we have made (called 'time_string').
+
+~~~ R
+bb.long %>% mutate(time = extract_numeric(time_string))
+bb.long <- bb.long %>% mutate(time = extract_numeric(time_string))
+~~~
+
+What's the point? Well now we can look at the evolution of pain over time.
+
+~~~ R
+library(ggplot2)
+str(bb.long)
+ggplot(data=bb.long, aes(x=time, y=pain))  + geom_line() + facet_wrap(~id)
+~~~
+
+Now some work for you!
+
+## Exercises
+
+<!-- - gather (wide to long)
 - separate (regular expression for position)
     - extract_numeric
     - extract (regular expression groups)
@@ -364,16 +414,32 @@ extracting components
 
 rounding dates
 
-
-## Exercises
+ -->
 
 
 ### Questions
 
-1. Try to summarise the mean mortality by day of the week in Excel. Can you see how R makes life easy
+1. Can you load the outreach data.
+
+2. Do you think there is any age bias for ICU admissions?
 
 ### Answers
 
+1. Load the outreach data.
+
+~~~ R
+ccot.raw <- read.csv("https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526", stringsAsFactors=FALSE)
+str(ccot.raw)
+~~~
+
+2. Do you think there is any age bias for ICU admissions?
+
+~~~ R
+ccot.working <- ccot.raw %>% mutate(age_cat = ntile(age, 10))
+str(ccot.working)
+ccot.working %>% group_by(age_cat) %>% summarise(icu_admit.avg = mean(icu_admit, na.rm=TRUE))
+ggplot(data=ccot.working, aes(x=age, y=icu_admit)) + geom_smooth()
+~~~
 
 ---
 
