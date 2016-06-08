@@ -21,6 +21,9 @@ minutes: 25
 
 ## Lesson 
 
+[Which test?](http://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/13-study-design-and-choosing-statisti)
+
+
 
 ## Exercises
 
