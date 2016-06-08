@@ -65,7 +65,7 @@ We'll cover the following 8 lessons in 4 evenings.
 3. [Getting data into R](03-lesson-03-getting-data-into-r.html)
 4. [Reproducible science](04-lesson-04-reproducible-science.html)
 5. [Data wrangling](05-lesson-05-data-wrangling.html)
-6. Just enough statistics
+6. [Just enough statistics](06-lesson-06-just-enough-statistics.html)
 7. [Data visualisation](07-lesson-07-dataviz.html)
 
 <!-- 6. [Just enough statistics](06-lesson-06-just-enough-statistics.html) -->
