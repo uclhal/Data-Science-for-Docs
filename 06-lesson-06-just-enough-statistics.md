@@ -51,7 +51,7 @@ Recall:
 - Median = middle datapoint, if all data were arranged in order on a line
 - Mode = most common datapoint
 
-![Mean, median, mode](http://s3-eu-west-1.amazonaws.com/tutor2u-media/subjects/geography/studynoteimages/mean-median-mode.png)
+![Mean, median, mode](https://commons.wikimedia.org/wiki/File:Comparison_mean_median_mode.svg#/media/File:Comparison_mean_median_mode.svg)
 
 
 ## Exercises
