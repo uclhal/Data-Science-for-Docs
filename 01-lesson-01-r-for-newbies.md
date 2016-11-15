@@ -8,12 +8,21 @@ minutes: 25
 
 ## Learning Objectives 
 
+- [What is R](#what-is-r)
 - [Why R](#why-r)
 - [Find your way around RStudio](#start-rstudio-and-have-a-look-around)  
 - [R building blocks](#r-building-blocks)
 - [Get your hands dirty](#follow-me)
 
 ## Lesson 
+
+<a name="what-is-r"></a>
+
+### What is R?
+
+R is a free software environment for statistical computing and graphics. It works with a wide variety of UNIX platforms, Windows and MacOS. It has numerous advantages over other computer languages that make it particularly well suited to statistics.
+
+---
 
 <a name="why-r"></a>
 
@@ -35,22 +44,24 @@ The underlying principle of what we want to show you is how to build a data pipe
 
 <a name="start-rstudio-and-have-a-look-around"></a>
 
-### Start RStudio and have a look around
+### RStudio - Making R a Breeze
 
-R (does the work) vs RStudio (helps you use R)
-
-- R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
-- RStudio is a set of integrated tools designed to help you be more productive with R. It includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.
+RStudio is an application layer that sits ontop of R. It gives you some of the convenience of having a GUI, but with full access to the power of R. RStudio is a set of integrated tools designed to help you be more productive with R. It includes, to name a few:
+- a console (runs R)
+- syntax-highlighting editor that supports direct code execution (helps make R more readable to humans)-- tools for plotting
+- a history of your actions
+- workspace management
+- debugging tools
 
 ![](img/r-studio-ide.png)
 
 <!-- ![](img/r-studio-windows-vanilla.jpeg) -->
 
-The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see 4 panes then try clicking the 'minimise'/'maximise' icons in the top right corners.
+The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see 4 panes then try clicking the 'minimise'/'maximise' icons in the top right corners of each pane.
 
 There's a handy cheat sheet for R studio available [here](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf). 
 
-> **TRY THIS:** Find the files tab, navigate to the 'code' folder in your project, then click on the 'More' button and select 'Set as working directory'.
+> **Exercise:** Find the files tab and navigate to your project. If not already present, set up your project folder structure (I use folders for each of plots, data, reports and code). Navigate to your 'code' folder and then click on the 'more' button and select 'Set as working directory'.
 
 #### Console (bottom left)
 
@@ -78,7 +89,7 @@ Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a l
 
 The solution is to create a file, write your commmands in that file, and then tell R to work through the commands in that file. Switch to the pane labelled source, and this time type `2-2`. 
 
-Now typing <enter> brings you to a new line. But go back to the line with `2-2` and hit <command-enter> (on Windows <control-enter>) instead. This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract!
+Now typing `enter` brings you to a new line. But go back to the line with `2-2` and hit `command-enter` (on Windows `control-enter`) instead. This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract!
 
     > 2+2
     [1] 4
