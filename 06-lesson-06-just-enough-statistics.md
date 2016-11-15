@@ -53,6 +53,11 @@ Recall:
 
 ![Mean, median, mode](https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Comparison_mean_median_mode.svg/2000px-Comparison_mean_median_mode.svg.png)
 
+Try calculating the mean and median for the following data columns: `age`, `ps12`, `move24h`
+
+You can use the following functions: `mean()`, `median()`
+
+Try calculating the interquartile range
 
 ## Exercises
 
