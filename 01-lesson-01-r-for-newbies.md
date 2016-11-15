@@ -8,6 +8,7 @@ minutes: 25
 
 ## Learning Objectives 
 
+- [What is R](#what-is-r)
 - [Why R](#why-r)
 - [Find your way around RStudio](#start-rstudio-and-have-a-look-around)  
 - [R building blocks](#r-building-blocks)
@@ -15,41 +16,52 @@ minutes: 25
 
 ## Lesson 
 
+<a name="what-is-r"></a>
+
+### What is R?
+
+R is a free software environment for statistical computing and graphics. It works with a wide variety of UNIX platforms, Windows and MacOS. It has numerous advantages over other computer languages that make it particularly well suited to statistics.
+
+---
+
 <a name="why-r"></a>
 
 ### Why R?
 
 This is the long-story short version, but see [here](why-r.html) for more detail.
 
-Why do people think R is hard? Because it's not a GUI (pronounced gooey!). No more point and click. You have to write stuff down. Sounds like a disadvantage? We want to convince you otherwise. 
+Why do people think R is hard? Because it's not a graphical user interface or GUI (pronounced gooey!). No more point and click. You have to describe what tasks you want the computer to complete in text, using the language of R. Sounds like a disadvantage? We want to convince you otherwise.
 
-Two good reasons:
+Three good reasons:
 
-- **Science should be reproducible**. You can't record point and clicks. But you can re-run your 'code'.
+- You can do **anything** in R. If R is an entire language, we want to teach you how to become fluent. Once versed in this language you can tell the computer to do anything you can think of. In a GUI environment, someone has had to anticipate what you will want to do ahead of time, and tanslate a button push into a specific command. It's a little like going abroad armed with either a few flash cards to interact with the locals. Wouldn't you rather want to just have a conversation in their native language?
+- **Science should be reproducible**. You can't record point and clicks. But you can re-run your 'code'. How many times have you trawelled through your data to produce a graph, only to return to it months later and have no idea how you produced it? This isn't an issue in R, as your code tells a permanent story as to how you arrived at your results.
 - **Long term gain from upfront investment**. If you have ever done a bunch of work preparing a table or a graph, and then discovered that either you have a new data point to add, or the next month's results are available then the GUI approach means starting all the pointing-and-clicking from scratch. But write it down once, re-run as often as you wish.
 
-The underlying principle of what we want to show you is how to build a data pipeline. You start with your data in a spreadsheet. You write a bunch of instructions (a script) using the R language. Your script produces an output (a table or a figure). Run your script. Generate your output. Change your data. Run the _same_ script. Instantly re-generate your updated output. 
+The underlying principle of what we want to show you is how to build a data pipeline. You start with your data in a spreadsheet. You write a bunch of instructions (a script) using the R language. Your script produces an output (a table or a figure). Run your script. Generate your output. Change your data. Run the _same_ script. Instantly re-generate your updated output.
 
 ---
 
 <a name="start-rstudio-and-have-a-look-around"></a>
 
-### Start RStudio and have a look around
+### RStudio - Making R a Breeze
 
-R (does the work) vs RStudio (helps you use R)
-
-- R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
-- RStudio is a set of integrated tools designed to help you be more productive with R. It includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.
+RStudio is an application layer that sits ontop of R. It gives you some of the convenience of having a GUI, but with full access to the power of R. RStudio is a set of integrated tools designed to help you be more productive with R. It includes, to name a few:
+- a console (runs R)
+- syntax-highlighting editor that supports direct code execution (helps make R more readable to humans)-- tools for plotting
+- a history of your actions
+- workspace management
+- debugging tools
 
 ![](img/r-studio-ide.png)
 
 <!-- ![](img/r-studio-windows-vanilla.jpeg) -->
 
-The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see 4 panes then try clicking the 'minimise'/'maximise' icons in the top right corners.
+The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see 4 panes then try clicking the 'minimise'/'maximise' icons in the top right corners of each pane.
 
 There's a handy cheat sheet for R studio available [here](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf). 
 
-> **TRY THIS:** Find the files tab, navigate to the 'code' folder in your project, then click on the 'More' button and select 'Set as working directory'.
+> **Exercise:** Find the files tab and navigate to your project. If not already present, set up your project folder structure (I use folders for each of plots, data, reports and code). Navigate to your 'code' folder and then click on the 'more' button and select 'Set as working directory'.
 
 #### Console (bottom left)
 
@@ -77,7 +89,7 @@ Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a l
 
 The solution is to create a file, write your commmands in that file, and then tell R to work through the commands in that file. Switch to the pane labelled source, and this time type `2-2`. 
 
-Now typing <enter> brings you to a new line. But go back to the line with `2-2` and hit <command-enter> (on Windows <control-enter>) instead. This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract!
+Now typing `enter` brings you to a new line. But go back to the line with `2-2` and hit `command-enter` (on Windows `control-enter`) instead. This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract!
 
     > 2+2
     [1] 4

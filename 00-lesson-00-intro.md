@@ -3,8 +3,7 @@ layout: lesson
 root: .
 title: Introduction lecture
 minutes: 25
-dataurl_1: https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526
-dataurl_2: https://figshare.com/s/165cad3ce6eadbf6b19a
+dataurl_1: https://drive.google.com/file/d/0Bw_vg8ODL-GaM01iN2FyeE82SDA/view?usp=sharing
 ---
 
 <!-- rename file with the lesson name replacing template -->
@@ -46,17 +45,11 @@ This is an opportunity to check that you were able to complete all the pre-requi
 
 We'd like to introduce three data sources that will be using during the course.
 
-- a Google drive folder containing assorted files
+- a Google drive folder
 
-    We'll use this as a place to store temporary spreadsheets that we generate during the course. The link to the folder is [here](https://drive.google.com/folderview?id=0B3BVcJzDgmuEbHlWU09kUVB6NjQ&usp=sharing). You might need to click the pop-out icon to view and edit this properly.
+- An [RCT]({{page.dataurl_1%}}) comparing post-operative pain control after axillary node dissection with local anaesthetic infiltration via the drain versus injection to the skin flaps (Thanks to Muska Khpal)
 
-- An [RCT]({{page.dataurl_2%}}) comparing post-operative pain control after axillary node dissection with local anaesthetic infiltration via the drain versus injection to the skin flaps (Thanks to Muska Khpal)
-
-- [SPOTlight study data]({{page.dataurl_1 %}}): an observational study of deteriorating ward patients referred to critical care
-
-Click on the links above and have a quick look at the files. Feel free to download them to your own machine.
-
-The latter two items are stored on a data sharing service called Figshare. We're recommending this because it gives people credit for their data - a bit like a journal gives you credit for the work in an article. You might want to check this out for sharing your own data in the future. Please note (_stern tone of voice!_) that any data that is placed on the internet **cannot** include any patient identifiers.
+Please note (_stern tone of voice!_) that any data that is placed on the internet **cannot** include any patient identifiers.
 
 You are also encourage to bring along your own data. We can't promise to spend time on this, but there are exercises to do along the way, and you might want to try these exercises out on your own work.
 
@@ -94,13 +87,9 @@ You can see the path to any file or directory by right clicking and looking for 
 
 ## Exercises
 
-1. Go to the Google sheet called [test-sheet](https://docs.google.com/spreadsheets/d/1TwylPPhNmTCNjcZ1Xljg0_iPBP3HOsK7eloOrKATdCU/edit?usp=sharing) in the [Google Drive folder](https://drive.google.com/folderview?id=0B3BVcJzDgmuEbHlWU09kUVB6NjQ&usp=sharing) above.  Ideally, sign into google en route, but it should work without a sign in too. Now enter your first name in the first column (under names), and a 'favourite' item question (e.g. favourite South Park character) as a column heading in an available adjacent column. Answer the questions posed by your class mates.
+1. Set-up a 'projects' directory somewhere, of your choosing, on your computer. Create a project called 'ds4d-course', and within it create separate folders called notes, data, code, and temp (for temporary). 
 
-2. Download the two data sets provided on Figshare compare their layout. What do you notice? Post one idea to the Slack group.
-
-3. Set-up a 'projects' directory somewhere, of your choosing, on your computer. Create a project called 'ds4d-course', and within it create separate folders called notes, data, code, and temp (for temporary). 
-
-4. Have a quick look at the [Software Carpentry lesson](http://swcarpentry.github.io/shell-novice/01-filedir.html) on files and directories.
+2. Have a quick look at the [Software Carpentry lesson](http://swcarpentry.github.io/shell-novice/01-filedir.html) on files and directories.
 
 
 
