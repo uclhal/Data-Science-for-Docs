@@ -3,8 +3,7 @@ layout: lesson
 root: .
 title: Introduction lecture
 minutes: 25
-dataurl_1: https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526
-dataurl_2: https://figshare.com/s/165cad3ce6eadbf6b19a
+dataurl_1: https://drive.google.com/file/d/0Bw_vg8ODL-GaM01iN2FyeE82SDA/view?usp=sharing
 ---
 
 <!-- rename file with the lesson name replacing template -->
@@ -48,7 +47,7 @@ We'd like to introduce three data sources that will be using during the course.
 
 - a Google drive folder
 
-        + An [RCT]({{page.dataurl_2%}}) comparing post-operative pain control after axillary node dissection with local anaesthetic infiltration via the drain versus injection to the skin flaps (Thanks to Muska Khpal)
+- An [RCT]({{page.dataurl_1%}}) comparing post-operative pain control after axillary node dissection with local anaesthetic infiltration via the drain versus injection to the skin flaps (Thanks to Muska Khpal)
 
 Please note (_stern tone of voice!_) that any data that is placed on the internet **cannot** include any patient identifiers.
 
