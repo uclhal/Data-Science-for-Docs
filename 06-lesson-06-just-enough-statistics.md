@@ -22,25 +22,37 @@ minutes: 25
 
 ### Introduction to descriptive statistics
 
-- Start by plotting histograms of several variables in the clean data
-    - ps12 is very skewed (as are other pain scores)
-    - age is similarly skewed
+A quick reminder of what normal distributions looks like.
+
+![Several normal distributions](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/2000px-Normal_Distribution_PDF.svg.png)
+
+We can see how the centre-point of the bell curve shifts right and left as the mean of the distribution changes, and how the thin-ness or fatness of the distribution alters as we change the standard deviation. Keep these shapes in mind as we inspect our data.
+
+Let's start by plotting histograms of several variables from our data.
     
 ```
 hist(data$ps12)
 hist(data$age)
 ```
 
-- The exemplar data doesn't have a good example of a normal distribution
-    - We can simulate some data 
+None of these data are normally distributed! Age comes the closest, but note that it is skewed toward higher ages with a long 'tail'. Let's pretend for a second that the age data were normal:
     
 ```
 data$fake_age <- rnorm(nrow(data), mean = 50, sd = 2))  
 hist(data$fake_age)
 ```
+
+
 ### Descriptive statistics
-- Keeping in mind previous material on sorts of variables...
-- Means, modes, medians
+
+Recall:
+
+- Mean = sum of all datapoints/number of datapoints
+- Median = middle datapoint, if all data were arranged in order on a line
+- Mode = most common datapoint
+
+![Mean, median, mode](http://s3-eu-west-1.amazonaws.com/tutor2u-media/subjects/geography/studynoteimages/mean-median-mode.png)
+
 
 ## Exercises
 
