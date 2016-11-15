@@ -10,7 +10,7 @@ output: html_document
 |Time             |Agenda                                           |
 |:---------------:|:------------------------------------------------|
 |08:30&ndash;09:00|**Welcome & setup time for those who need help** |
-|09:00&ndash;09:55|**Preliminaries**                                |
+|09:00&ndash;09:55|**Preliminaries + Motivational Demo**            |
 |09:55&ndash;10:00|*Feedback*                                       |
 |10:00&ndash;10:40|**R for Newbies**                                |
 |10:40&ndash;10:45|*Feedback*                                       |
