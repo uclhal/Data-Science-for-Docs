@@ -35,7 +35,7 @@ hist(data$ps12)
 hist(data$age)
 ```
 
-None of these data are normally distributed! Age comes the closest, but note that it is skewed toward higher ages with a long 'tail'. Let's pretend for a second that the age data were normal:
+None of these variables are normally distributed! Age comes the closest, but note that it is skewed toward higher ages with a long 'tail'. Let's pretend for a second that the age data were normal:
     
 ```
 data$fake_age <- rnorm(nrow(data), mean = 50, sd = 2))  
@@ -57,7 +57,17 @@ Try calculating the mean and median for the following data columns: `age`, `ps12
 
 You can use the following functions: `mean()`, `median()`
 
-Try calculating the interquartile range
+For measuring the 'spread' of the data:
+
+- For normally-distibuted data, use standard deviation
+- for non normally-distributed data, use interquartile range, i.e if all data were arranged in order on a line, the range between 25% and 75% along this line
+
+You can calculate lots of useful descriptive stats in one fell swoop using just one simple R function:
+
+```
+summary(data)
+```
+
 
 ## Exercises
 
