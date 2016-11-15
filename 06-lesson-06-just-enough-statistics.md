@@ -24,15 +24,21 @@ minutes: 25
 
 - Start by plotting histograms of several variables in the clean data
     - ps12 is very skewed (as are other pain scores)
+    - age is similarly skewed
     
 ```
 hist(data$ps12)
+hist(data$age)
 ```
 
-
+- The exemplar data doesn't have a good example of a normal distribution
+    - We can simulate some data 
     
-- Leads into distributions
-    - Just talk about normal and non-normal
+```
+data$fake_age <- rnorm(nrow(data), mean = 50, sd = 2))  
+hist(data$fake_age)
+```
+### Descriptive statistics
 - Keeping in mind previous material on sorts of variables...
 - Means, modes, medians
 
