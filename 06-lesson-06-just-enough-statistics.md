@@ -51,7 +51,7 @@ Recall:
 - Median = middle datapoint, if all data were arranged in order on a line
 - Mode = most common datapoint
 
-![Mean, median, mode](https://commons.wikimedia.org/wiki/File:Comparison_mean_median_mode.svg#/media/File:Comparison_mean_median_mode.svg)
+![Mean, median, mode](https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Comparison_mean_median_mode.svg/2000px-Comparison_mean_median_mode.svg.png)
 
 
 ## Exercises
