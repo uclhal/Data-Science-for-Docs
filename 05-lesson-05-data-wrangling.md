@@ -2,7 +2,7 @@
 layout: lesson
 root: .
 title: Data wrangling
-minutes: 25
+minutes: 40
 ---
 
 <!-- rename file with the lesson name replacing template -->
