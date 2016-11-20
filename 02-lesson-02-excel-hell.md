@@ -153,7 +153,7 @@ So merged cells, colours, comments will both be lost and confuse.
 
 ## Unravelling Data
 
-Let's take the example some data that has already been collected and very kindly donated by one of our course delegates. The data is excellent, but doesn't conform to the necessary rules for working with R. You can download the original file from [Figshare](https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526).
+Let's take the example some data that has already been collected and very kindly donated by one of our course delegates. The data is excellent, but doesn't conform to the necessary rules for working with R. You can download the original file from [Figshare](https://figshare.com/s/165cad3ce6eadbf6b19a).
 
 In the lesson, we are going to get you to collaboratively fix these data, and to this end we have created a copy in googlesheets. We'll send you the link to this in the lesson.
 

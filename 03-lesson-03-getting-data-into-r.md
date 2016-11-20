@@ -1,12 +1,11 @@
 ---
 layout: lesson
 root: .
-title: Data pipelines
+title: Getting data into R
 minutes: 25
 ---
 
 <!-- rename file with the lesson name replacing template -->
-
 Learning Objectives
 -------------------
 
@@ -27,12 +26,27 @@ how to do this 'automagically'
 Lesson
 ------
 
+This lesson will teach you to move your data from an Excel sheet or
+similar into R.
+
 <a name="pipeline"></a>
 
 The data pipeline
 -----------------
 
 <!-- - [ ] TODO(2016-11-15): produce a graphic for this -->
+We strongly believe that the greatest strength you will gain from the
+work today is *reproducibility.* Learning 'coding' is a pain, and for a
+'one off' process there will nearly always be some tempting
+'point-and-click' alternative. However, learning to code, means being
+forced to write down what you did to get from your data to your result.
+You'll only have to reproduce something once to appreciate the value of
+having everything documented. Whether it is an error in your data, an
+new observation, or your supervisor or collaborator asking you to repeat
+an analysis with a twist, you will always be revisiting and revising
+your work. And the initial investment in *writing* (i.e. coding) your
+analysis means that these adjustments become simple.
+
 ### Traditional workflow
 
 1.  Collect data on paper
@@ -56,20 +70,26 @@ Learn just enough code to write down your 'workflow'. Ensure the
 workflow starts with the raw data, and then any changes in the workflow
 or the data will automatically propagate.
 
-Examples
+1.  Collect data electronically
+2.  Write a script that converts your data into figures and tables
+3.  Knit everything into a single report?
 
--   make a google form, link the googlesheet from the form to an R
-    script which produces a graph
--   write your next paper by interspersing code and text (something
-    called knitting!) so that when your 'run' the file the text, the
-    tables, and the figures are all made in one go
+> OK. Step 3 is showing off, and probably too much for today but as an
+> FYI everything you are reading now was written in R including the
+> text, the code, the tables and the figures. When we want to update
+> something, we just edit and 'knit'. Look at the
+> [course](https://www.coursera.org/learn/reproducible-research) by
+> Roger Peng at Johns Hopkins on Coursera if you want to learn more.
 
 <a name="dataframes"></a>
 
 Everything becomes a "data-frame"
 ---------------------------------
 
-Excel sheets in R are called 'dataframes'. It has columns, each
+Step **1** in your pipeline has to be getting your (now beautifully
+tidy) spreadsheet into R.
+
+Spreadsheets in R are called 'dataframes'. It has columns, each
 identified by a name, and rows for observations. This means that however
 you import your data into R within your pipeline, those data will end up
 as a dataframe. Let's do a quick tour of dataframes in R.
@@ -77,7 +97,7 @@ as a dataframe. Let's do a quick tour of dataframes in R.
 R comes preloaded with different bits of data for you to explore. A
 famous data set describes characteristics of iris'.
 
-    # Let's look at some data that comes with R
+    # Let's look at the dataframes that come with R
     data()
 
     # Let's pick one to play with (we'll label it 'df')
@@ -94,8 +114,10 @@ famous data set describes characteristics of iris'.
     ## 5          5.0         3.6          1.4         0.2  setosa
     ## 6          5.4         3.9          1.7         0.4  setosa
 
-Just like in Excel, any item (cell) can be accessed by its coordinates
-in the table.
+The 'rows' are contain measurements from different flowers, and the
+columns contain the measurements. Just like in Excel, any item (cell)
+can be accessed by its coordinates in the table which are always written
+as `[row, column]` (i.e. which row, then which column).
 
     df[1,1]         # top left cell
 
@@ -106,12 +128,12 @@ in the table.
     ## [1] virginica
     ## Levels: setosa versicolor virginica
 
-    df[1, ]         # first row
+    df[1, ]         # first row (all columns)
 
     ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
     ## 1          5.1         3.5          1.4         0.2  setosa
 
-    df[ ,1]         # first column
+    df[ ,1]         # first column (all rows)
 
     ##   [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4
     ##  [18] 5.1 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5
@@ -180,65 +202,45 @@ name using the `$` operator: e.g. df$some\_column
 
 <a name="csv"></a>
 
-Introducing the CSV
--------------------
+Getting data out of your spreadsheet: CSV files
+-----------------------------------------------
 
-CSV, a Comma Seperated Values, is a file that will contain your data.
-This is easily exportable from Microsoft Excel, Apple Numbers, Open
-Office, Google Sheets...etc.
+We need a 'common data language' that all spreadsheet languages can
+write to, and all statistical and programming languages can read.
+Arguably one of the oldest, and most ubiquitous is the 'comma separated
+values' (CSV) file. This is easily exportable from Microsoft Excel,
+Apple Numbers, Open Office, Google Sheets...etc.
 
 It's a simple format. The top line are the column names, each seperated
 by a comma. The following lines are the observations in those columns,
 again, seperated by a comma.
 
-It's strength is in it's simplicity. It only has data, no formuals, no
+It's strength is in it's simplicity. It only has data, no formulas, no
 tricks and is very well recognised amongst software packages as it is
 very easily supported. R has excellent support for CSV.
 
-Export CSV From Excel
----------------------
+### Export CSV From Excel
 
 ![](img/export_csv.png)
 
-### Exercise: Export an .xlsx file to .csv
+**Exercise:** Export an .xlsx file to .csv
 
 1.  Find the cleaned .xlsx file that was produced in the Excel Hell
-    lecture and export it as a .csv file.
-
-Find your File
---------------
-
-You will need to know the absolute location of your file on your
-harddrive.
-
-![](img/mac_path_small.png)
-
-Find your File
---------------
-
-This will result in the following path:
-
-    /Users/ahmedalhindawi/Documents/Development/Man_graph.xls
-
-On Windows: Shift+Right click on file. Choose Copy As Path. A similar
-path will appear.
-
-Using in-built function
------------------------
-
-We can import Comma Separated Values (CSV) files into R very easily.
-These files can be generated by Microsoft Excel, Apple Numbers and
-Google Sheets usually through a File -&gt; Export process.
+    lecture and export it as a .csv file. If all else fails then we have
+    a copy [here](https://figshare.com/s/28e6b022c0d3fe63909e).
 
 Once a sheet has been exported, it can be imported into R:
+
+Getting CSV data into R
+-----------------------
 
 There're 3 main ways to do this:
 
 1.  Point-and-click within RStudio, which we covered in Lesson 1 (R
     for Newbies).
-2.  Make a connection to a database or an online Google Sheets
+2.  Use the `read.csv` function.
+3.  Make a connection to a database or an online Google Sheets
     spreadsheet
-3.  Use the `read.csv` function.
 
 <a name="clicking"></a>
 
@@ -259,20 +261,34 @@ Then accept the defaults in the dialog box that appears.
 
 Point and click is lovely and easy but *sadly* not reproducible. Much
 better is to write down where your data comes from. We are going to do
-this in 2 steps here.
+this in 3 steps here.
 
-1.  We will take the *file path* you have generated and name it `FILE`.
-2.  We will use a *function* called `read.csv` to import the data into a
-    data frame (which we in turn name `df` for convenience).
+1.  Find the *path* to your file. We covered file paths in [lesson
+    1](00-lesson-00-intro.html#files-and-directories), and this is just
+    the formal address of your file on your computer.
+2.  We will take the *path* you have generated and name it `myfile`.
+3.  We will use a *function* called `read_csv` from the `readr` library
+    to import the data into a data frame (which we in turn name `df`
+    for convenience).
 
 <!-- -->
 
-    myfile <- "/Users/ahmedalhindawi/Documents/Development/Man_graph.csv"
-    df <- read.csv(myfile, header=TRUE, stringsAsFactor=FALSE)
+    install.packages("readr")       # install only needed the first time
+    library(readr)                  # load the readr family functions including read_csv
+    myfile <- "/Users/yourname/Documents/course_exemplar2.csv"
+    df <- read_csv(myfile)
 
 You could have done this in one step, but it would have made things
 harder to read. Hard to read, means difficult to remember, and we are
 doing our best to avoid that!
+
+> There is a function `read.csv` provided by R but `read_csv` is better.
+> The built in function has a couple of annoying 'habits'. If you wish
+> to use it then don't forget to specify: (1) `header=TRUE` which tells
+> the function to expect column names in row 1 instead of data, and (2)
+> `stringsAsFactors=FALSE` which is a necessary but annoying reminder to
+> R that you want it to leave 'strings' alone and not convert them to
+> 'labelled' factors.
 
 Now you can access the data you imported. For example, to display the
 entire column named 'column\_name\`. Replace with with the name of the
