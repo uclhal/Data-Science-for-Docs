@@ -102,6 +102,35 @@ The console is also called an _interactive_ R session. What you type here is gon
 
 ---
 
+### Files and directories
+
+It's going to be helpful to have an understanding of how files and folders (aka directories) are named on your computer because unlike your usual habit of pointing and clicking to open something, we will need to start writing things down.
+
+Very briefly.
+
+- Directories (folders) contain files and other directories.
+- Files have a 'name', and an 'extension' (traditionally a three letter code telling the computer what sort of file it was)
+- The 'root' directory is the start of this tree.
+    + On Windows machines you'll be used to thinking of the root as the `C:\` drive (a back slash)
+    + On a Unix machine (Mac OS X and Linus), the root is just `/` (a forward slash)
+- You can write the _absolute_ 'path' to any file as if you walked along the branch of the tree from the 'root' to the file. For example, if you saved a Word document on your desktop called `readme`:
+    + Windows: `C:\Users\steve\desktop\readme.docx`
+    + Unix: `/Users/steve/desktop/readme.docx`
+- You can write the _relative_ 'path' to any file as if you walked from one file (or directory) to another. Sometimes this means walking _up_ the branch to descend another one. To walk up a level you type `..`. For example, if you are working in your `documents` folder which is at 
+
+    + Windows: `C:\Users\steve\documents`
+    + Unix: `/Users/steve/documents`
+
+    And you want to go to the same `readme.docx` file as before. You would type
+
+    + Windows: `..\desktop\readme.docx`
+    + Unix: `../desktop/readme.docx`
+
+    which reads as 'go up one level' (the `..`), then go down into a folder called `desktop`, and then to the file called `readme.docx`
+- Finally, the `.` (single not double dot) is just the short cut for the _current_ directory. So `./readme.docx` simply means the file called `readme.docx` in _this_ directory. Seems pedantic but that's computers for you!
+
+You can see the path to any file or directory by right clicking and looking for properties (Windows), or using the 'Get Info' menu item (Mac OS X).
+
 ### R building blocks
 
 I want to argue that there are only three building blocks within R.
