@@ -12,7 +12,6 @@ minutes: 25
 - [Why R](#why-r)
 - [Find your way around RStudio](#start-rstudio-and-have-a-look-around)  
 - [R building blocks](#r-building-blocks)
-- [Get your hands dirty](#follow-me)
 
 ## Lesson 
 
@@ -106,27 +105,25 @@ The console is also called an _interactive_ R session. What you type here is gon
 
 It's going to be helpful to have an understanding of how files and folders (aka directories) are named on your computer because unlike your usual habit of pointing and clicking to open something, we will need to start writing things down.
 
-Very briefly.
-
 - Directories (folders) contain files and other directories.
 - Files have a 'name', and an 'extension' (traditionally a three letter code telling the computer what sort of file it was)
 - The 'root' directory is the start of this tree.
     + On Windows machines you'll be used to thinking of the root as the `C:\` drive (a back slash)
-    + On a Unix machine (Mac OS X and Linus), the root is just `/` (a forward slash)
-- You can write the _absolute_ 'path' to any file as if you walked along the branch of the tree from the 'root' to the file. For example, if you saved a Word document on your desktop called `readme`:
+    + On a Unix machine (Mac OS X and Linux), the root is just `/` (a forward slash)
+- You can write the _absolute_ 'path' to any file as if you walked along the branch of the tree from the 'root' to the file. For example, if you saved a Word document on your desktop called `readme.docx`:
     + Windows: `C:\Users\steve\desktop\readme.docx`
     + Unix: `/Users/steve/desktop/readme.docx`
-- You can write the _relative_ 'path' to any file as if you walked from one file (or directory) to another. Sometimes this means walking _up_ the branch to descend another one. To walk up a level you type `..`. For example, if you are working in your `documents` folder which is at 
+- You can write the _relative_ 'path' to any file using your current position as the starting point. This is called your working directory. To move up a directory level you type `..`. For example, if your working directory is your `documents` folder which is at 
 
     + Windows: `C:\Users\steve\documents`
     + Unix: `/Users/steve/documents`
 
-    And you want to go to the same `readme.docx` file as before. You would type
+- And you want to go to the same `readme.docx` file as before. You would type
 
     + Windows: `..\desktop\readme.docx`
     + Unix: `../desktop/readme.docx`
 
-    which reads as 'go up one level' (the `..`), then go down into a folder called `desktop`, and then to the file called `readme.docx`
+- which reads as 'go up one level' (the `..`), then go down into a folder called `desktop`, and then to the file called `readme.docx`.
 - Finally, the `.` (single not double dot) is just the short cut for the _current_ directory. So `./readme.docx` simply means the file called `readme.docx` in _this_ directory. Seems pedantic but that's computers for you!
 
 You can see the path to any file or directory by right clicking and looking for properties (Windows), or using the 'Get Info' menu item (Mac OS X).
@@ -199,27 +196,9 @@ Because R _always_ 'thinks' in vectors, even the answer is 'indexed' hence the l
      [70]  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92
      [93]  93  94  95  96  97  98  99 100
 
-
-##### Matrices
-
-Matrices are just 'strict' versions of your typical spreadsheet tables. Just like a vector, every item is indexed, and by convention the address is _row_ then _column_ (think _'arsey'_, _rc_, _row then column_).
-
-Let's make a matrix.
-
-    x <- matrix(1:12, nrow=3, ncol=4)
-
-Note how we used `1:12` to make a vector of the numbers from `1` to `12` before asking for a 3 row and 4 column matrix. R fills in the matrix by filling each column before moving to the next row.
-
-         [,1] [,2] [,3] [,4]
-    [1,]    1    4    7   10
-    [2,]    2    5    8   11
-    [3,]    3    6    9   12
-
-The address of the `8` is `[2,3]` (row 2, column 3).
-
 ##### Data frames
 
-More useful to us are data frames which are just 'mixed' matrices. So if I have age, sex, and weight data in 3 vectors:
+Data frames are many vectors combined in a grad. It's analogous to storing data in an excel spread sheet. So if I have age, sex, and weight data in 3 vectors:
 
     age <- c(5,7,41,41)
     sex <- c("M", "M", "F", "M")
@@ -246,127 +225,56 @@ Moreover, rather than having to use numerical addresses to look at data, you can
 
 #### Functions
 
-Think of functions as litte machines. They perform tasks. To perform a task, they need an input, and the result of their work is the output. 
+Functions are small specific programmes. They take an input, and give you an output. They perform tasks. To perform a task, they need an input, and the result of their work is the output.
 
+Take a character Ed for example. If we want Ed to move accross the screen, we might write:
+
+    ed.moveforward()
+    ed.moveforward()
+    ed.moveforward()
+    
+The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward a single space. The `()` is the instruction to the computer to use that function. It's our 'go' command. This function takes no arguments at present. Arguments are additional pieces of informtion we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward by 1 space each time. Lets see if we can pass an argument into our function to improve our efficiency.
+
+    ed.moveforward(by = 3)
+    
+Now we've given the `ed.moveforward` function it's first argument. This argument tells the function how many spaces it should be moving Ed forward. Let look at how we can write a function. I want Ed to move accross the screen, turn around and move back. We'll need a new function to help us: `ed.turnleft()`
+
+    ed.outandback <- function() {
+    	ed.moveforward(by = 3)
+    	ed.turnleft()
+    	ed.turnleft()
+    	ed.moveforward(by = 3)
+    }
+
+This is how we write a function. In this instance, we've grouped other useful functions together into a move complex behaviour. If you do this enough, you end up with a computer game. The key features of this are:
+
+- `ed.outandback <-` this is what we are calling our new function, using the assignment operator
+- `function()` this tells R to pay attention to the next bit, as you want to write a function
+- `{}` everything inside the curly brackets is the contents of your function. We have included a series of functions that will be called in order
+
+Lets run our new function and see what happens:
+
+    ed.outandback()
+
+Let's do a quick clinical example to help consolidate the lesson. Let's say we want to work out BMI from height and weight. We could write a function called `BMI` and pass it the arguments `height` and `weight`. It should end up looking something like this when called:
+
+    BMI(height = 1.72, weight = 80)
+    R> [1]
+    
+Ok, lets write this function
+
+    BMI <- function(height, weight) {
+    	x = weight / height^2
+    	return(x)
+    }
+    
 ![](img/function-anatomy.png)
-
-    R> say_hello("Steve")
-    [1] "Hello Steve"
 
 R comes with a bunch of functions pre-installed called. These are called 'base R'. However, there are thousands of additional functions packaged together into libraries that you will want to use too. You load these by calling (surprise, surprise) a base R function called `library`.
 
     library(ggplot2)
 
 ---
-
-<a name="follow-me"></a>
-
-### Get your hands dirty
-
-Congratulations. That was the most 'conceptual' part of the course. Now time to get your hands dirty!
-
-See if you can follow along. We'll type in the code together.
-
-Load some data from [GapMinder](http://www.gapminder.org).
-
-```
-ddata <- read.csv(file="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
-```
-
-Tricky to type? First, grab the link from Slack.
-
-- then click on the 'Environment' tab, and find and click the 'Import Dataset button'. Then select the 'From Web URL...' option
-- or save the file to you machine, follow the same steps, but select the 'From Local File...' option
-
-Then change the 'name' you are giving to these data to `ddata` (see top left box).
-
-![](img/RStudio-import-data.png)
-
-To see the first few rows, type `head`
-
-```
-head(ddata)
-```
-
-We have data for 142 countries from 5 continents over 60 years.
-
-```
-      country year      pop continent lifeExp gdpPercap
-1 Afghanistan 1952  8425333      Asia   28.80     779.4
-2 Afghanistan 1957  9240934      Asia   30.33     820.9
-3 Afghanistan 1962 10267083      Asia   32.00     853.1
-4 Afghanistan 1967 11537966      Asia   34.02     836.2
-5 Afghanistan 1972 13079460      Asia   36.09     740.0
-6 Afghanistan 1977 14880372      Asia   38.44     786.1
-```
-
-
-Load a plotting library called `ggplot2` (The `gg` refers to a famous book by William Cleveland called the 'Grammar of Graphics').
-
-```
-library(ggplot2)
-```
-
-We will use the `ggplot()` function from the ggplot2 library for plotting. This function needs to be told what data to use, which variable to put on the x-axis, and which on the y-axis. Things like the x-postion, the y-postion, the size and the colour of points are called `aesthetics` in the grammar of graphics.
-
-Let's plot life expectancy against wealth (GDP).
-
-```
-ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp))
-```
-
-Notice how we are passing the data and the aesthetics as `arguments` to the function. But so far, this just makes an 'empty' plot. 
-
-Next you tell ggplot what sort of plot (called a 'geometry') you want.
-
-```
-ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp)) + geom_point()
-```
-
-Want to see how this varies by continent? Try 'facetting' which means drawing mini-plots for each group.
-
-```
-ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp)) + geom_point() + facet_wrap(~continent)
-```
-
-What about how things change over time? Add a new aesthetic (colour) for the `year` variable.
-
-```
-ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp, colour=year)) + geom_point() + facet_wrap(~continent)
-```
-
-Would you like to make the plots easier to read by hiding the outliers?
-
-```
-ggplot(data=ddata, aes(x=gdpPercap, y=lifeExp, colour=year)) + geom_point() + facet_wrap(~continent) + coord_cartesian(x=c(0,50000))
-```
-
-
-And drop Oceania (there's not much data). We'll use another library called 'dplyr' that allows us to 'filter' the data easily.
-
-> **TIP:** the `!=` operator means 'not equal to' so the statement below could be read as assign the name `data.4c` to the data made by filtering out all rows where the continent is _not equal_ to 'Oceania'.
-
-```
-library(dplyr)
-data.4c <- filter(ddata, continent!="Oceania") 
-```
-
-Now plot with the _updated_ data.
-
-```
-ggplot(data=data.4c, aes(x=gdpPercap, y=lifeExp, colour=year)) + geom_point() + facet_wrap(~continent) + coord_cartesian(x=c(0,50000))
-```
-
-![](img/gapminder-lesson-1.png)
-
-Cause for optimism? Or just home time? You have finished. See you next week.
-
-
-OK? No! Nothing happened. Aren't functions supposed to do something? In this case, ggplot prepares the data for the graph. Now you need to `tell` ggplot what sort of graph you want.
-
-Let's make a scatter plot.
-
-
 
 ---
 
