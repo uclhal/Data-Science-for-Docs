@@ -1,12 +1,13 @@
 markdown:    kramdown # prev redcarpet
 highlighter: rouge
 kramdown:
-  # input: GFM
+#   # input: GFM
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..2
   enable_coderay: false
+  math_engine: mathjax
 
 mathjax: true
 

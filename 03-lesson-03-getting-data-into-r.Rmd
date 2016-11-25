@@ -22,6 +22,10 @@ keep theme of square tables frome excel to csv now to data.frame
 how to get these in
 how to do this 'automagically'
 
+- [ ] teach comments
+- [ ] teach script files
+- [ ] foobar
+
  -->
 
 ## Lesson 
@@ -64,14 +68,17 @@ Learn just enough code to write down your 'workflow'. Ensure the workflow starts
 
 <a name="dataframes"></a>
 
-## Everything becomes a "data-frame"
+---
+
+## Everything is a "data-frame"
 
 Step **1** in your pipeline has to be getting your (now beautifully tidy) spreadsheet into R.
 
-Spreadsheets in R are called 'dataframes'. It has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe.  Let's do a quick tour of dataframes in R.
+Spreadsheets in R are called 'dataframes'.
 
-R comes preloaded with different bits of data for you to explore. A famous data set describes characteristics of iris'.
+A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe.  Let's do a quick tour of dataframes in R.
 
+R comes preloaded with different bits of data for you to explore. A famous data set describes characteristics of iris' (flowers).
 ```{r}
 # Let's look at the dataframes that come with R
 data()
@@ -158,6 +165,9 @@ Point and click is lovely and easy but _sadly_ not reproducible. Much better is 
 2. We will take the _path_ you have generated and name it `myfile`.
 3. We will use a _function_ called `read_csv` from the `readr` library to import the data into a data frame (which we in turn name `df` for convenience).
 
+> Try right clicking a file in *Finder* (on a Mac) or *Windows Explorer* (on a PC). You'll normally see an option for 'info' or 'properties' that will show you the path to your file.
+
+
 ```{r eval=FALSE, echo=TRUE}
 install.packages("readr")       # install only needed the first time
 library(readr)                  # load the readr family functions including read_csv
@@ -186,7 +196,7 @@ df$column_name
 
 We can also load data through a connection with Google Sheets. What's good about this? **Collaboration** and **live-updating**. Let's use this system to import a cleaned version of the breast RCT data we have been working on.
 
-We're going to use data in a shared sheet we've called `dsbc-pipeline-love`.
+We're going to use data in a shared sheet we've called `rct-clean`.
 
 ![](img/rct-clean-shot1.png)
 
@@ -194,40 +204,37 @@ The sheet is available [here](https://docs.google.com/spreadsheets/d/1LEZfjgeS-z
 
 ### The `googlesheets` library
 
-For this part of the lesson, open a new R script file, save it as `googlesheets_lesson.R`.
-
-First we need the functions someone else has kindly written that allow R to talk to R studio. You might need to install the library first (` install.packages("googlesheets")`).
+First we need the functions someone else has kindly written that allow R to talk to google sheets. You will need to install the library first.
 
 ```{r, eval=FALSE, echo=TRUE}
-# install.packages("googlesheets")
-library(googlesheets)
+install.packages("googlesheets")
 ```
 
 Now let's have a look at the sheets in your account. We'll use the `gs_ls()` function. 
 
-``` {r, eval=FALSE, echo=TRUE}
+The first time you run this you will be asked to authenticate (a browser window will open and ask you to sign in to your google account). Behind the scenes R now saves a hidden file into your working directory. The next time you ever run your script, as long as you haven't moved your code to a new directory, it won't need to ask.
+
+
+``` {r, eval=TRUE, echo=TRUE}
+library(googlesheets)
 gs_ls()
 ```
+You can see a list of google sheets. It is now straightforward to read these into R. Let's import the shared sheet `rct-clean`, and name it `gsheet`.
 
-The first time you run this you will be asked to authenticate. Behind the scenes R now saves a hidden file into your working directory. The next time you ever run your script, as long as you haven't moved your code to a new directory, it won't need to ask.
-
-Let's import the shared sheet `dsbc-pipeline-love`, and name it `sheet`.
-
-``` {r, eval=FALSE, echo=TRUE}
-sheet <- gs_title("dsbc-pipeline-love")
+``` {r, eval=TRUE, echo=TRUE}
+gsheet <- gs_title("rct-clean")
 ```
 
-So far so good, but `sheet` isn't a data frame. There's one more step.
+So far so good, but `sheet` isn't a data frame, it's just a connection to that sheet. There's one more step.
 
-``` {r, eval=FALSE, echo=TRUE}
-goog <- gs_read(sheet)
+``` {r, eval=TRUE, echo=TRUE}
+df <- gs_read(gsheet)
+df
 ```
 
-Let's have a look at the first 6 rows (remember the `head()` function?)
+> Bonus: The `googlesheets` library is actually doing one better than making a dataframe, and instead makes a _tibble_. Say it quickly and it sounds like _table_? It's just a fancy modern version of R's basic dataframe. You don't need to worry about the difference.
 
-``` {r, eval=FALSE, echo=TRUE}
-head(goog)
-```
+
 
 
 ### Exercise: Taking a quick look at the data
@@ -244,19 +251,19 @@ d. Can you find out how many subjects there are?
 
 a. What are the names of the columns?
 
-`names(goog)`
+`names(df)`
 
 b. Can you have a look at the column containing the age of the patients?
 
-`goog$age`
+`df$age`
 
 c. Can you find out how many patients were randomised to each arm? Hint: you can use the function `table()` or `xtab()`
 
-`table(goog$random)`
+`table(df$random)`
 
 d. Can you find out how many subjects there are?
 
-`nrow(goog)`
+`nrow(df)`
 
 ## Homework
 
