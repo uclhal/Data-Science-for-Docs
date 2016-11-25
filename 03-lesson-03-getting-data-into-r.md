@@ -348,8 +348,6 @@ code to a new directory, it won't need to ask.
     library(googlesheets)
     gs_ls()
 
-    ## Auto-refreshing stale OAuth token.
-
     ## # A tibble: 3 × 10
     ##                sheet_title        author  perm version             updated
     ##                      <chr>         <chr> <chr>   <chr>              <dttm>
@@ -443,4 +441,4 @@ Homework
 ------------------------------------------------------------------------
 
 [Previous topic](02-lesson-02-excel-hell.html) --- [Next
-topic](04-lesson-04-04-reproducible-science.html)
+topic](04-lesson-04-data-wrangling.html)
