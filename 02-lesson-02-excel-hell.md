@@ -70,8 +70,8 @@ A string is any sequence of characters. Literally anything you can type can be r
 
 This is essentially a special case of the decimal. Dates are simply integers counted up from a point in time (typically Jan 1st 1970 as convention). Time is given as a fraction of a single day. Obviously it's going to be very difficult for us to record today as `10467.56743`, as it's not remotely intuitive. We can still write the date and time in excel in a conventional way, but it's important to understand how this information is stored. When recording date and time information, it is often easier to separate out the two e.g. store date in a single column (in the format YYYY-MM-DD) and time in another (in the format HH:MM).
 
-- [ ] TODO(2016-05-26): recommend CCYY-MM-DD
-- [ ] TODO(2016-05-26): add in example screenshots of excel mess
+Typing the same date into Excel will give you either the appearance or a different actual date.
+![](img/excel-dates.png)
 
 > **Top Tip:** If you really want to make life easy in the future, separate out each day, month, year, hour and minute into separate columns. It's a greater investment, but can make handling dates easier in the future.
 
@@ -128,11 +128,41 @@ The cardinal rules of using spreadsheet programs for data:
 4. **Leave the raw data raw** - don't mess with it! That means no formulas anywhere in your spreadsheet!
 5. Export the cleaned data to a **text based format** like CSV. This ensures that anyone can use the data, and is the format required by most data repositories.
 
+## Try to think like a computer  ##
+
+So computer's are stupid machines. Things need to be absolutely clear, and it is best to try for a moment to think what the computer will do.
+
+Most data will eventually be stored in something akin to a **comma separated values** file.
+
+The computer doesn't care about formatting
+
+![](img/data2csv-3.png)
+
+We do ... (just add some white space and dividers)
+
+![](img/data2csv-2.png)
+
+And all excel does is present it to us in an easy to use format.
+
+![](img/data2csv-1.png)
+
+But you always need to remember that you need to go back and forth between both formats.
+
+So merged cells, colours, comments will both be lost and confuse.
+
+
 ## Unravelling Data
 
-Let's take the example some data that has already been collected and very kindly donated by one of our course delegates. The data is excellent, but doesn't conform to the necessary rules for working with R. Download this file from [Figshare](https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526).
+Let's take the example some data that has already been collected and very kindly donated by one of our course delegates. The data is excellent, but doesn't conform to the necessary rules for working with R. You can download the original file from [Figshare](https://figshare.com/s/165cad3ce6eadbf6b19a).
 
-We can use this data as an example of how to tidy your data in a spreadsheet application to make it ready for import to R. Using the cardinal rules, work in your pairs to tansform this data an appropriate format for exporting to R.
+In the lesson, we are going to get you to collaboratively fix these data, and to this end we have created a copy in googlesheets. We'll send you the link to this in the lesson.
+
+<!-- 
+original view only https://docs.google.com/spreadsheets/d/19NG6DEMxSQbU-DEiKGIWvUkLFWtyxcbu0dJQjzpYfXI/edit?usp=sharing
+2016-11-15-course edit and view https://docs.google.com/spreadsheets/d/1J3Je_1lJJQ5Q1FV-HZaxUwMRYVYkIj2rEa3FAgPxREE/edit?usp=sharing 
+-->
+
+We can use this data as an example of how to tidy your data in a spreadsheet application to make it ready for import to R. Using the cardinal rules, work in your pairs to transform this data an appropriate format for exporting to R.
 
 ![](img/excel1.png)
 
