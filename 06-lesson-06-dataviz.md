@@ -20,7 +20,7 @@ minutes: 25
 
 This is [Edward Tufte](http://www.edwardtufte.com/tufte/), professor emeritus at Yale University, statistician and all-round godfather of data visualisation.
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/tufte.jpg)
+![](img/tufte.jpg)
 
 We'll highlight some important dos and don'ts using a series of quotes from his classic *The Visual Display of Quantitative Information*, but here are his thoughts on our overall objective to start things off:
 
@@ -42,7 +42,7 @@ Before we get to the visualisation, here's a personal account of that retreat fr
 
 ...and here is the same story, told graphically and on a larger scale by [Charles Minard](https://www.wikiwand.com/en/Charles_Joseph_Minard).
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/minard.png)
+![](img/minard.png)
 
 The beige line represents the march on Moscow, the black line the retreat, with the width of the lines proportional to the number of remaining men. Winter temperatures are also shown.
 
@@ -52,7 +52,7 @@ The beige line represents the march on Moscow, the black line the retreat, with 
 
 Tufte says we should aim to maximise the *data:ink ratio* in our visualisations, which involves purging them of "chartjunk" - extraneous visual information which distracts from meaning. Here's a good example of a chartjunk, courtesy  of [WTF Visualizations](http://viz.wtf/).
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/triangle_confusion.png)
+![](img/triangle_confusion.png)
 
 There are several problems here, most of which stem from the author's choice of translucent, rainbow-coloured triangular prisms as the best way to represent his/her data:
 
@@ -64,7 +64,7 @@ A better choice of design, avoiding all the above problems, would have been e.g.
 
 Here's a demonstration of how to declutter a column chart (sorry, this one isn't clustered).
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/better_plots.gif)
+![](img/better_plots.gif)
 
 
 
@@ -72,11 +72,11 @@ Here's a demonstration of how to declutter a column chart (sorry, this one isn't
 
 We should try and produce visualisations which *avoid distorting what the data have to say*. Here's a particularly unsubtle example of data distortion courtesy of Fox News.
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/deceptive_scaling_1.jpg)
+![](img/deceptive_scaling_1.jpg)
 
 And another, from a company trying to sell you antivirus software.
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/deceptive_scaling_2.jpg)
+![](img/deceptive_scaling_2.jpg)
 
 The problem here is obvious: we intuitively expect the relative areas of the columns in the Fox News chart, and the relative areas of the submerged/non-submerged bits in the weird antivirus iceberg metaphor, to correspond to the relative sizes of the figures represented. They don't. One lesson to take from this is that you shouldn't use 'shortened scales' on column charts.
 
@@ -85,7 +85,7 @@ The problem here is obvious: we intuitively expect the relative areas of the col
 
 As data storage gets ever-less expensive and sensors (ranging from sats probes to web analytics) become ever-more ubiquitous, we need to get good at *making large datasets coherent*. Here's a fantastic heatmap from the [Wall Street Journal](http://graphics.wsj.com/infectious-diseases-and-vaccines/), which does just that.
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/measles.png)
+![](img/measles.png)
 
 Each square shows number of cases per 100,000 people. A large part of the impact of this visualisation lies in its careful choice of palette, which brings me on to...
 
@@ -115,11 +115,11 @@ Tufte suggest that we avoid pie charts due to their *low data density and failur
 
 For example, there is no way that we can get a sense of the relative quantities represented by most of the slices in this chart (even with the use of a second, nested pie chart! *Don't do this.*)
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/piechart_horror_2.png)
+![](img/piechart_horror_2.png)
 
 There are lots of problems with this next graphic (again, credit to [WTF Visualizations](http://viz.wtf/)) but note particularly that, even with only three 'slices' in each pie chart, it is surprisingly difficult to compare the sizes of the orange slices.
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/piechart_horror_3.png)
+![](img/piechart_horror_3.png)
 
 So, if you must use pie charts at all, then at least stick to [these rules](https://eagereyes.org/techniques/pie-charts), and preferably to a maximum of 2 slices.
 
@@ -129,7 +129,7 @@ So, if you must use pie charts at all, then at least stick to [these rules](http
 
 Here's a useful guide, courtesy of [Extreme Presentations](http://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf).
 
-![](https://github.com/datascibc/course/blob/gh-pages/img/which_chart.png)
+![](img/which_chart.png)
 
 ## Exercises
 
