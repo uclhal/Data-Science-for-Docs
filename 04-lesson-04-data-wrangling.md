@@ -409,6 +409,6 @@ ggplot(data=ccot.working, aes(x=age, y=icu_admit)) + geom_smooth()
 
 ---
 
-[Previous topic]() --- [Next topic]()
+[Previous topic](03-lesson-03-getting-data-into-r.html) --- [Next topic](05-lesson-05-just-enough-statistics.html)
 
 

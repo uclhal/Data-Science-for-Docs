@@ -273,4 +273,4 @@ d. Can you find out how many subjects there are?
 
 ---
 
-[Previous topic](02-lesson-02-excel-hell.html) --- [Next topic](04-lesson-04-04-reproducible-science.html)
+[Previous topic](02-lesson-02-excel-hell.html) --- [Next topic](04-lesson-04-data-wrangling.html)

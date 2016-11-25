@@ -35,6 +35,6 @@ minutes: 25
 
 ---
 
-[Previous topic]() --- [Next topic]()
+[Previous topic](04-lesson-04-data-wrangling.html) --- [Next topic](05-lesson-05-dataviz.html)
 
 
