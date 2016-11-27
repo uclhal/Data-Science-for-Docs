@@ -9,7 +9,7 @@ topic: Critical Care
 software: R
 dataurl_1: https://ndownloader.figshare.com/files/5094199?private_link=aff8f0912c76840c7526
 dataurl_2: https://figshare.com/s/165cad3ce6eadbf6b19a
-status: Under Development (Guinea Pigs only)
+status: Under Development 
 twitter_url: https://twitter.com/datascibc
 ---
 
@@ -57,7 +57,7 @@ Finally, please complete the [pre-course survey](http://goo.gl/forms/odmaxWP2KBH
 
 ## Lessons:
 
-We'll cover the following 8 lessons in 4 evenings.
+We'll cover the 6 lessons during the day. The programme is flexible, but an outline is available [here](CourseProgramme.html).
 
 1. [Preliminaries](00-lesson-00-intro.html)
 1. [R for newbies](01-lesson-01-r-for-newbies.html)
