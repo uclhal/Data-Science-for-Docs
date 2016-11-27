@@ -8,3 +8,7 @@ _site/
 .RData
 _archive/
 scratch.R
+/Gemfile
+/Gemfile.lock
+*.DS_Store
+/.httr-oauth
