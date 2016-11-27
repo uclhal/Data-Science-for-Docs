@@ -60,12 +60,12 @@ Finally, please complete the [pre-course survey](http://goo.gl/forms/odmaxWP2KBH
 We'll cover the 6 lessons during the day. The programme is flexible, but an outline is available [here](CourseProgramme.html).
 
 1. [Preliminaries](00-lesson-00-intro.html)
-1. [R for newbies](01-lesson-01-r-for-newbies.html)
-2. [Excel Hell](02-lesson-02-excel-hell.html)
-3. [Getting data into R](03-lesson-03-getting-data-into-r.html)
-4. [Data wrangling](04-lesson-04-data-wrangling.html)
-5. [Just enough statistics](05-lesson-05-just-enough-statistics.html)
-6. [Data visualisation](06-lesson-06-dataviz.html)
+2. [R for newbies](01-lesson-01-r-for-newbies.html)
+3. [Excel Hell](02-lesson-02-excel-hell.html)
+4. [Getting data into R](03-lesson-03-getting-data-into-r.html)
+5. [Data wrangling](04-lesson-04-data-wrangling.html)
+6. [Just enough statistics](05-lesson-05-just-enough-statistics.html)
+7. [Data visualisation](06-lesson-06-dataviz.html)
 
 <!-- 6. [Just enough statistics](06-lesson-06-just-enough-statistics.html) -->
 
@@ -77,5 +77,19 @@ Data files for the lesson are available here:
 - [SPOTlight study data]({{page.dataurl_1 %}}): an observational study of deteriorating ward patients referred to critical care
 
 You are also encourage to bring along your own data. We can't promise to spend time on this, but there are exercises to do along the way, and you might want to try these exercises out on your own work.
+
+## Help ##
+
+Where to get help? Firstly, we'd strongly encourage you to ask the group. To this end, we have set up a [slack group](https://datascibc.slack.com) - this is an instant messaging service (like whatsapp or similar) but with much better tools for sharing files, and working with code. If you're on the course, you should already have received an invite. Let us know if not. 
+
+We'd also recommend the following
+
+- searching on a website called [Stack Overflow](http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example/5965451#5965451)
+- Use the cheat sheets provided by the people who make [R Studio](https://www.rstudio.com/resources/cheatsheets/)
+- Try one of these websites
+    + [Cookbook for R](http://www.cookbook-r.com)
+    + [Quick-R](http://www.statmethods.net)
+    + [ggplot 2 reference](http://docs.ggplot2.org/dev/reference.html)
+    + [Learn R in R!](http://swirlstats.com)
 
 <p><strong>Twitter</strong>: @datascibc
