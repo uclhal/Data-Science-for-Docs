@@ -5,9 +5,7 @@ date: "29/11/2016"
 output: ioslides_presentation
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+
 
 ## Learning Objectives
 
@@ -31,7 +29,8 @@ knitr::opts_chunk$set(echo = FALSE)
 ## First wrangle!
 
 Type this into the console:
-```{r, eval = FALSE, echo= TRUE}
+
+```r
 filter(ddata, is.na(Age) == FALSE, Age >= 65)
 ```
 
@@ -49,7 +48,8 @@ Done! It _filters_ rows from the `ddata` data frame where `Age` is NOT NOT a num
 
 ## Second Wrangle!
 
-```{r, eval=FALSE, echo=TRUE}
+
+```r
 filter(ddata, is.na(Age) == FALSE, Age >= 65) %>% select(Gender)
 ```
 
@@ -65,7 +65,8 @@ The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it
 
 An even better way to write this is ...
 
-```{r, eval=FALSE, echo=TRUE}
+
+```r
 ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% select(Gender)
 ```
 
@@ -73,7 +74,8 @@ ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% select(Gender)
 
 Now that we have our data's _subset_, we can pass it onto other functions in R:
 
-```{r, eval=FALSE, echo=TRUE}
+
+```r
 ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% 
   select(Gender) %>% summary
 ```
@@ -82,7 +84,8 @@ This says, grab my data labeled `ddata`, filter the rows so that we only find pa
 
 ## What do you think this does?
 
-```{r, eval=FALSE, echo=TRUE}
+
+```r
 ddata %>% filter(Age >= 65) %>% select(Gender) %>% is.na %>% sum
 ```
 
@@ -101,12 +104,14 @@ Use the post-its when arrived at the answer:
 ## Group-by
 It breaks down a dataset into specified groups of rows. When you then apply the verbs above on the resulting object they’ll be automatically applied “by group”. Most importantly, all this is achieved by using the same exact syntax you’d use with an ungrouped object.
 
-```{r, eval=FALSE, echo=TRUE}
+
+```r
 ddata %>% group_by(Gender) %>% summarise(Age.avg = mean(Age))
 ```
 Sadly this won't work because `mean` has a little hissy fit if there are NA's in the data; fix:
 
-```{r, eval=FALSE, echo=TRUE}
+
+```r
 ddata %>% filter(is.na(Age)==FALSE) %>%  group_by(Gender) %>% 
   summarise(Age.avg = mean(Age))
 ```
