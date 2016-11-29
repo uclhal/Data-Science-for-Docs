@@ -5,10 +5,6 @@ title: Data wrangling
 minutes: 40
 ---
 
-<!-- rename file with the lesson name replacing template -->
-<!-- - [ ] TODO(2016-05-10): remove detail from the subsetting in Base R; just show the ugly line, maybe mention matrix address  -->
-<!-- - [ ] TODO(2016-06-02): cheat sheets -->
-
 ## Learning Objectives 
 
 <!--     * Tidying data in R - (v1) Ahmed (v2) Steve
@@ -32,9 +28,6 @@ To [quote](https://blog.rstudio.org/2014/07/22/introducing-tidyr/) one of R's cu
 > Each row is an observation.
 
 This requires some data tidying (see the [favourite things recipes](#things)) below, and the some data manipulation. We're going to start with data manipulation.
-
-
-
 
 <a name="dplyr"></a>
 
@@ -67,7 +60,7 @@ filter(ddata, is.na(Age) == FALSE, Age >= 65)
 
 Done! It _filters_ rows from the `ddata` data frame where `Age` is NOT NOT a number (therefore is a number, so we get rid of empty fields) and the Age is >= `65`.
 
-> **TIP:** Comparisons in R: Most of these are obvious `>` (greater than), `>=` (greater than or equal to), and similarly for `<` and `<=`. We have also mentioned previously the `!=` operator means 'not equal to'. But when we want to check if something _is_ equal to something else we _must_ use `==`. Why? Because although R prefers you to use `<-` when you name things, most programming languages use `=`, and even R expects you to use `=` when you pass values to functions. So, for a function such as `mean(x)` we are normally lazy when we write `mean(hrate)`. We should write `mean(x=hrate)`, because _inside_ the function all the work is done with the variable `x`. When we write `mean(x=hrate)` we explicitly telling R that we want it to use `hrate` in place of `x`. This is a very long winded way of saying that when you want to _test_ if one thing is equal to another then you need a different way of writing this, hence `==`.
+> **TIP:** Comparisons in R: Most of these are obvious `>` (greater than), `>=` (greater than or equal to), and similarly for `<` and `<=`.  The `!=` operator means 'not equal to'. But when we want to check if something _is_ equal to something else we _must_ use `==`. Why? Because although R prefers you to use `<-` when you name things, most programming languages use `=`, and even R expects you to use `=` when you pass values to functions. So, for a function such as `mean(x)` we are normally lazy when we write `mean(hrate)`. We should write `mean(x=hrate)`, because _inside_ the function all the work is done with the variable `x`. When we write `mean(x=hrate)` we explicitly telling R that we want it to use `hrate` in place of `x`. This is a very long winded way of saying that when you want to _test_ if one thing is equal to another then you need a different way of writing this, hence `==`.
 
 Just want the Gender colum? Then
 
@@ -83,7 +76,7 @@ Now here comes the _proper_ magic. What if you want to both filter and select?
 filter(ddata, is.na(Age) == FALSE, Age >= 65) %>% select(Gender)
 ~~~
 
-The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the NEWS risk class is 3, then selects the heart rate from that filtered data.
+The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the Age  is NOT NOT a  number (i.e. is a number!) and that the Age is >= 65, then selects the Gender.
 
 An even better way to write this is ...
 
@@ -99,10 +92,10 @@ Next, you can pass the data you wrangle to almost any other function in R.
 
 ~~~ R
 # Summarise
-ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% select(Gender)summary
+ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% select(Gender) %>% summary
 
 # Count missing
-ddata %>% ddata %>% filter(Age >= 65) %>% select(Gender) %>% is.na %>% sum
+ddata %>% filter(Age >= 65) %>% select(Gender) %>% is.na %>% sum
 ~~~
 
 There are a small number of 'verbs' in the dplyr package that allow you to very simply perform a large number of useful functions. In addition to `select`, and `filter`, you will want to learn:
