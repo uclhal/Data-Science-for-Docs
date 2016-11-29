@@ -2,7 +2,7 @@
 title: "Preliminaries"
 author: "Ahmed Al-Hindawi"
 date: "15/11/2016"
-output: beamer_presentation
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
@@ -29,13 +29,12 @@ knitr::opts_chunk$set(echo = FALSE)
 - How do you navigate around a PC without a mouse?
 - Unix vs. Windows
 
-```{r eval=FALSE}
+```{r, echo=TRUE, eval=FALSE}
 Windows: `C:\Users\steve\documents`
 Unix: `/Users/steve/documents`
 ```
 
 ## Exercises
-
 
 - Set-up a 'projects' directory.
 - Create a project called 'ds4d-course'

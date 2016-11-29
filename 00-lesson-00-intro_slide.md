@@ -2,7 +2,7 @@
 title: "Preliminaries"
 author: "Ahmed Al-Hindawi"
 date: "15/11/2016"
-output: beamer_presentation
+output: ioslides_presentation
 ---
 
 
@@ -28,9 +28,12 @@ output: beamer_presentation
 - Unix vs. Windows
 
 
+```r
+Windows: `C:\Users\steve\documents`
+Unix: `/Users/steve/documents`
+```
 
 ## Exercises
-
 
 - Set-up a 'projects' directory.
 - Create a project called 'ds4d-course'
