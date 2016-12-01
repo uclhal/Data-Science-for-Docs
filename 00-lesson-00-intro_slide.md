@@ -37,6 +37,6 @@ Unix: `/Users/steve/documents`
 
 - Set-up a 'projects' directory.
 - Create a project called 'ds4d-course'
-- create separate folders called: notes, data, code, and temp.
+- Create separate folders called: notes, data, code, and temp.
 
 
