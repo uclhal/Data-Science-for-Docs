@@ -8,3 +8,4 @@ _site/
 .RData
 _archive/
 scratch.R
+.DS_Store
