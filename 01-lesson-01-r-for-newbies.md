@@ -52,9 +52,7 @@ RStudio is an application layer that sits ontop of R. It gives you some of the c
 - workspace management
 - debugging tools
 
-![](img/r-studio-ide.png)
-
-<!-- ![](img/r-studio-windows-vanilla.jpeg) -->
+![](img/rstudio.jpg)
 
 The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see 4 panes then try clicking the 'minimise'/'maximise' icons in the top right corners of each pane.
 
@@ -118,7 +116,7 @@ It's going to be helpful to have an understanding of how files and folders (aka 
     + Unix: `/Users/steve/desktop/readme.docx`
 - You can write the _relative_ 'path' to any file using your current position as the starting point. This is called your 'working directory'. To move up a directory level you type `..`. You can see RStudio demonstrate this for you. Have a look at the image of RStudio's file browser below:
 
-<!-- ![](img/directory_tree.jpeg) -->
+![](img/directory_tree.jpeg)
 
 As you can see, to move up a level, RStudio has given you a graphical representation of `..`. You'll be using relative paths more often than absolute paths. So lets look at them in more detail.
 
@@ -238,28 +236,28 @@ Take a character Ed for example. If we want Ed to move accross the screen, we mi
 
     ed.moveforward()
     
-<!-- ![](img/ed_moves_forward_slow.gif) -->
+![](img/ed_moves_forward_slow.gif)
     
 The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward across the screen. The `()` is the instruction to the computer to use that function. It's our 'go' command. This function takes no arguments at present. Arguments are additional pieces of informtion we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward across the screen at a _really_ slow pace. Lets see if we can pass an argument into our function to speed him up.
 
     ed.moveforward(speed = "fast")
     
-<!-- ![](img/ed_moves_forward_fast.gif) -->
+![](img/ed_moves_forward_fast.gif)
     
 Now we've given the `ed.moveforward` function it's first argument. This argument tells the function the speed at which Ed should move forward. Now let's look at how we can write our own function. I want Ed to move accross the screen, turn around and move back. We'll need a new function to help us: `ed.turnright()` which turns Ed through a quarter turn to his right.
 
     ed.return_to_start <- function() {
-    	ed.moveforward(speed = "average")
+    	ed.moveforward(speed = "fast")
     	ed.turnright()
     	ed.turnright()
-    	ed.moveforward(speed = "average")
+    	ed.moveforward(speed = "fast")
     }
 
 Now we've written our function. We need to call it:
 
     ed.return_to_start()
     
-<!-- ![](img/ed_moves_complete.gif) -->
+![](img/ed_moves_complete.gif)
 
 This is how we write a function. In this instance, we've grouped other useful functions together into a move complex behaviour. If you do this enough, you end up with a computer game. The key features of this are:
 
