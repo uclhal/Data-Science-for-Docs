@@ -103,7 +103,30 @@ summary(data)
 ```
 
 
+## Inferential Statistics
 
+It's easy (especially using R) to plug numbers into a multitude of tests, and get answers out. However, your answers will only be meaningful if you think carefully about:
+
+1) The hypothesis you want to test
+2) Where your observations come from
+3) The type of variables you are dealing with
+4) The assumptions that different tests use
+5) Interpreting the test results
+
+The best person to advise you properly on the above is your friendly neighbourhood statistician, but in the absence of this we will outline a few simple things for you to think about.
+
+
+### Hypothesis testing
+
+The hypothesis is for you to decide! But, think back to your epidemiology lectures and remember that we will technically be testing for evidence against the *null hypothesis* of no effect.
+
+
+### Where your observations come from
+
+Comparing observations from the same patient at different times? You want a *paired* test. Comparing observations from different patients? Go for an *unpaired* test instead.
+
+
+### Your variables
 
 
 
