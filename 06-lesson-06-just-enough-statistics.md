@@ -5,7 +5,6 @@ title: Just enough statistics
 minutes: 25
 ---
 
-<!-- rename file with the lesson name replacing template -->
 
 ## Learning Objectives 
 
@@ -18,9 +17,29 @@ minutes: 25
         - 
 
 
-## Lesson 
+## Lesson
 
-### Introduction to descriptive statistics
+### The big picture
+
+A typical healthcare research project attempts to answer a research question by collecting data from a *sample* of a *population*.
+
+Data collection consists in measuring the values of several *variables* for each member of the population.
+
+First, we gain insight into the data we have collected by inspecting it, organising it, summarising it. This is *descriptive statistics*.
+
+Then, we use the data to draw conclusions about the population from which the sample is collected, and to test the reliability of those conclusions. This is *inferential statistics*.
+
+
+
+### Descriptive statistics
+
+
+
+
+
+
+
+
 
 A quick reminder of what normal distributions looks like.
 
