@@ -5,8 +5,6 @@ date: "15/11/2016"
 output: ioslides_presentation
 ---
 
-
-
 ## Homework
 
 - Sticky notes at the ready

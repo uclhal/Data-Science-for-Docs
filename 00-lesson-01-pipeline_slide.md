@@ -2,7 +2,7 @@
 title: "Automating Data Collection"
 author: "Ahmed Al-Hindawi"
 date: "16/11/2016"
-output: ioslides_presentation
+output: beamer_presentation
 ---
 
 ## Automating the boring stuff
