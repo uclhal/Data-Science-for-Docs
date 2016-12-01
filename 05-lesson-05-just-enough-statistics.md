@@ -23,7 +23,7 @@ minutes: 25
 
 ### The big picture
 
-Our RCT attempts to answer a researchquestion by collecting data from a *sample* of a *population*.
+Our RCT attempts to answer a research question by collecting data from a *sample* of a *population*.
 
 Data collection consists in measuring the values of several *variables* for each member of the population.
 
