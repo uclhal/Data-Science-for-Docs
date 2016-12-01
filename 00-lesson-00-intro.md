@@ -38,6 +38,7 @@ This is an opportunity to check that you were able to complete all the pre-requi
 - Sign up for a Google docs account
 - Download and install a speadsheet programme
 - Join Slack
+- Mac OSX Users: Please open a Terminal and type `xcode-select--install` and follow the onscreen instructions
 
 <a name="introducing-the-data"></a>
 

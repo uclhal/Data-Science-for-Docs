@@ -2,7 +2,7 @@
 title: "Preliminaries"
 author: "Ahmed Al-Hindawi"
 date: "15/11/2016"
-output: ioslides_presentation
+output: beamer_presentation
 ---
 
 ## Homework
@@ -13,7 +13,12 @@ output: ioslides_presentation
 - Pair programming
 - Live coding / Tutorial
 - Install R & R Studio
-- make sure you have a google account
+- Make sure you have a google account
+
+## Mac OSX Users
+
+- Please open the Terminal app and type  and follow the onscreen instructions
+	+ Press `cmd`+`space`, then type 'Terminal' and type `xcode-select --install`
 
 ## Introducing the data
 
