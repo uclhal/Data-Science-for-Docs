@@ -107,11 +107,11 @@ summary(data)
 
 It's easy (especially using R) to plug numbers into a multitude of tests, and get answers out. However, your answers will only be meaningful if you think carefully about:
 
-1) The hypothesis you want to test
-2) Where your observations come from
-3) The type of variables you are dealing with
-4) The assumptions that different tests use
-5) Interpreting the test results
+1. The hypothesis you want to test
+2. Where your observations come from
+3. The type of variables you are dealing with
+4. The assumptions that different tests use
+5. Interpreting the test results
 
 The best person to advise you properly on the above is your friendly neighbourhood statistician, but in the absence of this we will outline a few simple things for you to think about.
 
