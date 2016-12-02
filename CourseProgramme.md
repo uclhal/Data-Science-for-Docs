@@ -6,9 +6,6 @@ author: "Data Science for Docs"
 date: "03 December 2016"
 ---
 
-Course Outline
-==============
-
 <table>
 <thead>
 <tr class="header">
