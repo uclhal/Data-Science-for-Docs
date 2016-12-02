@@ -182,7 +182,7 @@ This time, our p value indicates very significant differences between groups!
 
 ## More tests
 
-A really handy resource for looking up which test to use, and then how to implement it in R, is http://www.ats.ucla.edu/stat/mult_pkg/whatstat/ . Another helpful resource is [BMJ Which test?](http://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/13-study-design-and-choosing-statisti).
+A really handy resource for looking up which test to use, and then how to implement it in R, is [UCLA Which test?](http://www.ats.ucla.edu/stat/mult_pkg/whatstat/). Another helpful resource is [BMJ Which test?](http://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/13-study-design-and-choosing-statisti).
 
 
 
