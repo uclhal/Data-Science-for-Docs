@@ -174,10 +174,13 @@ Judging by eye, it looks like patients in the 'drain' group were a bit more sati
 The *Mann-Whitney U test* fits well with the above, and we run it like so:
 
 ```
-wilcox.test(as.numeric(df$random), as.numeric(df$satisfaction))
+wilcox.test(
+	as.numeric(df$satisfaction[which(df$random=='drain')]),
+	as.numeric(df$satisfaction[which(df$random=='skin')])
+)
 ```
 
-This time, our p value indicates very significant differences between groups!
+Once again, our p value is under our predetermined threshold, so we shouldn't conclude that there is a significant difference between groups. At most, we see a 'trend towards significance' which might serve as inspiration for a larger study.
 
 
 ## More tests
