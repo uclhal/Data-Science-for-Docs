@@ -40,6 +40,8 @@ You need to have installed either:
 
 <a name="introduction"></a>
 
+The accompanying slides for this lesson are available [here](02-lesson-02-excel-hell-slide.html).
+
 ## Introduction
 
 Spread sheets offer a simple and effective method to collect data. However, their ease of use often leads to a sloppy approach to data entry. Good data discipline is an essential foundation to data analysis and a small investment at this stage can prevent you running into trouble when trying to analyse and publish your study. This tutorial will take you through the essential dos and don'ts of managing your data in a spreadsheet.
