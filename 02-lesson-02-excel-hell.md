@@ -40,6 +40,8 @@ You need to have installed either:
 
 <a name="introduction"></a>
 
+The accompanying slides for this lesson are available [here](02-lesson-02-excel-hell-slide.html).
+
 ## Introduction
 
 Spread sheets offer a simple and effective method to collect data. However, their ease of use often leads to a sloppy approach to data entry. Good data discipline is an essential foundation to data analysis and a small investment at this stage can prevent you running into trouble when trying to analyse and publish your study. This tutorial will take you through the essential dos and don'ts of managing your data in a spreadsheet.
@@ -318,15 +320,16 @@ Here we have our final clean data sheet. Download it, or use your own cleaned ve
 
 ## Tips
 
-- 3 sheets: readme, dictionary, data
-
+- 3 sheets: readme, dictionary, data ... then export,share the data sheet
+- Learn about data validation in Excel
+- Learn to export to CSV
 
 ## Exercises
 
-- [ ] TODO(2016-05-26): work with the excel sheet live
-    - give people a column each to work on
+1. Choose a column from the the mastectomy RCT data and have a go at cleaning it
+2. Read one of the common mistakes sections above and teach your neighbour 
+3. Compare the [dirty](https://figshare.com/s/165cad3ce6eadbf6b19a) and [clean](https://figshare.com/s/28e6b022c0d3fe63909e) versions of the data. Remember you don't have to clean things in the same way, but the principles here will save you a lot of time in the future. What more could be done?
 
-[And here's one we prepared earlier ...](https://raw.githubusercontent.com/datascibc/datastore/master/Breast%20research%20data-%20final1a.csv?token=AQUWuW6_o12ytSPlMiiRPo1Q8RuFXD5Qks5XT8uQwA%3D%3D)
 
 
 ---

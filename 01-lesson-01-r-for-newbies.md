@@ -52,9 +52,7 @@ RStudio is an application layer that sits ontop of R. It gives you some of the c
 - workspace management
 - debugging tools
 
-![](img/r-studio-ide.png)
-
-<!-- ![](img/r-studio-windows-vanilla.jpeg) -->
+![](img/rstudio.jpg)
 
 The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see 4 panes then try clicking the 'minimise'/'maximise' icons in the top right corners of each pane.
 
@@ -103,23 +101,29 @@ The console is also called an _interactive_ R session. What you type here is gon
 
 ### Files and directories
 
-It's going to be helpful to have an understanding of how files and folders (aka directories) are named on your computer because unlike your usual habit of pointing and clicking to open something, we will need to start writing things down.
+It's going to be helpful to have an understanding of how files and folders (aka directories) are named on your computer because unlike your usual habit of pointing and clicking to open something, we will need to start writing things down. This will come in useful later when you want to tell R where to find an excel spread sheet to import.
 
 - Directories (folders) contain files and other directories.
-- Files have a 'name', and an 'extension' (traditionally a three letter code telling the computer what sort of file it was)
-- The 'root' directory is the start of this tree.
+- Files have a 'name', and an 'extension' (traditionally a three letter code telling the computer what sort of file it was). Here are some examples:
+	+ cover letter.doc
+	+ my spreadsheet.xls
+	+ some_cool_data.RData
+- The 'root' directory is the start of the tree of folders that live on your hard drive.
     + On Windows machines you'll be used to thinking of the root as the `C:\` drive (a back slash)
     + On a Unix machine (Mac OS X and Linux), the root is just `/` (a forward slash)
 - You can write the _absolute_ 'path' to any file as if you walked along the branch of the tree from the 'root' to the file. For example, if you saved a Word document on your desktop called `readme.docx`:
     + Windows: `C:\Users\steve\desktop\readme.docx`
     + Unix: `/Users/steve/desktop/readme.docx`
-- You can write the _relative_ 'path' to any file using your current position as the starting point. This is called your working directory. To move up a directory level you type `..`. For example, if your working directory is your `documents` folder which is at 
+- You can write the _relative_ 'path' to any file using your current position as the starting point. This is called your 'working directory'. To move up a directory level you type `..`. You can see RStudio demonstrate this for you. Have a look at the image of RStudio's file browser below:
 
+![](img/directory_tree.jpeg)
+
+As you can see, to move up a level, RStudio has given you a graphical representation of `..`. You'll be using relative paths more often than absolute paths. So lets look at them in more detail.
+
+- For example, if your working directory is your `documents` folder which is at 
     + Windows: `C:\Users\steve\documents`
     + Unix: `/Users/steve/documents`
-
 - And you want to go to the same `readme.docx` file as before. You would type
-
     + Windows: `..\desktop\readme.docx`
     + Unix: `../desktop/readme.docx`
 
@@ -138,7 +142,7 @@ I want to argue that there are only three building blocks within R.
 
 #### Names
 
-It's easier to give names to things, and then use the names rather than the thing itself most of the time. We use the `<- ` assignment operator to assign a name. 
+The easiest way to work with something in R, be it data, numbers, functions, or anything else you can think of is to label it with a specific name. We use the `<- ` assignment operator to assign a name. Just think of it as labelling whatever it is you are working on.
 
 > **TIP:** Use _option_ (Mac OS X) or _alternate_ (Windows) and the `-` (minus) key as a short cut to type this in RStudio.
 
@@ -149,6 +153,8 @@ Let `answer` equal `42`
 Let `msg` equal `Hello World!`
 
     msg <- `Hello World!`
+
+Once assigned to that name, we can call it back again and again.
 
 #### Data
 
@@ -178,7 +184,6 @@ To make these vectors in R, we _combine_ the listed elements using `c()`.
 
     x <-  c("Q", "W", "E", "R", "T", "Y")
     
-
 Now if you want the 3rd element, simply type `x[3]`.
 
     x <-  c("Q", "W", "E", "R", "T", "Y")
@@ -198,7 +203,7 @@ Because R _always_ 'thinks' in vectors, even the answer is 'indexed' hence the l
 
 ##### Data frames
 
-Data frames are many vectors combined in a grad. It's analogous to storing data in an excel spread sheet. So if I have age, sex, and weight data in 3 vectors:
+Data frames are many vectors combined in a grid. It's analogous to storing data in an excel spread sheet. So if I have age, sex, and weight data in 3 vectors:
 
     age <- c(5,7,41,41)
     sex <- c("M", "M", "F", "M")
@@ -206,11 +211,11 @@ Data frames are many vectors combined in a grad. It's analogous to storing data 
 
 Then I can combine them into a _data frame_.
 
-    demographics <- data.frame(age,sex,weight)
+    class_demographics <- data.frame(age,sex,weight)
 
-Have a look at `demographics`.
+Have a look at `class_demographics`.
 
-    R> demographics
+    R> class_demographics
       age sex weight
     1   5   M     16
     2   7   M     30
@@ -221,7 +226,7 @@ What's nice is that the `data.frame` _numbers_ the rows, and _names_ the columns
 
 Moreover, rather than having to use numerical addresses to look at data, you can use the `$` operator to access the columns by name.
 
-> **TRY THIS:** Try typing `demographics$age`
+> **TRY THIS:** Try typing `class_demographics$age`
 
 #### Functions
 
@@ -230,36 +235,40 @@ Functions are small specific programmes. They take an input, and give you an out
 Take a character Ed for example. If we want Ed to move accross the screen, we might write:
 
     ed.moveforward()
-    ed.moveforward()
-    ed.moveforward()
     
-The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward a single space. The `()` is the instruction to the computer to use that function. It's our 'go' command. This function takes no arguments at present. Arguments are additional pieces of informtion we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward by 1 space each time. Lets see if we can pass an argument into our function to improve our efficiency.
-
-    ed.moveforward(by = 3)
+![](img/ed_moves_forward_slow.gif)
     
-Now we've given the `ed.moveforward` function it's first argument. This argument tells the function how many spaces it should be moving Ed forward. Let look at how we can write a function. I want Ed to move accross the screen, turn around and move back. We'll need a new function to help us: `ed.turnleft()`
+The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward across the screen. The `()` is the instruction to the computer to use that function. It's our 'go' command. This function takes no arguments at present. Arguments are additional pieces of informtion we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward across the screen at a _really_ slow pace. Lets see if we can pass an argument into our function to speed him up.
 
-    ed.outandback <- function() {
-    	ed.moveforward(by = 3)
-    	ed.turnleft()
-    	ed.turnleft()
-    	ed.moveforward(by = 3)
+    ed.moveforward(speed = "fast")
+    
+![](img/ed_moves_forward_fast.gif)
+    
+Now we've given the `ed.moveforward` function it's first argument. This argument tells the function the speed at which Ed should move forward. Now let's look at how we can write our own function. I want Ed to move accross the screen, turn around and move back. We'll need a new function to help us: `ed.turnright()` which turns Ed through a quarter turn to his right.
+
+    ed.return_to_start <- function() {
+    	ed.moveforward(speed = "fast")
+    	ed.turnright()
+    	ed.turnright()
+    	ed.moveforward(speed = "fast")
     }
+
+Now we've written our function. We need to call it:
+
+    ed.return_to_start()
+    
+![](img/ed_moves_complete.gif)
 
 This is how we write a function. In this instance, we've grouped other useful functions together into a move complex behaviour. If you do this enough, you end up with a computer game. The key features of this are:
 
-- `ed.outandback <-` this is what we are calling our new function, using the assignment operator
+- `ed.return_to_start <-` this is what we are naming our new function, using the assignment operator
 - `function()` this tells R to pay attention to the next bit, as you want to write a function
-- `{}` everything inside the curly brackets is the contents of your function. We have included a series of functions that will be called in order
+- `{}` everything inside the curly brackets is the contents of your function. We have included a series of functions that will be called in order.
 
-Lets run our new function and see what happens:
-
-    ed.outandback()
-
-Let's do a quick clinical example to help consolidate the lesson. Let's say we want to work out BMI from height and weight. We could write a function called `BMI` and pass it the arguments `height` and `weight`. It should end up looking something like this when called:
+Let's do a quick clinical example to help consolidate the lesson. We want to work out BMI from height and weight. We could write a function called `BMI` and pass it the arguments `height` and `weight`. It should end up looking something like this when called:
 
     BMI(height = 1.72, weight = 80)
-    R> [1]
+    R> [1] 27.04164
     
 Ok, lets write this function
 
@@ -267,14 +276,18 @@ Ok, lets write this function
     	x = weight / height^2
     	return(x)
     }
-    
+
+This time we've added even more detail to the function. We added `height` and `weight` inside the `()`. This tells R that we want to add some arguments to our function. For reference, here's the general make-up of a function.
+
 ![](img/function-anatomy.png)
 
-R comes with a bunch of functions pre-installed called. These are called 'base R'. However, there are thousands of additional functions packaged together into libraries that you will want to use too. You load these by calling (surprise, surprise) a base R function called `library`.
+#### Libraries
+
+R comes with a bunch of functions pre-installed called 'base R'. However, there are thousands of additional functions packaged together into libraries that you will want to use too. You load these by calling (surprise, surprise) a base R function called `library`:
 
     library(ggplot2)
-
----
+    library(tidyr)
+    library(dplyr)
 
 ---
 
