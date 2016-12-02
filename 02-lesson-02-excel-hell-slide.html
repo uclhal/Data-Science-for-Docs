@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="excel-hell" class="titleslide slide level1"><h1>Excel Hell</h1></section><section id="learning-objectives" class="slide level2">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li>Learn about data types (columns)</li>
+<li>Spreadsheets &lt;&gt; Data (Rows &lt;&gt; Observations)</li>
+<li>Best practices for recording data</li>
+<li>Common mistakes</li>
+</ol>
+</section><section id="outline" class="slide level2">
+<h1>Outline</h1>
+</section><section class="slide level2">
+
+<ul>
+<li><a href="#/data-types">Data Types</a></li>
+<li><a href="#/cardinal-rules">Cardinal rules</a></li>
+<li><a href="#/common-mistakes">Common mistakes</a></li>
+<li><a href="#/bad-data">Unravelling Data</a></li>
+<li><a href="#/worked-example">Exporting to CSV</a></li>
+<li><a href="#/testing">Testing your spreadsheet</a></li>
+</ul>
+<p><a name="data-types"></a></p>
+</section></section>
+<section><section id="data-types" class="titleslide slide level1"><h1>Data types</h1></section><section id="section" class="slide level2">
+<h1></h1>
+<blockquote>
+<p>If in doubt, aim for <strong>consistency in every column</strong>. Never try to record more than one &quot;type&quot; of thing in a column.</p>
+</blockquote>
+</section><section id="integers-decimals" class="slide level2">
+<h1>Integers &amp; Decimals</h1>
+<ul>
+<li><code>...,-3,-2,0,1,2,3,...</code> versus <code>3.141529</code></li>
+<li>Integers are any whole number</li>
+<li>Decimals include any number with a decimal point</li>
+</ul>
+</section><section id="strings" class="slide level2">
+<h1>Strings</h1>
+<blockquote>
+<p>A string is any sequence of characters.</p>
+</blockquote>
+<ul>
+<li>Literally anything you can type can be represented as a string.</li>
+<li>Default type in Excel</li>
+<li>Be careful <code>180mg</code> is not a number!</li>
+</ul>
+</section><section id="datetime-objects" class="slide level2">
+<h1>Date/Time objects</h1>
+<ul>
+<li>A number as far as the computer is concerned</li>
+<li>Often (but not always)
+<ul>
+<li>Dates are integers counted from 1 Jan 1970</li>
+<li>Times are fractions of a day</li>
+</ul></li>
+<li>Other possibilities
+<ul>
+<li>milliseconds since 1960</li>
+<li>Days since January 0 1900 (Excel!)</li>
+</ul></li>
+</ul>
+</section><section id="date-gotchas" class="slide level2">
+<h1>Date gotcha's</h1>
+<figure>
+<img src="img/excel-dates.png" />
+</figure>
+</section><section id="booleans" class="slide level2">
+<h1>Booleans</h1>
+<ul>
+<li><code>TRUE</code> or <code>FALSE</code> statements.</li>
+<li><code>1</code> or <code>0</code> is a common shorthand</li>
+</ul>
+</section><section id="factors" class="slide level2">
+<h1>Factors</h1>
+<ul>
+<li>'Categorical' (ordered or unordered)</li>
+<li>Integers with labels</li>
+</ul>
+</section><section id="nominal" class="slide level2">
+<h1>Nominal</h1>
+<ul>
+<li>An <strong>un</strong>ordered (nominal) factor</li>
+<li>Named but not ordered</li>
+</ul>
+<pre><code>- apples
+- oranges 
+- pears</code></pre>
+<ul>
+<li>R stores this as <code>1,2,3</code> for convenience but not because <code>1&lt;2&lt;3</code>.</li>
+</ul>
+</section><section id="ordinal" class="slide level2">
+<h1>Ordinal</h1>
+<ul>
+<li>An ordered (ordinal) factor such as a Likert scale</li>
+<li>Ordered and named</li>
+</ul>
+<pre><code>- Strongly disagree
+- Disagree
+- Neither agree/disagree
+- Agree
+- Strongly agree</code></pre>
+<ul>
+<li>R stores this as <code>1,2,3,4,5</code> for convenience and understands that <code>1&lt;2&lt;3&lt;4&lt;5</code></li>
+</ul>
+</section></section>
+<section><section id="exploring-datatypes-in-r-studio" class="titleslide slide level1"><h1>Exploring Datatypes in R Studio</h1></section><section id="your-turn-..." class="slide level2">
+<h1>Your turn ...</h1>
+<p>In R studio,</p>
+<pre><code>integers &lt;- as.integer(c(1, 3, 15, 16))
+decimals &lt;- c(1.4, 3.5, 15.55, 16.4)
+bools &lt;- c(T, T, F, T)
+dates &lt;- as.Date(c(&quot;22/04/2016&quot;, &quot;13/05/1997&quot;), format = &quot;%d/%m/%Y&quot;)
+strings &lt;- c(&quot;These are&quot;, &quot;Strings&quot;)
+factors &lt;- as.factor(c(&quot;Apples&quot;, &quot;Pears&quot;, &quot;Lemons&quot;))
+factors &lt;- as.factor(c(&quot;Good&quot;, &quot;Better&quot;, &quot;Best&quot;), ordered=TRUE)</code></pre>
+<p>then use <code>str()</code> to see the data 'structure'</p>
+<p><a name="cardinal-rules"></a></p>
+</section></section>
+<section><section id="cardinal-rules" class="titleslide slide level1"><h1>Cardinal rules</h1></section><section id="columns" class="slide level2">
+<h1>Columns</h1>
+<blockquote>
+<p>Put all your <strong>variables in columns</strong> - the thing you're measuring, like 'weight', 'temperature' or 'SBP'. Break things down into their most basic constituents, and keep units in your headers only.</p>
+</blockquote>
+</section><section id="rows" class="slide level2">
+<h1>Rows</h1>
+<blockquote>
+<p>Put each <strong>observation in its own row</strong>. Think very carefully about what constitutes your basic observation. Often it's your patient, but it may not be as intuitive as you think.</p>
+</blockquote>
+</section><section id="headers" class="slide level2">
+<h1>Headers</h1>
+<blockquote>
+<p>Have a single 'header' row to label your columns</p>
+</blockquote>
+</section><section id="cells" class="slide level2">
+<h1>Cells</h1>
+<blockquote>
+<p><strong>Don't combine multiple pieces of information in one cell</strong>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Leave the raw data raw</strong> - don't mess with it! That means no formulas anywhere in your spreadsheet!</p>
+</blockquote>
+</section><section id="sharing" class="slide level2">
+<h1>Sharing</h1>
+<blockquote>
+<p>Export the cleaned data to a <strong>text based format</strong> like CSV. This ensures that anyone can use the data, and is the format required by most data repositories.</p>
+</blockquote>
+</section></section>
+<section><section id="try-to-think-like-a-computer" class="titleslide slide level1"><h1>Try to think like a computer</h1></section><section id="the-computer-doesnt-care-about-formatting" class="slide level2">
+<h1>The computer doesn't care about formatting</h1>
+<figure>
+<img src="img/data2csv-3.png" />
+</figure>
+</section><section id="we-do-..." class="slide level2">
+<h1>We do ...</h1>
+<figure>
+<img src="img/data2csv-2.png" />
+</figure>
+<p>just add some white space and dividers</p>
+</section><section id="and-excel-..." class="slide level2">
+<h1>And Excel ...</h1>
+<p>And all excel does is present it to us in an easy to use format.</p>
+<figure>
+<img src="img/data2csv-1.png" />
+</figure>
+</section><section id="but-..." class="slide level2">
+<h1>But ...</h1>
+<blockquote>
+<p>But you always need to remember that you need to go back and forth between both formats.</p>
+</blockquote>
+<blockquote>
+<p>So merged cells, colours, comments will both be lost and confuse.</p>
+</blockquote>
+</section></section>
+<section><section id="your-turn-...-1" class="titleslide slide level1"><h1>Your turn ...</h1></section><section id="the-data" class="slide level2">
+<h1>The data</h1>
+<ul>
+<li>Raw data from an RCT on pain relief following mastectomy</li>
+<li>Download from <a href="https://figshare.com/s/165cad3ce6eadbf6b19a">Figshare</a>.</li>
+</ul>
+</section><section id="original-dirty" class="slide level2">
+<h1>Original (dirty)</h1>
+<figure>
+<img src="img/excel1.png" />
+</figure>
+</section><section id="your-mission-..." class="slide level2">
+<h1>Your mission ...</h1>
+<p>Identify and fix these common mistakes</p>
+<p><a name="common-mistakes"></a></p>
+</section></section>
+<section><section id="common-mistakes" class="titleslide slide level1"><h1>Common mistakes</h1></section><section id="section-1" class="slide level2">
+<h1></h1>
+<ul>
+<li><a href="02-lesson-02-excel-hell.html#tables">Multiple tables</a></li>
+<li><a href="02-lesson-02-excel-hell.html#tabs">Multiple tabs</a></li>
+<li><a href="02-lesson-02-excel-hell.html#zeros">Not filling in zeros</a></li>
+<li><a href="02-lesson-02-excel-hell.html#null">Using bad null values</a></li>
+<li><a href="02-lesson-02-excel-hell.html#formatting">Using formatting to convey information</a></li>
+<li><a href="02-lesson-02-excel-hell.html#formatting_pretty">Using formatting to make the data sheet look pretty</a></li>
+<li><a href="02-lesson-02-excel-hell.html#units">Placing comments or units in cells</a></li>
+<li><a href="02-lesson-02-excel-hell.html#info">More than one piece of information in a cell</a></li>
+<li><a href="02-lesson-02-excel-hell.html#field_name">Field name problems</a></li>
+<li><a href="02-lesson-02-excel-hell.html#special">Special characters in data</a></li>
+<li><a href="02-lesson-02-excel-hell.html#metadata">Inclusion of metadata in data table</a></li>
+<li><a href="">Date formatting</a></li>
+</ul>
+<p><a name="worked-example"></a></p>
+</section></section>
+<section><section id="tips" class="titleslide slide level1"><h1>Tips</h1></section><section id="section-2" class="slide level2">
+<h1></h1>
+<ul>
+<li>3 sheets: readme, dictionary, data ... then export,share the data sheet</li>
+<li>Data validation in Excel</li>
+<li>Learn to export to CSV</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
