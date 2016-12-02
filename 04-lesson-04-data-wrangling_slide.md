@@ -31,10 +31,10 @@ output: ioslides_presentation
 Type this into the console:
 
 ```r
-filter(ddata, is.na(Age) == FALSE, Age >= 65)
+filter(ddata, is.na(age) == FALSE, age >= 65)
 ```
 
-Done! It _filters_ rows from the `ddata` data frame where `Age` is NOT NOT a number (therefore is a number, so we get rid of empty fields) and the Age is >= `65`.
+Done! It _filters_ rows from the `ddata` data frame where `age` is NOT NOT a number (therefore is a number, so we get rid of empty fields) and the age is >= `65`.
 
 ## Comparisons in R (and most other languages too!)
 
@@ -50,7 +50,7 @@ Done! It _filters_ rows from the `ddata` data frame where `Age` is NOT NOT a num
 
 
 ```r
-filter(ddata, is.na(Age) == FALSE, Age >= 65) %>% select(Gender)
+filter(ddata, is.na(age) == FALSE, age >= 65) %>% select(gender)
 ```
 
 - First filter the rows by two criteria:
@@ -67,7 +67,7 @@ An even better way to write this is ...
 
 
 ```r
-ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% select(Gender)
+ddata %>% filter(is.na(Age) == FALSE, age >= 65) %>% select(gender)
 ```
 
 ## What now?
@@ -76,7 +76,7 @@ Now that we have our data's _subset_, we can pass it onto other functions in R:
 
 
 ```r
-ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% 
+ddata %>% filter(is.na(age) == FALSE, age >= 65) %>% 
   select(Gender) %>% summary
 ```
 
@@ -86,7 +86,7 @@ This says, grab my data labeled `ddata`, filter the rows so that we only find pa
 
 
 ```r
-ddata %>% filter(Age >= 65) %>% select(Gender) %>% is.na %>% sum
+ddata %>% filter(age >= 65) %>% select(gender) %>% is.na %>% sum
 ```
 
 Use the post-its when arrived at the answer:
@@ -106,12 +106,12 @@ It breaks down a dataset into specified groups of rows. When you then apply the 
 
 
 ```r
-ddata %>% group_by(Gender) %>% summarise(Age.avg = mean(Age))
+ddata %>% group_by(gender) %>% summarise(age.avg = mean(age))
 ```
 Sadly this won't work because `mean` has a little hissy fit if there are NA's in the data; fix:
 
 
 ```r
-ddata %>% filter(is.na(Age)==FALSE) %>%  group_by(Gender) %>% 
-  summarise(Age.avg = mean(Age))
+ddata %>% filter(is.na(age)==FALSE) %>%  group_by(gender) %>% 
+  summarise(age.avg = mean(age))
 ```

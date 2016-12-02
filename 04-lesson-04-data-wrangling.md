@@ -55,17 +55,17 @@ Go ahead now and import our analgesia following breast surgery RCT data and name
 Now let's _filter_ by row.
 
 ~~~ R
-filter(ddata, is.na(Age) == FALSE, Age >= 65)
+filter(ddata, is.na(age) == FALSE, age >= 65)
 ~~~
 
-Done! It _filters_ rows from the `ddata` data frame where `Age` is NOT NOT a number (therefore is a number, so we get rid of empty fields) and the Age is >= `65`.
+Done! It _filters_ rows from the `ddata` data frame where `age` is NOT NOT a number (therefore is a number, so we get rid of empty fields) and the Age is >= `65`.
 
 > **TIP:** Comparisons in R: Most of these are obvious `>` (greater than), `>=` (greater than or equal to), and similarly for `<` and `<=`.  The `!=` operator means 'not equal to'. But when we want to check if something _is_ equal to something else we _must_ use `==`. Why? Because although R prefers you to use `<-` when you name things, most programming languages use `=`, and even R expects you to use `=` when you pass values to functions. So, for a function such as `mean(x)` we are normally lazy when we write `mean(hrate)`. We should write `mean(x=hrate)`, because _inside_ the function all the work is done with the variable `x`. When we write `mean(x=hrate)` we explicitly telling R that we want it to use `hrate` in place of `x`. This is a very long winded way of saying that when you want to _test_ if one thing is equal to another then you need a different way of writing this, hence `==`.
 
 Just want the Gender colum? Then
 
 ~~~ R
-select(ddata, Gender)
+select(ddata, gender)
 ~~~
 
 So `filter` chooses rows, and `select` chooses columns.
@@ -73,7 +73,7 @@ So `filter` chooses rows, and `select` chooses columns.
 Now here comes the _proper_ magic. What if you want to both filter and select?
 
 ~~~ R
-filter(ddata, is.na(Age) == FALSE, Age >= 65) %>% select(Gender)
+filter(ddata, is.na(age) == FALSE, age >= 65) %>% select(gender)
 ~~~
 
 The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the Age  is NOT NOT a  number (i.e. is a number!) and that the Age is >= 65, then selects the Gender.
@@ -81,7 +81,7 @@ The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it
 An even better way to write this is ...
 
 ~~~ R
-ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% select(Gender)
+ddata %>% filter(is.na(age) == FALSE, age >= 65) %>% select(gender)
 ~~~
 
 This says start with the data, then filter then select.
@@ -92,10 +92,10 @@ Next, you can pass the data you wrangle to almost any other function in R.
 
 ~~~ R
 # Summarise
-ddata %>% filter(is.na(Age) == FALSE, Age >= 65) %>% select(Gender) %>% summary
+ddata %>% filter(is.na(age) == FALSE, age >= 65) %>% select(gender) %>% summary
 
 # Count missing
-ddata %>% filter(Age >= 65) %>% select(Gender) %>% is.na %>% sum
+ddata %>% filter(age >= 65) %>% select(gender) %>% is.na %>% sum
 ~~~
 
 There are a small number of 'verbs' in the dplyr package that allow you to very simply perform a large number of useful functions. In addition to `select`, and `filter`, you will want to learn:
@@ -107,13 +107,13 @@ Combining these two is super useful.
 
 ~~~ R
 # But no means reported? This is because mean() doesn't report if there is missing data.
-ddata %>% group_by(Gender) %>% summarise(Age.avg = mean(Age))
+ddata %>% group_by(gender) %>% summarise(age.avg = mean(age))
 
 # A base R way of fixing this
-ddata %>% group_by(Gender) %>% summarise(Age.avg = mean(Age, na.rm=TRUE))
+ddata %>% group_by(gender) %>% summarise(age.avg = mean(age, na.rm=TRUE))
 
 # A dplyr fix
-ddata %>% filter(is.na(Age)==FALSE) %>%  group_by(Gender) %>% summarise(Age.avg = mean(Age))
+ddata %>% filter(is.na(age)==FALSE) %>%  group_by(gender) %>% summarise(age.avg = mean(age))
 ~~~
 
 Both fixes work, but I would argue that last one is easier to read.
@@ -137,9 +137,7 @@ Your data should already be available in the `ddata` object - if not, please loa
 Similarly to the `dplyr` method, what if we wanted to look at the Gender of patients aged >= 65?
 
 ~~~ R
-
-summary(ddata[ddata$Age >= 65,]$Gender)
-
+summary(ddata[ddata$age >= 65,]$gender)
 ~~~
 
 So this is starting to look ugly! You 'll remember parts of this from the [first lesson](00-lesson-00-intro.html) where we introduced the idea of vectors. And that to 'R' everything is a vector. To work with 'bits' of data, we therefore need to specify the 'address' of the data.
@@ -150,18 +148,18 @@ We want to summarise the Gender of the patients who are Aged >= 65, we type `sum
  
 You should have met the summary function already. OK so far?
 
-If we wanted to summarise heart rate for the whole data frame we'd write `summary(ddata$Gender)`. 
+If we wanted to summarise heart rate for the whole data frame we'd write `summary(ddata$gender)`. 
 
 But we don't. So instead we want to pick just those patients whose Age is more or equal to 65
 
-- ` ... Age >= 65 ...` 
+- ` ... age >= 65 ...` 
 
-Can you see this in the middle of the line of code? We are writing a comparison test that says is `Age` greater of equal to `65`. We use `==` not `=` when comparing otherwise R thinks you are _telling_ it that Age _is_ 3.
+Can you see this in the middle of the line of code? We are writing a comparison test that says is `age` greater of equal to `65`. We use `==` not `=` when comparing otherwise R thinks you are _telling_ it that age _is_ 3.
 
 
  So we want to run this comparison on the data frame `ddata`.
 
-- `... ddata[ddata$Age >= 65,] ...`
+- `... ddata[ddata$age >= 65,] ...`
 
 This is called subsetting. We take `ddata` and ask for some portion of it. Because `ddata` is a data frame (square table) then it has rows and columns. We choose rows and columns by specifyin `[row,column]`. So ...
 
@@ -172,7 +170,7 @@ This is called subsetting. We take `ddata` and ask for some portion of it. Becau
 Now try 
 
 ~~~ R
-ddata$Age
+ddata$age
 ~~~
 
 We get the Age for every row.
@@ -180,12 +178,12 @@ We get the Age for every row.
 Next try
 
 ~~~ R
-ddata$Age >= 65
+ddata$age >= 65
 ~~~
 
 We get a list of True/False responses based on our test.
 
-So `... ddata[ddata$Age >= 65,] ...` is simply wrapping the test inside the row selector. Notice the `,` after the test. That is telling R we want the test applied row-wise when selecting- which makes sense since the test is applied once per row for the column.
+So `... ddata[ddata$age >= 65,] ...` is simply wrapping the test inside the row selector. Notice the `,` after the test. That is telling R we want the test applied row-wise when selecting- which makes sense since the test is applied once per row for the column.
 
 <a name="things"></a>
 
