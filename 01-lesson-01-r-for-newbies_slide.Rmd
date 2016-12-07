@@ -3,6 +3,7 @@ title: "r_for_newbies"
 author: "Edward Palmer"
 date: "15/11/2016"
 output: beamer_presentation
+font-family: "helvetica"
 ---
 
 ```{r setup, include=FALSE}
@@ -39,6 +40,8 @@ knitr::opts_chunk$set(echo = FALSE)
 ## RStudio - A visual walkthrough
 
 - Livecoding session
+    + RStudio planes
+    + Navigating directory structure
 - There's a handy cheat sheet for R studio available: (https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf). 
 - Exercise: Set your working directory to your new project folder
 
@@ -46,13 +49,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - The 3 main building block of R are:
     + names
-    + data
+    + data: vectors and data frames
     + functions
 
 ## Names
 
 - We use the `<- ` assignment operator to assign a name. 
-- Live coding demonstration
 
 ## Data
 

@@ -57,8 +57,8 @@ hist(data$age, breaks = 20)
 Our RCT dataset contains 64 rows of observations, but imagine if it contained 1 million rows, or even more. We would start to build up a detailed picture of how often different ages occur in our data. This would be the *distribution* of the age variable. Let's look at a few of the other variables.
 
 ```
-hist(df$ps12)
-hist(df$id, breaks = 20)
+hist(data$ps12)
+hist(data$id, breaks = 20)
 ```
 
 **ps12** could be described as right-tailed, or *right-skewed*. It might seem a bit irrelevant to plot a histogram for the **id** variable, but this is a great example of the *uniform distribution* (where all states of the variable are equally likely). There is another, very important distribution you will also have heard of:
@@ -116,24 +116,76 @@ It's easy (especially using R) to plug numbers into a multitude of tests, and ge
 The best person to advise you properly on the above is your friendly neighbourhood statistician, but in the absence of this we will outline a few simple things for you to think about.
 
 
-### Hypothesis testing
+### Chi-squared
 
-The hypothesis is for you to decide! But, think back to your epidemiology lectures and remember that we will technically be testing for evidence against the *null hypothesis* of no effect.
+Let's test this hypothesis:
+
+> 'Patient satisfaction after axillary node dissection depends on whether they received local anaesthetic via the drain or injection to the skin flaps.'
+
+So, our *independent variable* (the one we are deliberately changing between group) is the **random** column in our data, and our *dependent variable* (the one we are looking for changes in) is the **satisfaction** column in our data.
+
+Think back to your epidemiology lectures and remember that we will technically be testing for evidence against the *null hypothesis* of no effect:
+
+> 'Patient satisfaction after axillary node dissection **does not** depend on whether they received local anaesthetic via the drain or injection to the skin flaps.'
+
+As we said before, **random** and **satisfaction** are both discrete variables, so it sounds like using the *chi-squared test for independence* might be a good plan here. Let's look at a table of just the variables we are interested in.
+
+```
+tbl = table(data$random, data$satisfaction)
+tbl
+```
+
+There are 35 patients in the 'drain' group and 29 in the 'skin' group, and if the null hypothesis is true R can work out what counts it would expect to see in each table cell proportional to this.
+
+Using this test might not be such a good idea after all, as some of the counts in the table (e.g. for those patients who rated their satisfaction as 'Poor') are very low. Intuitively, we wouldn't read too much into data from just 3 patients, and applying a statistical test can't change that. As a rule of thumb, you shouldn't use this test unless you have counts of 5 or over in every cell of the table.
+
+Were we to press on and run the test anyway, it only takes a few keystrokes. Before we do so, however, we should decide what a significant result will look like. Let's use the common, but arbitrary threshold of a p value of 0.05 or lower to constitute significant evidence against the null hypothesis.
+
+```
+chisq.test(tbl)
+# X-squared = 2.249, data = 3, p-value = 0.5224
+```
+
+R has helpfully calculated the 'degrees of freedom' and a p value for us, which achieves nothing like significance.
 
 
-### Where your observations come from
+### Mann-Whitney U test
 
-Comparing observations from the same patient at different times? You want a *paired* test. Comparing observations from different patients? Go for an *unpaired* test instead.
+But wait, we said earlier that **satisfaction** is an ordinal variable. We can use this fact to test our hypothesis in a different way, but first we have to less R know that this ordering exists (if we haven't done this earlier):
+
+```
+data$satisfaction <- factor(data$satisfaction, levels=c("poor", "satisfactory", "good", "excellent"), ordered=TRUE)
+data$random<- factor(data$random, levels=c("drain", "skin"))
+```
+
+Let's look at the the *class-conditional distributions* we will be comparing. This is a fancy term for comparing the histograms of the **satisfaction** variable patients in the 'drain' group vs. patients in the 'skin' group. Note that we have to use the (slightly clunky) *as.numeric()* function here, to get our data in the right format so that R doesn't get confused.
+
+```
+hist(as.numeric(df$satisfaction[which(df$random=='drain')]))
+hist(as.numeric(df$satisfaction[which(df$random=='skin')]))
+```
+
+Judging by eye, it looks like patients in the 'drain' group were a bit more satisfied. Let's test this assumption more formally using a statistical test, remembering that:
+
+- Our independent variable is binary (discrete with just 2 possible values)
+- Our dependent variable is ordinal, but not interval
+- We are comparing observations from different patients, so we need an *unpaired* (if instead we were comparing observations from the same patient at different times, we would want a *paired* test
+
+The *Mann-Whitney U test* fits well with the above, and we run it like so:
+
+```
+wilcox.test(
+	as.numeric(df$satisfaction[which(df$random=='drain')]),
+	as.numeric(df$satisfaction[which(df$random=='skin')])
+)
+```
+
+Once again, our p value is under our predetermined threshold, so we shouldn't conclude that there is a significant difference between groups. At most, we see a 'trend towards significance' which might serve as inspiration for a larger study.
 
 
-### Your variables
+## More tests
 
-
-
-
-
-
-[Which test?](http://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/13-study-design-and-choosing-statisti)
+A really handy resource for looking up which test to use, and then how to implement it in R, is [UCLA Which test?](http://www.ats.ucla.edu/stat/mult_pkg/whatstat/). Another helpful resource is [BMJ Which test?](http://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/13-study-design-and-choosing-statisti).
 
 
 
