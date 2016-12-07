@@ -9,4 +9,4 @@ ddata %>% filter(!is.na(score)) %>% group_by(session) %>% ggplot(aes(x=session))
 
 ddata %>% filter(!is.na(score)) %>% group_by(session) %>% ggplot(aes(x=session, y=score)) + geom_boxplot() + ylim(0,10)
 
-ddata %>% filter(!is.na(score)) %>% group_by(nickname) %>% ggplot(aes(x=nickname, y=score)) + geom_boxplot() + ylim(0, 10)
+ddata %>% filter(!is.na(score)) %>% group_by(nickname) %>% ggplot(aes(x=factor(nickname), y=score)) + geom_boxplot() + ylim(0, 10)

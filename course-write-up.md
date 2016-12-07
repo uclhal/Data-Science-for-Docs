@@ -1,4 +1,4 @@
-## Data science for Docs
+# Data science for Docs
 
 The general public would assume that the medical profession are numerically literate. University educated, technically trained in biological science and more, and with the unique legal privilege of prescribing medicines where incorrect dosing leads to disaster, there would seem to be no excuse. However, most medics would deny any affinity with maths, and exude distaste for statistics. This is a truism even amongst anaesthetitics whose professional training includes physics and pharmacokinetics.
 
@@ -28,7 +28,20 @@ We have heavily borrowed work from the established and respected [Software]() an
 <!-- datathon -->
 More recently we have run the course as a pre-workshop for a 'hack day' where clinicians, biostatisticians, and software engineers work together on a clinical problem. These have been using critical care data from the MIMIC database run by MIT (Boston, USA), and more recently from the NIHR's Critical Care Health Informatics Collaborative (CC-HIC). For the clinician, this course offers sufficient insight the tools available, and the challenges facing their non-clinical colleagues that a better conversation can be had.
 
-### Conclusion
+## Feedback
+<!-- feedback from course -->
+The feedback gained from the 'Data Science for Docs' course was gathered using the metholodogies taught in the session, creating a parallelism and a realism that hopefully empowered attendees that these techniques are actually helpful. We used an online [Google Form]() that fed live data to a [Google Sheet](). An [R]() script written in [R Studio]() pulled the data from the sheet and produced the following graphs
+
+### Number of feedback points per session
+![Session Count](feedback_analysis/session_feedback_count.png)
+
+### Session scores (0-10) plots
+![Session scores](feedback_analysis/session_boxplot.png)
+
+### Scores per Attendee
+![Session scores by Attendee](feedback_analysis/session_by_attendee.png)
+
+## Conclusion
 
 The course thus far has been supported but the [Software Sustainability Institute]() who pioneered the software and data carpentry courses mentioned above. We have also had enthusiastic support from the [National Institute of Academic Anaesthesia](). The materials for the course are freely available partly because we think this is the 'right thing' to do, partly to provide a reference for people before and after the course. Finally, we also create add all course participants to an online forum so that there is an obvious place to turn to when questions arise.
 
