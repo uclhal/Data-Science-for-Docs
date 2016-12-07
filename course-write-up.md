@@ -21,7 +21,7 @@ We believe that 'data science' actually summarises a much better alternative wor
 The course uses the widely respected open source statistical computing language [R](https://www.r-project.org), and an freely available application for working with **R** called [R studio](https://www.rstudio.com). We teach the concept of a data pipeline so that reproducibility becomes an immediate advantage. A single document, or script, encodes the steps necessary to take data from an online web form into R, and out into a report, a simple analysis, or a beautiful data visualisation. When new data is entered, a single key stroke is needed to re-run the entire analysis and update the output. When you come back to your work after a break, the steps required to produce your report are clearly documented. And when you want to share your work, it's as simple as sending a copy of your code to a collaborator. 
 
 <!-- resources -->
-The tools necessary to do this work are freely available. Data can be collected on an online form ([Google Forms](https://www.google.co.uk/forms/about/)), stored automatically in a [Google Sheet](), cleaned and analysed in R, and the graphs plotted interactively using online platforms such as [Plotly](https://plot.ly).
+The tools necessary to do this work are freely available. Data can be collected on an online form ([Google Forms](https://www.google.co.uk/forms/about/)), stored automatically in a [Google Sheet](https://www.google.co.uk/sheets/about/), cleaned and analysed in R, and the graphs plotted interactively using online platforms such as [Plotly](https://plot.ly).
 
 <!-- links to data carpentry -->
 We have heavily borrowed work from the established and respected [Software](https://www.software.ac.uk/software-carpentry) and [Data Carpentry](https://www.software.ac.uk/data-carpentry) courses that teach a similar approach for scientists from undergradudate to post-docs. However, we focus our course on scenarios (such as audit, surveys, and small clinical research projects) that are a feature of clinical work. This requires care where patient information is being used, but these are surmountable problems not impossible barriers. 
@@ -31,7 +31,7 @@ More recently we have run the course as a pre-workshop for a 'hack day' where cl
 
 ## Feedback
 <!-- feedback from course -->
-The feedback gained from the 'Data Science for Docs' course was gathered using the metholodogies taught in the session, creating a parallelism and a realism that hopefully empowered attendees that these techniques are actually helpful. We used an online [Google Form]() that fed live data to a [Google Sheet](). An [R]() script written in [R Studio]() pulled the data from the sheet and produced the following graphs
+The feedback gained from the 'Data Science for Docs' course was gathered using the metholodogies taught in the session, creating a parallelism and a realism that hopefully empowered attendees that these techniques are actually helpful. We used an online [Google Form](https://www.google.co.uk/forms/about/) that fed live data to a [Google Sheet](https://www.google.co.uk/sheets/about/). An [R](https://www.r-project.org) script written in [R Studio](https://www.rstudio.com) pulled the data from the sheet and produced the following graphs
 
 ### Number of feedback points per session
 ![Session Count](feedback_analysis/session_feedback_count.png)
