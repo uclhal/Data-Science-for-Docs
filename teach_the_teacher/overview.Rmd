@@ -1,0 +1,78 @@
+---
+title: "Teach-the-teacher"
+output: revealjs::revealjs_presentation
+---
+
+## The Data Science for Doctors Course
+
+### What were our course objectives
+
+- Overview of data carpentry
+- Sponsorship and SSI fellowship
+- Facilitate an introduction to data science
+- Equip local doctors with basic knowlegde from which to expand
+- Style aroud real projects (audits/QI)
+
+## What can we achieve today?
+
+- Show you our course
+- Borrow elements you like
+- Develop new ideas with you to suit your needs
+- Lay the groundwork for a new course
+
+## Background
+
+- live coding
+- interactive
+- working with your own project
+
+![](path/to/smallorb.png)
+
+## Whistle-stop tour of the course
+
+- Introduction
+- R for newbies
+- Excel hell
+- Getting data into R
+- Data wrangling
+- Just enough statistics
+- Dataviz
+
+```{r}
+summary(cars)
+```
+
+## Lessons Learnt
+
+- Being able to attend the whole course important
+- 1 day course too tiring
+
+## Teaching Aids
+
+- Paired working
+- Post-it notes
+- Peer learning through self correction
+- Collaborative note taking
+
+## Lesson Structure
+
+- Introduction
+- Group work
+- Exercise
+- Live feedback
+
+# Self Development
+
+- Continually rotate who teaches each segment
+- Feedback
+
+# Tips for live coding
+
+- leave no learner behind
+- embrace mistakes
+- use contrast and screen space effectively
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
