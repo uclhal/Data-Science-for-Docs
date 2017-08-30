@@ -1,0 +1,78 @@
+---
+layout: lesson
+root: .
+title: Data pipelines
+minutes: 25
+---
+
+<!-- rename file with the lesson name replacing template -->
+
+## Learning Objectives 
+
+1. [Load in your own data](#load)
+2. [Examine your data in general](#examine)
+3. [Objective 3](#objective3)
+
+<!-- * Data Analysis Practical Worksheet - (v1) Danny
+
+- [ ] Decide on the structure for analysis
+- [ ] Create a example analysis for the Outreach dataset
+
+ -->
+
+## Lesson 
+
+This lesson will be a guided practical applying all the principles learned over the course.
+
+You may have some of your own data that you would like to analyse, using this worksheet as a guide. Alternatively you can use the datasets we have been interacting with during the course.
+
+- An [RCT]({{page.dataurl_2%}}) comparing post-operative pain control after axillary node dissection with local anaesthetic infiltration via the drain versus injection to the skin flaps (Thanks to Muska Khpal)
+- [SPOTlight study data]({{page.dataurl_1 %}}): an observational study of deteriorating ward patients referred to critical care
+
+<a name="load"></a>
+
+### Step 1: Load in your own data
+
+Depending on the form your data takes, use `read.csv()`, `read.table()` or `readxl::read_excel()` to bring your data in to `R`, and assign it to an object name.
+
+```
+# For example
+dataframe.name <- read.csv("file/path.csv", ...)
+
+# If using an .xlsx file
+library(readxl)
+dataframe.name <- read_excel("file/path.xlsx", ...)
+```
+
+<a name="examine"></a>
+
+### Step 2: Examine your data in general
+
+You want some idea of what your data looks like, so you can have a feel of what you have to play with. Try answering the following questions about your own dataset to make sure you understand it:
+
+- Did the dataset load correctly into R? Remember sometimes there are weird column names
+- Do you have a lot of empty cells that got loaded at the bottom of the dataframe which are actually useless?
+- Do you know how many observations your dataset has or should have?
+- What variables do you have in your dataset?
+
+```
+# Try using some of the following commands
+View(dataframe.name)
+head(dataframe.name)
+tail(dataframe.name)
+summary(dataframe.name)
+nrow(dataframe.name)
+str(dataframe.name)
+names(iris)
+
+# Try using this function from the Hmisc package
+# You might need to first install the package
+# install.packages("Hmisc")
+library(Hmisc)
+describe(dataframe.name)
+```
+
+
+---
+
+[Previous topic](06-lesson-06-dataviz.html)
