@@ -12,3 +12,4 @@ scratch.R
 /Gemfile.lock
 *.DS_Store
 /.httr-oauth
+*.Rproj
