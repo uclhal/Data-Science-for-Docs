@@ -11,7 +11,10 @@ minutes: 25
 
 1. [Load in your own data](#load)
 2. [Examine your data in general](#examine)
-3. [Objective 3](#objective3)
+3. [Explore individual variables](#exploration)
+4. [Think of some questions/hypotheses](#hypotheses)
+5. [Do some bivariate plots](#bivariate)
+6. [Think of constructing a model](#model)
 
 <!-- * Data Analysis Practical Worksheet - (v1) Danny
 
