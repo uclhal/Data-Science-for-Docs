@@ -15,7 +15,7 @@ Learning Objectives
 5.  [Importing: Scripting your import (and file paths)](#scripting)
 6.  [Importing: Using Google Sheets](#google-sheets)
 
-<!-- * Getting data into R - (v1) Ahmed (v2) Ed (v3) Steve
+<!-- * Getting data into R - (v1) Ahmed (v2) Ed (v3) Steve (v3.1) Danny
 
 keep theme of square tables frome excel to csv now to data.frame
 how to get these in
@@ -417,17 +417,17 @@ to that sheet. There's one more step.
 
 `names(df)`
 
-1.  Can you have a look at the column containing the age of the
+2.  Can you have a look at the column containing the age of the
     patients?
 
 `df$age`
 
-1.  Can you find out how many patients were randomised to each arm?
+3.  Can you find out how many patients were randomised to each arm?
     Hint: you can use the function `table()` or `xtab()`
 
 `table(df$random)`
 
-1.  Can you find out how many subjects there are?
+4.  Can you find out how many subjects there are?
 
 `nrow(df)`
 
