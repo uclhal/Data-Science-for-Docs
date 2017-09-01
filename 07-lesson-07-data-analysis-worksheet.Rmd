@@ -1,5 +1,6 @@
 ---
 layout: lesson
+author: "Danny Wong"
 root: .
 title: Data pipelines
 minutes: 25
@@ -74,7 +75,44 @@ names(iris)
 library(Hmisc)
 describe(dataframe.name)
 ```
+<a name="exploration"></a>
 
+### Step 3: Explore individual variables
+
+Now that you have had a general look at the data overall, try to zoom in on particular variables of interest. At this point you might start to have questions of the data that might start forming in your mind:
+
+- Pick a few variables.
+- What data types are these? E.g. integer/numeric, text strings, categorical/factors, binary? Are they correctly listed or do they need changing? You may have already taken note of this in the previous step.
+- Assess the distribution of the data variables, are they normally distributed or skewed? Are there any visible outliers?
+- For categorical variables, do you have any idea what the frequencies/proportions are for each category?
+- Are there a significant number of missing recordings in your variables?
+
+```
+# For large dataframes with many columns, it may sometimes be useful to pick out a few of the variables you are interested in using select from the dplyr package
+library(dplyr)
+restricted.dataframe.name <- dataframe.name %>% select(variable1, variable2, variable3, ...)
+
+# Alternatively you could use base R
+restricted.dataframe.name <- dataframe.name[ , c("variable1", "variable2", "variable3", ...)]
+
+# Now look through each variable, if you haven't already, try:
+str(restricted.dataframe.name)
+
+# Plot some histograms
+hist(restricted.dataframe.name$variable1)
+
+# Or the ggplot2 way
+library(ggplot2)
+ggplot(restricted.dataframe.name, aes(variable1)) + geom_histogram()
+
+# Categorical variables can be viewed using tables
+table(restricted.dataframe.name$categorical.variable) # gives absolute counts
+table.name <- table(restricted.dataframe.name$categorical.variable)
+prop.table(table.name) # gives proportions
+
+# Use the is.na() function for looking at missingness
+table(is.na(dataframe.name$variable2))
+```
 
 ---
 
