@@ -114,6 +114,69 @@ prop.table(table.name) # gives proportions
 table(is.na(dataframe.name$variable2))
 ```
 
+<a name="hypotheses"></a>
+
+### Step 4: Think of some questions/hypotheses
+
+Now we are getting into perhaps the most interesting part of the exercise. Can you think of any questions you might want to answer with your dataset?
+
+If you brought your own data, you might already have a good idea about the sorts of questions you want answers to. If not, and you are using the outreach dataset we provided, try answering some of the following questions:
+
+- Are men or women more likely to be accepted onto ICU?
+- Is mortality associated with SOFA score?
+- Is mortality associated with lactate?
+- Is there an association between age and ICU admission rates?
+
+<a name="bivariate"></a>
+
+### Step 5: Do some bivariate plots
+
+If you are assessing the influence of one variable on another, it is good to see if you can visualise this in a bivariate plot. In other words, 2 variables on the same plot. This may take the form of a scatter plot (when both variables are continuous), or boxplot (y-axis continuous, x-axis categorical). 
+```
+# You can do it in base R, a boxplot or a scatterplot would automatically be selected
+plot(variable1 ~ variable2, data = dataframe.name)
+plot(dataframe.name$variable1 ~ dataframe.name$variable2) # There are a number of ways to write this
+
+# Alternatively using ggplot2
+library(ggplot2)
+ggplot(dataframe.name, aes(y = variable1, x = variable2)) + geom_point()
+ggplot(dataframe.name, aes(y = variable1, x = variable2)) + geom_boxplot() # For a boxplot
+```
+
+It's important to remember that for boxplots, the whiskers represent the largest and smallest values no further than 1.5 * IQR.
+
+<a name="model"></a>
+
+### Step 6: Think of constructing a model
+
+A statistical model is really just a mathematical representation of the dataset. It can be a way of describing how the variables relate to each other or describe how the variables are distributed.
+
+Statistical modelling is probably beyond the scope of our lessons, but a good primer on the topic by Hadley Wickham, creator of `dplyr` and `ggplot2`, can be found [here](http://r4ds.had.co.nz/model-intro.html).
+
+Here we will just show one example of a very simple linear model:
+
+```
+linear.model <- lm(formula = variable1 ~ variable2, data = dataframe.name)
+summary(linear.model)
+
+plot(variable1 ~ variable2, data = dataframe.name)
+abline(linear.model)
+
+# And in ggplot2
+ggplot(dataframe.name, aes(y = variable1, x = variable2)) +
+  geom_point() + 
+  geom_line(aes(y = predict(linear.model, type = "response")))
+```
+
+However, a statistical model doesn't have to be very complicated. A significance test (e.g. a t-test) can tell us something about the dataset to help explain it. 
+
+```
+t.test(variable1, variable2)
+```
+
+If you used the `outreach.csv` dataset that we provided to work through your analyses, click on the Worked Example link below to see our suggested answers.
+
 ---
 
-[Previous topic](06-lesson-06-dataviz.html)
+[Previous topic](06-lesson-06-dataviz.html) --- [Worked Example](08-lesson-08-data-analysis-worked-example.html)
+
