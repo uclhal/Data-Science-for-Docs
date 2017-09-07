@@ -1,8 +1,8 @@
 ---
-layout: lesson
-root: .
-title: R for newbies
+title: "R for newbies"
 minutes: 25
+root: .
+layout: lesson
 ---
 <!-- - [ ] TODO(2016-05-19): factors and lists -->
 
@@ -230,56 +230,41 @@ Moreover, rather than having to use numerical addresses to look at data, you can
 
 #### Functions
 
-Functions are small specific programmes. They take an input, and give you an output. They perform tasks. To perform a task, they need an input, and the result of their work is the output.
-
-Take a character Ed for example. If we want Ed to move accross the screen, we might write:
+Functions are abtract black boxes that take an input, and give you an output. They perform tasks. To perform a task, they need an input, and the result of their work is the output. A simple function might be to tell us the time. `sys.time()` is a function built into `r` that tells us the time. Try it yourself by typing it into the console. Let's try a more visual exaple. We've written a custom function that helps navigate our character across the screen.
 
     ed.moveforward()
     
 ![](img/ed_moves_forward_slow.gif)
     
-The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward across the screen. The `()` is the instruction to the computer to use that function. It's our 'go' command. This function takes no arguments at present. Arguments are additional pieces of informtion we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward across the screen at a _really_ slow pace. Lets see if we can pass an argument into our function to speed him up.
+The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward across the screen. The `()` is the instruction to the computer to use that function. It's our 'go' command. Any statement followed by `()` is a function. This function takes no arguments at present. Arguments are additional pieces of informtion we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward across the screen at a _really_ slow pace. Lets see if we can pass an argument into our function to speed him up.
 
     ed.moveforward(speed = "fast")
     
 ![](img/ed_moves_forward_fast.gif)
     
-Now we've given the `ed.moveforward` function it's first argument. This argument tells the function the speed at which Ed should move forward. Now let's look at how we can write our own function. I want Ed to move accross the screen, turn around and move back. We'll need a new function to help us: `ed.turnright()` which turns Ed through a quarter turn to his right.
+Now we've given the `ed.moveforward` function it's first argument. This argument tells the function the speed at which Ed should move forward. We have another function called `ed.turnright()` which turns Ed through a quarter turn to his right. We can chain these two together and get him to return to his starting position.
 
-    ed.return_to_start <- function() {
     	ed.moveforward(speed = "fast")
     	ed.turnright()
     	ed.turnright()
     	ed.moveforward(speed = "fast")
-    }
 
-Now we've written our function. We need to call it:
-
-    ed.return_to_start()
-    
 ![](img/ed_moves_complete.gif)
 
-This is how we write a function. In this instance, we've grouped other useful functions together into a move complex behaviour. If you do this enough, you end up with a computer game. The key features of this are:
+As you get used to `r` you'll want to start writing your own functions. Functional programming abstracts away difficult to read concepts, and helps you focus on the data. For now, just be aware that functions are an important part of using any computer language and will help you do anything. Try some of the following functions on your data, can you identify what they are doing?
 
-- `ed.return_to_start <-` this is what we are naming our new function, using the assignment operator
-- `function()` this tells R to pay attention to the next bit, as you want to write a function
-- `{}` everything inside the curly brackets is the contents of your function. We have included a series of functions that will be called in order.
-
-Let's do a quick clinical example to help consolidate the lesson. We want to work out BMI from height and weight. We could write a function called `BMI` and pass it the arguments `height` and `weight`. It should end up looking something like this when called:
-
-    BMI(height = 1.72, weight = 80)
-    R> [1] 27.04164
+    head()
+    tail()
+    summary()
+    mean()
     
-Ok, lets write this function
+#### Using Help Pages
 
-    BMI <- function(height, weight) {
-    	x = weight / height^2
-    	return(x)
-    }
+functions in `r` are extensively documented. IF you type any function, preceded by a `?` you will be taken to a help page. These are technical documents, but once you understand how to read them, it will open the door to understanding how any function works in `r`. Lets use the function `mean()` as an example.
 
-This time we've added even more detail to the function. We added `height` and `weight` inside the `()`. This tells R that we want to add some arguments to our function. For reference, here's the general make-up of a function.
+    ?mean
 
-![](img/function-anatomy.png)
+Look through the help page. This gives you a brief description, an example of usage, all the possible arguments that can be passed to the function (and whether they are requires, or have default values), comprehensive details and an example of use.
 
 #### Libraries
 
@@ -298,7 +283,6 @@ R comes with a bunch of functions pre-installed called 'base R'. However, there 
 1. Can you explain the difference between the console and the source panes in R studio?
 2. In RStudio, have a look in the _Environment_ tab of the pane on the top right? What do you think is shown here?
 3. Try using the help function to find out what `ls()` does. Hint: try typing this in the search box of the _Help_ pane. Don't worry if the 'help' doesn't make much sense! Or just type `?ls` in the console.
-
 
 ## Home work (!)
 
@@ -328,7 +312,33 @@ Selection: 1
 10: lapply and sapply         11: vapply and tapply         12: Looking at Data         
 13: Simulation                14: Dates and Times           15: Base Graphics   
 ```
+## Extra Credit - Writing Functions
 
+![](img/function-anatomy.png)
+
+To write a function, we need to use the `function` keyword and assign it a name. The image above details this process.
+
+Let's do a quick clinical example to help consolidate the lesson. We want to work out BMI from height and weight. We could write a function called `BMI` and pass it the arguments `height` and `weight`. It should end up looking something like this when called:
+
+    BMI(height = 1.72, weight = 80)
+    R> [1] 27.04164
+    
+Ok, lets write this function
+
+    BMI <- function(height, weight) {
+    	x = weight / height^2
+    	return(x)
+    }
+    
+And let's break down each element:
+
+    BMI               # This is the name for our function
+    <-                # The assignment operator, assigning anything on the right hand side, to our chosen name on the left
+    function          # the function keyword, indicating that we are going toi write a function
+    (height, weight)  # the parentesis contains the arguments that we are going to pass to the function
+    {                 # the opening curly brace shows where the contents of the function start
+    x = ...           # everything in between is the contents of our function
+    }                 # the closing curly brace shows where the contents of the function end
 
 <!-- - [ ] TODO(2016-05-12): change working directory (point and click, console) -->
 
