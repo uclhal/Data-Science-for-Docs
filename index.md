@@ -64,9 +64,9 @@ We'll cover a number of lessons during the 2 days. The programme is flexible, bu
 3. [Excel Hell](02-lesson-02-excel-hell.html)
 4. [Getting data into R](03-lesson-03-getting-data-into-r.html)
 5. [Data wrangling](04-lesson-04-data-wrangling.html)
-6. [Data visualisation](06-lesson-06-dataviz.html)
-7. [Plotting graphs with ggplot2](07-lesson-07-ggplot2.html)
-8. [Just enough statistics](05-lesson-05-just-enough-statistics.html)
+6. [Data visualisation](05-lesson-05-dataviz.html)
+7. [Plotting graphs with ggplot2](06-lesson-06-ggplot2.html)
+8. [Just enough statistics](07-lesson-07-just-enough-statistics.html)
 9. [Data analysis practical](08-lesson-08-data-analysis-worksheet.html)
 
 <!-- 6. [Just enough statistics](06-lesson-06-just-enough-statistics.html) -->
