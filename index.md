@@ -57,15 +57,17 @@ Finally, please complete the [pre-course survey](http://goo.gl/forms/odmaxWP2KBH
 
 ## Lessons:
 
-We'll cover the 6 lessons during the day. The programme is flexible, but an outline is available [here](CourseProgramme.html).
+We'll cover a number of lessons during the 2 days. The programme is flexible, but an outline is available [here](CourseProgramme.html).
 
 1. [Preliminaries](00-lesson-00-intro.html)
 2. [R for newbies](01-lesson-01-r-for-newbies.html)
 3. [Excel Hell](02-lesson-02-excel-hell.html)
 4. [Getting data into R](03-lesson-03-getting-data-into-r.html)
 5. [Data wrangling](04-lesson-04-data-wrangling.html)
-6. [Just enough statistics](05-lesson-05-just-enough-statistics.html)
-7. [Data visualisation](06-lesson-06-dataviz.html)
+6. [Data visualisation](06-lesson-06-dataviz.html)
+7. [Plotting graphs with ggplot2](07-lesson-07-ggplot2.html)
+8. [Just enough statistics](05-lesson-05-just-enough-statistics.html)
+9. [Data analysis practical](08-lesson-08-data-analysis-worksheet.html)
 
 <!-- 6. [Just enough statistics](06-lesson-06-just-enough-statistics.html) -->
 
