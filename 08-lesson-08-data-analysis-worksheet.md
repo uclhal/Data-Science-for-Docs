@@ -178,5 +178,5 @@ If you used the `outreach.csv` dataset that we provided to work through your ana
 
 ---
 
-[Previous topic](06-lesson-06-dataviz.html) --- [Worked Example](08-lesson-08-data-analysis-worked-example.html)
+[Previous topic](07-lesson-07-just-enough-statistics.html) --- [Worked Example](08-lesson-08-data-analysis-worked-example.html)
 
