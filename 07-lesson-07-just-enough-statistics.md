@@ -199,6 +199,6 @@ A really handy resource for looking up which test to use, and then how to implem
 
 ---
 
-[Previous topic](04-lesson-04-data-wrangling.html) --- [Next topic](06-lesson-06-dataviz.html)
+[Previous topic](04-lesson-04-data-wrangling.html) --- [Next topic](08-lesson-08-data-analysis-worksheet.html)
 
 
