@@ -13,7 +13,7 @@
 |11:00&ndash;11:45|**Excel Hell**                                   |
 |11:45&ndash;11:50|*Feedback*                                       |
 |11:50&ndash;12:30|*Lunch*                                          |
-|12:30&ndash;13:30|**Data Pipelines**                               |
+|12:30&ndash;13:30|**Getting Data into R**                          |
 |13:30&ndash;13:35|*Feedback*                                       |
 |13:35&ndash;14:35|**Data Wrangling**                               |
 |14:35&ndash;14:40|*Feedback*                                       |
