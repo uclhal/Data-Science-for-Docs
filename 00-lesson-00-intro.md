@@ -26,7 +26,7 @@ dataurl_1: https://drive.google.com/file/d/0Bw_vg8ODL-GaM01iN2FyeE82SDA/view?usp
 - Introduce youselves on Slack (use the web interface, or download the app to your computer or phone)
 - Pair programming
 - Live coding
-- [Consent for feedback](https://goo.gl/forms/gdmHqPsTD1vBcyep1)
+<!-- - [Consent for feedback](https://goo.gl/forms/gdmHqPsTD1vBcyep1) this is now incorporated into our pre-course and post-course survey -->
 
 <a name="prerequisites"></a>
 
