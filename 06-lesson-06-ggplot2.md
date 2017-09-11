@@ -1,6 +1,8 @@
 ---
 title: "GGPLOT2"
 layout: lesson
+root: .
+minutes: 25
 ---
 
 ```{r setup}
