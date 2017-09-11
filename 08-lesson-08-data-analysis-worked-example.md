@@ -516,4 +516,4 @@ summary(table_male_accept)
 
 ---
 
-[Previous topic](06-lesson-06-dataviz.html) 
+[Previous topic](08-lesson-08-data-analysis-worksheet.html) 
