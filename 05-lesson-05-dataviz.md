@@ -141,4 +141,4 @@ Here's a useful guide, courtesy of [Extreme Presentations](http://extremepresent
 
 ---
 
-[Previous topic](05-lesson-05-just-enough-statistics.html)
+[Previous topic](05-lesson-05-just-enough-statistics.html) --- [Next topic](06-lesson-06-ggplot2.html)

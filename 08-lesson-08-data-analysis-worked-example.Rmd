@@ -2,7 +2,7 @@
 layout: lesson
 author: "Danny Wong"
 root: .
-title: Data pipelines
+title: Data Analysis Practical (Worked Examples)
 minutes: 25
 ---
 

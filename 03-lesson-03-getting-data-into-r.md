@@ -1,7 +1,7 @@
 ---
 layout: lesson
 root: .
-title: Data pipelines
+title: Getting Data into R
 minutes: 25
 ---
 
