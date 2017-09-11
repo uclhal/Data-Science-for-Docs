@@ -1,0 +1,177 @@
+---
+layout: lesson
+author: "Danny Wong"
+root: .
+title: Data pipelines
+minutes: 25
+---
+
+<!-- rename file with the lesson name replacing template -->
+
+## Learning Objectives 
+
+1. [Load in your own data](#load)
+2. [Examine your data in general](#examine)
+3. [Explore individual variables](#exploration)
+4. [Think of some questions/hypotheses](#hypotheses)
+5. [Do some bivariate plots](#bivariate)
+6. [Think of constructing a model](#model)
+
+<!-- * Data Analysis Practical Worksheet - (v1) Danny
+
+- [ ] Decide on the structure for analysis
+- [ ] Create a example analysis for the Outreach dataset
+
+ -->
+
+## Worked Example
+
+This is a worked example of the previous Data Analysis Worksheet lesson using the `outreach.csv` dataset
+
+- [SPOTlight study data]({{page.dataurl_1 %}}): an observational study of deteriorating ward patients referred to critical care
+
+<a name="load"></a>
+
+### Step 1: Load in your own data
+
+As the data is provided in the form of a `.csv` file, use `read.csv()` and assign it to object name `outreach`.
+
+```{r}
+outreach <- read.csv("data/outreach.csv")
+```
+
+<a name="examine"></a>
+
+### Step 2: Examine your data in general
+
+You want some idea of what your data looks like, so you can have a feel of what you have to play with. Try answering the following questions about your own dataset to make sure you understand it:
+
+- Did the dataset load correctly into R? Remember sometimes there are weird column names
+- Do you have a lot of empty cells that got loaded at the bottom of the dataframe which are actually useless?
+- Do you know how many observations your dataset has or should have?
+- What variables do you have in your dataset?
+
+```{r}
+View(outreach)
+head(outreach)
+tail(outreach)
+summary(outreach)
+nrow(outreach)
+str(outreach)
+```
+
+```
+# Try using this function from the Hmisc package
+# You might need to first install the package, we won't run this here
+# install.packages("Hmisc")
+library(Hmisc)
+describe(outreach)
+```
+<a name="exploration"></a>
+
+### Step 3: Explore individual variables
+
+Now that you have had a general look at the data overall, try to zoom in on particular variables of interest. At this point you might start to have questions of the data that might start forming in your mind:
+
+- Pick a few variables.
+- What data types are these? E.g. integer/numeric, text strings, categorical/factors, binary? Are they correctly listed or do they need changing? You may have already taken note of this in the previous step.
+- Assess the distribution of the data variables, are they normally distributed or skewed? Are there any visible outliers?
+- For categorical variables, do you have any idea what the frequencies/proportions are for each category?
+- Are there a significant number of missing recordings in your variables?
+
+```{r}
+# For large dataframes with many columns, it may sometimes be useful to pick out a few of the variables you are interested in using select from the dplyr package
+library(dplyr)
+restricted.outreach <- outreach %>% select(age, male, wday, lactate, sofa_score, news_score, news_risk, hrate, bpsys, rrate, creatinine, icu_accept, dead28)
+
+# Alternatively you could use base R
+restricted.outreach <- outreach[ , c("age", "male", "wday", "lactate", "sofa_score", "news_score", "news_risk", "hrate", "bpsys", "rrate", "creatinine", "avpu", "icu_accept", "dead28")]
+
+# Now look through each variable, if you haven't already, try:
+str(restricted.outreach)
+
+# Plot some histograms
+hist(restricted.outreach$age)
+
+# Or the ggplot2 way
+library(ggplot2)
+ggplot(restricted.outreach, aes(age)) + geom_histogram()
+
+# Categorical variables can be viewed using tables
+table(restricted.outreach$wday) # gives absolute counts
+table.name <- table(restricted.outreach$wday)
+prop.table(table.name) # gives proportions
+
+# Use the is.na() function for looking at missingness
+table(is.na(outreach$lactate))
+```
+
+<a name="hypotheses"></a>
+
+### Step 4: Think of some questions/hypotheses
+
+Now we are getting into perhaps the most interesting part of the exercise. Can you think of any questions you might want to answer with your dataset?
+
+If you brought your own data, you might already have a good idea about the sorts of questions you want answers to. If not, and you are using the outreach dataset we provided, try answering some of the following questions:
+
+- Are men or women more likely to be accepted onto ICU?
+- Is mortality associated with SOFA score?
+- Is mortality associated with lactate?
+- Is there an association between age and ICU admission rates?
+- Does creatinine rise with age?
+
+<a name="bivariate"></a>
+
+### Step 5: Do some bivariate plots
+
+If you are assessing the influence of one variable on another, it is good to see if you can visualise this in a bivariate plot. In other words, 2 variables on the same plot. This may take the form of a scatter plot (when both variables are continuous), or boxplot (y-axis continuous, x-axis categorical). 
+```{r}
+# You can do it in base R, a boxplot or a scatterplot would automatically be selected
+plot(creatinine ~ age, data = outreach)
+boxplot(outreach$lactate ~ outreach$avpu) 
+
+# Alternatively using ggplot2
+library(ggplot2)
+ggplot(outreach, aes(y = creatinine, x = age)) + geom_point()
+ggplot(outreach, aes(y = lactate, x = factor(avpu))) + geom_boxplot() # For a boxplot
+```
+
+It's important to remember that for boxplots, the whiskers represent the largest and smallest values no further than 1.5 * IQR.
+
+<a name="model"></a>
+
+### Step 6: Think of constructing a model
+
+A statistical model is really just a mathematical representation of the dataset. It can be a way of describing how the variables relate to each other or describe how the variables are distributed.
+
+Statistical modelling is probably beyond the scope of our lessons, but a good primer on the topic by Hadley Wickham, creator of `dplyr` and `ggplot2`, can be found [here](http://r4ds.had.co.nz/model-intro.html).
+
+Here we will just show one example of a very simple linear model:
+
+```{r}
+linear.model <- lm(formula = creatinine ~ age, data = outreach)
+summary(linear.model)
+
+plot(creatinine ~ age, data = outreach)
+abline(linear.model)
+
+# And in ggplot2
+ggplot(subset(outreach, !is.na(creatinine)), aes(y = creatinine, x = age)) +
+  geom_point() + 
+  geom_line(aes(y = predict(linear.model, type = "response")))
+```
+
+However, a statistical model doesn't have to be very complicated. A significance test (e.g. a t-test) can tell us something about the dataset to help explain it. 
+
+```{r}
+t.test(subset(outreach, male == 1)$age, subset(outreach, male == 0)$age)
+chisq.test(outreach$male, outreach$icu_accept, correct = FALSE)
+
+# Many ways to skin a cat
+table_male_accept <- table(outreach$male, outreach$icu_accept) 
+summary(table_male_accept)
+```
+
+---
+
+[Previous topic](06-lesson-06-dataviz.html) 

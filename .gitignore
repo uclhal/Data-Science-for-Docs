@@ -5,3 +5,11 @@ course.Rproj
 .Rproj.user
 _site/
 .gitignore
+.RData
+_archive/
+scratch.R
+/Gemfile
+/Gemfile.lock
+*.DS_Store
+/.httr-oauth
+*.Rproj

@@ -1,0 +1,132 @@
+---
+title: "Tidying Data in R"
+author: "The DSBC team"
+output: 
+    revealjs::revealjs_presentation:
+        slide_level: 1
+---
+
+# Tidying data in R
+(with a little data wrangling thrown in)
+
+<!--
+Notes
+
+# Use the outreach data for now since we need to be careful about making the RCT data public
+- check that ggplot2, tidyr and dplyr are installed with Rstudio
+
+- teach the basic use of dplyr
+- contrast this with excel?
+- use an extract from spotlight?
+
+- Tasks
+- =====
+- rename a variable
+- clean text
+    + convert to lower case
+    + split and join characters
+- concept of factors (categorical data type)
+    + ordered 
+    + non-ordered
+- unnest (from tidyr)
+- show case features of dplyr for re-arranging and grouping your data
+    + filter
+    + summarise by group
+
+ -->
+
+# Set-up (English)
+
+This is just a standard bit of setup. It performs the following tasks.
+
+1. Clean the workspace
+2. Load some code libraries 
+3. Load some data
+
+# Set-up (code)
+
+```{r setup, eval=TRUE}
+rm(list=ls(all=TRUE))       # clean the workspace
+
+require(tidyr)              # Load the tidyr library (for data tidying)
+require(dplyr)              # Load the dplyr library (for data wrangling)
+
+# Load the outreach data (stored in a CSV file)
+# Need to explain the ../data/ part of the path
+ddata <- read.csv("../data/outreach.csv")
+```
+
+# Inspect your data
+
+
+OK. So the data is now in R. You can verify this with the `ls()` command that lists everything in your workspace.
+
+```{r inspect, eval=TRUE}
+ls()
+
+# Nice pretty table of your data
+tbl_df(ddata)
+
+# Open spreadsheet like view
+# View(ddata)
+
+```
+
+# Next
+
+Simple tasks you might wish to do
+
+```{r simple, eval=TRUE}
+# require(ggplot2)
+# data(diamonds)
+
+# # Sort your data 
+# tbl_df(diamonds)
+# diamonds %>% arrange(carat) %>% tbl_df()
+# diamonds %>% arrange(desc(carat)) %>% tbl_df()
+
+# # Rename a column
+# diamonds <- rename(diamonds, length=x)
+# diamonds <- rename(diamonds, width=y)
+# diamonds <- rename(diamonds, depth=z)
+# tbl_df(diamonds)
+
+# # Filter your data (subset observations)
+# # will need to teach <,>,==,<=,>=
+# filter(diamonds, carat>4)
+
+# # Subset columns
+# data(iris)
+# tbl_df(iris)
+# select(iris, ends_with("width"))
+# head(select(iris, ends_with("width")))
+
+# # Summarise data
+# summarise(diamonds, avg=mean(carat))
+# count(diamonds,cut)
+# summarise_each(diamonds, funs( min, max ))
+
+# diamonds %>% group_by(color) %>% summarise(avg = mean(price))
+
+```
+
+# Next
+
+Things which are difficult to do in Excel but very useful
+
+```{r tidyr, eval=TRUE}
+library(tidyr)
+```
+
+```{r cell_clean, eval=TRUE}
+# tbl_df(diamonds)
+# d2 <- unite(diamonds, cut_color, c(cut, color))
+# tbl_df(d2)
+# d1 <- separate(d2, cut_color, into=c(cut, col), sep="_")
+# head(d1)
+
+```
+
+
+
+
