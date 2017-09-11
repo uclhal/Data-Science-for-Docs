@@ -273,7 +273,8 @@ this in 3 steps here.
 
 1.  Find the *path* to your file. We covered file paths in [lesson
     1](00-lesson-00-intro.html#files-and-directories), and this is just
-    the formal address of your file on your computer.
+    the formal address of your file on your computer. A quick way to do 
+    this in `R` is to use the `file.choose` function.
 2.  We will take the *path* you have generated and name it `myfile`.
 3.  We will use a *function* called `read_csv` from the `readr` library
     to import the data into a data frame (which we in turn name `df`
@@ -285,7 +286,7 @@ this in 3 steps here.
 
     install.packages("readr")       # install only needed the first time
     library(readr)                  # load the readr family functions including read_csv
-    myfile <- "/Users/yourname/Documents/course_exemplar2.csv"
+    myfile <- file.choose()
     df <- read_csv(myfile)
 
 You could have done this in one step, but it would have made things

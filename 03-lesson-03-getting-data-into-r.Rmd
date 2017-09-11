@@ -161,7 +161,7 @@ Then accept the defaults in the dialog box that appears.
 
 Point and click is lovely and easy but _sadly_ not reproducible. Much better is to write down where your data comes from. We are going to do this in 3 steps here.
 
-1. Find the _path_ to your file. We covered file paths in [lesson 1](00-lesson-00-intro.html#files-and-directories), and this is just the formal address of your file on your computer.
+1. Find the _path_ to your file. We covered file paths in [lesson 1](00-lesson-00-intro.html#files-and-directories), and this is just the formal address of your file on your computer. A quick way to do this in `R` is to use the `file.choose` function.
 2. We will take the _path_ you have generated and name it `myfile`.
 3. We will use a _function_ called `read_csv` from the `readr` library to import the data into a data frame (which we in turn name `df` for convenience).
 
@@ -171,7 +171,7 @@ Point and click is lovely and easy but _sadly_ not reproducible. Much better is 
 ```{r eval=FALSE, echo=TRUE}
 install.packages("readr")       # install only needed the first time
 library(readr)                  # load the readr family functions including read_csv
-myfile <- "/Users/yourname/Documents/course_exemplar2.csv"
+myfile <- file.choose()
 df <- read_csv(myfile)
 ```
 
