@@ -342,3 +342,4 @@ And let's break down each element:
 
 <!-- - [ ] TODO(2016-05-12): change working directory (point and click, console) -->
 
+[Previous topic](00-lesson-00-intro.html) --- [Next topic](02-lesson-02-excel-hell.html)
