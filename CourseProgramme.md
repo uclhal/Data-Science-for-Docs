@@ -1,90 +1,38 @@
----
-layout: lesson
-root: .
-title: "Course Programme"
-author: "Data Science for Docs"
-date: "03 December 2016"
----
+# Course Outline
 
-<table>
-<thead>
-<tr class="header">
-<th align="center">Time</th>
-<th align="left">Agenda</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">08:30–09:00</td>
-<td align="left"><strong>Welcome &amp; setup time for those who need help</strong></td>
-</tr>
-<tr class="even">
-<td align="center">09:00–09:55</td>
-<td align="left"><strong>Preliminaries + Motivational Demo</strong></td>
-</tr>
-<tr class="odd">
-<td align="center">09:55–10:00</td>
-<td align="left"><em>Feedback</em></td>
-</tr>
-<tr class="even">
-<td align="center">10:00–10:40</td>
-<td align="left"><strong>R for Newbies</strong></td>
-</tr>
-<tr class="odd">
-<td align="center">10:40–10:45</td>
-<td align="left"><em>Feedback</em></td>
-</tr>
-<tr class="even">
-<td align="center">10:45–11:00</td>
-<td align="left"><em>Coffee Break</em></td>
-</tr>
-<tr class="odd">
-<td align="center">11:00–11:45</td>
-<td align="left"><strong>Excel Hell</strong></td>
-</tr>
-<tr class="even">
-<td align="center">11:45–11:50</td>
-<td align="left"><em>Feedback</em></td>
-</tr>
-<tr class="odd">
-<td align="center">11:50–12:30</td>
-<td align="left"><em>Lunch</em></td>
-</tr>
-<tr class="even">
-<td align="center">12:30–13:30</td>
-<td align="left"><strong>Data Pipelines</strong></td>
-</tr>
-<tr class="odd">
-<td align="center">13:30–13:35</td>
-<td align="left"><em>Feedback</em></td>
-</tr>
-<tr class="even">
-<td align="center">13:35–14:35</td>
-<td align="left"><strong>Data Wrangling</strong></td>
-</tr>
-<tr class="odd">
-<td align="center">14:35–14:40</td>
-<td align="left"><em>Feedback</em></td>
-</tr>
-<tr class="even">
-<td align="center">14:40–15:00</td>
-<td align="left"><em>Coffee Break</em></td>
-</tr>
-<tr class="odd">
-<td align="center">15:00–15:55</td>
-<td align="left"><strong>Just Enough Statistics</strong></td>
-</tr>
-<tr class="even">
-<td align="center">15:55–16:00</td>
-<td align="left"><em>Feedback</em></td>
-</tr>
-<tr class="odd">
-<td align="center">16:00–16:50</td>
-<td align="left"><strong>Data Visualisation</strong></td>
-</tr>
-<tr class="even">
-<td align="center">16:50–17:00</td>
-<td align="left"><em>Feedback and Conclusion</em></td>
-</tr>
-</tbody>
-</table>
+## Day 1
+
+|Time             |Agenda                                           |
+|:---------------:|:------------------------------------------------|
+|08:30&ndash;09:00|**Welcome & setup time for those who need help** |
+|09:00&ndash;09:55|**Preliminaries + Motivational Demo**            |
+|09:55&ndash;10:00|*Feedback*                                       |
+|10:00&ndash;10:40|**R for Newbies**                                |
+|10:40&ndash;10:45|*Feedback*                                       |
+|10:45&ndash;11:00|*Coffee Break*                                   |
+|11:00&ndash;11:45|**Excel Hell**                                   |
+|11:45&ndash;11:50|*Feedback*                                       |
+|11:50&ndash;12:30|*Lunch*                                          |
+|12:30&ndash;13:30|**Getting Data into R**                          |
+|13:30&ndash;13:35|*Feedback*                                       |
+|13:35&ndash;14:35|**Data Wrangling**                               |
+|14:35&ndash;14:40|*Feedback*                                       |
+|14:40&ndash;15:00|*Coffee Break*                                   |
+|15:00&ndash;16:00|**Data Visualisation**                           |
+|16:00            |*End of Day 1*                                   |
+
+## Day 2
+
+|Time             |Agenda                                           |
+|:---------------:|:------------------------------------------------|
+|09:00&ndash;10:30|**Plotting graphs with ggplot2**                 |
+|10:30&ndash;10:35|*Feedback*                                       |
+|10:35&ndash;10:50|*Coffee Break*                                   |
+|10:50&ndash;11:50|**Just Enough statistics**                       |
+|11:50&ndash;11:55|*Feedback*                                       |
+|11:55&ndash;13:00|*Lunch*                                          |
+|13:00&ndash;15:00|**Data Analysis Practical**                      |
+|15:00&ndash;15:05|*Feedback*                                       |
+|15:05&ndash;15:20|*Coffee*                                         |
+|15:20&ndash;16:00|**Closing Words and Final Plenary**              |
+|16:00            |*End of Day 2*
