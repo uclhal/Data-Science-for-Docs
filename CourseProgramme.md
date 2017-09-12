@@ -1,3 +1,10 @@
+---
+layout: lesson
+root: .
+title: Course Programme
+minutes: 5
+---
+
 # Course Outline
 
 ## Day 1
