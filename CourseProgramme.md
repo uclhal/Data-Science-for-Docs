@@ -12,12 +12,13 @@ minutes: 5
 |Time             |Agenda                                           |
 |:---------------:|:------------------------------------------------|
 |08:30&ndash;09:00|**Welcome & setup time for those who need help** |
-|09:00&ndash;09:55|**Preliminaries + Motivational Demo**            |
-|09:55&ndash;10:00|*Feedback*                                       |
-|10:00&ndash;10:40|**R for Newbies**                                |
-|10:40&ndash;10:45|*Feedback*                                       |
-|10:45&ndash;11:00|*Coffee Break*                                   |
-|11:00&ndash;11:45|**Excel Hell**                                   |
+|09:00&ndash;09:40|**Preliminaries**                                |
+|09:40&ndash;09:45|*Feedback*                                       |
+|09:45&ndash;10:25|**R for Newbies**                                |
+|10:25&ndash;10:30|*Feedback*                                       |
+|10:30&ndash;10:45|*Coffee Break*                                   |
+|10:45&ndash;11:30|**Excel Hell**                                   |
+|11:30&ndash;11:45|**Motivational Demo**                            |
 |11:45&ndash;11:50|*Feedback*                                       |
 |11:50&ndash;12:30|*Lunch*                                          |
 |12:30&ndash;13:30|**Getting Data into R**                          |
