@@ -1,0 +1,278 @@
+---
+title: "Getting Data into R"
+author: "Danny Wong"
+date: "14 September 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+<!-- rename file with the lesson name replacing template -->
+
+## Learning Objectives 
+
+1. Introducing the data pipeline
+2. Doing a quick nose around dataframes in R
+3. Get data out of your spreadsheet
+4. Importing: Point and click in R studio
+4. Importing: Scripting your import (and file paths)
+5. Importing: Using Google Sheets
+
+<!-- * Getting data into R - (v1) Ahmed (v2) Ed (v3) Steve
+
+keep theme of square tables frome excel to csv now to data.frame
+how to get these in
+how to do this 'automagically'
+
+- [ ] teach comments
+- [ ] teach script files
+- [ ] foobar
+
+ -->
+
+## The data pipeline
+
+<!-- - [ ] TODO(2016-11-15): produce a graphic for this -->
+
+Learning 'coding' is a pain, and for a 'one off' process there will nearly always be some tempting 'point-and-click' alternative.
+
+Greatest benefits from learning to code:
+
+- Reproducibility  
+- Documenting as you go along
+- Saving time 
+
+## Traditional workflow
+
+1. Collect data on paper
+2. Transcribe paper forms into Excel or similar
+3. Import Excel into SPSS or another stats package
+4. Perform analyses and make graphs
+5. Copy/paste these into your final document (Word, Powerpoint) etc
+
+## Problems
+
+- One early mistake, means repeating all steps by hand
+- You can't remember what you did because you haven't looked at this for 5 days, 5 months or 5 years
+- Other people can't collaborate or help because all the files are local, and even if they have them you weren't obsessive enough to write notes about each step
+
+### A data pipeline (aka scripting)
+
+Learn just enough code to write down your 'workflow'. Ensure the workflow starts with the raw data, and then any changes in the workflow or the data will automatically propagate.
+
+1. Collect data electronically
+2. Write a script that converts your data into figures and tables
+3. Knit everything into a single report?
+
+## Everything is a "data-frame"
+
+Step **1** in your pipeline has to be getting your (now beautifully tidy) spreadsheet into R.
+
+Spreadsheets in R are called 'dataframes'.
+
+A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe.  Let's do a quick tour of dataframes in R.
+
+## Preloaded data in R
+
+R comes preloaded with different bits of data for you to explore. A famous data set describes characteristics of iris' (flowers).
+
+```{r eval=FALSE, echo=TRUE}
+# Let's look at the dataframes that come with R
+data()
+
+# Let's pick one to play with (we'll label it 'df')
+df <- iris
+
+# Have a look at the data
+head(df)
+```
+
+## Navigating within the dataframe
+
+The 'rows' are contain measurements from different flowers, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as `[row, column]` (i.e. which row, then which column).
+
+```{r eval=FALSE, echo=TRUE} 
+df[1,1]         # top left cell
+df[150,5]       # bottom right cell
+df[1, ]         # first row (all columns)
+df[ ,1]         # first column (all rows)
+```
+
+## Selecting columns
+
+Most of the time the rows are 'observations' and we want to pick out 'characteristics' of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the `$` operator: e.g. df$some_column
+
+
+```{r eval=FALSE, echo=TRUE} 
+df$Species
+df$Petal.Length
+```
+
+## Exercise: Taking a quick look at the data
+
+1. What are the names of the columns? Hint: try `names()`
+2. Display in the console the items in the column `Sepal.Lengths`
+3. What is the mean of and standard deviation of `Sepal.Lengths`?
+4. What is the median, interquartile range, min and max of `Sepal.Lengths?`
+5. Can you do the same for all the other columns in `df`?
+
+## Getting data out of your spreadsheet: CSV files
+
+Arguably one of the oldest, and most ubiquitous is the 'comma separated values' (`.csv`) file. This is easily exportable from Microsoft Excel, Apple Numbers, Open Office, Google Sheets...etc.
+
+It's a simple format. The top line are the column names, each seperated by a comma. The following lines are the observations in those columns, again, seperated by a comma.
+
+It's strength is in it's simplicity. It only has data, no formulas, no tricks and is very well recognised amongst software packages as it is very easily supported. R has excellent support for `.csv`.
+
+## Export CSV From Excel
+
+![](img/export_csv_small.png)
+
+## Exercise: Export an .xlsx file to .csv
+
+1. Find the cleaned .xlsx file that was produced in the Excel Hell lecture and export it as a .csv file. If all else fails then we have a copy [here](https://figshare.com/s/28e6b022c0d3fe63909e).
+
+Once a sheet has been exported, it can be imported into R.
+
+## Getting CSV data into R
+
+There're 3 main ways to do this:
+
+1. Point-and-click within RStudio, which we covered in Lesson 1 (R for Newbies).
+2. Use the `read.csv` function.
+3. Make a connection to a database or an online Google Sheets spreadsheet
+
+## Point-and-click
+
+As a quick reminder from Lesson 1. Click the *Import Dataset* button, and select the *From local file ...* option.
+
+![](img/RStudio-import-data-button.png)
+
+Then accept the defaults in the dialog box that appears.
+
+## Point-and-click 2
+
+![](img/RStudio-import-data_small.png)
+
+## Scripting
+
+Point and click is lovely and easy but _sadly_ not reproducible. Much better is to write down where your data comes from. We are going to do this in 3 steps here.
+
+1. Find the _path_ to your file. We covered file paths in [lesson 1](00-lesson-00-intro.html#files-and-directories), and this is just the formal address of your file on your computer. A quick way to do this in `R` is to use the `file.choose` function.
+2. We will take the _path_ you have generated and name it `myfile`.
+3. We will use a _function_ called `read_csv` from the `readr` library to import the data into a data frame (which we in turn name `df` for convenience).
+
+> Try right clicking a file in *Finder* (on a Mac) or *Windows Explorer* (on a PC). You'll normally see an option for 'info' or 'properties' that will show you the path to your file.
+
+## Code example
+
+```{r eval=FALSE, echo=TRUE}
+install.packages("readr")       # install only needed the first time
+library(readr)                  # load the readr family functions including read_csv
+myfile <- file.choose()
+df <- read_csv(myfile)
+```
+
+You could have done this in one step, but it would have made things harder to read. Hard to read, means difficult to remember, and we are doing our best to avoid that!
+
+## Other functions
+
+> There is a function `read.csv` provided by R but `read_csv` is better. The built in function has a couple of annoying 'habits'. If you wish to use it then don't forget to specify: (1) `header=TRUE` which tells the function to expect column names in row 1 instead of data, and (2) `stringsAsFactors=FALSE` which is a necessary but annoying reminder to R that you want it to leave 'strings' alone and not convert them to 'labelled' factors.
+
+## Accessing your columns
+
+Now you can access the data you imported. For example, to display the entire column named 'column_name`. Replace with with the name of the column you're interested in.
+
+```{r eval=FALSE, echo=TRUE}
+df$column_name
+```
+
+## Exercise: Import the .csv into R
+
+1. Import the .csv file from the Excel Hell lesson as a dataframe and call it `RCT`
+2. Name all the columns in the dataframe.
+
+## Google Sheets
+
+We can also load data through a connection with Google Sheets. What's good about this? **Collaboration** and **live-updating**. Let's use this system to import a cleaned version of the breast RCT data we have been working on.
+
+We're going to use data in a shared sheet we've called `rct-clean`.
+
+## Google Sheets 2
+
+![](img/rct-clean-shot1.png)
+
+The sheet is available [here](https://docs.google.com/spreadsheets/d/1FehptlE8kTJyEoVJW0WTcst_LmL7D19S9jOto8w8RRs/edit?usp=sharing).
+
+## The googlesheets library
+
+First we need the functions someone else has kindly written that allow R to talk to google sheets. You will need to install the library first.
+
+```{r, eval=FALSE, echo=TRUE}
+install.packages("googlesheets")
+```
+
+## Working with googlesheets
+
+Now let's have a look at the sheets in your account. We'll use the `gs_ls()` function. 
+
+The first time you run this you will be asked to authenticate (a browser window will open and ask you to sign in to your google account). Behind the scenes R now saves a hidden file into your working directory. The next time you ever run your script, as long as you haven't moved your code to a new directory, it won't need to ask.
+
+## Working with googlesheets 2
+
+``` {r, eval=FALSE, echo=TRUE}
+library(googlesheets)
+gs_ls()
+```
+
+You can see a list of google sheets. It is now straightforward to read these into R. Let's import the shared sheet `rct-clean`, and name it `gsheet`.
+
+``` {r, eval=FALSE, echo=TRUE}
+gsheet <- gs_title("rct-clean")
+```
+
+So far so good, but `sheet` isn't a data frame, it's just a connection to that sheet. There's one more step.
+
+``` {r, eval=FALSE, echo=TRUE}
+df <- gs_read(gsheet)
+head(df)
+```
+
+## Alternative data structures
+
+> Bonus: The `googlesheets` library is actually doing one better than making a dataframe, and instead makes a _tibble_. Say it quickly and it sounds like _table_? It's just a fancy modern version of R's basic dataframe. You don't need to worry about the difference.
+
+- There are lots of different data structures in R, but we won't go through them all during this course.
+
+## Exercise: Taking a quick look at the data
+
+a. What are the names of the columns?
+
+b. Can you have a look at the column containing the age of the patients?
+
+c. Can you find out how many patients were randomised to each arm? Hint: you can use the function `table()` or `xtab()`
+
+d. Can you find out how many subjects there are?
+
+## Answers
+
+a. What are the names of the columns?
+
+`names(df)`
+
+b. Can you have a look at the column containing the age of the patients?
+
+`df$age`
+
+c. Can you find out how many patients were randomised to each arm? Hint: you can use the function `table()` or `xtab()`
+
+`table(df$random)`
+
+d. Can you find out how many subjects there are?
+
+`nrow(df)`
+
+## Homework
+
+1. Can you import and look at the `outreach.csv` dataset? What is the average heart rate? How many patients were accepted to ICU (the column is called `icu_accept`), and what was the mortality?
