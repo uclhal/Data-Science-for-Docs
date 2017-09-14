@@ -79,7 +79,6 @@ e) Can you do the same for all the other columns in `x`?
 ## Introducing the CSV
 =======
 ### Traditional workflow
->>>>>>> course3
 
 1.  Collect data on paper
 2.  Transcribe paper forms into Excel or similar
