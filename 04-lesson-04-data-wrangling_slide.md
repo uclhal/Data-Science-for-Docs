@@ -1,7 +1,7 @@
 ---
 title: "Data Wrangling"
-author: "Ahmed Al-Hindawi"
-date: "29/11/2016"
+author: "Ahmed Al-Hindawi & Danny Wong"
+date: "14/09/2017"
 output: ioslides_presentation
 ---
 
@@ -19,11 +19,11 @@ output: ioslides_presentation
 
 ## Prerequisite
 
-- Install the packages:
+- Install the packages using `install.packages()`:
     + `dplyr` 
     + `lubridate` 
     + `stringr`
-- Import them into a new worksheet
+- Load the libraries
 - Import the RCT dataset into a `ddata` variable
 
 ## First wrangle!
@@ -31,18 +31,22 @@ output: ioslides_presentation
 Type this into the console:
 
 ```r
+library(dplyr)
 filter(ddata, is.na(age) == FALSE, age >= 65)
 ```
 
 Done! It _filters_ rows from the `ddata` data frame where `age` is NOT NOT a number (therefore is a number, so we get rid of empty fields) and the age is >= `65`.
 
-## Comparisons in R (and most other languages too!)
+## Logical operators
 
 - Most are obvious:
     + `>` (greater than), `>=` (greater than or equal to), and similarly for `<` and `<=`.
 - Others are less so:
     + `!=` means Not Equal to...
-- Others are confusiong:
+
+## Logical operators 2
+
+- Others are confusing:
     + `==` compares equality. Notice that there are two equal signs. This is because in R `=` means an assigment, you're _making_ somethign equal to something else:
     + `x = 6` means make the variable called `x` equal 6. If you then do `x == 8` is a question, _is_ x equal to 8? Here, the answer is a `FALSE`
 
@@ -115,3 +119,9 @@ Sadly this won't work because `mean` has a little hissy fit if there are NA's in
 ddata %>% filter(is.na(age)==FALSE) %>%  group_by(gender) %>% 
   summarise(age.avg = mean(age))
 ```
+
+## Practice some dplyr tidying recipes
+
+- Open the course website: http://datascibc.org/Data-Science-for-Docs/
+- Select Lesson: [Data Wrangling](http://datascibc.org/Data-Science-for-Docs/04-lesson-04-data-wrangling.html)
+- Select [Some of our favourite (data wrangling) things](http://datascibc.org/Data-Science-for-Docs/04-lesson-04-data-wrangling.html#things) and do some practice
