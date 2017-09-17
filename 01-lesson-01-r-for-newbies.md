@@ -1,19 +1,21 @@
 ---
 title: "R for newbies"
-minutes: 25
+minutes: 60
 root: .
 layout: lesson
 ---
 <!-- - [ ] TODO(2016-05-19): factors and lists -->
 
-## Learning Objectives 
+## Learning Objectives
 
 - [What is R](#what-is-r)
 - [Why R](#why-r)
-- [Find your way around RStudio](#start-rstudio-and-have-a-look-around)  
+- [Find your way around RStudio](#start-rstudio-and-have-a-look-around)
 - [R building blocks](#r-building-blocks)
+- [Libraries](#libraries)
+- [Using Help Pages](#help-pages)
 
-## Lesson 
+## Lesson
 
 <a name="what-is-r"></a>
 
@@ -33,11 +35,11 @@ Why do people think R is hard? Because it's not a graphical user interface or GU
 
 Three good reasons:
 
-- You can do **anything** in R. If R is an entire language, we want to teach you how to become fluent. Once versed in this language you can tell the computer to do anything you can think of. In a GUI environment, someone has had to anticipate what you will want to do ahead of time, and tanslate a button push into a specific command. It's a little like going abroad armed with only a few flash cards to interact with the locals. Wouldn't you rather want to have a conversation in their native language?
-- **Science should be reproducible**. You can't record point and clicks. But you can re-run your 'code'. How many times have you trawelled through your data to produce a graph, only to return to it months later and have no idea how you produced it? This isn't an issue in R, as your code tells a permanent story as to how you arrived at your results.
+- You can do **anything** in R. If R is an entire language, we want to teach you how to become fluent. Once versed in this language you can tell the computer to do anything you can think of. In a GUI environment, someone has had to anticipate what you will want ahead of time, and tanslate a button push into a specific command. It's a little like going abroad armed with only a few flash cards to interact with the locals. Wouldn't you rather want to have a conversation in their native language?
+- **Science should be reproducible**. You can't record point and clicks. But you can re-run your `code`. How many times have you trawelled through your data to produce a graph, only to return to it months later and have no idea how you produced it? This isn't an issue in R, as your code tells a permanent story as to how you arrived at your results.
 - **Long term gain from upfront investment**. If you have ever worked hard preparing a table or a graph, and then discovered that either you have a new data point to add, or the next month's results are available then the GUI approach means starting all the pointing-and-clicking from scratch. But write it down once, re-run as often as you wish.
 
-The underlying principle of what we want to show you is how to build a data pipeline. You start with your data in a spreadsheet. You write a bunch of instructions (a script) using the R language. Your script produces an output (a table or a figure). Run your script. Generate your output. Change your data. Run the _same_ script. Instantly re-generate your updated output.
+The underlying principle of what we want to show you is how to build a **data pipeline**. You start with your data in a spreadsheet. You write a bunch of instructions (a script) using the R language. Your script produces an output: a table, plot or entire manuscript. You can change your data, or add new data, and run the _same_ script. Instantly regenerating an updated output.
 
 ---
 
@@ -45,20 +47,22 @@ The underlying principle of what we want to show you is how to build a data pipe
 
 ### RStudio - Making R a Breeze
 
-RStudio is an application layer that sits ontop of R. It gives you some of the convenience of having a GUI, but with full access to the power of R. RStudio is a set of integrated tools designed to help you be more productive with R. It includes, to name a few:
+RStudio is an application layer that sits ontop of R known as an integrated development environment (IDE). It gives you some of the convenience of having a GUI, but with full access to the power of R. RStudio is a set of integrated tools designed to help you be more productive with R. It includes, to name a few:
 - a console (runs R)
-- syntax-highlighting editor that supports direct code execution (helps make R more readable to humans)-- tools for plotting
+- a syntax-highlighting editor (helps make R more readable to humans)
+- tools for working with plots
 - a history of your actions
 - workspace management
 - debugging tools
 
 ![](img/rstudio.jpg)
 
-The screen should be divided in quadrants or panes. The two most important are labelled _Source_ (top left), and _Console_ (bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see 4 panes then try clicking the 'minimise'/'maximise' icons in the top right corners of each pane.
+The screen is divided into four panes. The two most important are labelled **Source** (_usually_ top left), and **Console** (_usually_ bottom left). On the right are supporting panes with tabs for finding help, and inspecting your files. If you can't see four panes then try clicking the 'minimise'/'maximise' icons in the top right corners of each pane.
 
-There's a handy cheat sheet for R studio available [here](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf). 
+There's a handy cheat sheet for R studio available [here](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf).
 
-> **Exercise:** Find the files tab and navigate to your project. If not already present, set up your project folder structure (I use folders for each of plots, data, reports and code). Navigate to your 'code' folder and then click on the 'more' button and select 'Set as working directory'.
+> **Exercise**
+> Find the files tab and navigate to your project. If not already present, set up your project folder structure (I use folders for each of plots, data, reports and code). Navigate to your 'code' folder and then click on the 'more' button and select 'Set as working directory'.
 
 #### Console (bottom left)
 
@@ -76,7 +80,7 @@ There are 4 things to explain in the little code snippet above.
 3. We'll come back to the `[1]` at the beginning of the next line in a moment.
 4. R prints the answer `4`
 
-Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a little more. Typing directly into R is a start, but we want to teach you _reproducible_ research. The scientific method requires that we document our work, but we can't reproduce your typing unless we record it somewhere. 
+Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a little more. Typing directly into R is a start, but we want to teach you _reproducible_ research. The scientific method requires that we document our work, but we can't reproduce your typing unless we record it somewhere.
 
 > **TIP:** Use the up and down arrow keys to go backwards and forwards in your 'command' history to quickly fix typos.
 
@@ -84,7 +88,7 @@ Re-assuring as it is that R knows that `2+2=4`, you were probably hoping for a l
 
 #### Source (top left)
 
-The solution is to create a file, write your commmands in that file, and then tell R to work through the commands in that file. Switch to the pane labelled source, and this time type `2-2`. 
+The solution is to create a file, write your commmands in that file, and then tell R to work through the commands in that file. Switch to the pane labelled source, and this time type `2-2`.
 
 Now typing `enter` brings you to a new line. But go back to the line with `2-2` and hit `command-enter` (on Windows `control-enter`) instead. This sends the last line you wrote from the 'source' document, to the console. You should now see that R can add and substract!
 
@@ -120,7 +124,7 @@ It's going to be helpful to have an understanding of how files and folders (aka 
 
 As you can see, to move up a level, RStudio has given you a graphical representation of `..`. You'll be using relative paths more often than absolute paths. So lets look at them in more detail.
 
-- For example, if your working directory is your `documents` folder which is at 
+- For example, if your working directory is your `documents` folder which is at
     + Windows: `C:\Users\steve\documents`
     + Unix: `/Users/steve/documents`
 - And you want to go to the same `readme.docx` file as before. You would type
@@ -131,6 +135,8 @@ As you can see, to move up a level, RStudio has given you a graphical representa
 - Finally, the `.` (single not double dot) is just the short cut for the _current_ directory. So `./readme.docx` simply means the file called `readme.docx` in _this_ directory. Seems pedantic but that's computers for you!
 
 You can see the path to any file or directory by right clicking and looking for properties (Windows), or using the 'Get Info' menu item (Mac OS X).
+
+---
 
 ### R building blocks
 
@@ -178,12 +184,12 @@ A `TRUE` or `FALSE` list  (a logical vector):
 
     TRUE, FALSE, TRUE, TRUE, FALSE
 
-We _index_ the list by counting from left to right starting with `1` (not `0`). 
+We _index_ the list by counting from left to right starting with `1` (not `0`).
 
 To make these vectors in R, we _combine_ the listed elements using `c()`.
 
     x <-  c("Q", "W", "E", "R", "T", "Y")
-    
+
 Now if you want the 3rd element, simply type `x[3]`.
 
     x <-  c("Q", "W", "E", "R", "T", "Y")
@@ -226,22 +232,27 @@ What's nice is that the `data.frame` _numbers_ the rows, and _names_ the columns
 
 Moreover, rather than having to use numerical addresses to look at data, you can use the `$` operator to access the columns by name.
 
-> **TRY THIS:** Try typing `class_demographics$age`
+> **EXERCISE**
+> 1. Try typing `class_demographics$age`. What is the output?
+> 2. What happens if you try to add a value `TRUE` to a vector containing just integers like `c(1, 4, 7, 9)`?
+> 3. Now what happens if you add a string to your vector? Why is this happening?
 
 #### Functions
 
-Functions are abtract black boxes that take an input, and give you an output. They perform tasks. To perform a task, they need an input, and the result of their work is the output. A simple function might be to tell us the time. `sys.time()` is a function built into `r` that tells us the time. Try it yourself by typing it into the console. Let's try a more visual exaple. We've written a custom function that helps navigate our character across the screen.
+Functions are abtract black boxes that take an input, and give you an output. They perform tasks. To perform a task, they need an input, and the result of their work is the output. A simple function might be to tell us the time. `sys.time()` is a function built into `r` that tells us the time. Try it yourself by typing it into the console.
+
+Let's try a more visual exaple. We've written a custom function that helps navigate our character across the screen.
 
     ed.moveforward()
-    
+
 ![](img/ed_moves_forward_slow.gif)
-    
+
 The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward across the screen. The `()` is the instruction to the computer to use that function. It's our 'go' command. Any statement followed by `()` is a function. This function takes no arguments at present. Arguments are additional pieces of informtion we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward across the screen at a _really_ slow pace. Lets see if we can pass an argument into our function to speed him up.
 
     ed.moveforward(speed = "fast")
-    
+
 ![](img/ed_moves_forward_fast.gif)
-    
+
 Now we've given the `ed.moveforward` function it's first argument. This argument tells the function the speed at which Ed should move forward. We have another function called `ed.turnright()` which turns Ed through a quarter turn to his right. We can chain these two together and get him to return to his starting position.
 
     	ed.moveforward(speed = "fast")
@@ -257,22 +268,33 @@ As you get used to `r` you'll want to start writing your own functions. Function
     tail()
     summary()
     mean()
-    
-#### Using Help Pages
+---
+## Libraries
+<a name="libraries"></a>
 
-functions in `r` are extensively documented. IF you type any function, preceded by a `?` you will be taken to a help page. These are technical documents, but once you understand how to read them, it will open the door to understanding how any function works in `r`. Lets use the function `mean()` as an example.
+R comes with a bunch of functions pre-installed called 'base R'. However, there are thousands of additional functions packaged together into 'libraries' that you will want to use too. You need to download these librarys using the `install.packages` function. You can then load these by calling (surprise, surprise) a base R function called `library`. The two packages that are requirements for this course are `tidyverse` and `googlesheets`:
+
+    install.packages("tidyverse", "googlesheets")
+    library(tidyverse)
+    library(googlesheets)
+---
+## Using Help Pages
+<a name="help-pages"></a>
+
+Functions in `r` are extensively documented. If you type any function, preceded by a `?` you will be taken to a help page. These are technical documents, but once you understand how to read them, it will open the door to understanding how any function works in `r`. Lets use the function `mean()` as an example.
 
     ?mean
 
-Look through the help page. This gives you a brief description, an example of usage, all the possible arguments that can be passed to the function (and whether they are requires, or have default values), comprehensive details and an example of use.
+Look through the help page. The information diplayed is usually given in the same form:
+1. Brief description
+2. an example of usage
+3. all the possible arguments that can be passed to the function (and whether they have default values)
+    - you can see an example here with `na.rm = FALSE` this shows you that the argument `na.rm` (or, should the function remove missing values) is automatically passed to the function with a value of `FALSE`, unless you specify otherwise
+4. A detailed breakdown of each argument
+5. comprehensive details of how the function works and what to expect as an output
+6. An example of use, typically using manufactured data so you can use these examples yourself vertbatim.
 
-#### Libraries
-
-R comes with a bunch of functions pre-installed called 'base R'. However, there are thousands of additional functions packaged together into libraries that you will want to use too. You load these by calling (surprise, surprise) a base R function called `library`:
-
-    library(ggplot2)
-    library(tidyr)
-    library(dplyr)
+![](img/help_demo.jpeg)
 
 ---
 
@@ -284,7 +306,7 @@ R comes with a bunch of functions pre-installed called 'base R'. However, there 
 2. In RStudio, have a look in the _Environment_ tab of the pane on the top right? What do you think is shown here?
 3. Try using the help function to find out what `ls()` does. Hint: try typing this in the search box of the _Help_ pane. Don't worry if the 'help' doesn't make much sense! Or just type `?ls` in the console.
 
-## Home work (!)
+## Home work
 
 Type the following (you'll need a working internet connection).
 
@@ -294,7 +316,7 @@ library(swirl)
 swirl()
 ```
 
-This brings up an interactive R lesson. Choose either R Programming then either option 1 or 2.
+This brings up an interactive R lesson. Give your name and proceed through the menu choices till you get to the course repository.
 
 ```
 | Please choose a course, or type 0 to exit swirl.
@@ -306,11 +328,11 @@ Selection: 1
 
 | Please choose a lesson, or type 0 to return to course menu.
 
- 1: Basic Building Blocks      2: Workspace and Files        3: Sequences of Numbers    
- 4: Vectors                    5: Missing Values             6: Subsetting Vectors      
- 7: Matrices and Data Frames   8: Logic                      9: Functions               
-10: lapply and sapply         11: vapply and tapply         12: Looking at Data         
-13: Simulation                14: Dates and Times           15: Base Graphics   
+ 1: Basic Building Blocks      2: Workspace and Files        3: Sequences of Numbers
+ 4: Vectors                    5: Missing Values             6: Subsetting Vectors
+ 7: Matrices and Data Frames   8: Logic                      9: Functions
+10: lapply and sapply         11: vapply and tapply         12: Looking at Data
+13: Simulation                14: Dates and Times           15: Base Graphics
 ```
 ## Extra Credit - Writing Functions
 
@@ -322,14 +344,14 @@ Let's do a quick clinical example to help consolidate the lesson. We want to wor
 
     BMI(height = 1.72, weight = 80)
     R> [1] 27.04164
-    
+
 Ok, lets write this function
 
     BMI <- function(height, weight) {
     	x = weight / height^2
     	return(x)
     }
-    
+
 And let's break down each element:
 
     BMI               # This is the name for our function
@@ -339,7 +361,5 @@ And let's break down each element:
     {                 # the opening curly brace shows where the contents of the function start
     x = ...           # everything in between is the contents of our function
     }                 # the closing curly brace shows where the contents of the function end
-
-<!-- - [ ] TODO(2016-05-12): change working directory (point and click, console) -->
 
 [Previous topic](00-lesson-00-intro.html) --- [Next topic](02-lesson-02-excel-hell.html)
