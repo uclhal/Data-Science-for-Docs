@@ -4,106 +4,113 @@ layout: lesson
 root: .
 minutes: 25
 ---
+# The Grammar of Graphics
 
-```{r setup}
-library(ggplot2)
-```
+`Ggplot2` is an r library that allows us to easily make publication quality plots. It is based on the "Grammar of Graphics" which describes a vocabulary for creating plots from data.
 
-## The Grammar of Graphics
+Start by loading up the GGPLOT2 library.
 
-- GGPLOT2 is an r library that allows us to easily make publication quality plots
-- Based on the "Grammar of Graphics"
+    install.packages("ggplot2")
+    library(ggplot2)
 
 ## Building Layers
 
-    Data + Aesthetics + Geoms
+Ggplot works by translating your data, a layer at a time, into a visualisation. What do we mean by layers? All data (providing it is in a "tidy" form) can be represented by the following layers:
+- The **Data** layer
+- The **Aesthetic** mapping layer
+- The **Geometries** Layer
 
-## Data
+Lets look at how we would build these up for a worked example. Let's use the data we've been using thus far in the course. The breast RCT data is already loaded into our workspace from before. We've loaded it in as the object `rct_data`. Let's take a look at it to remind outselves.
 
-- Should be "tidy"
-- May need to think carefully about how it is formatted
-- Tall vs. Wide data
+    > head(rct_data)
+    # A tibble: 6 x 21
+      Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs PS_24_28hrs PS_2wks
+      <int> <int>  <int>         <int>       <int>   <int>       <int>       <int>   <int>
+    1     1    80      1             1           0       0           0           2       2
+    2     2    72      1             1           1       2           2           1       2
+    3     3    72      1             1           0       1           0           0       0
+    4     4    55      1             1           0       0           0           0       1
+    5     5    84      1             2           0       0           2           3      NA
+    6     6    72      1             2           1       2           2           2      NA
+    # ... with 12 more variables: Mov_12_16hrs <int>, Mov_24_28hrs <int>, Mov_2wks <int>,
+    #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>, Oromorph_mg <dbl>,
+    #   Amitryptaline_mg <dbl>, Pregabalin_mg <int>, Days_in_hosp <int>,
+    #   Reason_hosp_stay <int>, Overall_satisfaction <int>
 
-```{r data}
-head(mtcars)
-```
+## The DATA Layer
 
-##
+Before doing anything, you need to make sure you have:
+- "Tidy" data
+- Given thought to what you want to final plot to look like. This often means wrangling your data between "Tall" or "Wide" data.frames.
 
-```{r data2}
-ggplot(data = mtcars)
-```
+To build the "data" layer we use the following syntax:
 
-## Aesthetics
- 
-- This is how the data is "mapped" to a visual element
-- We are most familiar with `x` and `y` mappings
+    ggplot(data = rct_data)
 
-```{r aesthetics, eval=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp))
-```
+And this is what is returned:
 
-##
+![](img/ggplot_data_layer.jpeg)
 
-```{r aesthetics2, echo=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp))
-```
+This blank image is exactly what we are looking for. The data has been successfully loaded into ggplot, but it has no idea yet how to display that information. We need to move onto the "Aesthetic" layer.
 
-## Geometries
+## The AESTHETIC Layer
 
-- This allows us to display our data
+The aesthetic layer takes a column of our data and maps it to a particular visual dimention. This could include:
+- x (The abscissa of a cartesian axis)
+- y (The ordinate of a cartesian axis)
+- size (The relative size of each point)
+- shape (The shape of each point)
+- alpha *(otherwise known as transparency)*
+- color *(american spelling)*
 
-```{r geoms, eval=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp)) +
-  geom_point()
-```
+There are others, but these are the basics. Let's add the aesthetic mappings to our data. We'll choose the variables `Age` and `Days_in_hosp` to start. Both are continuous numerical data, so lend themselves well to being plotted on a scatter graph, with one mapped to each axis.
 
-##
+    ggplot(data = rct_data, mapping = aes(x = Age, y = Days_in_hosp))
 
-```{r geoms2, echo=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp)) +
-  geom_point()
-```
+![](img/ggplot_aes_layer.jpeg)
 
-## Review of layers
+Perfect, things are starting to take shape. The data has been mapped to a visual dimention. In this case, the x and y axis of the plot. We still aren't seeing any data points as we need to add our last mandatory layer, the geom layer.
 
-1. data
-2. aesthetics
-3. geoms
+## The GEOMETRY Layer
 
-## Let's Play
+The geom layer gives final instructions on how we want the data to be displayed. Do we want points, crosses or something else entirely. Let's add the geom layer:
 
-```{r play1, eval=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp,
-                     col = cyl)) +
-  geom_point()
-```
+    ggplot(data = rct_data, mapping = aes(x = Age, y = Days_in_hosp)) + geom_point()
 
-##
+![](img/ggplot_geom_layer.jpeg)
 
-```{r play2, echo=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp,
-                     col = cyl)) +
-  geom_point()
-```
+So we finally have a plot. It doesn't look like there's a very clear association between the two variables.
+
+## More examples
+
+Below, there are a few more examples where we have mapped different aesthetics and used different geoms.
+
+Let's start by adding a shape for the randomisation:
+
+    ggplot(data = rct_data, mapping = aes(x = Age, y = Days_in_hosp, shape = randomisation)) + geom_point()
+
+![](img/ggplot_shape.jpeg)
+
+Ggplot has created a legend for us. Lets go the whole hog and add in overall satisfaction as a color mapping.
+
+    ggplot(data = rct_data, mapping = aes(x = Age, y = Days_in_hosp, shape = randomisation, color = Overall_satisfaction)) + geom_point()
+
+![](img/ggplot_color.jpeg)
+
+Do you see how quite quickly, we've produced a series of publication quality graphics, essentially using 1 line of code.
+
+What about comparing pain scores?
+
+    ggplot(data = rct_data, mapping = aes(x = randomisation, y = PS_3hrs)) + geom_boxplot()
+
+![](img/ggplot_box.jpeg)
+
+Here we mapped the randomisation to the x axis as a categorical variable, which necessitated the use of the `geom_boxplot` geom to display the data.
 
 ## Exercise
 
-- There are many different anaesthetics (x, y, col, size, shape etc.)
-- There are many different geoms
-- Check out the cheat sheet and see if you can construct your own
-
+- There are many different anaesthetics (x, y, col, size, shape etc.). Explore your own data, using the different mappings.
+- There are many different geoms that help to represent our data. Have a look at some of the others aside from `geom_point()` and `geom_boxplot()`.
+- What do you think `geom_jitter()` does and why?
 
 [Previous topic](05-lesson-05-dataviz.html) --- [Next topic](07-lesson-07-just-enough-statistics.html)
