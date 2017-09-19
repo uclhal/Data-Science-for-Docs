@@ -1,0 +1,65 @@
+,id,recruit,age,gender,random,ps0h,ps3h,ps12,ps24h,ps168h,move12h,move24h,move168h,tylenol,codeine,oramorph,other,los,los_reason,satisfaction,fake_age
+0,1,1/1/2014,80.0,F,drain,0.0,0,0,2,2.0,2,0,0.0,8g,0,0,0,3.0,Continued fluid through drain,Good,83.24345363663241
+1,2,1/2/2014,72.0,f,drain,1.0,2,2,1,2.0,2,1,2.0,8g,210mg,0,0,7.0,Continued fluid through drain and bowel stasis,Poor,60.882435863499246
+2,3,1/3/2014,72.0,F,drain,0.0,1,0,0,0.0,0,0,0.0,6g,0,0,Diclofenac 225mg,4.0,Urinary incontinence,Good,61.71828247736544
+3,4,1/4/2014,55.0,F,drain,0.0,0,0,0,1.0,0,0,1.0,4g,0,0,Diclofenac 75mg,4.0,Continued fluid through drain,Excellent,56.27031377843829
+4,5,1/5/2014,84.0,f,skin,0.0,0,2,3,,1,1,,8g,0,20mg,0,3.0,Continued fluid through drain,Good,81.9366770054055
+5,6,1/6/2014,72.0,F,skin,1.0,2,2,2,,1,1,,8g,0,20mg,"Amitryptaline 10mg, pregabalin 300mg",10.0,Comorbidities- recurrent PE,Poor,76.41344825682361
+6,7,1/7/2014,65.0,F,skin,0.0,1,0,0,0.0,0,0,0.0,4g,0,0,0,4.0,Continued fluid through drain,Excellent,83.17207848908546
+7,8,1/8/2014,75.0,F,drain,0.0,0,0,0,0.0,0,0,0.0,0,0,0,0,3.0,Continued fluid through drain,Excellent,75.65407629324679
+8,9,1/9/2014,64.0,F,skin,2.0,2,1,1,2.0,1,1,3.0,7g,0,10mg,Dihydrocodiene 375mg,2.0,Continued fluid through drain,satisfactory,90.29901088554935
+9,10,1/10/2014,53.0,F,drain,0.0,1,0,0,0.0,0,1,0.0,7g,0,0,0,3.0,Continued fluid through drain,Excellent,43.98461303119717
+10,11,1/11/2014,59.0,F,skin,1.0,2,3,1,2.0,2,1,3.0,8g,60mg,0,Pethidine 20mg/ml for 1st 24 hours- dose consumed?,3.0,Continued fluid through drain,Good,85.71022080288668
+11,12,1/12/2014,72.0,F,skin,0.0,1,2,2,1.0,2,2,2.0,8g,0,0,Morphine 20mg,4.0,Continued fluid through drain,Good,81.04082223819192
+12,13,1/13/2014,75.0,f,skin,0.0,2,1,0,1.0,2,0,1.0,4g,0,10mg,Diclofenac 225mg,3.0,Continued fluid through drain,Good,77.56185517957582
+13,14,1/14/2014,36.0,f,drain,0.0,0,1,1,,0,0,,8g,0,0,Diclofenac 225mg,3.0,Continued fluid through drain,Good,84.4481176421648
+14,15,1/15/2014,95.0,f,skin,0.0,1,1,1,,1,1,,8g,0,0,0,5.0,Continued fluid through drain,satisfactory,78.26420853124581
+15,16,1/16/2014,29.0,f,skin,0.0,1,1,1,1.0,0,0,1.0,8g,0,0,0,3.0,Continued fluid through drain,Excellent,90.46227300513874
+16,17,1/17/2014,40.0,F,skin,3.0,3,4,4,2.0,3,2,1.0,8g,0,0,Diclofenac 300mg,3.0,Continued fluid through drain,Good,82.25403877388014
+17,18,1/18/2014,73.0,F,drain,0.0,0,0,0,0.0,0,0,0.0,8g,0,5mg,0,5.0,Continued fluid through drain,Excellent,59.387930991048975
+18,19,1/19/2014,73.0,f,drain,0.0,0,0,0,0.0,0,0,1.0,0,0,0,0,2.0,Continued fluid through drain,Good,70.19039096057098
+19,20,1/20/2014,55.0,f,skin,0.0,2,2,1,0.0,3,2,1.0,0,0,0,0,2.0,Continued fluid through drain,Good,78.81502176715324
+20,21,1/21/2014,86.0,M,drain,0.0,2,2,2,1.0,3,2,1.0,8g,0,0,0,4.0,Continued fluid through drain,Good,64.5062962452259
+21,22,1/22/2014,,F,drain,0.0,1,1,1,,1,1,,8g,0,0,0,2.0,Continued fluid through drain,Good,81.62107937044973
+22,23,1/23/2014,66.0,f,skin,0.0,1,1,1,,1,1,,6g,0,0,0,5.0,Continued fluid through drain,Good,82.95457742333733
+23,24,1/24/2014,73.0,f,drain,0.0,0,0,0,,0,0,,4g,60mg,0,0,2.0,Continued fluid through drain,Excellent,46.39859290502346
+24,25,1/25/2014,33.0,f,drain,0.0,0,0,0,0.0,2,2,2.0,8g,0,0,Diclofenac 225mg,4.0,Continued fluid through drain,Good,63.77582795986493
+25,26,1/26/2014,80.0,f,drain,0.0,1,0,1,0.0,1,1,0.0,4g,0,0,0,4.0,Continued fluid through drain,Excellent,63.15945645331584
+26,27,1/27/2014,85.0,f,drain,0.0,1,1,1,,1,1,,4g,0,0,0,1.0,Continued fluid through drain,Good,78.33769442335438
+27,28,1/28/2014,49.0,f,drain,0.0,1,1,1,1.0,1,1,1.0,8g,0,0,Diclofenac 225mg,4.0,Continued fluid through drain,Good,56.00108732685969
+28,29,1/29/2014,53.0,f,drain,,2,0,2,2.0,3,0,0.0,8g,0,10mg,Diclofenac 225mg,4.0,Continued fluid through drain,satisfactory,65.27571792449564
+29,30,1/30/2014,,f,skin,0.0,1,3,0,,0,0,,8g,0,10mg,Diclofenac 300mg,,,,92.50127568239421
+30,31,1/31/2014,73.0,f,drain,0.0,0,0,0,,0,0,,0,0,0,0,0.0,Continued fluid through drain,Excellent,58.221415820786284
+31,32,2/1/2014,55.0,f,drain,0.0,1,3,2,1.0,3,2,1.0,3g,0,10mg,0,1.0,Continued fluid through drain,Excellent,67.42213746715593
+32,33,2/2/2014,79.0,f,drain,0.0,1,4,1,1.0,2,4,1.0,4g,0,50mg,"Morphing 2.5mg, tramadol 100mg",5.0,Continued fluid through drain,Good,72.82815213715823
+33,34,2/3/2014,77.0,f,drain,0.0,0,0,0,0.0,0,0,0.0,8g,0,0,0,4.0,Continued fluid through drain,Good,55.99380822787079
+34,35,2/4/2014,81.0,F,skin,0.0,0,5,5,,5,5,,8g,0,0,"Oxycontin 240mg, pregabalin 200mg, oxynorm 25mg",8.0,Pain due to spinal mets,Poor,82.60079476240814
+35,36,2/5/2014,56.0,F,skin,0.0,4,3,3,,0,0,,2g,0,0,Morphine 20mg,,,,85.08601554853709
+36,37,2/6/2014,67.0,f,drain,1.0,0,0,1,,2,2,,4g,0,0,0,,,,78.44723709839614
+37,38,2/7/2014,80.0,F,drain,0.0,0,0,1,0.0,3,3,0.0,4g,0,0,0,,,,76.01590720592796
+38,39,2/8/2014,66.0,F,skin,0.0,3,4,2,3.0,1,1,3.0,8g,0,30mg,Morphine Sulphate MR 40mg,4.0,Continued fluid through drain,satisfactory,83.50085159977914
+39,40,2/9/2014,66.0,F,drain,0.0,1,3,3,0.0,2,2,0.0,3g,0,0,Ibuprofen 800mg,,,,72.02494338901869
+40,41,2/10/2014,50.0,F,drain,0.0,5,0,1,0.0,0,1,0.0,8g,0,10mg,Morphine Sulphate MR 10mg,4.0,Continued fluid through drain,satisfactory,76.00855949264411
+41,42,2/11/2014,49.0,F,drain,1.0,0,0,0,0.0,0,0,0.0,8g,0,0,0,2.0,Continued fluid through drain,Good,60.16272140825667
+42,43,2/12/2014,79.0,F,skin,0.0,0,3,0,0.0,0,0,0.0,1g,0,0,0,2.0,Continued fluid through drain,Excellent,80.23875076753241
+43,44,2/13/2014,70.0,F,skin,1.0,1,1,1,0.0,1,1,0.0,8g,0,0,Ibuprofen 800mg,,,,76.2874090098893
+44,45,2/14/2014,,F,skin,0.0,0,2,3,0.0,0,0,0.0,8g,0,0,Diclofenac 225mg,3.0,Continued fluid through drain,Good,80.25328638793562
+45,46,2/15/2014,71.0,F,skin,0.0,0,0,0,0.0,0,0,0.0,2g,0,0,0,,,,80.95552883312611
+46,47,2/16/2014,64.0,F,drain,0.0,0,0,0,0.0,0,0,0.0,2g,0,0,Morphine 10mg,4.0,Continued fluid through drain,Good,65.77109774481352
+47,48,2/17/2014,42.0,F,skin,0.0,2,2,2,0.0,1,0,0.0,8g,0,80mg,Diclofenac 225mg,5.0,Continued fluid through drain,satisfactory,84.93311595591099
+48,49,2/18/2014,70.0,F,skin,0.0,1,3,0,1.0,0,0,0.0,4g,0,20mg,0,2.0,Continued fluid through drain,Excellent,86.19491706937252
+49,50,2/19/2014,65.0,F,skin,0.0,2,3,3,2.0,3,3,1.0,4g,0,0,0,0.0,Continued fluid through drain,Good,86.65551040651779
+50,51,2/20/2014,37.0,F,skin,0.0,1,2,4,2.0,1,3,4.0,8g,0,50mg,Diclofenac 225mg,4.0,Continued fluid through drain,Good,83.42793662627129
+51,52,2/21/2014,66.0,F,skin,0.0,1,1,0,0.0,1,1,0.0,8g,0,0,Diclofenac 225mg,,,,86.42570582135365
+52,53,2/22/2014,60.0,F,drain,0.0,0,0,0,0.0,0,0,0.0,1g,0,0,Diclofenac 75mg,0.0,Comorbidities- recurrent PE,Excellent,57.64230565740931
+53,54,2/23/2014,76.0,F,drain,0.0,3,2,2,0.0,0,0,0.0,4g,0,60mg,0,5.0,Continued fluid through drain,Good,64.32111920373984
+54,55,2/24/2014,74.0,F,skin,1.0,2,5,1,1.0,0,0,0.0,8g,60mg,0,Ibuprofen 1200mg,,,,78.22801029501673
+55,56,2/25/2014,51.0,F,skin,0.0,0,1,4,1.0,0,0,1.0,8g,120mg,0,0,3.0,Continued fluid through drain,Good,88.26434077616643
+56,57,2/26/2014,75.0,F,drain,0.0,2,2,0,0.0,2,0,0.0,8g,30mg,0,Morphine Sulphate MR 60mg,4.0,Continued fluid through drain,Good,72.30355466738186
+57,58,2/27/2014,77.0,F,drain,0.0,2,2,1,0.0,2,1,0.0,8g,0,0,Morphine sulphate MR 50mg,4.0,Continued fluid through drain,Good,60.08339248274691
+58,59,2/28/2014,77.0,F,skin,0.0,0,1,0,0.0,1,1,0.0,4g,0,0,0,,,,84.56464910209004
+59,60,3/1/2014,85.0,F,drain,0.0,3,3,4,0.0,3,4,0.0,4g,60mg,0,0,,,,63.03246473144023
+60,61,3/2/2014,55.0,f,drain,0.0,0,3,3,0.0,1,0,0.0,4g,0,10mg,0,2.0,Continued fluid through drain,Good,60.12827299880401
+61,62,3/3/2014,79.0,f,drain,0.0,1,1,1,1.0,2,2,0.0,2g,0,20mg,0,,Continued fluid through drain,Satisfactory,58.5479435850128
+62,63,3/4/2014,,f,skin,0.0,5,0,1,0.0,0,2,0.0,3g,10mg,0,"Ibuprofen 1200mg, Morphine Sulphate MR 10mg",,,,80.50953582448642
+63,64,3/5/2014,80.0,f,drain,0.0,0,0,2,1.0,0,0,0.0,0,0,0,0,3.0,Continued fluid through drain,Good,60.28753869163181
