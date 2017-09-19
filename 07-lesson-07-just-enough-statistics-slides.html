@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Finn Catling">
+  <title>Just enough statistics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Just enough statistics</h1>
+  <h2 class="author">Finn Catling</h2>
+</section>
+
+<section id="before-we-start..." class="slide level1">
+<h1>Before we start...</h1>
+<pre><code>rct_data &lt;- read_csv(&quot;https://raw.githubusercontent.com/datascibc/Data-Science-for-Docs/master/data/breast-rct-clean-fakeage.csv&quot;)</code></pre>
+</section>
+<section id="the-big-picture" class="slide level1">
+<h1>The big picture</h1>
+<p>Our RCT attempts to answer a research question by collecting data from a <em>sample</em> of a <em>population</em>.</p>
+</section>
+<section class="slide level1">
+
+<p>Data collection consists in measuring the values of several <em>variables</em> for each member of the population.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="descriptive-statistics">Descriptive statistics</h2>
+<ul>
+<li>Inspect the data</li>
+<li>Organise the data</li>
+<li>Summarise the data</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="inferential-statistics">Inferential statistics</h2>
+<ul>
+<li>Draw conclusions about the population from the sample</li>
+<li>Test the reliability of those conclusions</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="variables">Variables</h2>
+<ul>
+<li>Variables may be <em>continuous</em> or <em>discrete</em></li>
+<li>Consider these:
+<ul>
+<li><strong>age</strong></li>
+<li><strong>random</strong>, <strong>satisfaction</strong></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="distributions">Distributions</h2>
+<pre><code>qplot(rct_data$age, binwidth=8)
+qplot(rct_data$id, geom=&quot;bar&quot;)
+qplot(rct_data$ps12, geom=&quot;bar&quot;)
+qplot(rct_data$binary_satisfaction, geom=&quot;bar&quot;)</code></pre>
+</section>
+<section class="slide level1">
+
+<figure>
+<img src="http://www.statisticshowto.com/wp-content/uploads/2014/12/gaussian-distribution-family.png" />
+</figure>
+<p>Do our variables looks like this?</p>
+</section>
+<section class="slide level1">
+
+<h2 id="means-medians-and-modes">Means, medians and modes</h2>
+<ul>
+<li>Mean: sum of all datapoints / number of datapoints</li>
+<li>Median: middle datapoint</li>
+<li>Mode: most common datapoint</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Comparison_mean_median_mode.svg/2000px-Comparison_mean_median_mode.svg.png" alt="Mean, median, mode" /><figcaption>Mean, median, mode</figcaption>
+</figure>
+</section>
+<section class="slide level1">
+
+<p>Have a go with these variables: <strong>age</strong>, <strong>ps12</strong>, <strong>move24h</strong></p>
+<p>You can use the functions <code>mean()</code> and <code>median()</code>, for example:</p>
+<pre><code>mean(rct_data$ps12, na.rm=TRUE)
+median(rct_data$ps12, na.rm=TRUE)</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="measuring-spread">Measuring 'spread'</h2>
+<ul>
+<li>For normally-distibuted data, use standard deviation</li>
+<li>For non normally-distributed data, use interquartile range</li>
+</ul>
+<pre><code>IQR(rct_data$age, na.rm=TRUE)
+sd(rct_data$age, na.rm=TRUE)</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="calculate-it-all-at-once">Calculate it all at once</h2>
+<pre><code>summary(rct_data)</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="testing-here-be-dragons">Testing (here be dragons)</h2>
+<ul>
+<li>best_option &lt;- &quot;<strong>Ask a statistician</strong>&quot;</li>
+<li>pragmatic_option &lt;- &quot;Do it yourself, <strong>carefully</strong> and <strong>simply</strong>&quot;</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="think-about">Think about</h2>
+<ol type="1">
+<li>The hypothesis you want to test</li>
+<li>Where your observations come from</li>
+<li>The type of variables you are dealing with</li>
+<li>The assumptions that different tests use</li>
+<li>Interpreting the test results</li>
+</ol>
+</section>
+<section class="slide level1">
+
+<h2 id="hypothesis-1">Hypothesis 1</h2>
+<blockquote>
+<p>'Mean age differs between the two treatment arms'</p>
+</blockquote>
+<blockquote>
+<p>Recall: The treatment arms are 1) patients receiving local anaesthetic via drain, and 2) patients receiving local anaesthetic via injection to the skin flaps'</p>
+</blockquote>
+</section>
+<section class="slide level1">
+
+<h2 id="hypothesis-1-1">Hypothesis 1</h2>
+<blockquote>
+<p>'Mean age differs between the two treatment arms'</p>
+</blockquote>
+<ul>
+<li>What sort of variables are these?</li>
+<li>What is the <em>independent variable</em>?</li>
+<li>What is the <em>dependent variable</em>?</li>
+<li>What is the <em>null hypothesis</em>?</li>
+<li><strong>Which test should we use?</strong></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="unpaired-2-tail-t-test-assumptions">Unpaired 2-tail t test: Assumptions</h2>
+<ul>
+<li>Values within each group are independent</li>
+<li>The two groups are independent of one another</li>
+<li>(Values in each group should be approximately normally-distributed)</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="lets-look-at-our-data...">Let's look at our data...</h2>
+<pre><code>p &lt;- ggplot(rct_data, aes(x=fake_age, group=random, fill=random))
+p &lt;- p + geom_histogram(position=&quot;identity&quot;, alpha=0.5, binwidth=6)
+p &lt;- p + theme_bw()
+p</code></pre>
+<p>Note that the 'spread' of the groups is different - a problem for the standard t test, but R takes care of this for us behind the scenes.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="lets-run-the-test">Let's run the test!</h2>
+<pre><code>t.test(rct_data$fake_age~rct_data$random)</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="hypothesis-2">Hypothesis 2</h2>
+<blockquote>
+<p>'Patient satisfaction after axillary node dissection depends on treatment arm.'</p>
+</blockquote>
+</section>
+<section class="slide level1">
+
+<h2 id="hypothesis-2-1">Hypothesis 2</h2>
+<blockquote>
+<p>'Patient satisfaction after axillary node dissection depends on treatment arm.'</p>
+</blockquote>
+<ul>
+<li>What sort of variables are these?</li>
+<li>What is the <em>independent variable</em>?</li>
+<li>What is the <em>dependent variable</em>?</li>
+<li>What is the <em>null hypothesis</em>?</li>
+<li><strong>Which test should we use?</strong></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="chi-squared-test-for-independence-assumptions">Chi-squared test for independence: Assumptions</h2>
+<ul>
+<li>The two groups are independent of one another</li>
+<li>Count in each cell of the table should be 5 or more</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="lets-look-at-our-data">Let's look at our data</h2>
+<pre><code>tbl = table(rct_data$random, rct_data$binary_satisfaction)
+tbl</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="lets-run-the-test-1">Let's run the test!</h2>
+<pre><code>chisq.test(tbl)</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="picking-the-right-test">Picking the right test</h2>
+<p><a href="https://stats.idre.ucla.edu/other/mult-pkg/whatstat/">UCLA Which test?</a></p>
+</section>
+<section class="slide level1">
+
+<h2 id="a-gentle-and-pretty-intro-to-probabilitystats">A gentle (and pretty!) intro to probability/stats</h2>
+<p><a href="http://students.brown.edu/seeing-theory/">Seeing theory</a></p>
+</section>
+<section class="slide level1">
+
+<h2 id="questions">Questions</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
