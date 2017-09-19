@@ -80,3 +80,7 @@ Here's a starter looking at age:
 describe(df$age)
 ggplot(df, aes(x=age)) + geom_histogram(binwidth=1)
 ~~~
+
+---
+
+[Previous topic](08-lesson-08-data-analysis-worksheet.html)
