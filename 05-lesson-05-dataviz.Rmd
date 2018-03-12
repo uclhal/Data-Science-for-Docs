@@ -5,6 +5,10 @@ title: Data visualisation
 minutes: 25
 ---
 
+```{r setup}
+library(ggplot2)
+```
+
 <!-- rename file with the lesson name replacing template -->
 
 <!--## Learning Objectives -->
