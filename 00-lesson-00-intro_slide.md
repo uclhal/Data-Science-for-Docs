@@ -13,7 +13,6 @@ output: beamer_presentation
 - Pair programming
 - Live coding / Tutorial
 - Install R & R Studio
-- Make sure you have a google account
 - [Consent for feedback](https://goo.gl/forms/gdmHqPsTD1vBcyep1)
 
 ## Mac OSX Users

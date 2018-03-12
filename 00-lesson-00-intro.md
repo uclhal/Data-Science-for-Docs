@@ -3,7 +3,7 @@ layout: lesson
 root: .
 title: Introduction lecture
 minutes: 25
-dataurl_1: https://drive.google.com/file/d/0Bw_vg8ODL-GaM01iN2FyeE82SDA/view?usp=sharing
+dataurl_1: https://figshare.com/s/165cad3ce6eadbf6b19a
 ---
 
 <!-- rename file with the lesson name replacing template -->
@@ -36,7 +36,6 @@ This is an opportunity to check that you were able to complete all the pre-requi
 
 - Install R
 - Install R studio
-- Sign up for a Google docs account
 - Download and install a speadsheet programme
 - Join Slack
 - Mac OSX Users: Please open a Terminal and type `xcode-select--install` and follow the onscreen instructions

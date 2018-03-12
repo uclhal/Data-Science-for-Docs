@@ -173,7 +173,7 @@ And all excel does is present it to us in an easy to use format.
 ## The data
 
 - Raw data from an RCT on pain relief following mastectomy
-- Download from [Figshare](https://figshare.com/s/165cad3ce6eadbf6b19a).
+- Download from [FigShare](https://figshare.com/s/165cad3ce6eadbf6b19a).
 
 ## Original (dirty)
 

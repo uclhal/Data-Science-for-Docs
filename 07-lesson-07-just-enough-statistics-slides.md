@@ -6,7 +6,7 @@
 # Before we start...
 
 ```
-rct_data <- read_csv("https://raw.githubusercontent.com/datascibc/Data-Science-for-Docs/master/data/breast-rct-clean-fakeage.csv")
+RCT <- read_csv("https://raw.githubusercontent.com/datascibc/Data-Science-for-Docs/master/data/breast-rct-clean-fakeage.csv")
 ```
 
 ---------
@@ -48,10 +48,10 @@ Data collection consists in measuring the values of several *variables* for each
 ## Distributions
 
 ```
-qplot(rct_data$age, binwidth=8)
-qplot(rct_data$id, geom="bar")
-qplot(rct_data$ps12, geom="bar")
-qplot(rct_data$binary_satisfaction, geom="bar")
+qplot(RCT$age, binwidth=8)
+qplot(RCT$id, geom="bar")
+qplot(RCT$ps12, geom="bar")
+qplot(RCT$binary_satisfaction, geom="bar")
 ```
 
 ----------
@@ -79,8 +79,8 @@ Have a go with these variables: **age**, **ps12**, **move24h**
 You can use the functions `mean()` and `median()`, for example:
 
 ```
-mean(rct_data$ps12, na.rm=TRUE)
-median(rct_data$ps12, na.rm=TRUE)
+mean(RCT$ps12, na.rm=TRUE)
+median(RCT$ps12, na.rm=TRUE)
 ```
 
 ---------
@@ -91,8 +91,8 @@ median(rct_data$ps12, na.rm=TRUE)
 - For non normally-distributed data, use interquartile range
 
 ```
-IQR(rct_data$age, na.rm=TRUE)
-sd(rct_data$age, na.rm=TRUE)
+IQR(RCT$age, na.rm=TRUE)
+sd(RCT$age, na.rm=TRUE)
 ```
 
 ---------
@@ -100,7 +100,7 @@ sd(rct_data$age, na.rm=TRUE)
 ## Calculate it all at once
 
 ```
-summary(rct_data)
+summary(RCT)
 ```
 
 -----------
@@ -153,7 +153,7 @@ summary(rct_data)
 ## Let's look at our data...
 
 ```
-p <- ggplot(rct_data, aes(x=fake_age, group=random, fill=random))
+p <- ggplot(RCT, aes(x=fake_age, group=random, fill=random))
 p <- p + geom_histogram(position="identity", alpha=0.5, binwidth=6)
 p <- p + theme_bw()
 p
@@ -166,7 +166,7 @@ Note that the 'spread' of the groups is different - a problem for the standard t
 ## Let's run the test!
 
 ```
-t.test(rct_data$fake_age~rct_data$random)
+t.test(RCT$fake_age~RCT$random)
 ```
 
 ---------
@@ -199,7 +199,7 @@ t.test(rct_data$fake_age~rct_data$random)
 ## Let's look at our data
 
 ```
-tbl = table(rct_data$random, rct_data$binary_satisfaction)
+tbl = table(RCT$random, RCT$binary_satisfaction)
 tbl
 ```
 

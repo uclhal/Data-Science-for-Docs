@@ -35,7 +35,7 @@ Why do people think R is hard? Because it's not a graphical user interface or GU
 
 Three good reasons:
 
-- You can do **anything** in R. If R is an entire language, we want to teach you how to become fluent. Once versed in this language you can tell the computer to do anything you can think of. In a GUI environment, someone has had to anticipate what you will want ahead of time, and tanslate a button push into a specific command. It's a little like going abroad armed with only a few flash cards to interact with the locals. Wouldn't you rather want to have a conversation in their native language?
+- You can do **anything** in R. If R is an entire language, we want to teach you how to become fluent. Once versed in this language you can tell the computer to do anything you can think of. In a GUI environment, someone has had to anticipate what you will want ahead of time, and translate a button push into a specific command. It's a little like going abroad armed with only a few flash cards to interact with the locals. Wouldn't you rather want to have a conversation in their native language?
 - **Science should be reproducible**. You can't record point and clicks. But you can re-run your `code`. How many times have you trawelled through your data to produce a graph, only to return to it months later and have no idea how you produced it? This isn't an issue in R, as your code tells a permanent story as to how you arrived at your results.
 - **Long term gain from upfront investment**. If you have ever worked hard preparing a table or a graph, and then discovered that either you have a new data point to add, or the next month's results are available then the GUI approach means starting all the pointing-and-clicking from scratch. But write it down once, re-run as often as you wish.
 
@@ -241,13 +241,13 @@ Moreover, rather than having to use numerical addresses to look at data, you can
 
 Functions are abtract black boxes that take an input, and give you an output. They perform tasks. To perform a task, they need an input, and the result of their work is the output. A simple function might be to tell us the time. `sys.time()` is a function built into `r` that tells us the time. Try it yourself by typing it into the console.
 
-Let's try a more visual exaple. We've written a custom function that helps navigate our character across the screen.
+Let's try a more visual example. We've written a custom function that helps navigate our character across the screen.
 
     ed.moveforward()
 
 ![](img/ed_moves_forward_slow.gif)
 
-The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward across the screen. The `()` is the instruction to the computer to use that function. It's our 'go' command. Any statement followed by `()` is a function. This function takes no arguments at present. Arguments are additional pieces of informtion we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward across the screen at a _really_ slow pace. Lets see if we can pass an argument into our function to speed him up.
+The function `ed.moveforward` is something we've pre-written to get our character Ed to move forward across the screen. The `()` is the instruction to the computer to use that function. It's our 'go' command. Any statement followed by `()` is a function. This function takes no arguments at present. Arguments are additional pieces of information we can give to our function, to make its behaviour more specific. At the moment `ed.moveforward()` moves our character forward across the screen at a _really_ slow pace. Lets see if we can pass an argument into our function to speed him up.
 
     ed.moveforward(speed = "fast")
 

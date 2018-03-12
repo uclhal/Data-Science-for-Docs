@@ -51,14 +51,14 @@ Let's think about the **age** variable in our data can take, and how often it ta
 
 ```
 # The 'breaks=20' part dictates how many 'bins' the histogram uses
-hist(data$age, breaks = 20)
+hist(RCT$age, breaks = 20)
 ```
 
 Our RCT dataset contains 64 rows of observations, but imagine if it contained 1 million rows, or even more. We would start to build up a detailed picture of how often different ages occur in our data. This would be the *distribution* of the age variable. Let's look at a few of the other variables.
 
 ```
-hist(data$ps12)
-hist(data$id, breaks = 20)
+hist(RCT$ps12)
+hist(RCT$id, breaks = 20)
 ```
 
 **ps12** could be described as right-tailed, or *right-skewed*. It might seem a bit irrelevant to plot a histogram for the **id** variable, but this is a great example of the *uniform distribution* (where all states of the variable are equally likely). There is another, very important distribution you will also have heard of:
@@ -72,8 +72,8 @@ A key question to ask yourself as you inspect the histograms for your data is, d
 It actually turns out that none of the variables in our RCT are normally distributed (age comes the closest, but it is too left-skewed). Let's pretend for a second that the age data were normal:
     
 ```
-data$fake_age <- rnorm(nrow(data), mean = 50, sd = 2))  
-hist(data$fake_age)
+RCT$fake_age <- rnorm(nrow(data), mean = 50, sd = 2))  
+hist(RCT$fake_age)
 ```
 
 
@@ -99,7 +99,7 @@ For measuring the 'spread' of the data:
 You can calculate lots of useful descriptive statistics in one fell swoop using just one simple R function:
 
 ```
-summary(data)
+summary(RCT)
 ```
 
 
@@ -131,7 +131,7 @@ Think back to your epidemiology lectures and remember that we will technically b
 As we said before, **random** and **satisfaction** are both discrete variables, so it sounds like using the *chi-squared test for independence* might be a good plan here. Let's look at a table of just the variables we are interested in.
 
 ```
-tbl = table(data$random, data$satisfaction)
+tbl = table(RCT$random, RCT$satisfaction)
 tbl
 ```
 
@@ -154,8 +154,8 @@ R has helpfully calculated the 'degrees of freedom' and a p value for us, which 
 But wait, we said earlier that **satisfaction** is an ordinal variable. We can use this fact to test our hypothesis in a different way, but first we have to less R know that this ordering exists (if we haven't done this earlier):
 
 ```
-data$satisfaction <- factor(data$satisfaction, levels=c("poor", "satisfactory", "good", "excellent"), ordered=TRUE)
-data$random<- factor(data$random, levels=c("drain", "skin"))
+RCT$satisfaction <- factor(RCT$satisfaction, levels=c("poor", "satisfactory", "good", "excellent"), ordered=TRUE)
+RCT$random<- factor(RCT$random, levels=c("drain", "skin"))
 ```
 
 Let's look at the the *class-conditional distributions* we will be comparing. This is a fancy term for comparing the histograms of the **satisfaction** variable patients in the 'drain' group vs. patients in the 'skin' group. Note that we have to use the (slightly clunky) *as.numeric()* function here, to get our data in the right format so that R doesn't get confused.
