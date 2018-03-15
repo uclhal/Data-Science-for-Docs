@@ -11,6 +11,7 @@ output:
 
 ```{r, warning=FALSE, message=FALSE}
 library(readr)
+library(dplyr)
 library(ggplot2)
 RCT <- read_csv("https://raw.githubusercontent.com/datascibc/Data-Science-for-Docs/master/data/breast-rct-clean-fakeage.csv")
 ```
@@ -43,10 +44,10 @@ Data collection consists in measuring the values of several *variables* for each
 # Distributions
 
 ```{r, warning=FALSE}
-ggplot(data=RCT, aes(x=RCT$age)) + geom_histogram(binwidth=8)
-ggplot(data=RCT, aes(x=RCT$id)) + geom_bar()
-ggplot(data=RCT, aes(x=RCT$ps12)) + geom_bar()
-ggplot(data=RCT, aes(x=RCT$binary_satisfaction)) + geom_bar()
+RCT %>% ggplot(aes(x=RCT$age)) + geom_histogram(binwidth=8)
+RCT %>% ggplot(aes(x=RCT$id)) + geom_bar()
+RCT %>% ggplot(aes(x=RCT$ps12)) + geom_bar()
+RCT %>% ggplot(aes(x=RCT$binary_satisfaction)) + geom_bar()
 ```
 
 Do our variables looks like this?
@@ -113,11 +114,6 @@ summary(RCT)
 
 > Recall: The treatment arms are 1) patients receiving local anaesthetic via drain, and 2) patients receiving local anaesthetic via injection to the skin flaps'
 
-
-## Hypothesis 1
-
-> 'Mean age differs between the two treatment arms'
-
 - What sort of variables are these?
 - What is the *independent variable*?
 - What is the *dependent variable*?
@@ -135,7 +131,7 @@ summary(RCT)
 # Let's look at our data...
 
 ```{r}
-ggplot(RCT, aes(x=fake_age, group=random, fill=random)) + geom_histogram(position="identity", alpha=0.5, binwidth=6) + theme_bw()
+RCT %>% ggplot(aes(x=fake_age, group=random, fill=random)) + geom_histogram(position="identity", alpha=0.5, binwidth=6) + theme_bw()
 ```
 
 Note that the 'spread' of the groups is different - a problem for the standard t test, but R takes care of this for us behind the scenes.
