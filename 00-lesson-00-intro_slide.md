@@ -7,7 +7,6 @@ output: beamer_presentation
 
 ## Homework
 
-- Sticky notes at the ready
 - A working internet connection
 - Introduce youselves on Slack
 - Pair programming
