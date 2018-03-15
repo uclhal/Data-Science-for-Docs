@@ -50,32 +50,31 @@ Done! It _filters_ rows from the `RCT` data frame where `age` is >= `65`.
     + `==` compares equality. Notice that there are two equal signs. This is because in R `=` means an assigment, you're _making_ somethign equal to something else:
     + `x = 6` means make the variable called `x` equal 6. If you then do `x == 8` is a question, _is_ x equal to 8? Here, the answer is a `FALSE`
 
+## Let's rewrite 
+
+```r
+filter(RCT, age >= 65)
+RCT %>% filter(age >= 65)
+```
+
+## What's that weird sign?!
+
+The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the `age` is >= 65, then selects the Gender.
+
 ## Second Wrangle!
 
 ```r
 RCT %>% filter(age >= 65) %>% select(gender)
 ```
 
-- First filter the rows by two criteria:
-    + we only want rows that have an Age variable in them - so exclude ones that are not a number
-    + we are also interested in patients 65 and older (`>= 65`)
+- First filter the rows by a criterion:
+    + we are interested in patients 65 and older (`>= 65`)
 - Now select the gender column
 - What we have left is a single column of Male/Female from a _subset_ of our data - namely ones that have an Age and are 65 and older
-
-## What's that weird sign?!
-
-The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the `age` is >= 65, then selects the Gender.
-
-What this is actually doing is ...
-
-```r
-filter(RCT, age >= 65) %>% select(gender)
-```
 
 ## What now?
 
 Now that we have our data's _subset_, we can pass it onto other functions in R:
-
 
 ```r
 RCT %>% filter(is.na(age) == FALSE, age >= 65) %>% 
