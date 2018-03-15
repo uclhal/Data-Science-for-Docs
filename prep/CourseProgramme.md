@@ -4,16 +4,19 @@
 
 |Time             |Agenda                                           |
 |:---------------:|:------------------------------------------------|
-|09:00&ndash;09:30|**Welcome & setup time for those who need help** |
-|09:30&ndash;10:30|**R for Newbies** _-Ed_                          |
-|10:30&ndash;10:45|*Coffee Break + Feedback*                        |
-|10:45&ndash;11:45|**Excel Hell** _-Steve_                          |
-|11:45&ndash;12:30|*Lunch + Feedback*                               |
-|12:30&ndash;13:30|**Getting Data into R** _-Danny_                 |
-|13:30&ndash;13:35|*Feedback*                                       |
-|13:35&ndash;14:35|**Data Wrangling** _-Danny_                      |
-|14:35&ndash;14:40|*Coffee Break + Feedback*                        |
-|14:40&ndash;15:40|**Data Visualisation** _-Ahmed_                  |
+|08:45            |**Registration**                                 |
+|09:00&ndash;09:15|**Welcome & setup time for those who need help** |
+|09:15&ndash;10:00|**R for Newbies 1** _-Ed_                        |
+|10:00&ndash;10:05|*Coffee Break*                                   |
+|10:05&ndash;10:50|**R for Newbies 2** _-Ed_                        |
+|10:50&ndash;11:00|*Coffee Break + Feedback*                        |
+|11:00&ndash;12:00|**Excel Hell** _-Steve_                          |
+|12:00&ndash;13:00|*Lunch + Feedback*                               |
+|13:00&ndash;13:40|**Getting Data into R** _-Danny_                 |
+|13:40&ndash;13:45|*Coffee Break + Feedback*                        |
+|13:45&ndash;15:00|**Data Wrangling** _-Danny_                      |
+|15:00&ndash;15:10|*Coffee Break + Feedback*                        |
+|15:10&ndash;15:40|**Data Visualisation** _-Ahmed_                  |
 |15:40&ndash;16:00|**Opportunity to go through participant data**   |
 |16:00            |*End of Day 1*                                   |
 
