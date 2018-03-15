@@ -21,8 +21,7 @@ dataurl_1: https://figshare.com/s/165cad3ce6eadbf6b19a
 
 ### Preliminaries
 
-- Sticky notes (red and green)
-- A working internet connection (please use the hospital wireless)
+- A working internet connection (please use the wifi)
 - Introduce youselves on Slack (use the web interface, or download the app to your computer or phone)
 - Pair programming
 - Live coding
@@ -45,8 +44,6 @@ This is an opportunity to check that you were able to complete all the pre-requi
 ### Introducing the data
 
 We'd like to introduce three data sources that will be using during the course.
-
-- a Google drive folder
 
 - An [RCT]({{page.dataurl_1%}}) comparing post-operative pain control after axillary node dissection with local anaesthetic infiltration via the drain versus injection to the skin flaps (Thanks to Muska Khpal)
 
