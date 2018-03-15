@@ -23,7 +23,6 @@ output: ioslides_presentation
 - Install the packages using `install.packages()`:
     + `dplyr` 
     + `lubridate` 
-    + `stringr`
 - Load the libraries
 - Import the RCT dataset into an object called `RCT`
 
@@ -33,10 +32,10 @@ Type this into the console:
 
 ```r
 library(dplyr)
-filter(RCT, is.na(age) == FALSE, age >= 65)
+filter(RCT, age >= 65)
 ```
 
-Done! It _filters_ rows from the `RCT` data frame where `age` is NOT NOT a number (therefore is a number, so we get rid of empty fields) and the age is >= `65`.
+Done! It _filters_ rows from the `RCT` data frame where `age` is >= `65`.
 
 ## Logical operators
 
@@ -53,9 +52,8 @@ Done! It _filters_ rows from the `RCT` data frame where `age` is NOT NOT a numbe
 
 ## Second Wrangle!
 
-
 ```r
-filter(RCT, is.na(age) == FALSE, age >= 65) %>% select(gender)
+RCT %>% filter(age >= 65) %>% select(gender)
 ```
 
 - First filter the rows by two criteria:
@@ -66,13 +64,12 @@ filter(RCT, is.na(age) == FALSE, age >= 65) %>% select(gender)
 
 ## What's that weird sign?!
 
-The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the Age  is NOT NOT a  number (i.e. is a number!) and that the Age is >= 65, then selects the Gender.
+The `%>%` operator (created by the _dplyr_ library) is called a **pipe**, and it (surprise, surprise) _pipes_ data from one command to the next. So in plain English, the above line _filters_ the data where the `age` is >= 65, then selects the Gender.
 
-An even better way to write this is ...
-
+What this is actually doing is ...
 
 ```r
-RCT %>% filter(is.na(Age) == FALSE, age >= 65) %>% select(gender)
+filter(RCT, age >= 65) %>% select(gender)
 ```
 
 ## What now?
