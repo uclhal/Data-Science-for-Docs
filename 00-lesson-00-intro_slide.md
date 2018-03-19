@@ -7,13 +7,11 @@ output: beamer_presentation
 
 ## Homework
 
-- Sticky notes at the ready
 - A working internet connection
 - Introduce youselves on Slack
 - Pair programming
 - Live coding / Tutorial
 - Install R & R Studio
-- Make sure you have a google account
 - [Consent for feedback](https://goo.gl/forms/gdmHqPsTD1vBcyep1)
 
 ## Mac OSX Users

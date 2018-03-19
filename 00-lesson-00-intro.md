@@ -3,7 +3,7 @@ layout: lesson
 root: .
 title: Introduction lecture
 minutes: 25
-dataurl_1: https://drive.google.com/file/d/0Bw_vg8ODL-GaM01iN2FyeE82SDA/view?usp=sharing
+dataurl_1: https://figshare.com/s/165cad3ce6eadbf6b19a
 ---
 
 <!-- rename file with the lesson name replacing template -->
@@ -21,8 +21,7 @@ dataurl_1: https://drive.google.com/file/d/0Bw_vg8ODL-GaM01iN2FyeE82SDA/view?usp
 
 ### Preliminaries
 
-- Sticky notes (red and green)
-- A working internet connection (please use the hospital wireless)
+- A working internet connection (please use the wifi)
 - Introduce youselves on Slack (use the web interface, or download the app to your computer or phone)
 - Pair programming
 - Live coding
@@ -36,7 +35,6 @@ This is an opportunity to check that you were able to complete all the pre-requi
 
 - Install R
 - Install R studio
-- Sign up for a Google docs account
 - Download and install a speadsheet programme
 - Join Slack
 - Mac OSX Users: Please open a Terminal and type `xcode-select--install` and follow the onscreen instructions
@@ -46,8 +44,6 @@ This is an opportunity to check that you were able to complete all the pre-requi
 ### Introducing the data
 
 We'd like to introduce three data sources that will be using during the course.
-
-- a Google drive folder
 
 - An [RCT]({{page.dataurl_1%}}) comparing post-operative pain control after axillary node dissection with local anaesthetic infiltration via the drain versus injection to the skin flaps (Thanks to Muska Khpal)
 

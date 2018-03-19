@@ -20,9 +20,9 @@ Ggplot works by translating your data, a layer at a time, into a visualisation. 
 - The **Aesthetic** mapping layer
 - The **Geometries** Layer
 
-Lets look at how we would build these up for a worked example. Let's use the data we've been using thus far in the course. The breast RCT data is already loaded into our workspace from before. We've loaded it in as the object `rct_data`. Let's take a look at it to remind outselves.
+Lets look at how we would build these up for a worked example. Let's use the data we've been using thus far in the course. The breast RCT data is already loaded into our workspace from before. We've loaded it in as the object `RCT`. Let's take a look at it to remind outselves.
 
-    > head(rct_data)
+    > head(RCT)
     # A tibble: 6 x 21
       Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs PS_24_28hrs PS_2wks
       <int> <int>  <int>         <int>       <int>   <int>       <int>       <int>   <int>
@@ -45,7 +45,7 @@ Before doing anything, you need to make sure you have:
 
 To build the "data" layer we use the following syntax:
 
-    ggplot(data = rct_data)
+    RCT %>% ggplot()
 
 And this is what is returned:
 
@@ -65,7 +65,7 @@ The aesthetic layer takes a column of our data and maps it to a particular visua
 
 There are others, but these are the basics. Let's add the aesthetic mappings to our data. We'll choose the variables `Age` and `Days_in_hosp` to start. Both are continuous numerical data, so lend themselves well to being plotted on a scatter graph, with one mapped to each axis.
 
-    ggplot(data = rct_data, mapping = aes(x = Age, y = Days_in_hosp))
+    RCT %>% ggplot(mapping = aes(x = Age, y = Days_in_hosp))
 
 ![](img/ggplot_aes_layer.jpeg)
 
@@ -75,7 +75,8 @@ Perfect, things are starting to take shape. The data has been mapped to a visual
 
 The geom layer gives final instructions on how we want the data to be displayed. Do we want points, crosses or something else entirely. Let's add the geom layer:
 
-    ggplot(data = rct_data, mapping = aes(x = Age, y = Days_in_hosp)) + geom_point()
+    RCT %>% ggplot(mapping = aes(x = Age, y = Days_in_hosp)) + 
+      geom_point()
 
 ![](img/ggplot_geom_layer.jpeg)
 
@@ -87,13 +88,15 @@ Below, there are a few more examples where we have mapped different aesthetics a
 
 Let's start by adding a shape for the randomisation:
 
-    ggplot(data = rct_data, mapping = aes(x = Age, y = Days_in_hosp, shape = randomisation)) + geom_point()
+    RCT %>% ggplot(mapping = aes(x = Age, y = Days_in_hosp, shape = randomisation)) + 
+      geom_point()
 
 ![](img/ggplot_shape.jpeg)
 
-Ggplot has created a legend for us. Lets go the whole hog and add in overall satisfaction as a color mapping.
+ggplot has created a legend for us. Lets go the whole hog and add in overall satisfaction as a color mapping.
 
-    ggplot(data = rct_data, mapping = aes(x = Age, y = Days_in_hosp, shape = randomisation, color = Overall_satisfaction)) + geom_point()
+    RCT %>% ggplot(mapping = aes(x = Age, y = Days_in_hosp, shape = randomisation, color = Overall_satisfaction)) + 
+      geom_point()
 
 ![](img/ggplot_color.jpeg)
 
@@ -101,7 +104,8 @@ Do you see how quite quickly, we've produced a series of publication quality gra
 
 What about comparing pain scores?
 
-    ggplot(data = rct_data, mapping = aes(x = randomisation, y = PS_3hrs)) + geom_boxplot()
+    RCT %>% ggplot(mapping = aes(x = randomisation, y = PS_3hrs)) + 
+      geom_boxplot()
 
 ![](img/ggplot_box.jpeg)
 
