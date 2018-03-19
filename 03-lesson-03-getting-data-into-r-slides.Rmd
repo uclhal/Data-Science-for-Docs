@@ -170,7 +170,7 @@ View(RCT)
 
 ## Navigating within the dataframe
 
-The 'rows' are contain measurements from different flowers, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as `[row, column]` (i.e. which row, then which column).
+The 'rows' are contain measurements from different individuals, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as `[row, column]` (i.e. which row, then which column).
 
 ```{r eval=FALSE, echo=TRUE} 
 RCT[1,1]         # top left cell

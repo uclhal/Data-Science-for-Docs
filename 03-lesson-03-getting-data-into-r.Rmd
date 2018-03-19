@@ -3,6 +3,7 @@ layout: lesson
 root: .
 title: Getting Data into R
 minutes: 25
+keep_md: true
 ---
 
 <!-- rename file with the lesson name replacing template -->
@@ -40,7 +41,6 @@ This lesson will teach you to move your data from an Excel sheet or similar into
 
 We strongly believe that the greatest strength you will gain from the work today is _reproducibility._ Learning 'coding' is a pain, and for a 'one off' process there will nearly always be some tempting 'point-and-click' alternative. However, learning to code, means being forced to write down what you did to get from your data to your result. You'll only have to reproduce something once to appreciate the value of having everything documented. Whether it is an error in your data, an new observation, or your supervisor or collaborator asking you to repeat an analysis with a twist, you will always be revisiting and revising your work. And the initial investment in _writing_ (i.e. coding) your analysis means that these adjustments become simple.
 
-
 ### Traditional workflow
 
 1. Collect data on paper
@@ -63,57 +63,7 @@ Learn just enough code to write down your 'workflow'. Ensure the workflow starts
 2. Write a script that converts your data into figures and tables
 3. Knit everything into a single report?
 
-
 > OK. Step 3 is showing off, and probably too much for today but as an FYI everything you are reading now was written in R including the text, the code, the tables and the figures. When we want to update something, we just edit and 'knit'. Look at the [course](https://www.coursera.org/learn/reproducible-research) by Roger Peng at Johns Hopkins on Coursera if you want to learn more.
-
-<a name="dataframes"></a>
-
----
-
-## Everything is a "data-frame"
-
-Step **1** in your pipeline has to be getting your (now beautifully tidy) spreadsheet into R.
-
-Spreadsheets in R are called 'dataframes'.
-
-A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe.  Let's do a quick tour of dataframes in R.
-
-R comes preloaded with different bits of data for you to explore. A famous data set describes characteristics of iris' (flowers).
-```{r}
-# Let's look at the dataframes that come with R
-data()
-
-# Let's pick one to play with (we'll label it 'df')
-df <- iris
-
-# Have a look at the data
-head(df)
-```
-
-The 'rows' are contain measurements from different flowers, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as `[row, column]` (i.e. which row, then which column).
-
-```{r} 
-df[1,1]         # top left cell
-df[150,5]       # bottom right cell
-df[1, ]         # first row (all columns)
-df[ ,1]         # first column (all rows)
-```
-
-Most of the time the rows are 'observations' and we want to pick out 'characteristics' of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the `$` operator: e.g. df$some_column
-
-
-```{r} 
-df$Species
-df$Petal.Length
-```
-
-### Exercise: Taking a quick look at the data
-
-1. What are the names of the columns? Hint: try `names()`
-2. Display in the console the items in the column `Sepal.Lengths`
-3. What is the mean of and standard deviation of `Sepal.Lengths`?
-4. What is the median, interquartile range, min and max of `Sepal.Lengths?`
-5. Can you do the same for all the other columns in `df`?
 
 <a name="csv"></a>
 
@@ -172,23 +122,83 @@ Point and click is lovely and easy but _sadly_ not reproducible. Much better is 
 install.packages("readr")       # install only needed the first time
 library(readr)                  # load the readr family functions including read_csv
 myfile <- file.choose()
-df <- read_csv(myfile)
+dataframename <- read_csv(myfile)
 ```
 
 You could have done this in one step, but it would have made things harder to read. Hard to read, means difficult to remember, and we are doing our best to avoid that!
 
 > There is a function `read.csv` provided by R but `read_csv` is better. The built in function has a couple of annoying 'habits'. If you wish to use it then don't forget to specify: (1) `header=TRUE` which tells the function to expect column names in row 1 instead of data, and (2) `stringsAsFactors=FALSE` which is a necessary but annoying reminder to R that you want it to leave 'strings' alone and not convert them to 'labelled' factors.
 
-Now you can access the data you imported. For example, to display the entire column named 'column_name`. Replace with with the name of the column you're interested in.
-
-```{r eval=FALSE, echo=TRUE}
-df$column_name
-```
-
 ### Exercise: Import the .csv into R
 
 1. Import the .csv file from the Excel Hell lesson as a dataframe and call it `RCT`
 2. Name all the columns in the dataframe.
+
+<a name="dataframes"></a>
+
+---
+
+## Everything is a "data-frame"
+
+Step **1** in your pipeline has to be getting your (now beautifully tidy) spreadsheet into R.
+
+Spreadsheets in R are called 'dataframes'.
+
+A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe.  Let's do a quick tour of dataframes in R.
+
+```{r}
+# Have a look at the first few rows of data you've imported
+head(RCT)
+
+# Have a look at the last few rows
+tail(RCT)
+
+# Have a look at the entire dataframe
+View(RCT)
+```
+
+The 'rows' are contain measurements from different individuals, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as `[row, column]` (i.e. which row, then which column).
+
+```{r} 
+RCT[1,1]         # top left cell
+RCT[64,21]       # bottom right cell
+RCT[1, ]         # first row (all columns)
+RCT[ ,1]         # first column (all rows)
+```
+
+Most of the time the rows are 'observations' and we want to pick out 'characteristics' of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the `$` operator: e.g. `dataframename$some_column`
+
+```{r eval=FALSE, echo=TRUE} 
+# First we need to know what column names exist
+names(RCT)
+
+RCT$Age
+RCT$Gender
+```
+
+## Exercise: Taking a quick look at the data
+
+1. What are the names of the columns? Hint: try `names()`
+
+2. Display in the console the items in the column `PS_Prior_op`
+
+3. Can you do the same for all the other columns in `RCT`?
+
+4. Can you find out how many patients were randomised to each arm? Hint: you can use the function `table()` or `xtab()`
+
+5. Can you find out how many subjects there are?
+
+## Exercise: Answers
+
+1. What are the names of the columns? `names(RCT)`
+
+2. Display in the console the items in the column `RCT$PS_Prior_op`
+
+3. Can you do the same for all the other columns in `RCT`? `RCT$Gender`, `RCT$Age`, etc.
+
+4. Can you find out how many patients were randomised to each arm? `table(RCT$Randomisation)`
+
+5. Can you find out how many subjects there are? `nrow(RCT)`
 
 <a name="google-sheets"></a>
 
@@ -215,26 +225,24 @@ Now let's have a look at the sheets in your account. We'll use the `gs_ls()` fun
 The first time you run this you will be asked to authenticate (a browser window will open and ask you to sign in to your google account). Behind the scenes R now saves a hidden file into your working directory. The next time you ever run your script, as long as you haven't moved your code to a new directory, it won't need to ask.
 
 
-``` {r, eval=TRUE, echo=TRUE}
+``` {r, eval=FALSE, echo=TRUE}
 library(googlesheets)
 gs_ls()
 ```
 You can see a list of google sheets. It is now straightforward to read these into R. Let's import the shared sheet `rct-clean`, and name it `gsheet`.
 
-``` {r, eval=TRUE, echo=TRUE}
+``` {r, eval=FALSE, echo=TRUE}
 gsheet <- gs_title("rct-clean")
 ```
 
 So far so good, but `sheet` isn't a data frame, it's just a connection to that sheet. There's one more step.
 
-``` {r, eval=TRUE, echo=TRUE}
+``` {r, eval=FALSE, echo=TRUE}
 df <- gs_read(gsheet)
 df
 ```
 
 > Bonus: The `googlesheets` library is actually doing one better than making a dataframe, and instead makes a _tibble_. Say it quickly and it sounds like _table_? It's just a fancy modern version of R's basic dataframe. You don't need to worry about the difference.
-
-
 
 
 ### Exercise: Taking a quick look at the data
