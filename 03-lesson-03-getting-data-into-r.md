@@ -118,13 +118,12 @@ Point and click is lovely and easy but _sadly_ not reproducible. Much better is 
 > Try right clicking a file in *Finder* (on a Mac) or *Windows Explorer* (on a PC). You'll normally see an option for 'info' or 'properties' that will show you the path to your file.
 
 
-
-{% highlight r %}
+```{r}
 install.packages("readr")       # install only needed the first time
 library(readr)                  # load the readr family functions including read_csv
 myfile <- file.choose()
 dataframename <- read_csv(myfile)
-{% endhighlight %}
+```
 
 You could have done this in one step, but it would have made things harder to read. Hard to read, means difficult to remember, and we are doing our best to avoid that!
 
@@ -148,149 +147,137 @@ Spreadsheets in R are called 'dataframes'.
 A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe.  Let's do a quick tour of dataframes in R.
 
 
-{% highlight r %}
+```{r}
 # Have a look at the first few rows of data you've imported
 head(RCT)
-{% endhighlight %}
+```
+
+
+  ## # A tibble: 6 x 21
+  ##   Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
+  ##   <int> <int>  <int>         <int>       <int>   <int>       <int>
+  ## 1     1    80      1             1           0       0           0
+  ## 2     2    72      1             1           1       2           2
+  ## 3     3    72      1             1           0       1           0
+  ## 4     4    55      1             1           0       0           0
+  ## 5     5    84      1             2           0       0           2
+  ## 6     6    72      1             2           1       2           2
+  ## # ... with 14 more variables: PS_24_28hrs <int>, PS_2wks <int>,
+  ## #   Mov_12_16hrs <int>, Mov_24_28hrs <int>, Mov_2wks <int>,
+  ## #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
+  ## #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
+  ## #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
 
 
 
-{% highlight text %}
-## # A tibble: 6 x 21
-##   Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
-##   <int> <int>  <int>         <int>       <int>   <int>       <int>
-## 1     1    80      1             1           0       0           0
-## 2     2    72      1             1           1       2           2
-## 3     3    72      1             1           0       1           0
-## 4     4    55      1             1           0       0           0
-## 5     5    84      1             2           0       0           2
-## 6     6    72      1             2           1       2           2
-## # ... with 14 more variables: PS_24_28hrs <int>, PS_2wks <int>,
-## #   Mov_12_16hrs <int>, Mov_24_28hrs <int>, Mov_2wks <int>,
-## #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
-## #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
-## #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
-{% endhighlight %}
 
-
-
-{% highlight r %}
+```{r}
 # Have a look at the last few rows
 tail(RCT)
-{% endhighlight %}
+```
 
 
 
-{% highlight text %}
-## # A tibble: 6 x 21
-##   Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
-##   <int> <int>  <int>         <int>       <int>   <int>       <int>
-## 1    59    77      1             2           0       0           1
-## 2    60    85      1             1           0       3           3
-## 3    61    55      1             1           0       0           3
-## 4    62    79      1             1           0       1           1
-## 5    63    NA      1             2           0       5           0
-## 6    64    80      1             1           0       0           0
-## # ... with 14 more variables: PS_24_28hrs <int>, PS_2wks <int>,
-## #   Mov_12_16hrs <int>, Mov_24_28hrs <int>, Mov_2wks <int>,
-## #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
-## #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
-## #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
-{% endhighlight %}
+  ## # A tibble: 6 x 21
+  ##   Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
+  ##   <int> <int>  <int>         <int>       <int>   <int>       <int>
+  ## 1    59    77      1             2           0       0           1
+  ## 2    60    85      1             1           0       3           3
+  ## 3    61    55      1             1           0       0           3
+  ## 4    62    79      1             1           0       1           1
+  ## 5    63    NA      1             2           0       5           0
+  ## 6    64    80      1             1           0       0           0
+  ## # ... with 14 more variables: PS_24_28hrs <int>, PS_2wks <int>,
+  ## #   Mov_12_16hrs <int>, Mov_24_28hrs <int>, Mov_2wks <int>,
+  ## #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
+  ## #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
+  ## #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
 
 
 
-{% highlight r %}
+```{r}
 # Have a look at the entire dataframe
 View(RCT)
-{% endhighlight %}
+```
 
 The 'rows' are contain measurements from different individuals, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as `[row, column]` (i.e. which row, then which column).
 
 
-{% highlight r %}
+```{r}
 RCT[1,1]         # top left cell
-{% endhighlight %}
+```
 
 
 
-{% highlight text %}
-## # A tibble: 1 x 1
-##   Pt_No
-##   <int>
-## 1     1
-{% endhighlight %}
+  ## # A tibble: 1 x 1
+  ##   Pt_No
+  ##   <int>
+  ## 1     1
 
 
 
-{% highlight r %}
+```{r}
 RCT[64,21]       # bottom right cell
-{% endhighlight %}
+```
 
 
 
-{% highlight text %}
-## # A tibble: 1 x 1
-##   Overall_satisfaction
-##                  <int>
-## 1                    3
-{% endhighlight %}
+  ## # A tibble: 1 x 1
+  ##   Overall_satisfaction
+  ##                  <int>
+  ## 1                    3
 
 
 
-{% highlight r %}
+```{r}
 RCT[1, ]         # first row (all columns)
-{% endhighlight %}
+```
 
 
 
-{% highlight text %}
-## # A tibble: 1 x 21
-##   Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
-##   <int> <int>  <int>         <int>       <int>   <int>       <int>
-## 1     1    80      1             1           0       0           0
-## # ... with 14 more variables: PS_24_28hrs <int>, PS_2wks <int>,
-## #   Mov_12_16hrs <int>, Mov_24_28hrs <int>, Mov_2wks <int>,
-## #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
-## #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
-## #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
-{% endhighlight %}
+  ## # A tibble: 1 x 21
+  ##   Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
+  ##   <int> <int>  <int>         <int>       <int>   <int>       <int>
+  ## 1     1    80      1             1           0       0           0
+  ## # ... with 14 more variables: PS_24_28hrs <int>, PS_2wks <int>,
+  ## #   Mov_12_16hrs <int>, Mov_24_28hrs <int>, Mov_2wks <int>,
+  ## #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
+  ## #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
+  ## #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
 
 
 
-{% highlight r %}
+```{r}
 RCT[ ,1]         # first column (all rows)
-{% endhighlight %}
+```
 
 
 
-{% highlight text %}
-## # A tibble: 64 x 1
-##    Pt_No
-##    <int>
-##  1     1
-##  2     2
-##  3     3
-##  4     4
-##  5     5
-##  6     6
-##  7     7
-##  8     8
-##  9     9
-## 10    10
-## # ... with 54 more rows
-{% endhighlight %}
+  ## # A tibble: 64 x 1
+  ##    Pt_No
+  ##    <int>
+  ##  1     1
+  ##  2     2
+  ##  3     3
+  ##  4     4
+  ##  5     5
+  ##  6     6
+  ##  7     7
+  ##  8     8
+  ##  9     9
+  ## 10    10
+  ## # ... with 54 more rows
 
 Most of the time the rows are 'observations' and we want to pick out 'characteristics' of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the `$` operator: e.g. `dataframename$some_column`
 
 
-{% highlight r %}
+```{r}
 # First we need to know what column names exist
 names(RCT)
 
 RCT$Age
 RCT$Gender
-{% endhighlight %}
+```
 
 ## Exercise: Taking a quick look at the data
 
@@ -338,7 +325,9 @@ The sheet is available
 First we need the functions someone else has kindly written that allow R
 to talk to google sheets. You will need to install the library first.
 
+```{r}
 install.packages("googlesheets")
+```
 
 Now let's have a look at the sheets in your account. We'll use the
 `gs_ls()` function.
@@ -349,54 +338,62 @@ the scenes R now saves a hidden file into your working directory. The
 next time you ever run your script, as long as you haven't moved your
 code to a new directory, it won't need to ask.
 
+```{r}
 library(googlesheets)
 gs_ls()
+```
 
-## # A tibble: 3 × 10
-##                sheet_title        author  perm version             updated
-##                      <chr>         <chr> <chr>   <chr>              <dttm>
-## 1                rct-clean     datascibc    rw     new 2016-11-15 15:16:00
-## 2                rct-dirty     datascibc    rw     new 2016-11-15 13:54:25
-## 3       rct-dirty-20161203     datascibc    rw     new 2016-11-15 13:00:33
-## # ... with 5 more variables: sheet_key <chr>, ws_feed <chr>,
-## #   alternate <chr>, self <chr>, alt_key <chr>
+  ## # A tibble: 3 × 10
+  ##                sheet_title        author  perm version             updated
+  ##                      <chr>         <chr> <chr>   <chr>              <dttm>
+  ## 1                rct-clean     datascibc    rw     new 2016-11-15 15:16:00
+  ## 2                rct-dirty     datascibc    rw     new 2016-11-15 13:54:25
+  ## 3       rct-dirty-20161203     datascibc    rw     new 2016-11-15 13:00:33
+  ## # ... with 5 more variables: sheet_key <chr>, ws_feed <chr>,
+  ## #   alternate <chr>, self <chr>, alt_key <chr>
 
 You can see a list of google sheets. It is now straightforward to read
 these into R. Let's import the shared sheet `rct-clean`, and name it
 `gsheet`.
 
+```{r}
 gsheet <- gs_title("rct-clean")
+```
 
 ## Sheet successfully identified: "rct-clean"
 
 So far so good, but `sheet` isn't a data frame, it's just a connection
 to that sheet. There's one more step.
 
+```{r}
 df <- gs_read(gsheet)
+```
 
-## Accessing worksheet titled 'breast-clean.csv'.
+  ## Accessing worksheet titled 'breast-clean.csv'.
 
-## No encoding supplied: defaulting to UTF-8.
+  ## No encoding supplied: defaulting to UTF-8.
 
+```{r}
 df
+```
 
-## # A tibble: 64 × 20
-##       id   recruit   age gender random  ps0h  ps3h  ps12 ps24h ps168h
-##    <int>     <chr> <int>  <chr>  <chr> <int> <int> <int> <int>  <int>
-## 1      1  1/1/2014    80      F  drain     0     0     0     2      2
-## 2      2  1/2/2014    72      f  drain     1     2     2     1      2
-## 3      3  1/3/2014    72      F  drain     0     1     0     0      0
-## 4      4  1/4/2014    55      F  drain     0     0     0     0      1
-## 5      5  1/5/2014    84      f   skin     0     0     2     3     NA
-## 6      6  1/6/2014    72      F   skin     1     2     2     2     NA
-## 7      7  1/7/2014    65      F   skin     0     1     0     0      0
-## 8      8  1/8/2014    75      F  drain     0     0     0     0      0
-## 9      9  1/9/2014    64      F   skin     2     2     1     1      2
-## 10    10 1/10/2014    53      F  drain     0     1     0     0      0
-## # ... with 54 more rows, and 10 more variables: move12h <int>,
-## #   move24h <int>, move168h <int>, tylenol <chr>, codeine <chr>,
-## #   oramorph <chr>, other <chr>, los <int>, los_reason <chr>,
-## #   satisfaction <chr>
+  ## # A tibble: 64 × 20
+  ##       id   recruit   age gender random  ps0h  ps3h  ps12 ps24h ps168h
+  ##    <int>     <chr> <int>  <chr>  <chr> <int> <int> <int> <int>  <int>
+  ## 1      1  1/1/2014    80      F  drain     0     0     0     2      2
+  ## 2      2  1/2/2014    72      f  drain     1     2     2     1      2
+  ## 3      3  1/3/2014    72      F  drain     0     1     0     0      0
+  ## 4      4  1/4/2014    55      F  drain     0     0     0     0      1
+  ## 5      5  1/5/2014    84      f   skin     0     0     2     3     NA
+  ## 6      6  1/6/2014    72      F   skin     1     2     2     2     NA
+  ## 7      7  1/7/2014    65      F   skin     0     1     0     0      0
+  ## 8      8  1/8/2014    75      F  drain     0     0     0     0      0
+  ## 9      9  1/9/2014    64      F   skin     2     2     1     1      2
+  ## 10    10 1/10/2014    53      F  drain     0     1     0     0      0
+  ## # ... with 54 more rows, and 10 more variables: move12h <int>,
+  ## #   move24h <int>, move168h <int>, tylenol <chr>, codeine <chr>,
+  ## #   oramorph <chr>, other <chr>, los <int>, los_reason <chr>,
+  ## #   satisfaction <chr>
 
 > Bonus: The `googlesheets` library is actually doing one better than
 > making a dataframe, and instead makes a *tibble*. Say it quickly and
