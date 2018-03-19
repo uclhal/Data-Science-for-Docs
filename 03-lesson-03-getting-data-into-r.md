@@ -152,7 +152,7 @@ A data-frame has columns, each identified by a name, and rows for observations. 
 head(RCT)
 ```
 
-
+```
   # A tibble: 6 x 21
     Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
     <int> <int>  <int>         <int>       <int>   <int>       <int>
@@ -167,7 +167,7 @@ head(RCT)
   #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
   #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
   #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
-
+```
 
 
 
@@ -177,7 +177,7 @@ tail(RCT)
 ```
 
 
-
+```
   # A tibble: 6 x 21
     Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
     <int> <int>  <int>         <int>       <int>   <int>       <int>
@@ -192,7 +192,7 @@ tail(RCT)
   #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
   #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
   #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
-
+```
 
 
 ```{r}
@@ -208,12 +208,12 @@ RCT[1,1]         # top left cell
 ```
 
 
-
+```
   # A tibble: 1 x 1
     Pt_No
     <int>
   1     1
-
+```
 
 
 ```{r}
@@ -221,12 +221,12 @@ RCT[64,21]       # bottom right cell
 ```
 
 
-
+```
   # A tibble: 1 x 1
     Overall_satisfaction
                    <int>
   1                    3
-
+```
 
 
 ```{r}
@@ -234,7 +234,7 @@ RCT[1, ]         # first row (all columns)
 ```
 
 
-
+```
   # A tibble: 1 x 21
     Pt_No   Age Gender Radnomisation PS_Prior_op PS_3hrs PS_12_16hrs
     <int> <int>  <int>         <int>       <int>   <int>       <int>
@@ -244,7 +244,7 @@ RCT[1, ]         # first row (all columns)
   #   Paracetamol_g <int>, Ibuprofen_mg <int>, Diclofenac_mg <int>,
   #   Oromorph_mg <dbl>, Amitryptaline_mg <dbl>, Pregabalin_mg <int>,
   #   Days_in_hosp <int>, Reason_hosp_stay <int>, Overall_satisfaction <int>
-
+```
 
 
 ```{r}
@@ -252,7 +252,7 @@ RCT[ ,1]         # first column (all rows)
 ```
 
 
-
+```
   # A tibble: 64 x 1
      Pt_No
      <int>
@@ -267,6 +267,7 @@ RCT[ ,1]         # first column (all rows)
    9     9
   10    10
   # ... with 54 more rows
+```
 
 Most of the time the rows are 'observations' and we want to pick out 'characteristics' of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the `$` operator: e.g. `dataframename$some_column`
 
@@ -343,6 +344,7 @@ library(googlesheets)
 gs_ls()
 ```
 
+```
   # A tibble: 3 × 10
                  sheet_title        author  perm version             updated
                        <chr>         <chr> <chr>   <chr>              <dttm>
@@ -351,6 +353,7 @@ gs_ls()
   3       rct-dirty-20161203     datascibc    rw     new 2016-11-15 13:00:33
   # ... with 5 more variables: sheet_key <chr>, ws_feed <chr>,
   #   alternate <chr>, self <chr>, alt_key <chr>
+```
 
 You can see a list of google sheets. It is now straightforward to read
 these into R. Let's import the shared sheet `rct-clean`, and name it
@@ -360,7 +363,9 @@ these into R. Let's import the shared sheet `rct-clean`, and name it
 gsheet <- gs_title("rct-clean")
 ```
 
-## Sheet successfully identified: "rct-clean"
+```
+ Sheet successfully identified: "rct-clean"
+```
 
 So far so good, but `sheet` isn't a data frame, it's just a connection
 to that sheet. There's one more step.
@@ -369,14 +374,17 @@ to that sheet. There's one more step.
 df <- gs_read(gsheet)
 ```
 
+```
   Accessing worksheet titled 'breast-clean.csv'.
 
   No encoding supplied: defaulting to UTF-8.
+```
 
 ```{r}
 df
 ```
 
+```
   # A tibble: 64 × 20
         id   recruit   age gender random  ps0h  ps3h  ps12 ps24h ps168h
      <int>     <chr> <int>  <chr>  <chr> <int> <int> <int> <int>  <int>
@@ -394,6 +402,7 @@ df
   #   move24h <int>, move168h <int>, tylenol <chr>, codeine <chr>,
   #   oramorph <chr>, other <chr>, los <int>, los_reason <chr>,
   #   satisfaction <chr>
+```
 
 > Bonus: The `googlesheets` library is actually doing one better than
 > making a dataframe, and instead makes a *tibble*. Say it quickly and
