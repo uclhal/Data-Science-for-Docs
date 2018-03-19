@@ -3106,7 +3106,7 @@ if (document.readyState !== "loading" &&
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Last Updated: 02 March 2018</p>
+            <p style="margin-top: 6px; margin-left: -2px;">Last Updated: 19 March 2018</p>
           </hgroup>
   </slide>
 
@@ -3116,17 +3116,17 @@ if (document.readyState !== "loading" &&
 
 <ol>
 <li>Introducing the data pipeline</li>
-<li>Doing a quick nose around dataframes in R</li>
 <li>Get data out of your spreadsheet</li>
 <li>Importing: Point and click in R studio</li>
 <li>Importing: Scripting your import (and introducing file paths)</li>
+<li>Doing a quick nose around dataframes in R</li>
 </ol>
 
 <!-- * Getting data into R - (v1) Ahmed (v2) Ed (v3) Steve
 
 keep theme of square tables frome excel to csv now to data.frame
 how to get these in
-how to do this 'automagically'
+/how to do this 'automagically'
 
 - [ ] teach comments
 - [ ] teach script files
@@ -3174,53 +3174,6 @@ how to do this 'automagically'
 <li>Collect data electronically</li>
 <li>Write a script that converts your data into figures and tables</li>
 <li>Knit everything into a single report?</li>
-</ol>
-
-</article></slide><slide class=""><hgroup><h2>Everything is a &ldquo;data-frame&rdquo;</h2></hgroup><article  id="everything-is-a-data-frame">
-
-<p>Step <strong>1</strong> in your pipeline has to be getting your (now beautifully tidy) spreadsheet into R.</p>
-
-<p>Spreadsheets in R are called &lsquo;dataframes&rsquo;.</p>
-
-<p>A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe. Let’s do a quick tour of dataframes in R.</p>
-
-</article></slide><slide class=""><hgroup><h2>Preloaded data in R</h2></hgroup><article  id="preloaded-data-in-r">
-
-<p>R comes preloaded with different bits of data for you to explore. A famous data set describes characteristics of irises (flowers).</p>
-
-<pre class = 'prettyprint lang-r'># Let&#39;s look at the dataframes that come with R
-data()
-
-# Let&#39;s pick one to play with (we&#39;ll label it &#39;df&#39;)
-df &lt;- iris
-
-# Have a look at the data
-head(df)</pre>
-
-</article></slide><slide class=""><hgroup><h2>Navigating within the dataframe</h2></hgroup><article  id="navigating-within-the-dataframe">
-
-<p>The &lsquo;rows&rsquo; are contain measurements from different flowers, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as <code>[row, column]</code> (i.e. which row, then which column).</p>
-
-<pre class = 'prettyprint lang-r'>df[1,1]         # top left cell
-df[150,5]       # bottom right cell
-df[1, ]         # first row (all columns)
-df[ ,1]         # first column (all rows)</pre>
-
-</article></slide><slide class=""><hgroup><h2>Selecting columns</h2></hgroup><article  id="selecting-columns">
-
-<p>Most of the time the rows are &lsquo;observations&rsquo; and we want to pick out &lsquo;characteristics&rsquo; of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the <code>$</code> operator: e.g. df$some_column</p>
-
-<pre class = 'prettyprint lang-r'>df$Species
-df$Petal.Length</pre>
-
-</article></slide><slide class=""><hgroup><h2>Exercise: Taking a quick look at the data</h2></hgroup><article  id="exercise-taking-a-quick-look-at-the-data">
-
-<ol>
-<li>What are the names of the columns? Hint: try <code>names()</code></li>
-<li>Display in the console the items in the column <code>Sepal.Lengths</code></li>
-<li>What is the mean of and standard deviation of <code>Sepal.Lengths</code>?</li>
-<li>What is the median, interquartile range, min and max of <code>Sepal.Lengths?</code></li>
-<li>Can you do the same for all the other columns in <code>df</code>?</li>
 </ol>
 
 </article></slide><slide class=""><hgroup><h2>Getting data out of your spreadsheet: CSV files</h2></hgroup><article  id="getting-data-out-of-your-spreadsheet-csv-files">
@@ -3271,7 +3224,7 @@ df$Petal.Length</pre>
 <ol>
 <li>Find the <em>path</em> to your file. We covered file paths in <a href='00-lesson-00-intro.html#files-and-directories' title=''>lesson 1</a>, and this is just the formal address of your file on your computer. A quick way to do this in <code>R</code> is to use the <code>file.choose</code> function.</li>
 <li>We will take the <em>path</em> you have generated and name it <code>myfile</code>.</li>
-<li>We will use a <em>function</em> called <code>read_csv</code> to import the data into a data frame (which we in turn name <code>df</code> for convenience).</li>
+<li>We will use a <em>function</em> called <code>read_csv</code> to import the data into a data frame (which we in turn name <code>RCT</code> for convenience).</li>
 </ol>
 
 <blockquote>
@@ -3286,7 +3239,7 @@ library(readr)              # load the readr family of
 
 myfile &lt;- file.choose()
 myfile
-df &lt;- read.csv(myfile)</pre>
+dataframename &lt;- read.csv(myfile)</pre>
 
 <p>You could have done this in one step, but it would have made things harder to read. Hard to read, means difficult to remember, and we are doing our best to avoid that!</p>
 
@@ -3296,46 +3249,82 @@ df &lt;- read.csv(myfile)</pre>
 <p>There is a function <code>read.csv</code> provided by R but <code>read_csv</code> is better. The built-in function has a couple of annoying &lsquo;habits&rsquo;. If you wish to use it then don’t forget to specify: (1) <code>header = TRUE</code> which tells the function to expect column names in row 1 instead of data, and (2) <code>stringsAsFactors = FALSE</code> which is a necessary but annoying reminder to R that you want it to leave &lsquo;strings&rsquo; alone and not convert them to &lsquo;labelled&rsquo; factors.</p>
 </blockquote>
 
-</article></slide><slide class=""><hgroup><h2>Accessing your columns</h2></hgroup><article  id="accessing-your-columns">
-
-<p>Now you can access the data you imported. For example, to display the entire column named ’column_name`. Replace with with the name of the column you’re interested in.</p>
-
-<pre class = 'prettyprint lang-r'>df$column_name</pre>
-
-</article></slide><slide class=""><hgroup><h2>Exercise 1: Import the .csv into R</h2></hgroup><article  id="exercise-1-import-the-.csv-into-r">
+</article></slide><slide class=""><hgroup><h2>Exercise: Import the .csv into R</h2></hgroup><article  id="exercise-import-the-.csv-into-r">
 
 <ol>
-<li><p>Import the .csv file from the Excel Hell lesson as a dataframe and call it <code>RCT</code>.</p></li>
-<li><p>Name all the columns in the dataframe.</p></li>
+<li>Import the .csv file from the Excel Hell lesson as a dataframe and call it <code>RCT</code>.</li>
 </ol>
 
-</article></slide><slide class=""><hgroup><h2>Exercise 2: Answers</h2></hgroup><article  id="exercise-2-answers">
+</article></slide><slide class=""><hgroup><h2>Exercise: Answer</h2></hgroup><article  id="exercise-answer">
 
 <ol>
-<li><p>Import the .csv file from the Excel Hell lesson as a dataframe and call it <code>RCT</code>. <code>RCT &lt;- read_csv(&quot;path/of/file.csv&quot;)</code></p></li>
-<li><p>Name all the columns in the dataframe. <code>names(RCT)</code></p></li>
+<li>Import the .csv file from the Excel Hell lesson as a dataframe and call it <code>RCT</code>.</li>
 </ol>
+
+<p><code>RCT &lt;- read_csv(&quot;path/of/file.csv&quot;)</code></p>
 
 <pre class = 'prettyprint lang-r'># Alternative solution:
 myfile &lt;- file.choose()
 RCT &lt;- read_csv(myfile)</pre>
 
-</article></slide><slide class=""><hgroup><h2>Exercise 2: Taking a quick look at the data</h2></hgroup><article  id="exercise-2-taking-a-quick-look-at-the-data">
+</article></slide><slide class=""><hgroup><h2>Everything is a &ldquo;data-frame&rdquo;</h2></hgroup><article  id="everything-is-a-data-frame">
+
+<p>Ok now you’ve managed to get your data into <code>R</code>! What next?</p>
+
+<p>Spreadsheets in R are called &lsquo;dataframes&rsquo;.</p>
+
+<p>A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe. Let’s do a quick tour of dataframes in R.</p>
+
+</article></slide><slide class=""><hgroup><h2>Let’s have a look at the data</h2></hgroup><article  id="lets-have-a-look-at-the-data">
+
+<p>We successfully brought in the RCT data and named it <code>RCT</code>. How do we look at it?</p>
+
+<pre class = 'prettyprint lang-r'># Have a look at the first few rows
+head(RCT)
+
+# Have a look at the last few rows
+tail(RCT)
+
+# Have a look at the whole spreadsheet
+View(RCT)</pre>
+
+</article></slide><slide class=""><hgroup><h2>Navigating within the dataframe</h2></hgroup><article  id="navigating-within-the-dataframe">
+
+<p>The &lsquo;rows&rsquo; are contain measurements from different flowers, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as <code>[row, column]</code> (i.e. which row, then which column).</p>
+
+<pre class = 'prettyprint lang-r'>RCT[1,1]         # top left cell
+RCT[64,21]       # bottom right cell
+RCT[1, ]         # first row (all columns)
+RCT[ ,1]         # first column (all rows)</pre>
+
+</article></slide><slide class=""><hgroup><h2>Selecting columns</h2></hgroup><article  id="selecting-columns">
+
+<p>Most of the time the rows are &lsquo;observations&rsquo; and we want to pick out &lsquo;characteristics&rsquo; of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the <code>$</code> operator: e.g. <code>dataframename$some_column</code></p>
+
+<pre class = 'prettyprint lang-r'># First we need to know what column names exist
+names(RCT)
+
+RCT$Age
+RCT$Gender</pre>
+
+</article></slide><slide class=""><hgroup><h2>Exercise: Taking a quick look at the data</h2></hgroup><article  id="exercise-taking-a-quick-look-at-the-data">
 
 <ol>
-<li><p>What are the names of the columns?</p></li>
-<li><p>Can you have a look at the column containing the age of the patients?</p></li>
+<li><p>What are the names of the columns? Hint: try <code>names()</code></p></li>
+<li><p>Display in the console the items in the column <code>PS_Prior_op</code></p></li>
+<li><p>Can you do the same for all the other columns in <code>RCT</code>?</p></li>
 <li><p>Can you find out how many patients were randomised to each arm? Hint: you can use the function <code>table()</code> or <code>xtab()</code></p></li>
 <li><p>Can you find out how many subjects there are?</p></li>
 </ol>
 
-</article></slide><slide class=""><hgroup><h2>Exercise 2: Answers</h2></hgroup><article  id="exercise-2-answers-1">
+</article></slide><slide class=""><hgroup><h2>Exercise: Answers</h2></hgroup><article  id="exercise-answers">
 
 <ol>
-<li><p>What are the names of the columns? <code>names(df)</code></p></li>
-<li><p>Can you have a look at the column containing the age of the patients? <code>df$age</code></p></li>
-<li><p>Can you find out how many patients were randomised to each arm? <code>table(df$random)</code></p></li>
-<li><p>Can you find out how many subjects there are? <code>nrow(df)</code></p></li>
+<li><p>What are the names of the columns? <code>names(RCT)</code></p></li>
+<li><p>Display in the console the items in the column <code>RCT$PS_Prior_op</code></p></li>
+<li><p>Can you do the same for all the other columns in <code>RCT</code>? <code>RCT$Gender</code>, <code>RCT$Age</code>, etc.</p></li>
+<li><p>Can you find out how many patients were randomised to each arm? <code>table(RCT$Randomisation)</code></p></li>
+<li><p>Can you find out how many subjects there are? <code>nrow(RCT)</code></p></li>
 </ol>
 
 </article></slide><slide class=""><hgroup><h2>Homework</h2></hgroup><article  id="homework">

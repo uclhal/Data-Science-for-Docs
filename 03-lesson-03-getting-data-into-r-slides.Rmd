@@ -1,7 +1,7 @@
 ---
 title: "Getting Data into R"
 author: "Danny Wong"
-date: "Last Updated: 02 March 2018"
+date: "Last Updated: 19 March 2018"
 output: ioslides_presentation
 ---
 
@@ -13,16 +13,16 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Learning Objectives 
 
 1. Introducing the data pipeline
-2. Doing a quick nose around dataframes in R
-3. Get data out of your spreadsheet
-4. Importing: Point and click in R studio
+2. Get data out of your spreadsheet
+3. Importing: Point and click in R studio
 4. Importing: Scripting your import (and introducing file paths)
+5. Doing a quick nose around dataframes in R
 
 <!-- * Getting data into R - (v1) Ahmed (v2) Ed (v3) Steve
 
 keep theme of square tables frome excel to csv now to data.frame
 how to get these in
-how to do this 'automagically'
+/how to do this 'automagically'
 
 - [ ] teach comments
 - [ ] teach script files
@@ -63,58 +63,6 @@ Learn just enough code to write down your 'workflow'. Ensure the workflow starts
 1. Collect data electronically
 2. Write a script that converts your data into figures and tables
 3. Knit everything into a single report?
-
-## Everything is a "data-frame"
-
-Step **1** in your pipeline has to be getting your (now beautifully tidy) spreadsheet into R.
-
-Spreadsheets in R are called 'dataframes'.
-
-A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe.  Let's do a quick tour of dataframes in R.
-
-## Preloaded data in R
-
-R comes preloaded with different bits of data for you to explore. A famous data set describes characteristics of irises (flowers).
-
-```{r eval=FALSE, echo=TRUE}
-# Let's look at the dataframes that come with R
-data()
-
-# Let's pick one to play with (we'll label it 'df')
-df <- iris
-
-# Have a look at the data
-head(df)
-```
-
-## Navigating within the dataframe
-
-The 'rows' are contain measurements from different flowers, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as `[row, column]` (i.e. which row, then which column).
-
-```{r eval=FALSE, echo=TRUE} 
-df[1,1]         # top left cell
-df[150,5]       # bottom right cell
-df[1, ]         # first row (all columns)
-df[ ,1]         # first column (all rows)
-```
-
-## Selecting columns
-
-Most of the time the rows are 'observations' and we want to pick out 'characteristics' of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the `$` operator: e.g. df$some_column
-
-
-```{r eval=FALSE, echo=TRUE} 
-df$Species
-df$Petal.Length
-```
-
-## Exercise: Taking a quick look at the data
-
-1. What are the names of the columns? Hint: try `names()`
-2. Display in the console the items in the column `Sepal.Lengths`
-3. What is the mean of and standard deviation of `Sepal.Lengths`?
-4. What is the median, interquartile range, min and max of `Sepal.Lengths?`
-5. Can you do the same for all the other columns in `df`?
 
 ## Getting data out of your spreadsheet: CSV files
 
@@ -159,7 +107,7 @@ Point and click is lovely and easy but _sadly_ not reproducible. Much better is 
 
 1. Find the _path_ to your file. We covered file paths in [lesson 1](00-lesson-00-intro.html#files-and-directories), and this is just the formal address of your file on your computer. A quick way to do this in `R` is to use the `file.choose` function.
 2. We will take the _path_ you have generated and name it `myfile`.
-3. We will use a _function_ called `read_csv` to import the data into a data frame (which we in turn name `df` for convenience).
+3. We will use a _function_ called `read_csv` to import the data into a data frame (which we in turn name `RCT` for convenience).
 
 > Try right clicking a file in *Finder* (on a Mac) or *Windows Explorer* (on a PC). You'll normally see an option for 'info' or 'properties' that will show you the path to your file.
 
@@ -172,7 +120,7 @@ library(readr)              # load the readr family of
 
 myfile <- file.choose()
 myfile
-df <- read.csv(myfile)
+dataframename <- read.csv(myfile)
 ```
 
 You could have done this in one step, but it would have made things harder to read. Hard to read, means difficult to remember, and we are doing our best to avoid that!
@@ -181,25 +129,15 @@ You could have done this in one step, but it would have made things harder to re
 
 > There is a function `read.csv` provided by R but `read_csv` is better. The built-in function has a couple of annoying 'habits'. If you wish to use it then don't forget to specify: (1) `header = TRUE` which tells the function to expect column names in row 1 instead of data, and (2) `stringsAsFactors = FALSE` which is a necessary but annoying reminder to R that you want it to leave 'strings' alone and not convert them to 'labelled' factors.
 
-## Accessing your columns
-
-Now you can access the data you imported. For example, to display the entire column named 'column_name`. Replace with with the name of the column you're interested in.
-
-```{r eval=FALSE, echo=TRUE}
-df$column_name
-```
-
-## Exercise 1: Import the .csv into R
+## Exercise: Import the .csv into R
 
 a. Import the .csv file from the Excel Hell lesson as a dataframe and call it `RCT`.
 
-b. Name all the columns in the dataframe.
+## Exercise: Answer
 
-## Exercise 2: Answers
+a. Import the .csv file from the Excel Hell lesson as a dataframe and call it `RCT`. 
 
-a. Import the .csv file from the Excel Hell lesson as a dataframe and call it `RCT`. `RCT <- read_csv("path/of/file.csv")`
-
-b. Name all the columns in the dataframe. `names(RCT)`
+`RCT <- read_csv("path/of/file.csv")`
 
 ```{r eval=FALSE, echo=TRUE}
 # Alternative solution:
@@ -207,25 +145,75 @@ myfile <- file.choose()
 RCT <- read_csv(myfile)
 ```
 
-## Exercise 2: Taking a quick look at the data
+## Everything is a "data-frame"
 
-a. What are the names of the columns?
+Ok now you've managed to get your data into `R`! What next?
 
-b. Can you have a look at the column containing the age of the patients?
+Spreadsheets in R are called 'dataframes'.
 
-c. Can you find out how many patients were randomised to each arm? Hint: you can use the function `table()` or `xtab()`
+A data-frame has columns, each identified by a name, and rows for observations. This means that however you import your data into R within your pipeline, those data will end up as a dataframe.  Let's do a quick tour of dataframes in R.
 
-d. Can you find out how many subjects there are?
+## Let's have a look at the data
 
-## Exercise 2: Answers
+We successfully brought in the RCT data and named it `RCT`. How do we look at it?
 
-a. What are the names of the columns? `names(df)`
+```{r eval=FALSE, echo=TRUE}
+# Have a look at the first few rows
+head(RCT)
 
-b. Can you have a look at the column containing the age of the patients? `df$age`
+# Have a look at the last few rows
+tail(RCT)
 
-c. Can you find out how many patients were randomised to each arm? `table(df$random)`
+# Have a look at the whole spreadsheet
+View(RCT)
+```
 
-d. Can you find out how many subjects there are? `nrow(df)`
+## Navigating within the dataframe
+
+The 'rows' are contain measurements from different flowers, and the columns contain the measurements. Just like in Excel, any item (cell) can be accessed by its coordinates in the table which are always written as `[row, column]` (i.e. which row, then which column).
+
+```{r eval=FALSE, echo=TRUE} 
+RCT[1,1]         # top left cell
+RCT[64,21]       # bottom right cell
+RCT[1, ]         # first row (all columns)
+RCT[ ,1]         # first column (all rows)
+```
+
+## Selecting columns
+
+Most of the time the rows are 'observations' and we want to pick out 'characteristics' of those observations (i.e. the columns). Rather than having to remember the column number, we can just ask for a columm by name using the `$` operator: e.g. `dataframename$some_column`
+
+```{r eval=FALSE, echo=TRUE} 
+# First we need to know what column names exist
+names(RCT)
+
+RCT$Age
+RCT$Gender
+```
+
+## Exercise: Taking a quick look at the data
+
+1. What are the names of the columns? Hint: try `names()`
+
+2. Display in the console the items in the column `PS_Prior_op`
+
+3. Can you do the same for all the other columns in `RCT`?
+
+4. Can you find out how many patients were randomised to each arm? Hint: you can use the function `table()` or `xtab()`
+
+5. Can you find out how many subjects there are?
+
+## Exercise: Answers
+
+1. What are the names of the columns? `names(RCT)`
+
+2. Display in the console the items in the column `RCT$PS_Prior_op`
+
+3. Can you do the same for all the other columns in `RCT`? `RCT$Gender`, `RCT$Age`, etc.
+
+4. Can you find out how many patients were randomised to each arm? `table(RCT$Randomisation)`
+
+5. Can you find out how many subjects there are? `nrow(RCT)`
 
 ## Homework
 
