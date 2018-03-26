@@ -211,7 +211,7 @@ RCT$Gender
 
 3. Can you do the same for all the other columns in `RCT`? `RCT$Gender`, `RCT$Age`, etc.
 
-4. Can you find out how many patients were randomised to each arm? `table(RCT$Randomisation)`
+4. Can you find out how many patients were randomised to each arm? `table(RCT$random)`
 
 5. Can you find out how many subjects there are? `nrow(RCT)`
 
