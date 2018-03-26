@@ -78,7 +78,7 @@ Now that we have our data's _subset_, we can pass it onto other functions in R:
 
 ```r
 RCT %>% filter(is.na(age) == FALSE, age >= 65) %>% 
-  select(Gender) %>% summary()
+  select(gender) %>% summary()
 ```
 
 This says, grab my data labeled `RCT`, filter the rows so that we only find patients who have an Age and are 65 and older, select the column called 'Gender'. With that column, give me a summary.
@@ -87,12 +87,8 @@ This says, grab my data labeled `RCT`, filter the rows so that we only find pati
 
 
 ```r
-RCT %>% filter(age >= 65) %>% select(gender) %>% is.na() %>% sum()
+RCT %>% filter(age >= 65) %>% select(gender) %>% table()
 ```
-
-Use the post-its when arrived at the answer:
-- Green if you've got it
-- Red if you haven't
 
 ## Other dplyr methods
 
@@ -113,8 +109,8 @@ Sadly this won't work because `mean` has a little hissy fit if there are NA's in
 
 
 ```r
-RCT %>% filter(is.na(age)==FALSE) %>%  group_by(gender) %>% 
-  summarise(age.avg = mean(age))
+RCT %>%  group_by(gender) %>% 
+  summarise(age.avg = mean(age, na.rm = TRUE))
 ```
 
 ## Practice some dplyr tidying recipes
