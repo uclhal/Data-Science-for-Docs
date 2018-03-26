@@ -77,7 +77,7 @@ RCT %>% filter(age >= 65) %>% select(gender)
 Now that we have our data's _subset_, we can pass it onto other functions in R:
 
 ```r
-RCT %>% filter(is.na(age) == FALSE, age >= 65) %>% 
+RCT %>% filter(age >= 65) %>% 
   select(Gender) %>% summary()
 ```
 
