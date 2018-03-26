@@ -3304,14 +3304,14 @@ RCT[ ,1]         # first column (all rows)</pre>
 <pre class = 'prettyprint lang-r'># First we need to know what column names exist
 names(RCT)
 
-RCT$Age
-RCT$Gender</pre>
+RCT$age
+RCT$gender</pre>
 
 </article></slide><slide class=""><hgroup><h2>Exercise: Taking a quick look at the data</h2></hgroup><article  id="exercise-taking-a-quick-look-at-the-data">
 
 <ol>
 <li><p>What are the names of the columns? Hint: try <code>names()</code></p></li>
-<li><p>Display in the console the items in the column <code>PS_Prior_op</code></p></li>
+<li><p>Display in the console the items in the column <code>ps0h</code></p></li>
 <li><p>Can you do the same for all the other columns in <code>RCT</code>?</p></li>
 <li><p>Can you find out how many patients were randomised to each arm? Hint: you can use the function <code>table()</code> or <code>xtab()</code></p></li>
 <li><p>Can you find out how many subjects there are?</p></li>
@@ -3321,8 +3321,8 @@ RCT$Gender</pre>
 
 <ol>
 <li><p>What are the names of the columns? <code>names(RCT)</code></p></li>
-<li><p>Display in the console the items in the column <code>RCT$PS_Prior_op</code></p></li>
-<li><p>Can you do the same for all the other columns in <code>RCT</code>? <code>RCT$Gender</code>, <code>RCT$Age</code>, etc.</p></li>
+<li><p>Display in the console the items in the column <code>RCT$ps0h</code></p></li>
+<li><p>Can you do the same for all the other columns in <code>RCT</code>? <code>RCT$gender</code>, <code>RCT$age</code>, etc.</p></li>
 <li><p>Can you find out how many patients were randomised to each arm? <code>table(RCT$random)</code></p></li>
 <li><p>Can you find out how many subjects there are? <code>nrow(RCT)</code></p></li>
 </ol>
