@@ -103,14 +103,34 @@ It breaks down a dataset into specified groups of rows. When you then apply the 
 
 
 ```r
-RCT %>% group_by(gender) %>% summarise(age.avg = mean(age))
+RCT %>% group_by(gender) %>% summarise(age_avg = mean(age))
 ```
 Sadly this won't work because `mean` has a little hissy fit if there are NA's in the data; fix:
 
 
 ```r
 RCT %>%  group_by(gender) %>% 
-  summarise(age.avg = mean(age, na.rm = TRUE))
+  summarise(age_avg = mean(age, na.rm = TRUE))
+```
+
+## Putting things together
+
+How do we combine all these steps to get insight into the data? 
+
+Since this RCT looking at the effects of having a drain vs having skin infiltration on postop pain, let's see what the mean change in pain scores is at 24h vs baseline:
+
+```r
+RCT %>% mutate(ps_change = ps24h - ps0h) %>% 
+  group_by(random) %>%
+  summarise(mean_ps_change = mean(ps_change, na.rm = TRUE))
+  
+RCT$ps_change <- RCT$ps24h - RCT$ps0h
+
+drain <- filter(RCT, random == "drain")
+mean(drain$ps_change, na.rm = TRUE)
+
+skin <- filter(RCT, random == "skin")
+mean(skin$ps_change, na.rm = TRUE)
 ```
 
 ## Practice some dplyr tidying recipes

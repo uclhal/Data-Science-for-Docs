@@ -3229,12 +3229,30 @@ RCT %&gt;% filter(age &gt;= 65)</pre>
 
 <p>It breaks down a dataset into specified groups of rows. When you then apply the verbs above on the resulting object they’ll be automatically applied &ldquo;by group&rdquo;. Most importantly, all this is achieved by using the same exact syntax you’d use with an ungrouped object.</p>
 
-<pre class = 'prettyprint lang-r'>RCT %&gt;% group_by(gender) %&gt;% summarise(age.avg = mean(age))</pre>
+<pre class = 'prettyprint lang-r'>RCT %&gt;% group_by(gender) %&gt;% summarise(age_avg = mean(age))</pre>
 
 <p>Sadly this won’t work because <code>mean</code> has a little hissy fit if there are NA’s in the data; fix:</p>
 
 <pre class = 'prettyprint lang-r'>RCT %&gt;%  group_by(gender) %&gt;% 
-  summarise(age.avg = mean(age, na.rm = TRUE))</pre>
+  summarise(age_avg = mean(age, na.rm = TRUE))</pre>
+
+</article></slide><slide class=""><hgroup><h2>Putting things together</h2></hgroup><article  id="putting-things-together">
+
+<p>How do we combine all these steps to get insight into the data?</p>
+
+<p>Since this RCT looking at the effects of having a drain vs having skin infiltration on postop pain, let’s see what the mean change in pain scores is at 24h vs baseline:</p>
+
+<pre class = 'prettyprint lang-r'>RCT %&gt;% mutate(ps_change = ps24h - ps0h) %&gt;% 
+  group_by(random) %&gt;%
+  summarise(mean_ps_change = mean(ps_change, na.rm = TRUE))
+  
+RCT$ps_change &lt;- RCT$ps24h - RCT$ps0h
+
+drain &lt;- filter(RCT, random == &quot;drain&quot;)
+mean(drain$ps_change, na.rm = TRUE)
+
+skin &lt;- filter(RCT, random == &quot;skin&quot;)
+mean(skin$ps_change, na.rm = TRUE)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Practice some dplyr tidying recipes</h2></hgroup><article  id="practice-some-dplyr-tidying-recipes">
 
