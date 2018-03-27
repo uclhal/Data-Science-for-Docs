@@ -13,6 +13,8 @@ Start by loading up the GGPLOT2 library.
     install.packages("ggplot2")
     library(ggplot2)
 
+You can also load this up with `dplyr` and other tidy tools with the convenient function `library(tidyverse)`
+
 ## Building Layers
 
 Ggplot works by translating your data, a layer at a time, into a visualisation. What do we mean by layers? All data (providing it is in a "tidy" form) can be represented by the following layers:
@@ -75,7 +77,9 @@ Perfect, things are starting to take shape. The data has been mapped to a visual
 
 The geom layer gives final instructions on how we want the data to be displayed. Do we want points, crosses or something else entirely. Let's add the geom layer:
 
-    RCT %>% ggplot(mapping = aes(x = Age, y = Days_in_hosp)) + 
+    RCT %>%
+      ggplot(mapping = aes(x = Age,
+                           y = Days_in_hosp)) + 
       geom_point()
 
 ![](img/ggplot_geom_layer.jpeg)
@@ -88,14 +92,21 @@ Below, there are a few more examples where we have mapped different aesthetics a
 
 Let's start by adding a shape for the randomisation:
 
-    RCT %>% ggplot(mapping = aes(x = Age, y = Days_in_hosp, shape = randomisation)) + 
+    RCT %>%
+      ggplot(mapping = aes(x = Age,
+                           y = Days_in_hosp,
+                       shape = randomisation)) + 
       geom_point()
 
 ![](img/ggplot_shape.jpeg)
 
 ggplot has created a legend for us. Lets go the whole hog and add in overall satisfaction as a color mapping.
 
-    RCT %>% ggplot(mapping = aes(x = Age, y = Days_in_hosp, shape = randomisation, color = Overall_satisfaction)) + 
+    RCT %>%
+      ggplot(mapping = aes(x = Age,
+                           y = Days_in_hosp,
+                       shape = randomisation,
+                       color = Overall_satisfaction)) + 
       geom_point()
 
 ![](img/ggplot_color.jpeg)
@@ -104,7 +115,8 @@ Do you see how quite quickly, we've produced a series of publication quality gra
 
 What about comparing pain scores?
 
-    RCT %>% ggplot(mapping = aes(x = randomisation, y = PS_3hrs)) + 
+    RCT %>%
+      ggplot(mapping = aes(x = randomisation, y = PS_3hrs)) + 
       geom_boxplot()
 
 ![](img/ggplot_box.jpeg)
