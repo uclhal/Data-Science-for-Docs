@@ -187,15 +187,15 @@ Most of the time the rows are 'observations' and we want to pick out 'characteri
 # First we need to know what column names exist
 names(RCT)
 
-RCT$Age
-RCT$Gender
+RCT$age
+RCT$gender
 ```
 
 ## Exercise: Taking a quick look at the data
 
 1. What are the names of the columns? Hint: try `names()`
 
-2. Display in the console the items in the column `PS_Prior_op`
+2. Display in the console the items in the column `ps0h`
 
 3. Can you do the same for all the other columns in `RCT`?
 
@@ -207,11 +207,11 @@ RCT$Gender
 
 1. What are the names of the columns? `names(RCT)`
 
-2. Display in the console the items in the column `RCT$PS_Prior_op`
+2. Display in the console the items in the column `RCT$ps0h`
 
-3. Can you do the same for all the other columns in `RCT`? `RCT$Gender`, `RCT$Age`, etc.
+3. Can you do the same for all the other columns in `RCT`? `RCT$gender`, `RCT$age`, etc.
 
-4. Can you find out how many patients were randomised to each arm? `table(RCT$Randomisation)`
+4. Can you find out how many patients were randomised to each arm? `table(RCT$random)`
 
 5. Can you find out how many subjects there are? `nrow(RCT)`
 

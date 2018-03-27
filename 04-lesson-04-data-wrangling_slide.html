@@ -3136,7 +3136,6 @@ if (document.readyState !== "loading" &&
 <ul>
 <li><code>dplyr</code></li>
 <li><code>lubridate</code></li>
-<li><code>stringr</code></li>
 </ul></li>
 <li>Load the libraries</li>
 <li>Import the RCT dataset into an object called <code>RCT</code></li>
@@ -3147,9 +3146,9 @@ if (document.readyState !== "loading" &&
 <p>Type this into the console:</p>
 
 <pre class = 'prettyprint lang-r'>library(dplyr)
-filter(RCT, is.na(age) == FALSE, age &gt;= 65)</pre>
+filter(RCT, age &gt;= 65)</pre>
 
-<p>Done! It <em>filters</em> rows from the <code>RCT</code> data frame where <code>age</code> is NOT NOT a number (therefore is a number, so we get rid of empty fields) and the age is &gt;= <code>65</code>.</p>
+<p>Done! It <em>filters</em> rows from the <code>RCT</code> data frame where <code>age</code> is &gt;= <code>65</code>.</p>
 
 </article></slide><slide class=""><hgroup><h2>Logical operators</h2></hgroup><article  id="logical-operators">
 
@@ -3177,43 +3176,41 @@ filter(RCT, is.na(age) == FALSE, age &gt;= 65)</pre>
 </ul></li>
 </ul>
 
+</article></slide><slide class=""><hgroup><h2>Let’s rewrite</h2></hgroup><article  id="lets-rewrite">
+
+<pre class = 'prettyprint lang-r'>filter(RCT, age &gt;= 65)
+RCT %&gt;% filter(age &gt;= 65)</pre>
+
+</article></slide><slide class=""><hgroup><h2>What’s that weird sign?!</h2></hgroup><article  id="whats-that-weird-sign">
+
+<p>The <code>%&gt;%</code> operator (created by the <em>dplyr</em> library) is called a <strong>pipe</strong>, and it (surprise, surprise) <em>pipes</em> data from one command to the next. So in plain English, the above line <em>filters</em> the data where the <code>age</code> is &gt;= 65, then selects the Gender.</p>
+
 </article></slide><slide class=""><hgroup><h2>Second Wrangle!</h2></hgroup><article  id="second-wrangle">
 
-<pre class = 'prettyprint lang-r'>filter(RCT, is.na(age) == FALSE, age &gt;= 65) %&gt;% select(gender)</pre>
+<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(age &gt;= 65) %&gt;% select(gender)</pre>
 
 <ul>
-<li>First filter the rows by two criteria:
+<li>First filter the rows by a criterion:
 
 <ul>
-<li>we only want rows that have an Age variable in them - so exclude ones that are not a number</li>
-<li>we are also interested in patients 65 and older (<code>&gt;= 65</code>)</li>
+<li>we are interested in patients 65 and older (<code>&gt;= 65</code>)</li>
 </ul></li>
 <li>Now select the gender column</li>
 <li>What we have left is a single column of Male/Female from a <em>subset</em> of our data - namely ones that have an Age and are 65 and older</li>
 </ul>
-
-</article></slide><slide class=""><hgroup><h2>What’s that weird sign?!</h2></hgroup><article  id="whats-that-weird-sign">
-
-<p>The <code>%&gt;%</code> operator (created by the <em>dplyr</em> library) is called a <strong>pipe</strong>, and it (surprise, surprise) <em>pipes</em> data from one command to the next. So in plain English, the above line <em>filters</em> the data where the Age is NOT NOT a number (i.e. is a number!) and that the Age is &gt;= 65, then selects the Gender.</p>
-
-<p>An even better way to write this is …</p>
-
-<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(is.na(Age) == FALSE, age &gt;= 65) %&gt;% select(gender)</pre>
 
 </article></slide><slide class=""><hgroup><h2>What now?</h2></hgroup><article  id="what-now">
 
 <p>Now that we have our data’s <em>subset</em>, we can pass it onto other functions in R:</p>
 
 <pre class = 'prettyprint lang-r'>RCT %&gt;% filter(is.na(age) == FALSE, age &gt;= 65) %&gt;% 
-  select(Gender) %&gt;% summary()</pre>
+  select(gender) %&gt;% summary()</pre>
 
 <p>This says, grab my data labeled <code>RCT</code>, filter the rows so that we only find patients who have an Age and are 65 and older, select the column called &lsquo;Gender&rsquo;. With that column, give me a summary.</p>
 
 </article></slide><slide class=""><hgroup><h2>What do you think this does?</h2></hgroup><article  id="what-do-you-think-this-does">
 
-<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(age &gt;= 65) %&gt;% select(gender) %&gt;% is.na() %&gt;% sum()</pre>
-
-<p>Use the post-its when arrived at the answer: - Green if you’ve got it - Red if you haven’t</p>
+<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(age &gt;= 65) %&gt;% select(gender) %&gt;% table()</pre>
 
 </article></slide><slide class=""><hgroup><h2>Other dplyr methods</h2></hgroup><article  id="other-dplyr-methods">
 
@@ -3232,12 +3229,30 @@ filter(RCT, is.na(age) == FALSE, age &gt;= 65)</pre>
 
 <p>It breaks down a dataset into specified groups of rows. When you then apply the verbs above on the resulting object they’ll be automatically applied &ldquo;by group&rdquo;. Most importantly, all this is achieved by using the same exact syntax you’d use with an ungrouped object.</p>
 
-<pre class = 'prettyprint lang-r'>RCT %&gt;% group_by(gender) %&gt;% summarise(age.avg = mean(age))</pre>
+<pre class = 'prettyprint lang-r'>RCT %&gt;% group_by(gender) %&gt;% summarise(age_avg = mean(age))</pre>
 
 <p>Sadly this won’t work because <code>mean</code> has a little hissy fit if there are NA’s in the data; fix:</p>
 
-<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(is.na(age)==FALSE) %&gt;%  group_by(gender) %&gt;% 
-  summarise(age.avg = mean(age))</pre>
+<pre class = 'prettyprint lang-r'>RCT %&gt;%  group_by(gender) %&gt;% 
+  summarise(age_avg = mean(age, na.rm = TRUE))</pre>
+
+</article></slide><slide class=""><hgroup><h2>Putting things together</h2></hgroup><article  id="putting-things-together">
+
+<p>How do we combine all these steps to get insight into the data?</p>
+
+<p>Since this RCT looking at the effects of having a drain vs having skin infiltration on postop pain, let’s see what the mean change in pain scores is at 24h vs baseline:</p>
+
+<pre class = 'prettyprint lang-r'>RCT %&gt;% mutate(ps_change = ps24h - ps0h) %&gt;% 
+  group_by(random) %&gt;%
+  summarise(mean_ps_change = mean(ps_change, na.rm = TRUE))
+  
+RCT$ps_change &lt;- RCT$ps24h - RCT$ps0h
+
+drain &lt;- filter(RCT, random == &quot;drain&quot;)
+mean(drain$ps_change, na.rm = TRUE)
+
+skin &lt;- filter(RCT, random == &quot;skin&quot;)
+mean(skin$ps_change, na.rm = TRUE)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Practice some dplyr tidying recipes</h2></hgroup><article  id="practice-some-dplyr-tidying-recipes">
 
