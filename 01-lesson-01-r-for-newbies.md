@@ -1,7 +1,8 @@
 ---
 title: "R for newbies"
 minutes: 60
-root: .
+output: pdf_document
+root: null
 layout: lesson
 ---
 <!-- - [ ] TODO(2016-05-19): factors and lists -->

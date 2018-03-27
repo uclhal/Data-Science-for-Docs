@@ -4,97 +4,212 @@ output: revealjs::revealjs_presentation
 ---
 
 ```{r setup}
+library(tidyverse)
 library(ggplot2)
 ```
 
-## The Grammar of Graphics
+# Recap from Yesterday
+
+- Intro to R
+- Tidy data practices
+- Getting Data into R
+- *Basic wrangling*
+
+## Wrangling Data
+
+- "verbs" from the tidyverse
+    - select()
+    - filter()
+    - group_by()
+    - summarise()
+
+***
+
+```{r data_import}
+outreach <- read_csv("~/Downloads/outreach.csv")
+```
+
+***
+
+```{r data_inspect}
+head(outreach[, 1:5])
+```
+
+***
+
+Are patients sicker at weekends?
+
+***
+
+```{r dplyr_example}
+outreach$weekend <- ifelse(
+  outreach$wday == "Sat" | outreach$wday == "Sun",
+  TRUE, FALSE)
+
+outreach_f <- filter(outreach, icu_accept == 1)
+outreach_s <- select(outreach_f, age, male, weekend, sofa_score)
+outreach_g <- group_by(outreach_s, weekend)
+outreach_x <- summarise(outreach_g, mean.sofa = mean(sofa_score),
+                        sd.sofa = sd(sofa_score))
+
+outreach_x
+```
+
+***
+
+A better way?
+
+***
+
+```{r magrittr_example}
+outreach %>%
+  filter(icu_accept == 1) %>%
+  select(age, male, weekend, sofa_score) %>%
+  group_by(weekend) %>%
+  summarise(mean.sofa = mean(sofa_score),
+              sd.sofa = sd(sofa_score))
+```
+
+# The Grammar of Graphics
 
 - GGPLOT2 is an r library that allows us to easily make publication quality plots
 - Based on the "Grammar of Graphics"
 
 ## Building Layers
 
-    Data + Aesthetics + Geoms
+- The Data
+    - The thing we are plotting
+- Mapping Aesthetics
+    - How we are mapping the data to a visual dimention
+- Geometric Objects
+    - How the mapping is presented to us
 
-## Data
+## The Data
 
 - Should be "tidy"
-- May need to think carefully about how it is formatted
-- Tall vs. Wide data
+- Think carefully about unit of observation
 
-```{r data}
-head(mtcars)
+***
+
+```{r ggplot_data, eval = FALSE}
+outreach %>%
+  ggplot()
+
+# ggplot(data = outreach)
 ```
 
-##
+***
 
-```{r data2}
-ggplot(data = mtcars)
+```{r ggplot_data_eval, echo = FALSE}
+outreach %>%
+  ggplot()
+
+# ggplot(data = outreach)
 ```
 
-## Aesthetics
+## Mapping Aesthetics
  
-- This is how the data is "mapped" to a visual element
+- This is how the data is "mapped" to a visual dimention
 - We are most familiar with `x` and `y` mappings
+- Others might include:
+    - Size
+    - Shape
+    - Colour/Fill
 
-```{r aesthetics, eval=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp))
+```{r aesthetics, eval = FALSE}
+outreach %>%
+  ggplot(mapping = aes(x = sofa_score, fill = weekend))
+
+# ggplot(data = outreach,
+#        mapping = aes(x = sofa_score, fill = weekend))
 ```
 
-##
+***
 
-```{r aesthetics2, echo=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp))
+```{r aesthetics_eval, echo = FALSE}
+outreach %>%
+  ggplot(mapping = aes(x = sofa_score, fill = weekend))
+
+# ggplot(data = outreach,
+#        mapping = aes(x = sofa_score, fill = weekend))
 ```
 
-## Geometries
+## Geometric Objects
 
 - This allows us to display our data
+- Points, lines, bars etc.
 
-```{r geoms, eval=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp)) +
-  geom_point()
+```{r geom, eval = FALSE}
+outreach %>%
+  ggplot(mapping = aes(x = sofa_score, fill = weekend)) +
+  geom_density()
+
+# ggplot(data = outreach,
+#        mapping = aes(x = sofa_score, fill = weekend)) +
+#   geom_density()
 ```
 
-##
+***
 
-```{r geoms2, echo=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp)) +
-  geom_point()
+```{r geom_eval, echo = FALSE}
+outreach %>%
+  ggplot(mapping = aes(x = sofa_score, fill = weekend)) +
+  geom_density(bw = 0.6, alpha = 0.8)
+
+# ggplot(data = outreach,
+#        mapping = aes(x = sofa_score, fill = weekend)) +
+#   geom_density()
 ```
 
 ## Review of layers
 
 1. data
-2. aesthetics
+2. aesthetic mapping
 3. geoms
 
 ## Let's Play
 
 ```{r play1, eval=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp,
-                     col = cyl)) +
+
+
+
+outreach %>%
+  ggplot(mapping = aes(x = news_score,
+                       y = sofa_score)) +
+  geom_point()
+
+
+
+
+
+
+```
+
+***
+
+```{r play1_eval, echo=FALSE}
+outreach %>%
+ggplot(mapping = aes(x = news_score,
+                     y = sofa_score)) +
   geom_point()
 ```
 
-##
+***
 
-```{r play2, echo=FALSE}
-ggplot(data = mtcars,
-       mapping = aes(x = disp,
-                     y = hp,
-                     col = cyl)) +
-  geom_point()
+```{r play2, eval=FALSE}
+outreach %>%
+ggplot(mapping = aes(x = news_score,
+                     y = sofa_score)) +
+  geom_jitter()
+```
+
+***
+
+```{r play2_eval, echo=FALSE}
+outreach %>%
+ggplot(mapping = aes(x = news_score,
+                     y = sofa_score)) +
+  geom_jitter()
 ```
 
 ## Exercise
