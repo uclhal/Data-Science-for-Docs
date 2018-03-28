@@ -3106,7 +3106,7 @@ if (document.readyState !== "loading" &&
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Last updated: 02 March 2018</p>
+            <p style="margin-top: 6px; margin-left: -2px;">Last updated: 28 March 2018</p>
           </hgroup>
   </slide>
 
@@ -3176,41 +3176,48 @@ filter(RCT, age &gt;= 65)</pre>
 </ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Let’s rewrite</h2></hgroup><article  id="lets-rewrite">
+</article></slide><slide class=""><hgroup><h2>Second Wrangle!</h2></hgroup><article  id="second-wrangle">
+
+<pre class = 'prettyprint lang-r'>RCT_1 &lt;- filter(RCT, age &gt;= 65) 
+RCT_2 &lt;- select(RCT_1, gender)
+table(RCT_2)
+
+table(select(filter(RCT, age &gt;= 65), gender))</pre>
+
+<ul>
+<li>First we filter the rows by a criterion:
+
+<ul>
+<li>we are interested in patients 65 and older (<code>&gt;= 65</code>)</li>
+</ul></li>
+<li>We then assign that to an named object <code>RCT_1</code></li>
+<li>We then select the gender column and assign that to <code>RCT_2</code>, and create a table from that</li>
+<li>What we have left is a single column of Male/Female from a <em>subset</em> of our data - namely ones that have an Age and are 65 and older</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Is there a better way?</h2></hgroup><article  id="is-there-a-better-way">
 
 <pre class = 'prettyprint lang-r'>filter(RCT, age &gt;= 65)
-RCT %&gt;% filter(age &gt;= 65)</pre>
+RCT %&gt;% filter(age &gt;= 65)
+
+# RCT_1 &lt;- filter(RCT, age &gt;= 65) 
+# RCT_2 &lt;- select(RCT_1, gender)
+# table(RCT_2)
+#
+# table(select(filter(RCT, age &gt;= 65), gender))</pre>
 
 </article></slide><slide class=""><hgroup><h2>What’s that weird sign?!</h2></hgroup><article  id="whats-that-weird-sign">
 
 <p>The <code>%&gt;%</code> operator (created by the <em>dplyr</em> library) is called a <strong>pipe</strong>, and it (surprise, surprise) <em>pipes</em> data from one command to the next. So in plain English, the above line <em>filters</em> the data where the <code>age</code> is &gt;= 65, then selects the Gender.</p>
 
-</article></slide><slide class=""><hgroup><h2>Second Wrangle!</h2></hgroup><article  id="second-wrangle">
-
-<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(age &gt;= 65) %&gt;% select(gender)</pre>
-
-<ul>
-<li>First filter the rows by a criterion:
-
-<ul>
-<li>we are interested in patients 65 and older (<code>&gt;= 65</code>)</li>
-</ul></li>
-<li>Now select the gender column</li>
-<li>What we have left is a single column of Male/Female from a <em>subset</em> of our data - namely ones that have an Age and are 65 and older</li>
-</ul>
-
 </article></slide><slide class=""><hgroup><h2>What now?</h2></hgroup><article  id="what-now">
 
 <p>Now that we have our data’s <em>subset</em>, we can pass it onto other functions in R:</p>
 
-<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(is.na(age) == FALSE, age &gt;= 65) %&gt;% 
-  select(gender) %&gt;% summary()</pre>
+<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(age &gt;= 65) %&gt;% 
+  select(gender) %&gt;% table()</pre>
 
-<p>This says, grab my data labeled <code>RCT</code>, filter the rows so that we only find patients who have an Age and are 65 and older, select the column called &lsquo;Gender&rsquo;. With that column, give me a summary.</p>
-
-</article></slide><slide class=""><hgroup><h2>What do you think this does?</h2></hgroup><article  id="what-do-you-think-this-does">
-
-<pre class = 'prettyprint lang-r'>RCT %&gt;% filter(age &gt;= 65) %&gt;% select(gender) %&gt;% table()</pre>
+<p>This says, grab my data labeled <code>RCT</code>, filter the rows so that we only find patients who have an Age and are 65 and older, select the column called <code>gender</code>. With that column, make me a summary.</p>
 
 </article></slide><slide class=""><hgroup><h2>Other dplyr methods</h2></hgroup><article  id="other-dplyr-methods">
 
@@ -3221,9 +3228,20 @@ RCT %&gt;% filter(age &gt;= 65)</pre>
 <li><code>arrange</code> –&gt; sorts rows</li>
 <li><code>distinct</code> –&gt; finds unique values</li>
 <li><code>mutate</code> –&gt; creates a new column based on some parameters. <em>Hint</em>: you can use other column names here, useful for finding out the Age of patients, length of time they were in hospital…etc</li>
+<li><code>recode</code> –&gt; helps you recode values which might have been mislabelled</li>
 <li><code>group_by</code> –&gt; This one is great!!</li>
 </ul></li>
 </ul>
+
+</article></slide><slide class=""><hgroup><h2>Let’s practice</h2></hgroup><article  id="lets-practice">
+
+<pre class = 'prettyprint lang-r'>RCT %&gt;% arrange(age)
+RCT %&gt;% arrange(desc(age))
+
+RCT %&gt;% select(gender) %&gt;% distinct()
+
+RCT %&gt;% filter(age &gt;= 65) %&gt;% select(gender) %&gt;% 
+  mutate(gender = recode(gender, f = &quot;F&quot;))</pre>
 
 </article></slide><slide class=""><hgroup><h2>Group-by</h2></hgroup><article  id="group-by">
 
