@@ -78,20 +78,21 @@ It's strength is in it's simplicity. It only has data, no formulas, no tricks an
 
 ## Exercise: Export an .xlsx file to .csv
 
-1. Find the cleaned .xlsx file that was produced in the Excel Hell lecture and export it as a .csv file. If all else fails then we have a copy [here](https://figshare.com/s/28e6b022c0d3fe63909e).
+1. Find the cleaned `.xlsx` file that was produced in the Excel Hell lecture and export it as a `.csv` file. If all else fails then we have a copy [here](https://figshare.com/s/28e6b022c0d3fe63909e).
+2. Save the `.csv` file into a folder called `data/` nested within your project root folder.
 
-Once a sheet has been exported, it can be imported into R.
+Once a sheet has been exported and saved, it can be imported into R.
 
 ## Getting CSV data into R
 
 There're many ways to do this:
 
 1. Point-and-click within RStudio, which we introduced in Lesson 1 (R for Newbies).
-2. Use the `read_csv` function.
+2. Use the `read_csv()` function.
 
-## Point-and-click
+## Exercise: Import using Point-and-click
 
-As a quick reminder from Lesson 1. Click the *Import Dataset* button, and select the *From local file ...* option.
+As a quick reminder from Lesson 1. Click the *Import Dataset* button, and select the *From Text (readr)...* option.
 
 ![](img/RStudio-import-data-button.png)
 
@@ -99,15 +100,15 @@ Then accept the defaults in the dialog box that appears.
 
 ## Point-and-click 2
 
-![](img/RStudio-import-data_small.png)
+![](img/RStudio-import-data-2018-09-26.png)
 
 ## Scripting
 
 Point and click is lovely and easy but _sadly_ not reproducible. Much better is to write down where your data comes from. We are going to do this in 3 steps here.
 
-1. Find the _path_ to your file. We covered file paths in [lesson 1](00-lesson-00-intro.html#files-and-directories), and this is just the formal address of your file on your computer. A quick way to do this in `R` is to use the `file.choose` function.
+1. Find the _path_ to your file. We covered file paths in [lesson 1](00-lesson-00-intro.html#files-and-directories), and this is just the formal address of your file on your computer. A quick way to do this in `R` is to use the `file.choose()` function.
 2. We will take the _path_ you have generated and name it `myfile`.
-3. We will use a _function_ called `read_csv` to import the data into a data frame (which we in turn name `RCT` for convenience).
+3. We will use a _function_ called `read_csv()` to import the data into a data frame (which we in turn name `RCT` for convenience).
 
 > Try right clicking a file in *Finder* (on a Mac) or *Windows Explorer* (on a PC). You'll normally see an option for 'info' or 'properties' that will show you the path to your file.
 
@@ -120,14 +121,14 @@ library(readr)              # load the readr family of
 
 myfile <- file.choose()
 myfile
-dataframename <- read.csv(myfile)
+dataframename <- read_csv(myfile)
 ```
 
 You could have done this in one step, but it would have made things harder to read. Hard to read, means difficult to remember, and we are doing our best to avoid that!
 
 ## Other functions
 
-> There is a function `read.csv` provided by R but `read_csv` is better. The built-in function has a couple of annoying 'habits'. If you wish to use it then don't forget to specify: (1) `header = TRUE` which tells the function to expect column names in row 1 instead of data, and (2) `stringsAsFactors = FALSE` which is a necessary but annoying reminder to R that you want it to leave 'strings' alone and not convert them to 'labelled' factors.
+> There is a function `read.csv()` provided by R but `read_csv()` is better. The built-in function has a couple of annoying 'habits'. If you wish to use it then don't forget to specify: (1) `header = TRUE` which tells the function to expect column names in row 1 instead of data, and (2) `stringsAsFactors = FALSE` which is a necessary but annoying reminder to R that you want it to leave 'strings' alone and not convert them to 'labelled' factors.
 
 ## Exercise: Import the .csv into R
 
@@ -137,7 +138,7 @@ a. Import the .csv file from the Excel Hell lesson as a dataframe and call it `R
 
 a. Import the .csv file from the Excel Hell lesson as a dataframe and call it `RCT`. 
 
-`RCT <- read_csv("path/of/file.csv")`
+`RCT <- read_csv("data/file.csv")`
 
 ```{r eval=FALSE, echo=TRUE}
 # Alternative solution:
@@ -214,6 +215,19 @@ RCT$gender
 4. Can you find out how many patients were randomised to each arm? `table(RCT$random)`
 
 5. Can you find out how many subjects there are? `nrow(RCT)`
+
+## Summary
+
+We have learned:
+
+1. Exporting an `.xlsx` file into a `.csv` file.
+
+2. Import data into R using 
+    
+    - point-and-click 
+    - scripting.
+
+3. Navigate around a dataframe to start getting at some answers from data.
 
 ## Homework
 

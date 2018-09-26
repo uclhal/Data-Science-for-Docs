@@ -3191,10 +3191,11 @@ how to get these in
 </article></slide><slide class=""><hgroup><h2>Exercise: Export an .xlsx file to .csv</h2></hgroup><article  id="exercise-export-an-.xlsx-file-to-.csv">
 
 <ol>
-<li>Find the cleaned .xlsx file that was produced in the Excel Hell lecture and export it as a .csv file. If all else fails then we have a copy <a href='https://figshare.com/s/28e6b022c0d3fe63909e' title=''>here</a>.</li>
+<li>Find the cleaned <code>.xlsx</code> file that was produced in the Excel Hell lecture and export it as a <code>.csv</code> file. If all else fails then we have a copy <a href='https://figshare.com/s/28e6b022c0d3fe63909e' title=''>here</a>.</li>
+<li>Save the <code>.csv</code> file into a folder called <code>data/</code> nested within your project root folder.</li>
 </ol>
 
-<p>Once a sheet has been exported, it can be imported into R.</p>
+<p>Once a sheet has been exported and saved, it can be imported into R.</p>
 
 </article></slide><slide class=""><hgroup><h2>Getting CSV data into R</h2></hgroup><article  id="getting-csv-data-into-r">
 
@@ -3202,12 +3203,12 @@ how to get these in
 
 <ol>
 <li>Point-and-click within RStudio, which we introduced in Lesson 1 (R for Newbies).</li>
-<li>Use the <code>read_csv</code> function.</li>
+<li>Use the <code>read_csv()</code> function.</li>
 </ol>
 
-</article></slide><slide class=""><hgroup><h2>Point-and-click</h2></hgroup><article  id="point-and-click">
+</article></slide><slide class=""><hgroup><h2>Exercise: Import using Point-and-click</h2></hgroup><article  id="exercise-import-using-point-and-click">
 
-<p>As a quick reminder from Lesson 1. Click the <em>Import Dataset</em> button, and select the <em>From local file …</em> option.</p>
+<p>As a quick reminder from Lesson 1. Click the <em>Import Dataset</em> button, and select the <em>From Text (readr)…</em> option.</p>
 
 <img src='img/RStudio-import-data-button.png' title=''/>
 
@@ -3215,16 +3216,16 @@ how to get these in
 
 </article></slide><slide class=""><hgroup><h2>Point-and-click 2</h2></hgroup><article  id="point-and-click-2">
 
-<img src='img/RStudio-import-data_small.png' title=''/>
+<img src='img/RStudio-import-data-2018-09-26.png' title=''/>
 
 </article></slide><slide class=""><hgroup><h2>Scripting</h2></hgroup><article  id="scripting">
 
 <p>Point and click is lovely and easy but <em>sadly</em> not reproducible. Much better is to write down where your data comes from. We are going to do this in 3 steps here.</p>
 
 <ol>
-<li>Find the <em>path</em> to your file. We covered file paths in <a href='00-lesson-00-intro.html#files-and-directories' title=''>lesson 1</a>, and this is just the formal address of your file on your computer. A quick way to do this in <code>R</code> is to use the <code>file.choose</code> function.</li>
+<li>Find the <em>path</em> to your file. We covered file paths in <a href='00-lesson-00-intro.html#files-and-directories' title=''>lesson 1</a>, and this is just the formal address of your file on your computer. A quick way to do this in <code>R</code> is to use the <code>file.choose()</code> function.</li>
 <li>We will take the <em>path</em> you have generated and name it <code>myfile</code>.</li>
-<li>We will use a <em>function</em> called <code>read_csv</code> to import the data into a data frame (which we in turn name <code>RCT</code> for convenience).</li>
+<li>We will use a <em>function</em> called <code>read_csv()</code> to import the data into a data frame (which we in turn name <code>RCT</code> for convenience).</li>
 </ol>
 
 <blockquote>
@@ -3239,14 +3240,14 @@ library(readr)              # load the readr family of
 
 myfile &lt;- file.choose()
 myfile
-dataframename &lt;- read.csv(myfile)</pre>
+dataframename &lt;- read_csv(myfile)</pre>
 
 <p>You could have done this in one step, but it would have made things harder to read. Hard to read, means difficult to remember, and we are doing our best to avoid that!</p>
 
 </article></slide><slide class=""><hgroup><h2>Other functions</h2></hgroup><article  id="other-functions">
 
 <blockquote>
-<p>There is a function <code>read.csv</code> provided by R but <code>read_csv</code> is better. The built-in function has a couple of annoying &lsquo;habits&rsquo;. If you wish to use it then don’t forget to specify: (1) <code>header = TRUE</code> which tells the function to expect column names in row 1 instead of data, and (2) <code>stringsAsFactors = FALSE</code> which is a necessary but annoying reminder to R that you want it to leave &lsquo;strings&rsquo; alone and not convert them to &lsquo;labelled&rsquo; factors.</p>
+<p>There is a function <code>read.csv()</code> provided by R but <code>read_csv()</code> is better. The built-in function has a couple of annoying &lsquo;habits&rsquo;. If you wish to use it then don’t forget to specify: (1) <code>header = TRUE</code> which tells the function to expect column names in row 1 instead of data, and (2) <code>stringsAsFactors = FALSE</code> which is a necessary but annoying reminder to R that you want it to leave &lsquo;strings&rsquo; alone and not convert them to &lsquo;labelled&rsquo; factors.</p>
 </blockquote>
 
 </article></slide><slide class=""><hgroup><h2>Exercise: Import the .csv into R</h2></hgroup><article  id="exercise-import-the-.csv-into-r">
@@ -3261,7 +3262,7 @@ dataframename &lt;- read.csv(myfile)</pre>
 <li>Import the .csv file from the Excel Hell lesson as a dataframe and call it <code>RCT</code>.</li>
 </ol>
 
-<p><code>RCT &lt;- read_csv(&quot;path/of/file.csv&quot;)</code></p>
+<p><code>RCT &lt;- read_csv(&quot;data/file.csv&quot;)</code></p>
 
 <pre class = 'prettyprint lang-r'># Alternative solution:
 myfile &lt;- file.choose()
@@ -3325,6 +3326,21 @@ RCT$gender</pre>
 <li><p>Can you do the same for all the other columns in <code>RCT</code>? <code>RCT$gender</code>, <code>RCT$age</code>, etc.</p></li>
 <li><p>Can you find out how many patients were randomised to each arm? <code>table(RCT$random)</code></p></li>
 <li><p>Can you find out how many subjects there are? <code>nrow(RCT)</code></p></li>
+</ol>
+
+</article></slide><slide class=""><hgroup><h2>Summary</h2></hgroup><article  id="summary">
+
+<p>We have learned:</p>
+
+<ol>
+<li><p>Exporting an <code>.xlsx</code> file into a <code>.csv</code> file.</p></li>
+<li><p>Import data into R using</p>
+
+<ul>
+<li>point-and-click</li>
+<li>scripting.</li>
+</ul></li>
+<li><p>Navigate around a dataframe to start getting at some answers from data.</p></li>
 </ol>
 
 </article></slide><slide class=""><hgroup><h2>Homework</h2></hgroup><article  id="homework">
